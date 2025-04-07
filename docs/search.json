@@ -11,7 +11,28 @@
     "href": "intro.html",
     "title": "Introduction",
     "section": "",
-    "text": "Introduction\nThis is a book created from markdown and executable code.\nSee @knuth84 for additional discussion of literate programming."
+    "text": "Introduction\nthree hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nSee @knuth84 for additional discussion of literate programming."
+  },
+  {
+    "objectID": "2025_spring/250604_iduarte.html",
+    "href": "2025_spring/250604_iduarte.html",
+    "title": "RNA-Seq Data Analysis in R - From Counts to Biological Insights",
+    "section": "",
+    "text": "RNA-Seq Data Analysis in R - From Counts to Biological Insights\nIntroduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning\nhow to choose the right Generalized linear model (GLM) for your question and your data. Participants will \nlearn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially \nexpressed genes."
+  },
+  {
+    "objectID": "2025_spring/250416_atkacz.html",
+    "href": "2025_spring/250416_atkacz.html",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
+    "section": "",
+    "text": "Simple Linux – An Introduction to Genomic Analysis on Linux\nLarge files or datasets—especially those containing genomic data—no problem. \nThis workshop introduces essential Linux commands and simple Bash scripts to\nstreamline data manipulation tasks. We’ll cover key operations such as searching for\npatterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files."
+  },
+  {
+    "objectID": "2025_spring/250507_taires.html",
+    "href": "2025_spring/250507_taires.html",
+    "title": "Microbiome Analysis of Amplicon Sequencing",
+    "section": "",
+    "text": "Microbiome Analysis of Amplicon Sequencing\nThis workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms."
   },
   {
     "objectID": "index.html",

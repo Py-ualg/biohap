@@ -1,5 +1,8 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+three hands-on workshops designed to equip researchers with essential data analysis
+skills for bioinformatics. Every month, you will get served a workshop which cover
+a key aspect of biological data analysis, from RNA-seq to microbiome analysis,
+helping you turn raw sequence files into meaningful biological insights. 
 
 See @knuth84 for additional discussion of literate programming.

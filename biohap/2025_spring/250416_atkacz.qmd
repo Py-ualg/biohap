@@ -1,0 +1,6 @@
+# Simple Linux – An Introduction to Genomic Analysis on Linux
+
+    Large files or datasets—especially those containing genomic data—no problem. 
+    This workshop introduces essential Linux commands and simple Bash scripts to
+    streamline data manipulation tasks. We’ll cover key operations such as searching for
+    patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files. 

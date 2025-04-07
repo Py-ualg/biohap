@@ -1,0 +1,6 @@
+# Microbiome Analysis of Amplicon Sequencing
+
+This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data
+to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess
+(QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine
+organisms.

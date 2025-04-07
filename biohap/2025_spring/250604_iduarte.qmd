@@ -1,0 +1,6 @@
+# RNA-Seq Data Analysis in R - From Counts to Biological Insights
+
+    Introduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning
+    how to choose the right Generalized linear model (GLM) for your question and your data. Participants will 
+    learn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially 
+    expressed genes. 
