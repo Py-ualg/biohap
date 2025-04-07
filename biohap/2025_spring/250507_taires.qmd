@@ -1,5 +1,8 @@
 # Microbiome Analysis of Amplicon Sequencing
-
+---
+date: 07/05/2025
+author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt) 
+---
 This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data
 to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess
 (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine
