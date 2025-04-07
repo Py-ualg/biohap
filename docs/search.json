@@ -1,31 +1,23 @@
 [
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "Summary",
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
     "section": "",
-    "text": "Summary\nIn summary, this book has no content whatsoever."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Preface",
-    "section": "",
-    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in Spring 2025. Since the world is spinning, the next edition is uncertain. Therefore, we call for your ideas and contributions already now for the Autumn 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "References",
     "crumbs": [
-      "Introduction",
-      "Preface"
+      "References"
     ]
   },
   {
-    "objectID": "2025_spring/250507_taires.html",
-    "href": "2025_spring/250507_taires.html",
-    "title": "Microbiome Analysis of Amplicon Sequencing",
+    "objectID": "2025_spring/250604_iduarte.html",
+    "href": "2025_spring/250604_iduarte.html",
+    "title": "RNA-Seq Data Analysis in R - From Counts to Biological Insights",
     "section": "",
-    "text": "Microbiome Analysis of Amplicon Sequencing\nThis workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
+    "text": "RNA-Seq Data Analysis in R - From Counts to Biological Insights\nIntroduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning\nhow to choose the right Generalized linear model (GLM) for your question and your data. Participants will \nlearn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially \nexpressed genes.",
     "crumbs": [
       "Spring 2025",
-      "Microbiome Analysis of Amplicon Sequencing"
+      "RNA-Seq Data Analysis in R - From Counts to Biological Insights"
     ]
   },
   {
@@ -55,7 +47,7 @@
     "href": "2025_spring/250416_atkacz.html#command-line",
     "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
     "section": "Command line",
-    "text": "Command line\n\nWhy\n\nEventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize and run heavy computations.\nThings can be done faster on a comand line with practice.\n\n\n\nBasics\nOpen the terminal and let’s create a file called maria_joanna_song\ntouch maria_joanna_song\nlet’s just copy in this text - open the file with double click and paste this song into the maria_joanna_song file\nE virou!\nOnde anda essa Maria?\nEu só tenho essa Maria\nEu vim do norte direto a Lisboa\nAtrás de um sonho\nQue eu nem sei se voa\nTanto quanto nós voávamos\nDebaixo dos lencóis\nA francesinha já não tem picante\nE isso faz-me lembrar os instantes\nEm que tu mordias os meus lábios\nDepois do amor\nNão sei se vou aguentar\nO tempo que vou cá ficar\nPorque não estás\nPorque não estás aqui\nAs lágrimas vão secar\nMas a saudade vai continuar\nNo meu peito a chamar\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMinha mãe nunca me viu partir\nMas todo o filho um dia voa\nSaudade, saudade\nMamã cuida dela por mim\nDiz-me porque não estás aqui\nMaria, sem ti fico à toa\nSaudade, saudade\nMaria, eu quero-te ver\nNão sei se vou aguentar\nO tempo que vou cá ficar\nPorque a saudade aperta o meu peito\nE dói demais (dói demais)\nAs lágrimas vão secar\nMas a saudade vai continuar\nNo meu peito a chamar\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria Joana (Maria), Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nQuantas lágrimas chorei\nQuantas noites não dormi\nCada gota que eu deitei\nFez um rio que me leva a ti\nMaria Joana\nMaria Joana (quantas lágrimas chorei)\nApanha o primeiro autocarro\nVem ficar pra sempre\nDo meu lado (quantas noites não dormi)\nMaria Joana (ai, Maria)\nMaria Joana (cada gota que eu deitei)\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nQuantas lágrimas chorei\nTo see the full lyrics (TIP: press tab to autocomplete the file name)\ncat maria_joanna_song\nShow the first 5 lines\nhead -5 maria_joanna_song",
+    "text": "Command line\n\nWhy\n\nEventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize and run heavy computations.\nThings can be done faster on a comand line with practice.\n\n\n\nBasics\nOpen the terminal and let’s create a file called maria_joanna_song\ntouch maria_joanna_song\nlet’s just copy in this text - open the file with double click and paste this song into the maria_joanna_song file\nE virou!\nOnde anda essa Maria?\nEu só tenho essa Maria\nEu vim do norte direto a Lisboa\nAtrás de um sonho\nQue eu nem sei se voa\nTanto quanto nós voávamos\nDebaixo dos lencóis\nA francesinha já não tem picante\nE isso faz-me lembrar os instantes\nEm que tu mordias os meus lábios\nDepois do amor\nNão sei se vou aguentar\nO tempo que vou cá ficar\nPorque não estás\nPorque não estás aqui\nAs lágrimas vão secar\nMas a saudade vai continuar\nNo meu peito a chamar\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMinha mãe nunca me viu partir\nMas todo o filho um dia voa\nSaudade, saudade\nMamã cuida dela por mim\nDiz-me porque não estás aqui\nMaria, sem ti fico à toa\nSaudade, saudade\nMaria, eu quero-te ver\nNão sei se vou aguentar\nO tempo que vou cá ficar\nPorque a saudade aperta o meu peito\nE dói demais (dói demais)\nAs lágrimas vão secar\nMas a saudade vai continuar\nNo meu peito a chamar\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria Joana (Maria), Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nQuantas lágrimas chorei\nQuantas noites não dormi\nCada gota que eu deitei\nFez um rio que me leva a ti\nMaria Joana\nMaria Joana (quantas lágrimas chorei)\nApanha o primeiro autocarro\nVem ficar pra sempre\nDo meu lado (quantas noites não dormi)\nMaria Joana (ai, Maria)\nMaria Joana (cada gota que eu deitei)\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nQuantas lágrimas chorei\nTo see the full lyrics (TIP: press tab to autocomplete the file name)\ncat maria_joanna_song\nShow the first 5 lines\nhead -5 maria_joanna_song\nDP: if you wanna link your files, you can use the raw link to GH, such as song",
     "crumbs": [
       "Spring 2025",
       "Simple Linux – An Introduction to Genomic Analysis on Linux"
@@ -95,24 +87,47 @@
     ]
   },
   {
-    "objectID": "2025_spring/250604_iduarte.html",
-    "href": "2025_spring/250604_iduarte.html",
-    "title": "RNA-Seq Data Analysis in R - From Counts to Biological Insights",
+    "objectID": "2025_fall/call.html",
+    "href": "2025_fall/call.html",
+    "title": "BioHap: Bioinformatics, Handy and Practical",
     "section": "",
-    "text": "RNA-Seq Data Analysis in R - From Counts to Biological Insights\nIntroduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning\nhow to choose the right Generalized linear model (GLM) for your question and your data. Participants will \nlearn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially \nexpressed genes.",
+    "text": "Since the world is spinning, the next edition is uncertain. Therefore, we call for your ideas and contributions already now for the Autumn 2025.",
     "crumbs": [
-      "Spring 2025",
-      "RNA-Seq Data Analysis in R - From Counts to Biological Insights"
+      "Fall 2025",
+      "Call for contributions"
     ]
   },
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
+    "objectID": "2025_fall/call.html#call-for-contributions",
+    "href": "2025_fall/call.html#call-for-contributions",
+    "title": "BioHap: Bioinformatics, Handy and Practical",
     "section": "",
-    "text": "References",
+    "text": "Since the world is spinning, the next edition is uncertain. Therefore, we call for your ideas and contributions already now for the Autumn 2025.",
     "crumbs": [
-      "References"
+      "Fall 2025",
+      "Call for contributions"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250507_taires.html",
+    "href": "2025_spring/250507_taires.html",
+    "title": "Microbiome Analysis of Amplicon Sequencing",
+    "section": "",
+    "text": "Microbiome Analysis of Amplicon Sequencing\nThis workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
+    "crumbs": [
+      "Spring 2025",
+      "Microbiome Analysis of Amplicon Sequencing"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in Spring 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Introduction",
+      "Preface"
     ]
   }
 ]
