@@ -1,6 +1,10 @@
 # Preface {.unnumbered}
 
-This is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in spring 2025. Since the world is spinning, the next edition is uncertain.
+This is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in *Spring 2025*. Since the world is spinning, the next edition is uncertain.
 Therefore, we call for your ideas and contributions already now for the *Autumn 2025*.
+
+Until this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced.
+Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis,
+helping you turn raw sequence files into meaningful biological insights. 
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

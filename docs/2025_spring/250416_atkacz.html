@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Andrzej Tkacz atkacz@ualg.pt">
+<meta name="dcterms.date" content="2026-04-04">
 
 <title>atkacz – BioHap: Bioinformatics, Handy and Practical</title>
 <style>
@@ -19,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -66,6 +102,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -116,12 +181,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -188,24 +247,274 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simple-linux-an-introduction-to-genomic-analysis-on-linux" id="toc-simple-linux-an-introduction-to-genomic-analysis-on-linux" class="nav-link active" data-scroll-target="#simple-linux-an-introduction-to-genomic-analysis-on-linux">Simple Linux – An Introduction to Genomic Analysis on Linux</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#command-line" id="toc-command-line" class="nav-link" data-scroll-target="#command-line">Command line</a>
+  <ul class="collapse">
+  <li><a href="#why" id="toc-why" class="nav-link" data-scroll-target="#why">Why</a></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a></li>
+  </ul></li>
+  <li><a href="#todo-reformat-the-rest" id="toc-todo-reformat-the-rest" class="nav-link" data-scroll-target="#todo-reformat-the-rest">TODO reformat the rest</a></li>
+  <li><a href="#genomics" id="toc-genomics" class="nav-link" data-scroll-target="#genomics">Genomics</a>
+  <ul class="collapse">
+  <li><a href="#word-on-e-utilities" id="toc-word-on-e-utilities" class="nav-link" data-scroll-target="#word-on-e-utilities">Word on E-Utilities</a></li>
+  <li><a href="#esearch" id="toc-esearch" class="nav-link" data-scroll-target="#esearch">ESearch</a></li>
+  </ul></li>
+  <li><a href="#visualise-the-data" id="toc-visualise-the-data" class="nav-link" data-scroll-target="#visualise-the-data">Visualise the data</a>
+  <ul class="collapse">
+  <li><a href="#test-running-code-online" id="toc-test-running-code-online" class="nav-link" data-scroll-target="#test-running-code-online">Test running code online</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2025_spring/250416_atkacz.html">Spring 2025</a></li><li class="breadcrumb-item"><a href="../2025_spring/250416_atkacz.html">Simple Linux – An Introduction to Genomic Analysis on Linux</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2025_spring/250416_atkacz.html">Spring 2025</a></li><li class="breadcrumb-item"><a href="../2025_spring/250416_atkacz.html">Simple Linux – An Introduction to Genomic Analysis on Linux</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Simple Linux – An Introduction to Genomic Analysis on Linux</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="simple-linux-an-introduction-to-genomic-analysis-on-linux" class="level1">
-<h1>Simple Linux – An Introduction to Genomic Analysis on Linux</h1>
-<pre><code>Large files or datasets—especially those containing genomic data—no problem. 
-This workshop introduces essential Linux commands and simple Bash scripts to
-streamline data manipulation tasks. We’ll cover key operations such as searching for
-patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files. </code></pre>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Andrzej Tkacz <a href="mailto:atkacz@ualg.pt">atkacz@ualg.pt</a> </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.</p>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>No extra setup needed for <code>linux</code> and <code>MacOS</code> machines. For windows the recommended way is to install <a href="here is the link">VBox</a>. See the steps to follow:</p>
+<ol type="1">
+<li>TBC</li>
+<li>TBC</li>
+</ol>
+</section>
+<section id="command-line" class="level2">
+<h2 class="anchored" data-anchor-id="command-line">Command line</h2>
+<section id="why" class="level3">
+<h3 class="anchored" data-anchor-id="why">Why</h3>
+<ol type="1">
+<li>Eventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize and run heavy computations.</li>
+<li>Things can be done faster on a comand line with practice.</li>
+</ol>
+</section>
+<section id="basics" class="level3">
+<h3 class="anchored" data-anchor-id="basics">Basics</h3>
+<p>Open the terminal and let’s create a file called <code>maria_joanna_song</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>let’s just copy in this text - open the file with double click and paste this song into the <code>maria_joanna_song</code> file</p>
+<pre class="text"><code>E virou!
+Onde anda essa Maria?
+Eu só tenho essa Maria
+Eu vim do norte direto a Lisboa
+Atrás de um sonho
+Que eu nem sei se voa
+Tanto quanto nós voávamos
+Debaixo dos lencóis
+A francesinha já não tem picante
+E isso faz-me lembrar os instantes
+Em que tu mordias os meus lábios
+Depois do amor
+Não sei se vou aguentar
+O tempo que vou cá ficar
+Porque não estás
+Porque não estás aqui
+As lágrimas vão secar
+Mas a saudade vai continuar
+No meu peito a chamar
+Maria Joana, Maria Joana
+Apanha o primeiro autocarro
+Vem ficar pra sempre do meu lado
+Maria Joana, Maria Joana
+Apanha o primeiro autocarro
+Vem ficar pra sempre do meu lado
+Minha mãe nunca me viu partir
+Mas todo o filho um dia voa
+Saudade, saudade
+Mamã cuida dela por mim
+Diz-me porque não estás aqui
+Maria, sem ti fico à toa
+Saudade, saudade
+Maria, eu quero-te ver
+Não sei se vou aguentar
+O tempo que vou cá ficar
+Porque a saudade aperta o meu peito
+E dói demais (dói demais)
+As lágrimas vão secar
+Mas a saudade vai continuar
+No meu peito a chamar
+Maria Joana, Maria Joana
+Apanha o primeiro autocarro
+Vem ficar pra sempre do meu lado
+Maria Joana (Maria), Maria Joana
+Apanha o primeiro autocarro
+Vem ficar pra sempre do meu lado
+Maria, Maria, Maria
+Maria, Maria, Maria
+(Maria, Maria, Maria, Maria)
+Maria, Maria, Maria
+Maria, Maria, Maria
+(Maria, Maria, Maria, Maria)
+Quantas lágrimas chorei
+Quantas noites não dormi
+Cada gota que eu deitei
+Fez um rio que me leva a ti
+Maria Joana
+Maria Joana (quantas lágrimas chorei)
+Apanha o primeiro autocarro
+Vem ficar pra sempre
+Do meu lado (quantas noites não dormi)
+Maria Joana (ai, Maria)
+Maria Joana (cada gota que eu deitei)
+Apanha o primeiro autocarro
+Vem ficar pra sempre do meu lado
+Maria, Maria, Maria
+Maria, Maria, Maria
+(Maria, Maria, Maria, Maria)
+Maria, Maria, Maria
+Maria, Maria, Maria
+(Maria, Maria, Maria, Maria)
+Quantas lágrimas chorei</code></pre>
+<p>To see the full lyrics (TIP: press <code>tab</code> to autocomplete the file name)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Show the first 5 lines</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-5</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="todo-reformat-the-rest" class="level2">
+<h2 class="anchored" data-anchor-id="todo-reformat-the-rest">TODO reformat the rest</h2>
+<p>*** to see only the last 5 lines tail -5 maria_joanna_song</p>
+<p>*** to see only the last 10 to 15 lines (note the “|” sign it is a pipe and let’s you combine the commands into one, without dumping the information onto your harddrive head -15 maria_joanna_song | tail -5</p>
+<p>*** if you want to put information into your disk you can do as follows head -15 maria_joanna_song &gt; top15_maria tail -5 top15_maria &gt; lines10-15_maria</p>
+<p>*** to see the output we need to either click on the file or use the terminal cat lines10-15_maria</p>
+<p>*** how to find something in the text grep Maria maria_joanna_song</p>
+<p>*** ok, and how to see only the matched pattern - commands have “options” grep -o Maria maria_joanna_song</p>
+<p>*** and you can always get help (sometimes it is -h, and sometimes –help) - generally not much usefull - better to google it or ask ChatGPT grep –help</p>
+<p>*** let’s count word Maria - three different ways to count something grep Maria maria_joanna_song | wc -l grep Maria maria_joanna_song | wc -w grep Maria maria_joanna_song | wc -c</p>
+<p>*** and now let’s count Maria Joanna - it is important to use “” if the your search contains a space or some special character grep “Maria Joana” maria_joanna_song | wc -l grep “Maria Joana” maria_joanna_song | wc -w grep “Maria Joana” maria_joanna_song | wc -c</p>
+<p>*** how to avoid special characters grep ( maria_joanna_song #note the error grep “(” maria_joanna_song grep ( maria_joanna_song</p>
+<p>*** wild cards “.” and “<em>” grep Eu maria_joanna_song grep Eu.</em> maria_joanna_song</p>
+<p>*** playing with multiple choices grep se maria_joanna_song grep se[i] maria_joanna_song grep se[i,m] maria_joanna_song</p>
+<p>*** but I am in love with Donald Trump and not with Maria Joana - how to I fix the song ? sed ‘s/Maria Joana/Donald Trump/g’ maria_joanna_song | sed ‘s/Maria/Donald/g’ &gt; donald_trump_song</p>
+<p>*** let’s see what happened - now it doesn’t rhyme as good cat donald_trump_song more donald_trump_song</p>
+<p>*** ok, but are we sure Donald replaced Maria? diff -u *song diff maria_joanna_song donald_trump_song</p>
+<p>vimdiff *song</p>
+<p>*** let’s work on multiple files at the same time - have a look how a loop is being used here grep Lisboa <em>song for f in </em>song ; do grep Lisboa $f ; done</p>
+<p>*** to show which file Lisboa is found in for f in *song ; do grep -l Lisboa $f ; done</p>
+<p>*** to show where is it found (i.e.&nbsp;line number) for f in *song ; do grep -n Lisboa $f ; done</p>
+<p>*** I have just realised that “joanna” in portuguese is written as “joana” - how do I fix the name of my file *** option 1 - fix it but keep the original cp maria_joanna_song maria_joana_song</p>
+<p>*** option 2 - neh, I don’t need the previous version - it will just cause the confusion later on mv maria_joanna_song maria_joana_song</p>
+<p>**** now let’s try previous code grep Maria maria_joanna_song # of course it doesn’t work … - what shall I do now ?</p>
+<p>’‘+++++ let’s don’t change anything as it is a part of a joke +++++’’</p>
+</section>
+<section id="genomics" class="level2">
+<h2 class="anchored" data-anchor-id="genomics">Genomics</h2>
+<section id="word-on-e-utilities" class="level3">
+<h3 class="anchored" data-anchor-id="word-on-e-utilities">Word on E-Utilities</h3>
+<p>https://www.ncbi.nlm.nih.gov/books/NBK179288/</p>
+<p>EDirect will run on Unix and Macintosh computers, and under the Cygwin Unix-emulation environment on Windows PCs. To install the EDirect software, open a terminal window and execute one of the following two commands:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh<span class="va">)</span><span class="st">"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="fu">wget</span> <span class="at">-q</span> https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh <span class="at">-O</span> <span class="at">-</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will download a number of scripts and several precompiled programs into an “edirect” folder in the user’s home directory. It may then print an additional command for updating the PATH environment variable in the user’s configuration file. The editing instructions will look something like:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"export PATH=</span><span class="dt">\$</span><span class="st">HOME/edirect:</span><span class="dt">\$</span><span class="st">PATH"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bash_profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As a convenience, the installation process ends by offering to run the PATH update command for you. Answer “y” and press the Return key if you want it run. If the PATH is already set correctly, or if you prefer to make any editing changes manually, just press Return.</p>
+<p>Once installation is complete, run:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/edirect:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to set the PATH for the current terminal session.</p>
+</section>
+<section id="esearch" class="level3">
+<h3 class="anchored" data-anchor-id="esearch"><a href="https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch">ESearch</a></h3>
+<p>Let’s download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">esearch</span> <span class="at">-db</span> sra <span class="at">-query</span> PRJNA783372 <span class="kw">|</span> <span class="ex">efetch</span> <span class="at">-format</span> runinfo <span class="op">&gt;</span> SraRunTable.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… TBC *** here we only need the SRRnumber cut -f1 -d, SraRunTable*.csv &gt; runs.txt</p>
+<p>*** to save time we will work on four samples only head -9 runs.txt &gt; runs9.txt</p>
+<p>*** ok, now we download the actual raw data prefetch –option-file runs9.txt</p>
+<p>*** let’s unpack it for f in SRR* ; do fastq-dump –split-files $f ; done</p>
+<p>*** to check the sequencing quality - it is a GUI software fastqc</p>
+<p>*** first merge the reads flash -m 50 -M 500 -x 0.1 SRR17045211_1.fastq SRR17045211_2.fastq mv out.extendedFrags.fastq file1.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045213_1.fastq SRR17045213_2.fastq mv out.extendedFrags.fastq file2.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045221_1.fastq SRR17045221_2.fastq mv out.extendedFrags.fastq file3.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045222_1.fastq SRR17045222_2.fastq mv out.extendedFrags.fastq file4.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045223_1.fastq SRR17045223_2.fastq mv out.extendedFrags.fastq file5.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045224_1.fastq SRR17045224_2.fastq mv out.extendedFrags.fastq file6.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045225_1.fastq SRR17045225_2.fastq mv out.extendedFrags.fastq file7.fastq</p>
+<p>flash -m 50 -M 500 -x 0.1 SRR17045227_1.fastq SRR17045227_2.fastq mv out.extendedFrags.fastq file8.fastq</p>
+<p>*** now we filter low quality reads (here the data is kind of a fake as the fastq download needs to be adjusted wit the prefetch script) for f in file* ; do vsearch –fastq_filter $f –fastq_maxee 1.0 –fastqout $f_filtered ; done</p>
+<p>*** it is getting messy here rm <em>notCombined</em> rm <em>hist rm </em>histogram rm *fastq</p>
+<p>*** to lazy to empty the trash yourself ? the terminal will do that for us gio trash –empty</p>
+<p>*** let’s convert fastq to fasta for f in *fastq_filtered ; do seqtk seq -a $f &gt; $f.fasta ; done ;</p>
+<p>**** blast is commented out as it is unlikely to work - we could try with internal database one day *** to save time let’s just use 10 reads from each file for taxonomic identification - we will use GenBank nt database *** for f in *fastq_filtered.fasta ; do head -20 $f &gt; $f; done</p>
+<p>*** let’s simplify the naming *** rename ‘s/.fastq_filtered.fastahead/.fasta/g’ *fastq_filtered.fastahead ;</p>
+<p>*** let’s try - it may not work at all *** blastn -query file1.fasta -db nt -remote -outfmt 6 -max_target_seqs 1 -perc_identity 95 &gt; file1_blast.txt *** blastn -query file1.fasta -db nr -remote &gt; file1_blast2.txt</p>
+<p>*** if doesnt work - use web based blast</p>
+<p>**** let’s make ASV table and visualise the data cat file[0-9]*.fastq_filtered.fasta &gt; all_samples.fasta</p>
+<p>vsearch –derep_fulllength all_samples.fasta –output dereplicated.fasta –sizeout –relabel ASV_ vsearch –sortbysize dereplicated.fasta –output dereplicated_no_singletons.fasta –minsize 2 vsearch –cluster_unoise dereplicated_no_singletons.fasta –minsize 2 –unoise_alpha 2 –centroids ASVs.fasta vsearch –usearch_global all_samples.fasta –db ASVs.fasta –id 0.97 –otutabout ASV_table.txt</p>
+<p>*** we will use MicrobiomeAnalyst - every tool needs the input in some specific format - here we need to change the table as well sed ‘s/#OTU ID/#NAME/g’ ASV_table.txt &gt; ASV_table_MA.txt</p>
+<p>*** we need some metadata (all fake) head -1 ASV_table_MA.txt | fmt -1 | sed ‘s/NAME/NAME, sample/g’ | sed ‘s/11<span class="math inline">\(/11,fish/g' | sed 's/13\)</span>/13,fish/g’ | sed ‘s/21<span class="math inline">\(/21,fish/g' | sed 's/22\)</span>/22,fish/g’ |sed ‘s/23<span class="math inline">\(/23,not_a_fish/g' | sed 's/24\)</span>/24,not_a_fish/g’ |sed ‘s/25<span class="math inline">\(/25,not_a_fish/g' | sed 's/27\)</span>/27,not_a_fish/g’ &gt; metadata.csv</p>
+</section>
+</section>
+<section id="visualise-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="visualise-the-data">Visualise the data</h2>
+<!--
+DP can we redo this to a NB?
+-->
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>python append_braycurtis3.py ASV_table_MA.txt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and after</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>python pcoa_with_metadata_quick_legend.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="test-running-code-online" class="level3">
+<h3 class="anchored" data-anchor-id="test-running-code-online">Test running code online</h3>
+<p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="cell-fig-polar" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-polar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="250416_atkacz_files/figure-html/fig-polar-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A line plot on a polar axis
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->

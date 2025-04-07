@@ -1,40 +1,11 @@
-# Simple Linux – An Introduction to Genomic Analysis on Linux
----
-date: 16/04/2025
-author: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt)
----
+*** linux course - everybody learns something
 
-Large files or datasets—especially those containing genomic data—no problem.
-This workshop introduces essential Linux commands and simple Bash scripts to
-streamline data manipulation tasks. We’ll cover key operations such as searching for
-patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.
+*** open the terminal
 
-
-## Setup
-No extra setup needed for `linux` and `MacOS` machines. For windows the recommended way is to install [VBox](here is the link). See the steps to follow:
-
-1. TBC
-2. TBC
-
-## Command line
-
-### Why
-1. Eventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize
-and run heavy computations.
-2. Things can be done faster on a comand line with practice.
-
-
-### Basics
-
-Open the terminal and let's create a file called `maria_joanna_song`
-
-```bash
+*** for this course let's create a file called maria_joanna_song
 touch maria_joanna_song
-```
 
-let's just copy in this text - open the file with double click and paste this song into the `maria_joanna_song` file
-
-```text
+*** let's just copy in this text - open the file with double click and paste this song into the maria_joanna_song file
 E virou!
 Onde anda essa Maria?
 Eu só tenho essa Maria
@@ -107,19 +78,13 @@ Maria, Maria, Maria
 Maria, Maria, Maria
 (Maria, Maria, Maria, Maria)
 Quantas lágrimas chorei
-```
 
-To see the full lyrics (TIP: press `tab` to autocomplete the file name)
-```bash
+*** to see the full lyrics (you can click tab to autocomplete the file name)
 cat maria_joanna_song
-```
 
-Show the first 5 lines
-```bash
+*** to see only the first 5 lines
 head -5 maria_joanna_song
-```
 
-## TODO reformat the rest
 *** to see only the last 5 lines
 tail -5 maria_joanna_song
 
@@ -203,39 +168,17 @@ grep Maria maria_joanna_song  # of course it doesn't work ... - what shall I do 
 
 ''+++++ let's don't change anything as it is a part of a joke +++++''
 
-## Genomics
 
-### Word on E-Utilities
-https://www.ncbi.nlm.nih.gov/books/NBK179288/
 
-EDirect will run on Unix and Macintosh computers, and under the Cygwin Unix-emulation environment on Windows PCs. To install the EDirect software, open a terminal window and execute one of the following two commands:
-```bash
-  sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
+************************
+************************
+*** genomics part ***
+************************
+************************
 
-  sh -c "$(wget -q https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh -O -)"
-```
-
-This will download a number of scripts and several precompiled programs into an "edirect" folder in the user's home directory. It may then print an additional command for updating the PATH environment variable in the user's configuration file. The editing instructions will look something like:
-```bash
-  echo "export PATH=\$HOME/edirect:\$PATH" >> $HOME/.bash_profile
-```
-As a convenience, the installation process ends by offering to run the PATH update command for you. Answer "y" and press the Return key if you want it run. If the PATH is already set correctly, or if you prefer to make any editing changes manually, just press Return.
-
-Once installation is complete, run:
-```bash
-  export PATH=${HOME}/edirect:${PATH}
-```
-to set the PATH for the current terminal session.
-
-### [ESearch](https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch)
-
-Let's download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)
-```bash
+*** let's download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)
 esearch -db sra -query PRJNA783372 | efetch -format runinfo > SraRunTable.csv
-```
 
-
-... TBC
 *** here we only need the SRRnumber
 cut -f1 -d, SraRunTable*.csv  > runs.txt
 
@@ -323,38 +266,20 @@ head -1 ASV_table_MA.txt | fmt -1 | sed 's/NAME/NAME, sample/g'  | sed 's/11$/11
 
 
 
-## Visualise the data
 
-<!--
-DP can we redo this to a NB?
--->
+**** home made tool to visualise the data
+python append_braycurtis3.py ASV_table_MA.txt &&
+python pcoa_with_metadata_quick_legend.py 
 
 
-```python
-python append_braycurtis3.py ASV_table_MA.txt
 
-# and after
-python pcoa_with_metadata_quick_legend.py
-```
 
-### Test running code online
-For a demonstration of a line plot on a polar axis, see @fig-polar.
 
-```{python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
+*** final task - let's create a whole pipeline - to run it we will bash it, i.e. bash my_fist_pipeline.sh (maybe make a new folder for it called pipeline_test)
+*** mkdir pipeline_test
+*** cp *.py ./pipeline_test
+*** grep -A 1000 "genomics part" course_linux_commands | sed '/fastqc/d' | sed '/\*\*\*/d' > ./pipeline_test/my_first_pipeline.sh 
 
-import numpy as np
-import matplotlib.pyplot as plt
 
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
+
 

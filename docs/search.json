@@ -7,36 +7,14 @@
     "text": "Summary\nIn summary, this book has no content whatsoever."
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "Introduction",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preface",
     "section": "",
-    "text": "Introduction\nthree hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\n\nReferences\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in Spring 2025. Since the world is spinning, the next edition is uncertain. Therefore, we call for your ideas and contributions already now for the Autumn 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "Introduction",
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "2025_spring/250604_iduarte.html",
-    "href": "2025_spring/250604_iduarte.html",
-    "title": "RNA-Seq Data Analysis in R - From Counts to Biological Insights",
-    "section": "",
-    "text": "RNA-Seq Data Analysis in R - From Counts to Biological Insights\nIntroduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning\nhow to choose the right Generalized linear model (GLM) for your question and your data. Participants will \nlearn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially \nexpressed genes.",
-    "crumbs": [
-      "Spring 2025",
-      "RNA-Seq Data Analysis in R - From Counts to Biological Insights"
-    ]
-  },
-  {
-    "objectID": "2025_spring/250416_atkacz.html",
-    "href": "2025_spring/250416_atkacz.html",
-    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
-    "section": "",
-    "text": "Simple Linux – An Introduction to Genomic Analysis on Linux\nLarge files or datasets—especially those containing genomic data—no problem. \nThis workshop introduces essential Linux commands and simple Bash scripts to\nstreamline data manipulation tasks. We’ll cover key operations such as searching for\npatterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.",
-    "crumbs": [
-      "Spring 2025",
-      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+      "Preface"
     ]
   },
   {
@@ -51,14 +29,80 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Preface",
+    "objectID": "2025_spring/250416_atkacz.html",
+    "href": "2025_spring/250416_atkacz.html",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
     "section": "",
-    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in spring 2025. Since the world is spinning, the next edition is uncertain. Therefore, we call for your ideas and contributions already now for the Autumn 2025.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.",
     "crumbs": [
-      "Introduction",
-      "Preface"
+      "Spring 2025",
+      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250416_atkacz.html#setup",
+    "href": "2025_spring/250416_atkacz.html#setup",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
+    "section": "Setup",
+    "text": "Setup\nNo extra setup needed for linux and MacOS machines. For windows the recommended way is to install VBox. See the steps to follow:\n\nTBC\nTBC",
+    "crumbs": [
+      "Spring 2025",
+      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250416_atkacz.html#command-line",
+    "href": "2025_spring/250416_atkacz.html#command-line",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
+    "section": "Command line",
+    "text": "Command line\n\nWhy\n\nEventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize and run heavy computations.\nThings can be done faster on a comand line with practice.\n\n\n\nBasics\nOpen the terminal and let’s create a file called maria_joanna_song\ntouch maria_joanna_song\nlet’s just copy in this text - open the file with double click and paste this song into the maria_joanna_song file\nE virou!\nOnde anda essa Maria?\nEu só tenho essa Maria\nEu vim do norte direto a Lisboa\nAtrás de um sonho\nQue eu nem sei se voa\nTanto quanto nós voávamos\nDebaixo dos lencóis\nA francesinha já não tem picante\nE isso faz-me lembrar os instantes\nEm que tu mordias os meus lábios\nDepois do amor\nNão sei se vou aguentar\nO tempo que vou cá ficar\nPorque não estás\nPorque não estás aqui\nAs lágrimas vão secar\nMas a saudade vai continuar\nNo meu peito a chamar\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMinha mãe nunca me viu partir\nMas todo o filho um dia voa\nSaudade, saudade\nMamã cuida dela por mim\nDiz-me porque não estás aqui\nMaria, sem ti fico à toa\nSaudade, saudade\nMaria, eu quero-te ver\nNão sei se vou aguentar\nO tempo que vou cá ficar\nPorque a saudade aperta o meu peito\nE dói demais (dói demais)\nAs lágrimas vão secar\nMas a saudade vai continuar\nNo meu peito a chamar\nMaria Joana, Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria Joana (Maria), Maria Joana\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nQuantas lágrimas chorei\nQuantas noites não dormi\nCada gota que eu deitei\nFez um rio que me leva a ti\nMaria Joana\nMaria Joana (quantas lágrimas chorei)\nApanha o primeiro autocarro\nVem ficar pra sempre\nDo meu lado (quantas noites não dormi)\nMaria Joana (ai, Maria)\nMaria Joana (cada gota que eu deitei)\nApanha o primeiro autocarro\nVem ficar pra sempre do meu lado\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nMaria, Maria, Maria\nMaria, Maria, Maria\n(Maria, Maria, Maria, Maria)\nQuantas lágrimas chorei\nTo see the full lyrics (TIP: press tab to autocomplete the file name)\ncat maria_joanna_song\nShow the first 5 lines\nhead -5 maria_joanna_song",
+    "crumbs": [
+      "Spring 2025",
+      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250416_atkacz.html#todo-reformat-the-rest",
+    "href": "2025_spring/250416_atkacz.html#todo-reformat-the-rest",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
+    "section": "TODO reformat the rest",
+    "text": "TODO reformat the rest\n*** to see only the last 5 lines tail -5 maria_joanna_song\n*** to see only the last 10 to 15 lines (note the “|” sign it is a pipe and let’s you combine the commands into one, without dumping the information onto your harddrive head -15 maria_joanna_song | tail -5\n*** if you want to put information into your disk you can do as follows head -15 maria_joanna_song &gt; top15_maria tail -5 top15_maria &gt; lines10-15_maria\n*** to see the output we need to either click on the file or use the terminal cat lines10-15_maria\n*** how to find something in the text grep Maria maria_joanna_song\n*** ok, and how to see only the matched pattern - commands have “options” grep -o Maria maria_joanna_song\n*** and you can always get help (sometimes it is -h, and sometimes –help) - generally not much usefull - better to google it or ask ChatGPT grep –help\n*** let’s count word Maria - three different ways to count something grep Maria maria_joanna_song | wc -l grep Maria maria_joanna_song | wc -w grep Maria maria_joanna_song | wc -c\n*** and now let’s count Maria Joanna - it is important to use “” if the your search contains a space or some special character grep “Maria Joana” maria_joanna_song | wc -l grep “Maria Joana” maria_joanna_song | wc -w grep “Maria Joana” maria_joanna_song | wc -c\n*** how to avoid special characters grep ( maria_joanna_song #note the error grep “(” maria_joanna_song grep ( maria_joanna_song\n*** wild cards “.” and “” grep Eu maria_joanna_song grep Eu. maria_joanna_song\n*** playing with multiple choices grep se maria_joanna_song grep se[i] maria_joanna_song grep se[i,m] maria_joanna_song\n*** but I am in love with Donald Trump and not with Maria Joana - how to I fix the song ? sed ‘s/Maria Joana/Donald Trump/g’ maria_joanna_song | sed ‘s/Maria/Donald/g’ &gt; donald_trump_song\n*** let’s see what happened - now it doesn’t rhyme as good cat donald_trump_song more donald_trump_song\n*** ok, but are we sure Donald replaced Maria? diff -u *song diff maria_joanna_song donald_trump_song\nvimdiff *song\n*** let’s work on multiple files at the same time - have a look how a loop is being used here grep Lisboa song for f in song ; do grep Lisboa $f ; done\n*** to show which file Lisboa is found in for f in *song ; do grep -l Lisboa $f ; done\n*** to show where is it found (i.e. line number) for f in *song ; do grep -n Lisboa $f ; done\n*** I have just realised that “joanna” in portuguese is written as “joana” - how do I fix the name of my file *** option 1 - fix it but keep the original cp maria_joanna_song maria_joana_song\n*** option 2 - neh, I don’t need the previous version - it will just cause the confusion later on mv maria_joanna_song maria_joana_song\n**** now let’s try previous code grep Maria maria_joanna_song # of course it doesn’t work … - what shall I do now ?\n’‘+++++ let’s don’t change anything as it is a part of a joke +++++’’",
+    "crumbs": [
+      "Spring 2025",
+      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250416_atkacz.html#genomics",
+    "href": "2025_spring/250416_atkacz.html#genomics",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
+    "section": "Genomics",
+    "text": "Genomics\n\nWord on E-Utilities\nhttps://www.ncbi.nlm.nih.gov/books/NBK179288/\nEDirect will run on Unix and Macintosh computers, and under the Cygwin Unix-emulation environment on Windows PCs. To install the EDirect software, open a terminal window and execute one of the following two commands:\n  sh -c \"$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)\"\n\n  sh -c \"$(wget -q https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh -O -)\"\nThis will download a number of scripts and several precompiled programs into an “edirect” folder in the user’s home directory. It may then print an additional command for updating the PATH environment variable in the user’s configuration file. The editing instructions will look something like:\n  echo \"export PATH=\\$HOME/edirect:\\$PATH\" &gt;&gt; $HOME/.bash_profile\nAs a convenience, the installation process ends by offering to run the PATH update command for you. Answer “y” and press the Return key if you want it run. If the PATH is already set correctly, or if you prefer to make any editing changes manually, just press Return.\nOnce installation is complete, run:\n  export PATH=${HOME}/edirect:${PATH}\nto set the PATH for the current terminal session.\n\n\nESearch\nLet’s download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)\nesearch -db sra -query PRJNA783372 | efetch -format runinfo &gt; SraRunTable.csv\n… TBC *** here we only need the SRRnumber cut -f1 -d, SraRunTable*.csv &gt; runs.txt\n*** to save time we will work on four samples only head -9 runs.txt &gt; runs9.txt\n*** ok, now we download the actual raw data prefetch –option-file runs9.txt\n*** let’s unpack it for f in SRR* ; do fastq-dump –split-files $f ; done\n*** to check the sequencing quality - it is a GUI software fastqc\n*** first merge the reads flash -m 50 -M 500 -x 0.1 SRR17045211_1.fastq SRR17045211_2.fastq mv out.extendedFrags.fastq file1.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045213_1.fastq SRR17045213_2.fastq mv out.extendedFrags.fastq file2.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045221_1.fastq SRR17045221_2.fastq mv out.extendedFrags.fastq file3.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045222_1.fastq SRR17045222_2.fastq mv out.extendedFrags.fastq file4.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045223_1.fastq SRR17045223_2.fastq mv out.extendedFrags.fastq file5.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045224_1.fastq SRR17045224_2.fastq mv out.extendedFrags.fastq file6.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045225_1.fastq SRR17045225_2.fastq mv out.extendedFrags.fastq file7.fastq\nflash -m 50 -M 500 -x 0.1 SRR17045227_1.fastq SRR17045227_2.fastq mv out.extendedFrags.fastq file8.fastq\n*** now we filter low quality reads (here the data is kind of a fake as the fastq download needs to be adjusted wit the prefetch script) for f in file* ; do vsearch –fastq_filter $f –fastq_maxee 1.0 –fastqout $f_filtered ; done\n*** it is getting messy here rm notCombined rm hist rm histogram rm *fastq\n*** to lazy to empty the trash yourself ? the terminal will do that for us gio trash –empty\n*** let’s convert fastq to fasta for f in *fastq_filtered ; do seqtk seq -a $f &gt; $f.fasta ; done ;\n**** blast is commented out as it is unlikely to work - we could try with internal database one day *** to save time let’s just use 10 reads from each file for taxonomic identification - we will use GenBank nt database *** for f in *fastq_filtered.fasta ; do head -20 $f &gt; $f; done\n*** let’s simplify the naming *** rename ‘s/.fastq_filtered.fastahead/.fasta/g’ *fastq_filtered.fastahead ;\n*** let’s try - it may not work at all *** blastn -query file1.fasta -db nt -remote -outfmt 6 -max_target_seqs 1 -perc_identity 95 &gt; file1_blast.txt *** blastn -query file1.fasta -db nr -remote &gt; file1_blast2.txt\n*** if doesnt work - use web based blast\n**** let’s make ASV table and visualise the data cat file[0-9]*.fastq_filtered.fasta &gt; all_samples.fasta\nvsearch –derep_fulllength all_samples.fasta –output dereplicated.fasta –sizeout –relabel ASV_ vsearch –sortbysize dereplicated.fasta –output dereplicated_no_singletons.fasta –minsize 2 vsearch –cluster_unoise dereplicated_no_singletons.fasta –minsize 2 –unoise_alpha 2 –centroids ASVs.fasta vsearch –usearch_global all_samples.fasta –db ASVs.fasta –id 0.97 –otutabout ASV_table.txt\n*** we will use MicrobiomeAnalyst - every tool needs the input in some specific format - here we need to change the table as well sed ‘s/#OTU ID/#NAME/g’ ASV_table.txt &gt; ASV_table_MA.txt\n*** we need some metadata (all fake) head -1 ASV_table_MA.txt | fmt -1 | sed ‘s/NAME/NAME, sample/g’ | sed ‘s/11\\(/11,fish/g' | sed 's/13\\)/13,fish/g’ | sed ‘s/21\\(/21,fish/g' | sed 's/22\\)/22,fish/g’ |sed ‘s/23\\(/23,not_a_fish/g' | sed 's/24\\)/24,not_a_fish/g’ |sed ‘s/25\\(/25,not_a_fish/g' | sed 's/27\\)/27,not_a_fish/g’ &gt; metadata.csv",
+    "crumbs": [
+      "Spring 2025",
+      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250416_atkacz.html#visualise-the-data",
+    "href": "2025_spring/250416_atkacz.html#visualise-the-data",
+    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
+    "section": "Visualise the data",
+    "text": "Visualise the data\n\npython append_braycurtis3.py ASV_table_MA.txt\n\n# and after\npython pcoa_with_metadata_quick_legend.py\n\nTest running code online\nFor a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis",
+    "crumbs": [
+      "Spring 2025",
+      "Simple Linux – An Introduction to Genomic Analysis on Linux"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250604_iduarte.html",
+    "href": "2025_spring/250604_iduarte.html",
+    "title": "RNA-Seq Data Analysis in R - From Counts to Biological Insights",
+    "section": "",
+    "text": "RNA-Seq Data Analysis in R - From Counts to Biological Insights\nIntroduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning\nhow to choose the right Generalized linear model (GLM) for your question and your data. Participants will \nlearn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially \nexpressed genes.",
+    "crumbs": [
+      "Spring 2025",
+      "RNA-Seq Data Analysis in R - From Counts to Biological Insights"
     ]
   },
   {
