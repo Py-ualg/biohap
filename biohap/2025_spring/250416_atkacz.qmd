@@ -119,6 +119,8 @@ Show the first 5 lines
 head -5 maria_joanna_song
 ```
 
+DP: if you wanna link your files, you can use the raw link to GH, such as [song](https://raw.githubusercontent.com/Py-ualg/biohap/refs/heads/main/assets/250416_atkacz/maria_joanna_song)
+
 ## TODO reformat the rest
 *** to see only the last 5 lines
 tail -5 maria_joanna_song
