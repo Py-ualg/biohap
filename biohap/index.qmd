@@ -1,0 +1,6 @@
+# Preface {.unnumbered}
+
+This is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in spring 2025. Since the world is spinning, the next edition is uncertain.
+Therefore, we call for your ideas and contributions already now for the *Autumn 2025*.
+
+To learn more about Quarto books visit <https://quarto.org/docs/books>.

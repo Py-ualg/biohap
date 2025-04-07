@@ -1,2 +1,2 @@
-# biohap
+# bioHaP
 Bioinformatics, Handy and Practical
