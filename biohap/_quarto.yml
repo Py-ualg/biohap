@@ -19,15 +19,15 @@ book:
         - 2025_fall/call.qmd
     - references.qmd
 
-bibliography: references.bib
+# bibliography: references.bib
 
 format:
   html:
     theme:
       - cosmo
       - brand
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 
 
