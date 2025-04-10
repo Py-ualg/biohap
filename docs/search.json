@@ -1,12 +1,35 @@
 [
   {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preface",
     "section": "",
-    "text": "References",
+    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in Spring 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
-      "References"
+      "Introduction",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250507_taires.html",
+    "href": "2025_spring/250507_taires.html",
+    "title": "BioHap: Bioinformatics, Handy and Practical",
+    "section": "",
+    "text": "date: 07/05/2025 author: Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
+    "crumbs": [
+      "Spring 2025",
+      "Microbiome Analysis of Amplicon Sequencing"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250507_taires.html#microbiome-analysis-of-amplicon-sequencing",
+    "href": "2025_spring/250507_taires.html#microbiome-analysis-of-amplicon-sequencing",
+    "title": "BioHap: Bioinformatics, Handy and Practical",
+    "section": "",
+    "text": "date: 07/05/2025 author: Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
+    "crumbs": [
+      "Spring 2025",
+      "Microbiome Analysis of Amplicon Sequencing"
     ]
   },
   {
@@ -18,6 +41,16 @@
     "crumbs": [
       "Spring 2025",
       "RNA-Seq Data Analysis in R - From Counts to Biological Insights"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "References",
+    "crumbs": [
+      "References"
     ]
   },
   {
@@ -54,17 +87,6 @@
     ]
   },
   {
-    "objectID": "2025_spring/250416_atkacz.html#todo-reformat-the-rest",
-    "href": "2025_spring/250416_atkacz.html#todo-reformat-the-rest",
-    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
-    "section": "TODO reformat the rest",
-    "text": "TODO reformat the rest\n*** to see only the last 5 lines tail -5 maria_joanna_song\n*** to see only the last 10 to 15 lines (note the “|” sign it is a pipe and let’s you combine the commands into one, without dumping the information onto your harddrive head -15 maria_joanna_song | tail -5\n*** if you want to put information into your disk you can do as follows head -15 maria_joanna_song &gt; top15_maria tail -5 top15_maria &gt; lines10-15_maria\n*** to see the output we need to either click on the file or use the terminal cat lines10-15_maria\n*** how to find something in the text grep Maria maria_joanna_song\n*** ok, and how to see only the matched pattern - commands have “options” grep -o Maria maria_joanna_song\n*** and you can always get help (sometimes it is -h, and sometimes –help) - generally not much usefull - better to google it or ask ChatGPT grep –help\n*** let’s count word Maria - three different ways to count something grep Maria maria_joanna_song | wc -l grep Maria maria_joanna_song | wc -w grep Maria maria_joanna_song | wc -c\n*** and now let’s count Maria Joanna - it is important to use “” if the your search contains a space or some special character grep “Maria Joana” maria_joanna_song | wc -l grep “Maria Joana” maria_joanna_song | wc -w grep “Maria Joana” maria_joanna_song | wc -c\n*** how to avoid special characters grep ( maria_joanna_song #note the error grep “(” maria_joanna_song grep ( maria_joanna_song\n*** wild cards “.” and “” grep Eu maria_joanna_song grep Eu. maria_joanna_song\n*** playing with multiple choices grep se maria_joanna_song grep se[i] maria_joanna_song grep se[i,m] maria_joanna_song\n*** but I am in love with Donald Trump and not with Maria Joana - how to I fix the song ? sed ‘s/Maria Joana/Donald Trump/g’ maria_joanna_song | sed ‘s/Maria/Donald/g’ &gt; donald_trump_song\n*** let’s see what happened - now it doesn’t rhyme as good cat donald_trump_song more donald_trump_song\n*** ok, but are we sure Donald replaced Maria? diff -u *song diff maria_joanna_song donald_trump_song\nvimdiff *song\n*** let’s work on multiple files at the same time - have a look how a loop is being used here grep Lisboa song for f in song ; do grep Lisboa $f ; done\n*** to show which file Lisboa is found in for f in *song ; do grep -l Lisboa $f ; done\n*** to show where is it found (i.e. line number) for f in *song ; do grep -n Lisboa $f ; done\n*** I have just realised that “joanna” in portuguese is written as “joana” - how do I fix the name of my file *** option 1 - fix it but keep the original cp maria_joanna_song maria_joana_song\n*** option 2 - neh, I don’t need the previous version - it will just cause the confusion later on mv maria_joanna_song maria_joana_song\n**** now let’s try previous code grep Maria maria_joanna_song # of course it doesn’t work … - what shall I do now ?\n’‘+++++ let’s don’t change anything as it is a part of a joke +++++’’",
-    "crumbs": [
-      "Spring 2025",
-      "Simple Linux – An Introduction to Genomic Analysis on Linux"
-    ]
-  },
-  {
     "objectID": "2025_spring/250416_atkacz.html#genomics",
     "href": "2025_spring/250416_atkacz.html#genomics",
     "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
@@ -76,11 +98,11 @@
     ]
   },
   {
-    "objectID": "2025_spring/250416_atkacz.html#visualise-the-data",
-    "href": "2025_spring/250416_atkacz.html#visualise-the-data",
+    "objectID": "2025_spring/250416_atkacz.html#visualise-the-data-with-python",
+    "href": "2025_spring/250416_atkacz.html#visualise-the-data-with-python",
     "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
-    "section": "Visualise the data",
-    "text": "Visualise the data\n\npython append_braycurtis3.py ASV_table_MA.txt\n\n# and after\npython pcoa_with_metadata_quick_legend.py\n\nTest running code online\nFor a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis",
+    "section": "Visualise the data with python",
+    "text": "Visualise the data with python\nFollowing this link you can interrogate the same table (ASV_table_MA.txt) in the interactive jupyter notebook.\nTo compute Braycurtis distances \nTo visualize the PCoA \n\nTest running code online\nFor a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis",
     "crumbs": [
       "Spring 2025",
       "Simple Linux – An Introduction to Genomic Analysis on Linux"
@@ -106,50 +128,6 @@
     "crumbs": [
       "Fall 2025",
       "Call for contributions"
-    ]
-  },
-  {
-    "objectID": "2025_spring/250507_taires.html",
-    "href": "2025_spring/250507_taires.html",
-    "title": "BioHap: Bioinformatics, Handy and Practical",
-    "section": "",
-    "text": "date: 07/05/2025 author: Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
-    "crumbs": [
-      "Spring 2025",
-      "Microbiome Analysis of Amplicon Sequencing"
-    ]
-  },
-  {
-    "objectID": "2025_spring/250507_taires.html#microbiome-analysis-of-amplicon-sequencing",
-    "href": "2025_spring/250507_taires.html#microbiome-analysis-of-amplicon-sequencing",
-    "title": "BioHap: Bioinformatics, Handy and Practical",
-    "section": "",
-    "text": "date: 07/05/2025 author: Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
-    "crumbs": [
-      "Spring 2025",
-      "Microbiome Analysis of Amplicon Sequencing"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Preface",
-    "section": "",
-    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happended in Spring 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
-    "crumbs": [
-      "Introduction",
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "2025_spring/250416_atkacz.html#visualise-the-data-with-python",
-    "href": "2025_spring/250416_atkacz.html#visualise-the-data-with-python",
-    "title": "Simple Linux – An Introduction to Genomic Analysis on Linux",
-    "section": "Visualise the data with python",
-    "text": "Visualise the data with python\nFollowing this link you can interrogate the same table (ASV_table_MA.txt) in the interactive jupyter notebook.\nTo compute Braycurtis distances \nTo visualize the PCoA \n\nTest running code online\nFor a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis",
-    "crumbs": [
-      "Spring 2025",
-      "Simple Linux – An Introduction to Genomic Analysis on Linux"
     ]
   }
 ]
