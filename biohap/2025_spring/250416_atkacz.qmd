@@ -11,17 +11,48 @@ patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ
 
 
 ## Setup
-No extra setup needed for `linux` and `MacOS` machines. For windows the recommended way is to install [VBox](here is the link). See the steps to follow:
+No extra setup needed for `Linux` and `MacOS` machines. For windows the recommended way is to install [VBox](here is the link). See the steps to follow:
 
-1. TBC
-2. TBC
+Here are the instructions:
+Installing Ubuntu on VirtualBox
+### Step 1: Install VirtualBox
+  - Run the Installer:
+  - After downloading the [VirtualBox installer](https://www.virtualbox.org/wiki/Downloads) (`.exe` file for WinOS, `.dmg` for MacOS),
+  double-click on it to launch the setup wizard.
+  - Follow Setup Instructions:
+  - Accept the license agreement, choose your installation options, and proceed with the default settings for most users.
+  - Complete Installation:
+  - Once the installation is complete, launch VirtualBox.
+
+### Step 2: Create a New Virtual Machine for Ubuntu
+  - Open VirtualBox and Create a New VM: Click on the `New` button.
+  - Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select "Linux" as the type, and choose "Ubuntu (64-bit)" as the version.
+  - Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.
+  - Create a Virtual Hard Disk:
+    - Choose "Create a virtual hard disk now" and click "Create".
+    - Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).
+
+### Step 3: Configure and Install Ubuntu
+  - Attach the Ubuntu ISO:
+    - Select your new VM, click on "Settings", then navigate to the "Storage" section.
+    - Under the "Controller: IDE" (or SATA), click on the empty optical drive.
+    - Click the small disk icon on the right and choose "Choose a disk file". Browse to and select the Ubuntu ISO you downloaded.
+  - Start the Virtual Machine:
+    - With the ISO attached, click "Start".
+    - The VM will boot from the ISO, and you should see the Ubuntu welcome screen.
+  - Install Ubuntu:
+    - Follow the on-screen instructions in the Ubuntu installer:
+      - Choose your language and keyboard layout.
+      - Select "Install Ubuntu".
+      - Follow prompts to set up your timezone, create a user account, and configure your disk (use the default settings for a virtual disk).
+      - Once the installation is complete, you’ll be prompted to restart the VM.
 
 ## Command line
 
 ### Why
 1. Eventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize
 and run heavy computations.
-2. Things can be done faster on a comand line with practice.
+2. Things can be done faster on a command line with practice.
 
 
 ### Basics
@@ -32,7 +63,8 @@ Open the terminal and let's create a file called `maria_joanna_song`
 touch maria_joanna_song
 ```
 
-let's just copy in this text - open the file with double click and paste this song into the `maria_joanna_song` file
+let's just copy in this text - open the file with double click and paste this song into the `maria_joanna_song` file,
+also found [here](https://raw.githubusercontent.com/Py-ualg/biohap/refs/heads/main/assets/250416_atkacz/maria_joanna_song)
 
 ```text
 E virou!
@@ -119,91 +151,139 @@ Show the first 5 lines
 head -5 maria_joanna_song
 ```
 
-DP: if you wanna link your files, you can use the raw link to GH, such as [song](https://raw.githubusercontent.com/Py-ualg/biohap/refs/heads/main/assets/250416_atkacz/maria_joanna_song)
-
-## TODO reformat the rest
-*** to see only the last 5 lines
+To see only the last 5 lines
+```bash
 tail -5 maria_joanna_song
+```
 
-*** to see only the last 10 to 15 lines (note the "|" sign it is a pipe and let's you combine the commands into one, without dumping the information onto your harddrive
+To see only the last 10 to 15 lines (note the "|" sign it is a pipe and let's you combine the commands into one, without dumping the information onto your harddrive)
+```bash
 head -15 maria_joanna_song | tail -5
+```
 
-*** if you want to put information into your disk you can do as follows
+If you want to put information into your disk you can do as follows
+```bash
 head -15 maria_joanna_song > top15_maria
 tail -5 top15_maria > lines10-15_maria
+```
 
-*** to see the output we need to either click on the file or use the terminal
+To see the output we need to either click on the file or use the terminal
+```bash
 cat lines10-15_maria
+```
 
-*** how to find something in the text
+### Searching text
+
+How to find something in the text?
+```bash
 grep Maria maria_joanna_song
+```
 
-*** ok, and how to see only the matched pattern - commands have "options"
+And how to see only the matched pattern - commands have "options"
+```bash
 grep -o Maria maria_joanna_song
+```
 
-*** and you can always get help (sometimes it is -h, and sometimes --help) - generally not much usefull - better to google it or ask ChatGPT
+You can always get help ( `command --help` or shortcut version `-h`) - generally not much usefull - better to google it or ask ChatGPT
+```bash
 grep --help 
+```
 
-*** let's count word Maria - three different ways to count something
+Let's count word Maria - three different ways to count something
+```bash
 grep Maria maria_joanna_song | wc -l
 grep Maria maria_joanna_song | wc -w
 grep Maria maria_joanna_song | wc -c
+```
 
-*** and now let's count Maria Joanna - it is important to use "" if the your search contains a space or some special character
+Now count appearances of `Maria Joanna` - it is important to use "" if the your search contains a space or some special character
+```bash
 grep "Maria Joana" maria_joanna_song | wc -l
 grep "Maria Joana" maria_joanna_song | wc -w
 grep "Maria Joana" maria_joanna_song | wc -c
+```
 
-*** how to avoid special characters
+How to deal with special characters
+```bash
 grep ( maria_joanna_song   #note the error
 grep "(" maria_joanna_song
 grep \( maria_joanna_song
+```
 
-*** wild cards "." and "*"
+### Wild cards
+
+"." and "*" can represent any characters and therefore represent patterns rather than exact matches
+```bash
 grep Eu maria_joanna_song
 grep Eu.* maria_joanna_song
+```
 
-*** playing with multiple choices
+Playing with multiple choices
+```bash
 grep se maria_joanna_song 
 grep se[i] maria_joanna_song 
 grep se[i,m] maria_joanna_song 
+```
 
-
-*** but I am in love with Donald Trump and not with Maria Joana - how to I fix the song ?
+But I am in love with Donald Trump and not with Maria Joana - how to I fix the song ?
+```bash
 sed 's/Maria Joana/Donald Trump/g'  maria_joanna_song | sed 's/Maria/Donald/g' > donald_trump_song
+```
 
-*** let's see what happened - now it doesn't rhyme as good
+Let's see what happened - now it doesn't rhyme as good
+```bash
 cat donald_trump_song
 more donald_trump_song
+```
 
-*** ok, but are we sure Donald replaced Maria?
+Ok, but are we sure Donald replaced Maria?
+```bash
 diff -u *song 
 diff maria_joanna_song donald_trump_song
-
+```
+```bash
 vimdiff *song
+```
+### Working with multiple files
 
-
-*** let's work on multiple files at the same time - have a look how a loop is being used here
+Have a look how a loop is being used here
+```bash
 grep Lisboa *song
 for f in *song ; do grep Lisboa $f ; done
+```
 
-*** to show which file Lisboa is found in
+To show which file Lisboa is found in
+```bash
 for f in *song ; do grep -l Lisboa $f ; done
+```
 
-*** to show where is it found (i.e. line number)
+To show where is it found (i.e. line number)
+```bash
 for f in *song ; do grep -n Lisboa $f ; done
+```
 
-*** I have just realised that "joanna" in portuguese is written as "joana" - how do I fix the name of my file
-*** option 1 - fix it but keep the original
+I have just realised that "joanna" in portuguese is written as "joana" - how do I fix the name of my file
+1. option 1 - fix it but keep the original
+```bash
 cp maria_joanna_song maria_joana_song
 
-*** option 2 - neh, I don't need the previous version - it will just cause the confusion later on
+# list contents of directory
+ls
+
+# other variants
+ls -l
+ls -la
+```
+
+2. option 2 - neh, I don't need the previous version - it will just cause the confusion later on
+```bash
 mv maria_joanna_song maria_joana_song
+```
 
-**** now let's try previous code
+Now let's try previous code
+```bash
 grep Maria maria_joanna_song  # of course it doesn't work ... - what shall I do now ?
-
-''+++++ let's don't change anything as it is a part of a joke +++++''
+```
 
 ## Genomics
 
