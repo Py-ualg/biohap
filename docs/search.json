@@ -111,9 +111,20 @@
   {
     "objectID": "2025_spring/250507_taires.html",
     "href": "2025_spring/250507_taires.html",
-    "title": "Microbiome Analysis of Amplicon Sequencing",
+    "title": "BioHap: Bioinformatics, Handy and Practical",
     "section": "",
-    "text": "Microbiome Analysis of Amplicon Sequencing\nThis workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
+    "text": "date: 07/05/2025 author: Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
+    "crumbs": [
+      "Spring 2025",
+      "Microbiome Analysis of Amplicon Sequencing"
+    ]
+  },
+  {
+    "objectID": "2025_spring/250507_taires.html#microbiome-analysis-of-amplicon-sequencing",
+    "href": "2025_spring/250507_taires.html#microbiome-analysis-of-amplicon-sequencing",
+    "title": "BioHap: Bioinformatics, Handy and Practical",
+    "section": "",
+    "text": "date: 07/05/2025 author: Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.",
     "crumbs": [
       "Spring 2025",
       "Microbiome Analysis of Amplicon Sequencing"
