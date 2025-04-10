@@ -9,51 +9,54 @@ This workshop introduces essential Linux commands and simple Bash scripts to
 streamline data manipulation tasks. We’ll cover key operations such as searching for
 patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.
 
-
 ## Setup
+
 No extra setup needed for `Linux` and `MacOS` machines. For windows the recommended way is to install [VBox](here is the link). See the steps to follow:
 
 Here are the instructions:
 Installing Ubuntu on VirtualBox
 ### Step 1: Install VirtualBox
-  - Run the Installer:
-  - After downloading the [VirtualBox installer](https://www.virtualbox.org/wiki/Downloads) (`.exe` file for WinOS, `.dmg` for MacOS),
-  double-click on it to launch the setup wizard.
-  - Follow Setup Instructions:
-  - Accept the license agreement, choose your installation options, and proceed with the default settings for most users.
-  - Complete Installation:
-  - Once the installation is complete, launch VirtualBox.
+
+- Run the Installer:
+- After downloading the [VirtualBox installer](https://www.virtualbox.org/wiki/Downloads) (`.exe` file for WinOS, `.dmg` for MacOS),
+double-click on it to launch the setup wizard.
+- Follow Setup Instructions:
+- Accept the license agreement, choose your installation options, and proceed with the default settings for most users.
+- Complete Installation:
+- Once the installation is complete, launch VirtualBox.
 
 ### Step 2: Create a New Virtual Machine for Ubuntu
-  - Open VirtualBox and Create a New VM: Click on the `New` button.
-  - Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select "Linux" as the type, and choose "Ubuntu (64-bit)" as the version.
-  - Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.
-  - Create a Virtual Hard Disk:
-    - Choose "Create a virtual hard disk now" and click "Create".
-    - Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).
+
+- Open VirtualBox and Create a New VM: Click on the `New` button.
+- Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select "Linux" as the type, and choose "Ubuntu (64-bit)" as the version.
+- Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.
+- Create a Virtual Hard Disk:
+  - Choose "Create a virtual hard disk now" and click "Create".
+  - Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).
 
 ### Step 3: Configure and Install Ubuntu
-  - Attach the Ubuntu ISO:
-    - Select your new VM, click on "Settings", then navigate to the "Storage" section.
-    - Under the "Controller: IDE" (or SATA), click on the empty optical drive.
-    - Click the small disk icon on the right and choose "Choose a disk file". Browse to and select the Ubuntu ISO you downloaded.
-  - Start the Virtual Machine:
-    - With the ISO attached, click "Start".
-    - The VM will boot from the ISO, and you should see the Ubuntu welcome screen.
-  - Install Ubuntu:
-    - Follow the on-screen instructions in the Ubuntu installer:
-      - Choose your language and keyboard layout.
-      - Select "Install Ubuntu".
-      - Follow prompts to set up your timezone, create a user account, and configure your disk (use the default settings for a virtual disk).
-      - Once the installation is complete, you’ll be prompted to restart the VM.
+
+- Attach the Ubuntu ISO:
+  - Select your new VM, click on "Settings", then navigate to the "Storage" section.
+  - Under the "Controller: IDE" (or SATA), click on the empty optical drive.
+  - Click the small disk icon on the right and choose "Choose a disk file". Browse to and select the Ubuntu ISO you downloaded.
+- Start the Virtual Machine:
+  - With the ISO attached, click "Start".
+  - The VM will boot from the ISO, and you should see the Ubuntu welcome screen.
+- Install Ubuntu:
+  - Follow the on-screen instructions in the Ubuntu installer:
+    - Choose your language and keyboard layout.
+    - Select "Install Ubuntu".
+    - Follow prompts to set up your timezone, create a user account, and configure your disk (use the default settings for a virtual disk).
+    - Once the installation is complete, you’ll be prompted to restart the VM.
 
 ## Command line
 
 ### Why
+
 1. Eventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize
 and run heavy computations.
 2. Things can be done faster on a command line with practice.
-
 
 ### Basics
 
@@ -142,32 +145,38 @@ Quantas lágrimas chorei
 ```
 
 To see the full lyrics (TIP: press `tab` to autocomplete the file name)
+
 ```bash
 cat maria_joanna_song
 ```
 
 Show the first 5 lines
+
 ```bash
 head -5 maria_joanna_song
 ```
 
 To see only the last 5 lines
+
 ```bash
 tail -5 maria_joanna_song
 ```
 
 To see only the last 10 to 15 lines (note the "|" sign it is a pipe and let's you combine the commands into one, without dumping the information onto your harddrive)
+
 ```bash
 head -15 maria_joanna_song | tail -5
 ```
 
 If you want to put information into your disk you can do as follows
+
 ```bash
 head -15 maria_joanna_song > top15_maria
 tail -5 top15_maria > lines10-15_maria
 ```
 
 To see the output we need to either click on the file or use the terminal
+
 ```bash
 cat lines10-15_maria
 ```
@@ -175,21 +184,25 @@ cat lines10-15_maria
 ### Searching text
 
 How to find something in the text?
+
 ```bash
 grep Maria maria_joanna_song
 ```
 
 And how to see only the matched pattern - commands have "options"
+
 ```bash
 grep -o Maria maria_joanna_song
 ```
 
 You can always get help ( `command --help` or shortcut version `-h`) - generally not much usefull - better to google it or ask ChatGPT
+
 ```bash
 grep --help 
 ```
 
 Let's count word Maria - three different ways to count something
+
 ```bash
 grep Maria maria_joanna_song | wc -l
 grep Maria maria_joanna_song | wc -w
@@ -197,6 +210,7 @@ grep Maria maria_joanna_song | wc -c
 ```
 
 Now count appearances of `Maria Joanna` - it is important to use "" if the your search contains a space or some special character
+
 ```bash
 grep "Maria Joana" maria_joanna_song | wc -l
 grep "Maria Joana" maria_joanna_song | wc -w
@@ -204,6 +218,7 @@ grep "Maria Joana" maria_joanna_song | wc -c
 ```
 
 How to deal with special characters
+
 ```bash
 grep ( maria_joanna_song   #note the error
 grep "(" maria_joanna_song
@@ -213,57 +228,69 @@ grep \( maria_joanna_song
 ### Wild cards
 
 "." and "*" can represent any characters and therefore represent patterns rather than exact matches
+
 ```bash
 grep Eu maria_joanna_song
 grep Eu.* maria_joanna_song
 ```
 
 Playing with multiple choices
+
 ```bash
 grep se maria_joanna_song 
 grep se[i] maria_joanna_song 
 grep se[i,m] maria_joanna_song 
 ```
 
-But I am in love with Donald Trump and not with Maria Joana - how to I fix the song ?
+But I am in love with Donald Trump and not with Maria Joana - how to I fix the song?
+
 ```bash
 sed 's/Maria Joana/Donald Trump/g'  maria_joanna_song | sed 's/Maria/Donald/g' > donald_trump_song
 ```
 
 Let's see what happened - now it doesn't rhyme as good
+
 ```bash
 cat donald_trump_song
 more donald_trump_song
 ```
 
 Ok, but are we sure Donald replaced Maria?
+
 ```bash
 diff -u *song 
 diff maria_joanna_song donald_trump_song
 ```
+
 ```bash
 vimdiff *song
 ```
+
 ### Working with multiple files
 
 Have a look how a loop is being used here
+
 ```bash
 grep Lisboa *song
 for f in *song ; do grep Lisboa $f ; done
 ```
 
 To show which file Lisboa is found in
+
 ```bash
 for f in *song ; do grep -l Lisboa $f ; done
 ```
 
 To show where is it found (i.e. line number)
+
 ```bash
 for f in *song ; do grep -n Lisboa $f ; done
 ```
 
 I have just realised that "joanna" in portuguese is written as "joana" - how do I fix the name of my file
-1. option 1 - fix it but keep the original
+
+1. option - fix it but keep the original
+
 ```bash
 cp maria_joanna_song maria_joana_song
 
@@ -275,12 +302,14 @@ ls -l
 ls -la
 ```
 
-2. option 2 - neh, I don't need the previous version - it will just cause the confusion later on
+2. option - neh, I don't need the previous version - it will just cause the confusion later on
+
 ```bash
 mv maria_joanna_song maria_joana_song
 ```
 
 Now let's try previous code
+
 ```bash
 grep Maria maria_joanna_song  # of course it doesn't work ... - what shall I do now ?
 ```
@@ -288,9 +317,11 @@ grep Maria maria_joanna_song  # of course it doesn't work ... - what shall I do 
 ## Genomics
 
 ### Word on E-Utilities
-https://www.ncbi.nlm.nih.gov/books/NBK179288/
+
+Taken from official [website](https://www.ncbi.nlm.nih.gov/books/NBK179288/):
 
 EDirect will run on Unix and Macintosh computers, and under the Cygwin Unix-emulation environment on Windows PCs. To install the EDirect software, open a terminal window and execute one of the following two commands:
+
 ```bash
   sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
 
@@ -298,128 +329,209 @@ EDirect will run on Unix and Macintosh computers, and under the Cygwin Unix-emul
 ```
 
 This will download a number of scripts and several precompiled programs into an "edirect" folder in the user's home directory. It may then print an additional command for updating the PATH environment variable in the user's configuration file. The editing instructions will look something like:
+
 ```bash
   echo "export PATH=\$HOME/edirect:\$PATH" >> $HOME/.bash_profile
 ```
+
 As a convenience, the installation process ends by offering to run the PATH update command for you. Answer "y" and press the Return key if you want it run. If the PATH is already set correctly, or if you prefer to make any editing changes manually, just press Return.
 
 Once installation is complete, run:
+
 ```bash
   export PATH=${HOME}/edirect:${PATH}
 ```
+
 to set the PATH for the current terminal session.
 
 ### [ESearch](https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch)
 
 Let's download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)
+
 ```bash
 esearch -db sra -query PRJNA783372 | efetch -format runinfo > SraRunTable.csv
 ```
 
+We only need the SRRnumber
 
-... TBC
-*** here we only need the SRRnumber
+```bash
 cut -f1 -d, SraRunTable*.csv  > runs.txt
+```
 
-*** to save time we will work on four samples only
-head -9 runs.txt > runs9.txt
+To save time we will work on four samples only
 
-*** ok, now we download the actual raw data
+```bash
+tail -4 runs.txt > runs4.txt
+```
+
+### Get the data
+
+Ok, now we download the actual raw data
+
+```bash
 prefetch --option-file runs9.txt
+```
 
-*** let's unpack it
+In case of
+
+:::{.callout-note}
+In case of `Command 'prefetch' not found` run
+
+```bash
+sudo apt install sra-toolkit
+```
+
+:::
+
+Let's unpack it
+
+```bash
 for f in SRR* ; do fastq-dump --split-files  $f ; done
+```
 
-*** to check the sequencing quality - it is a GUI software
-fastqc
+<!-- To check the sequencing quality - it is a GUI software
+????fastqc -->
 
-*** first merge the reads
-flash -m 50 -M 500 -x 0.1 SRR17045211_1.fastq SRR17045211_2.fastq 
+### Reads manipulation
+
+```bash
+sudo apt install flash
+```
+
+First merge the reads
+
+```bash
+# merge
+flash -m 50 -M 500 -x 0.1 SRR17045222_1.fastq SRR17045222_2.fastq
+
+# rename merged file to index it
 mv out.extendedFrags.fastq file1.fastq
+```
 
-flash -m 50 -M 500 -x 0.1 SRR17045213_1.fastq SRR17045213_2.fastq 
+```bash
+flash -m 50 -M 500 -x 0.1 SRR17045223_1.fastq SRR17045223_2.fastq
 mv out.extendedFrags.fastq file2.fastq
+```
 
-flash -m 50 -M 500 -x 0.1 SRR17045221_1.fastq SRR17045221_2.fastq 
-mv out.extendedFrags.fastq file3.fastq
+```bash
+flash -m 50 -M 500 -x 0.1 SRR17045226_1.fastq SRR17045226_2.fastq
+mv out.extendedFrags.fastq file2.fastq
+```
 
-flash -m 50 -M 500 -x 0.1 SRR17045222_1.fastq SRR17045222_2.fastq 
-mv out.extendedFrags.fastq file4.fastq
+```bash
+flash -m 50 -M 500 -x 0.1 SRR17045227_2.fastq SRR17045227_2.fastq
+mv out.extendedFrags.fastq file2.fastq
+```
 
-flash -m 50 -M 500 -x 0.1 SRR17045223_1.fastq SRR17045223_2.fastq 
-mv out.extendedFrags.fastq file5.fastq
+Now we filter low quality reads (here the data is kind of a fake as the fastq download needs to be adjusted wit the prefetch script)
 
-flash -m 50 -M 500 -x 0.1 SRR17045224_1.fastq SRR17045224_2.fastq 
-mv out.extendedFrags.fastq file6.fastq
+```bash
+# if not installed, do
+sudo apt install vsearch
 
-flash -m 50 -M 500 -x 0.1 SRR17045225_1.fastq SRR17045225_2.fastq 
-mv out.extendedFrags.fastq file7.fastq
-
-flash -m 50 -M 500 -x 0.1 SRR17045227_1.fastq SRR17045227_2.fastq 
-mv out.extendedFrags.fastq file8.fastq
-
-
-
-*** now we filter low quality reads (here the data is kind of a fake as the fastq download needs to be adjusted wit the prefetch script)
 for f in file* ; do vsearch --fastq_filter $f --fastq_maxee 1.0 --fastqout $f\_filtered ; done
+```
 
-*** it is getting messy here
+It is getting messy here (delete unwanted files)
+
+```bash
 rm *notCombined*
 rm *hist
 rm *histogram
 rm *fastq
+```
 
-*** to lazy to empty the trash yourself ? the terminal will do that for us
-gio trash --empty
+:::{.callout-tip}
+Too lazy to empty the trash yourself ? the terminal will do that for us
+`gio trash --empty`
+:::
 
-*** let's convert fastq to fasta
+Let's convert fastq to fasta
+
+```bash
+# if not installed, do
+sudo apt install seqtk
+
 for f in *fastq_filtered ; do seqtk seq -a $f > $f.fasta ; done ; 
+```
 
-**** blast is commented out as it is unlikely to work - we could try with internal database one day
-*** to save time let's just use 10 reads from each file for taxonomic identification - we will use GenBank nt database
-*** for f in *fastq_filtered.fasta ; do head -20 $f > $f\head ; done
+:::{.callout-caution}
+Blast is commented out as it is unlikely to work - we could try with internal database one day
+:::
 
-*** let's simplify the naming
-*** rename 's/.fastq_filtered.fastahead/.fasta/g' *fastq_filtered.fastahead ; 
+To save time let's just use 10 reads from each file for taxonomic identification - we will use GenBank `nt database`
 
-*** let's try - it may not work at all
-*** blastn -query file1.fasta -db nt -remote -outfmt 6 -max_target_seqs 1 -perc_identity 95 > file1_blast.txt 
-*** blastn -query file1.fasta -db nr -remote  > file1_blast2.txt
+```bash
+for f in *fastq_filtered.fasta ; do head -20 $f > $f\head ; done
+```
 
-*** if doesnt work - use web based blast
+Simplify the naming
 
+```bash
 
-**** let's make ASV table and visualise the data
+# if not installed, do
+sudo apt install rename
+
+rename 's/.fastq_filtered.fastahead/.fasta/g' *fastq_filtered.fastahead ;
+```
+
+### Blast
+
+Let's try - it may not work at all, first install
+
+```bash
+sudo apt install ncbi-blast+
+```
+
+```bash
+blastn -query file1.fasta -db nt -remote -outfmt 6 -max_target_seqs 1 -perc_identity 95 > file1_blast.txt 
+
+blastn -query file1.fasta -db nr -remote  > file1_blast2.txt
+```
+
+If doesnt work - use web based blast
+### @ANDRZEJ, How, instructions missing
+
+Let's make ASV table and visualise the data
+
+```bash
 cat file[0-9]*.fastq_filtered.fasta > all_samples.fasta
+```
+
+```bash
+# if not installed, do
+sudo apt install vsearch
 
 vsearch --derep_fulllength all_samples.fasta   --output dereplicated.fasta  --sizeout  --relabel ASV_
 vsearch --sortbysize dereplicated.fasta  --output dereplicated_no_singletons.fasta  --minsize 2
 vsearch --cluster_unoise dereplicated_no_singletons.fasta --minsize 2  --unoise_alpha 2   --centroids ASVs.fasta
 vsearch --usearch_global all_samples.fasta --db ASVs.fasta   --id 0.97     --otutabout ASV_table.txt
-
-*** we will use MicrobiomeAnalyst - every tool needs the input in some specific format - here we need to change the table as well 
-sed 's/#OTU ID/#NAME/g' ASV_table.txt > ASV_table_MA.txt
-
-*** we need some metadata (all fake)
-head -1 ASV_table_MA.txt | fmt -1 | sed 's/NAME/NAME, sample/g'  | sed 's/11$/11,fish/g' | sed 's/13$/13,fish/g' | sed 's/21$/21,fish/g' | sed 's/22$/22,fish/g' |sed 's/23$/23,not_a_fish/g' | sed 's/24$/24,not_a_fish/g' |sed 's/25$/25,not_a_fish/g' | sed 's/27$/27,not_a_fish/g' > metadata.csv
-
-
-
-## Visualise the data
-
-<!--
-DP can we redo this to a NB?
--->
-
-
-```python
-python append_braycurtis3.py ASV_table_MA.txt
-
-# and after
-python pcoa_with_metadata_quick_legend.py
 ```
 
+We will use [MicrobiomeAnalyst](https://www.microbiomeanalyst.ca/) - every tool needs the input in some specific format - here we need to change the table as well
+
+```bash
+sed 's/#OTU ID/#NAME/g' ASV_table.txt > ASV_table_MA.txt
+```
+
+We need some metadata (all invented here)
+
+```bash
+head -1 ASV_table_MA.txt | fmt -1 | sed 's/NAME/NAME, sample/g'  | sed 's/11$/11,fish/g' | sed 's/13$/13,fish/g' | sed 's/21$/21,fish/g' | sed 's/22$/22,fish/g' |sed 's/23$/23,not_a_fish/g' | sed 's/24$/24,not_a_fish/g' |sed 's/25$/25,not_a_fish/g' | sed 's/27$/27,not_a_fish/g' > metadata.csv
+```
+
+## Visualise the data with python
+
+Following this link you can interrogate the same table (`ASV_table_MA.txt`) in the interactive jupyter notebook.
+
+**To compute Braycurtis distances**
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fcompute_braycurtis.ipynb)
+
+**To visualize the PCoA**
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisuallize_braycurtis.ipynb)
+
 ### Test running code online
+
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
 ```{python}
@@ -439,4 +551,3 @@ ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
-

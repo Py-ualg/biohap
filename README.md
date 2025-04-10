@@ -3,6 +3,7 @@
 Visit deployed tutorials [here](https://py-ualg.github.io/biohap/). Reach out and let's already start setting up *Fall 2025* edition.
 
 ## Spring 2025 edition
+
 ### 1️⃣ Simple Linux – An Introduction to Genomic Analysis on Linux 
 
 **Andrzej Tkacz [contact](mailto:atkacz@ualg.pt)**
@@ -19,6 +20,7 @@ Large files or datasets—especially those containing genomic data—no problem.
 ## 2️⃣ Microbiome Analysis of Amplicon Sequencing 
 
 **Tânia Aires [contact](mailto:taires@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
+
 - 🗓 Date: May 7, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 
@@ -28,9 +30,10 @@ This workshop will provide an overview of microbiome data analysis from Illumina
 
 **Requirements**: HPC account (contact David) for running QIIME2, R studio for Phyloseq.
 
-## 3️⃣ RNA-Seq Data Analysis in R - From Counts to Biological Insights 
+## 3️⃣ RNA-Seq Data Analysis in R - From Counts to Biological Insights
 
 **Isabel Duarte [contact](mailto:isabel.duarte@gmail.com)**
+
 - 🗓 Date: June 4, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 

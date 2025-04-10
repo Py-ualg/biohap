@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-889d5fcf7d593712212775a3bbf62723.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9073159f2da7c4c0044f0df261652202.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,35 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -249,19 +220,28 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#step-2-create-a-new-virtual-machine-for-ubuntu" id="toc-step-2-create-a-new-virtual-machine-for-ubuntu" class="nav-link" data-scroll-target="#step-2-create-a-new-virtual-machine-for-ubuntu">Step 2: Create a New Virtual Machine for Ubuntu</a></li>
+  <li><a href="#step-3-configure-and-install-ubuntu" id="toc-step-3-configure-and-install-ubuntu" class="nav-link" data-scroll-target="#step-3-configure-and-install-ubuntu">Step 3: Configure and Install Ubuntu</a></li>
+  </ul></li>
   <li><a href="#command-line" id="toc-command-line" class="nav-link" data-scroll-target="#command-line">Command line</a>
   <ul class="collapse">
   <li><a href="#why" id="toc-why" class="nav-link" data-scroll-target="#why">Why</a></li>
   <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a></li>
+  <li><a href="#searching-text" id="toc-searching-text" class="nav-link" data-scroll-target="#searching-text">Searching text</a></li>
+  <li><a href="#wild-cards" id="toc-wild-cards" class="nav-link" data-scroll-target="#wild-cards">Wild cards</a></li>
+  <li><a href="#working-with-multiple-files" id="toc-working-with-multiple-files" class="nav-link" data-scroll-target="#working-with-multiple-files">Working with multiple files</a></li>
   </ul></li>
-  <li><a href="#todo-reformat-the-rest" id="toc-todo-reformat-the-rest" class="nav-link" data-scroll-target="#todo-reformat-the-rest">TODO reformat the rest</a></li>
   <li><a href="#genomics" id="toc-genomics" class="nav-link" data-scroll-target="#genomics">Genomics</a>
   <ul class="collapse">
   <li><a href="#word-on-e-utilities" id="toc-word-on-e-utilities" class="nav-link" data-scroll-target="#word-on-e-utilities">Word on E-Utilities</a></li>
   <li><a href="#esearch" id="toc-esearch" class="nav-link" data-scroll-target="#esearch">ESearch</a></li>
+  <li><a href="#get-the-data" id="toc-get-the-data" class="nav-link" data-scroll-target="#get-the-data">Get the data</a></li>
+  <li><a href="#reads-manipulation" id="toc-reads-manipulation" class="nav-link" data-scroll-target="#reads-manipulation">Reads manipulation</a></li>
+  <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">Blast</a></li>
   </ul></li>
-  <li><a href="#visualise-the-data" id="toc-visualise-the-data" class="nav-link" data-scroll-target="#visualise-the-data">Visualise the data</a>
+  <li><a href="#visualise-the-data-with-python" id="toc-visualise-the-data-with-python" class="nav-link" data-scroll-target="#visualise-the-data-with-python">Visualise the data with python</a>
   <ul class="collapse">
   <li><a href="#test-running-code-online" id="toc-test-running-code-online" class="nav-link" data-scroll-target="#test-running-code-online">Test running code online</a></li>
   </ul></li>
@@ -305,11 +285,55 @@ window.Quarto = {
 <p>Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>No extra setup needed for <code>linux</code> and <code>MacOS</code> machines. For windows the recommended way is to install <a href="here is the link">VBox</a>. See the steps to follow:</p>
-<ol type="1">
-<li>TBC</li>
-<li>TBC</li>
-</ol>
+<p>No extra setup needed for <code>Linux</code> and <code>MacOS</code> machines. For windows the recommended way is to install <a href="here is the link">VBox</a>. See the steps to follow:</p>
+<p>Here are the instructions: Installing Ubuntu on VirtualBox ### Step 1: Install VirtualBox</p>
+<ul>
+<li>Run the Installer:</li>
+<li>After downloading the <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox installer</a> (<code>.exe</code> file for WinOS, <code>.dmg</code> for MacOS), double-click on it to launch the setup wizard.</li>
+<li>Follow Setup Instructions:</li>
+<li>Accept the license agreement, choose your installation options, and proceed with the default settings for most users.</li>
+<li>Complete Installation:</li>
+<li>Once the installation is complete, launch VirtualBox.</li>
+</ul>
+<section id="step-2-create-a-new-virtual-machine-for-ubuntu" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-create-a-new-virtual-machine-for-ubuntu">Step 2: Create a New Virtual Machine for Ubuntu</h3>
+<ul>
+<li>Open VirtualBox and Create a New VM: Click on the <code>New</code> button.</li>
+<li>Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select “Linux” as the type, and choose “Ubuntu (64-bit)” as the version.</li>
+<li>Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.</li>
+<li>Create a Virtual Hard Disk:
+<ul>
+<li>Choose “Create a virtual hard disk now” and click “Create”.</li>
+<li>Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-3-configure-and-install-ubuntu" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-configure-and-install-ubuntu">Step 3: Configure and Install Ubuntu</h3>
+<ul>
+<li>Attach the Ubuntu ISO:
+<ul>
+<li>Select your new VM, click on “Settings”, then navigate to the “Storage” section.</li>
+<li>Under the “Controller: IDE” (or SATA), click on the empty optical drive.</li>
+<li>Click the small disk icon on the right and choose “Choose a disk file”. Browse to and select the Ubuntu ISO you downloaded.</li>
+</ul></li>
+<li>Start the Virtual Machine:
+<ul>
+<li>With the ISO attached, click “Start”.</li>
+<li>The VM will boot from the ISO, and you should see the Ubuntu welcome screen.</li>
+</ul></li>
+<li>Install Ubuntu:
+<ul>
+<li>Follow the on-screen instructions in the Ubuntu installer:
+<ul>
+<li>Choose your language and keyboard layout.</li>
+<li>Select “Install Ubuntu”.</li>
+<li>Follow prompts to set up your timezone, create a user account, and configure your disk (use the default settings for a virtual disk).</li>
+<li>Once the installation is complete, you’ll be prompted to restart the VM.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
 </section>
 <section id="command-line" class="level2">
 <h2 class="anchored" data-anchor-id="command-line">Command line</h2>
@@ -317,14 +341,14 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="why">Why</h3>
 <ol type="1">
 <li>Eventually you will need bigger compute than you can get on your machine and you will be forced to work on Cloud such as High Power cluster (HPC) which allow you to parallelize and run heavy computations.</li>
-<li>Things can be done faster on a comand line with practice.</li>
+<li>Things can be done faster on a command line with practice.</li>
 </ol>
 </section>
 <section id="basics" class="level3">
 <h3 class="anchored" data-anchor-id="basics">Basics</h3>
 <p>Open the terminal and let’s create a file called <code>maria_joanna_song</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>let’s just copy in this text - open the file with double click and paste this song into the <code>maria_joanna_song</code> file</p>
+<p>let’s just copy in this text - open the file with double click and paste this song into the <code>maria_joanna_song</code> file, also found <a href="https://raw.githubusercontent.com/Py-ualg/biohap/refs/heads/main/assets/250416_atkacz/maria_joanna_song">here</a></p>
 <pre class="text"><code>E virou!
 Onde anda essa Maria?
 Eu só tenho essa Maria
@@ -401,107 +425,243 @@ Quantas lágrimas chorei</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Show the first 5 lines</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-5</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>DP: if you wanna link your files, you can use the raw link to GH, such as <a href="https://raw.githubusercontent.com/Py-ualg/biohap/refs/heads/main/assets/250416_atkacz/maria_joanna_song">song</a></p>
+<p>To see only the last 5 lines</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-5</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To see only the last 10 to 15 lines (note the “|” sign it is a pipe and let’s you combine the commands into one, without dumping the information onto your harddrive)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-15</span> maria_joanna_song <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you want to put information into your disk you can do as follows</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-15</span> maria_joanna_song <span class="op">&gt;</span> top15_maria</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-5</span> top15_maria <span class="op">&gt;</span> lines10-15_maria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To see the output we need to either click on the file or use the terminal</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> lines10-15_maria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="searching-text" class="level3">
+<h3 class="anchored" data-anchor-id="searching-text">Searching text</h3>
+<p>How to find something in the text?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And how to see only the matched pattern - commands have “options”</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-o</span> Maria maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can always get help ( <code>command --help</code> or shortcut version <code>-h</code>) - generally not much usefull - better to google it or ask ChatGPT</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">--help</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s count word Maria - three different ways to count something</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-w</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now count appearances of <code>Maria Joanna</code> - it is important to use “” if the your search contains a space or some special character</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Maria Joana"</span> maria_joanna_song <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Maria Joana"</span> maria_joanna_song <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-w</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Maria Joana"</span> maria_joanna_song <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>How to deal with special characters</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="er">(</span> <span class="ex">maria_joanna_song</span>   <span class="co">#note the error</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"("</span> maria_joanna_song</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="dt">\(</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="todo-reformat-the-rest" class="level2">
-<h2 class="anchored" data-anchor-id="todo-reformat-the-rest">TODO reformat the rest</h2>
-<p>*** to see only the last 5 lines tail -5 maria_joanna_song</p>
-<p>*** to see only the last 10 to 15 lines (note the “|” sign it is a pipe and let’s you combine the commands into one, without dumping the information onto your harddrive head -15 maria_joanna_song | tail -5</p>
-<p>*** if you want to put information into your disk you can do as follows head -15 maria_joanna_song &gt; top15_maria tail -5 top15_maria &gt; lines10-15_maria</p>
-<p>*** to see the output we need to either click on the file or use the terminal cat lines10-15_maria</p>
-<p>*** how to find something in the text grep Maria maria_joanna_song</p>
-<p>*** ok, and how to see only the matched pattern - commands have “options” grep -o Maria maria_joanna_song</p>
-<p>*** and you can always get help (sometimes it is -h, and sometimes –help) - generally not much usefull - better to google it or ask ChatGPT grep –help</p>
-<p>*** let’s count word Maria - three different ways to count something grep Maria maria_joanna_song | wc -l grep Maria maria_joanna_song | wc -w grep Maria maria_joanna_song | wc -c</p>
-<p>*** and now let’s count Maria Joanna - it is important to use “” if the your search contains a space or some special character grep “Maria Joana” maria_joanna_song | wc -l grep “Maria Joana” maria_joanna_song | wc -w grep “Maria Joana” maria_joanna_song | wc -c</p>
-<p>*** how to avoid special characters grep ( maria_joanna_song #note the error grep “(” maria_joanna_song grep ( maria_joanna_song</p>
-<p>*** wild cards “.” and “<em>” grep Eu maria_joanna_song grep Eu.</em> maria_joanna_song</p>
-<p>*** playing with multiple choices grep se maria_joanna_song grep se[i] maria_joanna_song grep se[i,m] maria_joanna_song</p>
-<p>*** but I am in love with Donald Trump and not with Maria Joana - how to I fix the song ? sed ‘s/Maria Joana/Donald Trump/g’ maria_joanna_song | sed ‘s/Maria/Donald/g’ &gt; donald_trump_song</p>
-<p>*** let’s see what happened - now it doesn’t rhyme as good cat donald_trump_song more donald_trump_song</p>
-<p>*** ok, but are we sure Donald replaced Maria? diff -u *song diff maria_joanna_song donald_trump_song</p>
-<p>vimdiff *song</p>
-<p>*** let’s work on multiple files at the same time - have a look how a loop is being used here grep Lisboa <em>song for f in </em>song ; do grep Lisboa $f ; done</p>
-<p>*** to show which file Lisboa is found in for f in *song ; do grep -l Lisboa $f ; done</p>
-<p>*** to show where is it found (i.e.&nbsp;line number) for f in *song ; do grep -n Lisboa $f ; done</p>
-<p>*** I have just realised that “joanna” in portuguese is written as “joana” - how do I fix the name of my file *** option 1 - fix it but keep the original cp maria_joanna_song maria_joana_song</p>
-<p>*** option 2 - neh, I don’t need the previous version - it will just cause the confusion later on mv maria_joanna_song maria_joana_song</p>
-<p>**** now let’s try previous code grep Maria maria_joanna_song # of course it doesn’t work … - what shall I do now ?</p>
-<p>’‘+++++ let’s don’t change anything as it is a part of a joke +++++’’</p>
+<section id="wild-cards" class="level3">
+<h3 class="anchored" data-anchor-id="wild-cards">Wild cards</h3>
+<p>“.” and “*” can represent any characters and therefore represent patterns rather than exact matches</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Eu maria_joanna_song</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Eu.<span class="pp">*</span> maria_joanna_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Playing with multiple choices</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> se maria_joanna_song </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> se<span class="pp">[</span><span class="ss">i</span><span class="pp">]</span> maria_joanna_song </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> se<span class="pp">[</span><span class="ss">i,m</span><span class="pp">]</span> maria_joanna_song </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But I am in love with Donald Trump and not with Maria Joana - how to I fix the song?</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/Maria Joana/Donald Trump/g'</span>  maria_joanna_song <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/Maria/Donald/g'</span> <span class="op">&gt;</span> donald_trump_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s see what happened - now it doesn’t rhyme as good</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> donald_trump_song</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">more</span> donald_trump_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ok, but are we sure Donald replaced Maria?</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">-u</span> <span class="pp">*</span>song </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> maria_joanna_song donald_trump_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vimdiff</span> <span class="pp">*</span>song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="working-with-multiple-files" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-multiple-files">Working with multiple files</h3>
+<p>Have a look how a loop is being used here</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Lisboa <span class="pp">*</span>song</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="pp">*</span>song <span class="kw">;</span> <span class="cf">do</span> <span class="fu">grep</span> Lisboa <span class="va">$f</span> <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To show which file Lisboa is found in</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="pp">*</span>song <span class="kw">;</span> <span class="cf">do</span> <span class="fu">grep</span> <span class="at">-l</span> Lisboa <span class="va">$f</span> <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To show where is it found (i.e.&nbsp;line number)</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="pp">*</span>song <span class="kw">;</span> <span class="cf">do</span> <span class="fu">grep</span> <span class="at">-n</span> Lisboa <span class="va">$f</span> <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I have just realised that “joanna” in portuguese is written as “joana” - how do I fix the name of my file</p>
+<ol type="1">
+<li>option - fix it but keep the original</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> maria_joanna_song maria_joana_song</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># list contents of directory</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># other variants</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>option - neh, I don’t need the previous version - it will just cause the confusion later on</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> maria_joanna_song maria_joana_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now let’s try previous code</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song  <span class="co"># of course it doesn't work ... - what shall I do now ?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="genomics" class="level2">
 <h2 class="anchored" data-anchor-id="genomics">Genomics</h2>
 <section id="word-on-e-utilities" class="level3">
 <h3 class="anchored" data-anchor-id="word-on-e-utilities">Word on E-Utilities</h3>
-<p>https://www.ncbi.nlm.nih.gov/books/NBK179288/</p>
+<p>Taken from official <a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/">website</a>:</p>
 <p>EDirect will run on Unix and Macintosh computers, and under the Cygwin Unix-emulation environment on Windows PCs. To install the EDirect software, open a terminal window and execute one of the following two commands:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh<span class="va">)</span><span class="st">"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="fu">wget</span> <span class="at">-q</span> https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh <span class="at">-O</span> <span class="at">-</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh<span class="va">)</span><span class="st">"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="fu">wget</span> <span class="at">-q</span> https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh <span class="at">-O</span> <span class="at">-</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will download a number of scripts and several precompiled programs into an “edirect” folder in the user’s home directory. It may then print an additional command for updating the PATH environment variable in the user’s configuration file. The editing instructions will look something like:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"export PATH=</span><span class="dt">\$</span><span class="st">HOME/edirect:</span><span class="dt">\$</span><span class="st">PATH"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bash_profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"export PATH=</span><span class="dt">\$</span><span class="st">HOME/edirect:</span><span class="dt">\$</span><span class="st">PATH"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bash_profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As a convenience, the installation process ends by offering to run the PATH update command for you. Answer “y” and press the Return key if you want it run. If the PATH is already set correctly, or if you prefer to make any editing changes manually, just press Return.</p>
 <p>Once installation is complete, run:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/edirect:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/edirect:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to set the PATH for the current terminal session.</p>
 </section>
 <section id="esearch" class="level3">
 <h3 class="anchored" data-anchor-id="esearch"><a href="https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch">ESearch</a></h3>
 <p>Let’s download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">esearch</span> <span class="at">-db</span> sra <span class="at">-query</span> PRJNA783372 <span class="kw">|</span> <span class="ex">efetch</span> <span class="at">-format</span> runinfo <span class="op">&gt;</span> SraRunTable.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>… TBC *** here we only need the SRRnumber cut -f1 -d, SraRunTable*.csv &gt; runs.txt</p>
-<p>*** to save time we will work on four samples only head -9 runs.txt &gt; runs9.txt</p>
-<p>*** ok, now we download the actual raw data prefetch –option-file runs9.txt</p>
-<p>*** let’s unpack it for f in SRR* ; do fastq-dump –split-files $f ; done</p>
-<p>*** to check the sequencing quality - it is a GUI software fastqc</p>
-<p>*** first merge the reads flash -m 50 -M 500 -x 0.1 SRR17045211_1.fastq SRR17045211_2.fastq mv out.extendedFrags.fastq file1.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045213_1.fastq SRR17045213_2.fastq mv out.extendedFrags.fastq file2.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045221_1.fastq SRR17045221_2.fastq mv out.extendedFrags.fastq file3.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045222_1.fastq SRR17045222_2.fastq mv out.extendedFrags.fastq file4.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045223_1.fastq SRR17045223_2.fastq mv out.extendedFrags.fastq file5.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045224_1.fastq SRR17045224_2.fastq mv out.extendedFrags.fastq file6.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045225_1.fastq SRR17045225_2.fastq mv out.extendedFrags.fastq file7.fastq</p>
-<p>flash -m 50 -M 500 -x 0.1 SRR17045227_1.fastq SRR17045227_2.fastq mv out.extendedFrags.fastq file8.fastq</p>
-<p>*** now we filter low quality reads (here the data is kind of a fake as the fastq download needs to be adjusted wit the prefetch script) for f in file* ; do vsearch –fastq_filter $f –fastq_maxee 1.0 –fastqout $f_filtered ; done</p>
-<p>*** it is getting messy here rm <em>notCombined</em> rm <em>hist rm </em>histogram rm *fastq</p>
-<p>*** to lazy to empty the trash yourself ? the terminal will do that for us gio trash –empty</p>
-<p>*** let’s convert fastq to fasta for f in *fastq_filtered ; do seqtk seq -a $f &gt; $f.fasta ; done ;</p>
-<p>**** blast is commented out as it is unlikely to work - we could try with internal database one day *** to save time let’s just use 10 reads from each file for taxonomic identification - we will use GenBank nt database *** for f in *fastq_filtered.fasta ; do head -20 $f &gt; $f; done</p>
-<p>*** let’s simplify the naming *** rename ‘s/.fastq_filtered.fastahead/.fasta/g’ *fastq_filtered.fastahead ;</p>
-<p>*** let’s try - it may not work at all *** blastn -query file1.fasta -db nt -remote -outfmt 6 -max_target_seqs 1 -perc_identity 95 &gt; file1_blast.txt *** blastn -query file1.fasta -db nr -remote &gt; file1_blast2.txt</p>
-<p>*** if doesnt work - use web based blast</p>
-<p>**** let’s make ASV table and visualise the data cat file[0-9]*.fastq_filtered.fasta &gt; all_samples.fasta</p>
-<p>vsearch –derep_fulllength all_samples.fasta –output dereplicated.fasta –sizeout –relabel ASV_ vsearch –sortbysize dereplicated.fasta –output dereplicated_no_singletons.fasta –minsize 2 vsearch –cluster_unoise dereplicated_no_singletons.fasta –minsize 2 –unoise_alpha 2 –centroids ASVs.fasta vsearch –usearch_global all_samples.fasta –db ASVs.fasta –id 0.97 –otutabout ASV_table.txt</p>
-<p>*** we will use MicrobiomeAnalyst - every tool needs the input in some specific format - here we need to change the table as well sed ‘s/#OTU ID/#NAME/g’ ASV_table.txt &gt; ASV_table_MA.txt</p>
-<p>*** we need some metadata (all fake) head -1 ASV_table_MA.txt | fmt -1 | sed ‘s/NAME/NAME, sample/g’ | sed ‘s/11<span class="math inline">\(/11,fish/g' | sed 's/13\)</span>/13,fish/g’ | sed ‘s/21<span class="math inline">\(/21,fish/g' | sed 's/22\)</span>/22,fish/g’ |sed ‘s/23<span class="math inline">\(/23,not_a_fish/g' | sed 's/24\)</span>/24,not_a_fish/g’ |sed ‘s/25<span class="math inline">\(/25,not_a_fish/g' | sed 's/27\)</span>/27,not_a_fish/g’ &gt; metadata.csv</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">esearch</span> <span class="at">-db</span> sra <span class="at">-query</span> PRJNA783372 <span class="kw">|</span> <span class="ex">efetch</span> <span class="at">-format</span> runinfo <span class="op">&gt;</span> SraRunTable.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We only need the SRRnumber</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> <span class="at">-d,</span> SraRunTable<span class="pp">*</span>.csv  <span class="op">&gt;</span> runs.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To save time we will work on four samples only</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-4</span> runs.txt <span class="op">&gt;</span> runs4.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="get-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="get-the-data">Get the data</h3>
+<p>Ok, now we download the actual raw data</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="at">--option-file</span> runs9.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In case of</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In case of <code>Command 'prefetch' not found</code> run</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sra-toolkit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Let’s unpack it</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> SRR<span class="pp">*</span> <span class="kw">;</span> <span class="cf">do</span> <span class="ex">fastq-dump</span> <span class="at">--split-files</span>  <span class="va">$f</span> <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- To check the sequencing quality - it is a GUI software
+????fastqc -->
+</section>
+<section id="reads-manipulation" class="level3">
+<h3 class="anchored" data-anchor-id="reads-manipulation">Reads manipulation</h3>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install flash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First merge the reads</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">flash</span> <span class="at">-m</span> 50 <span class="at">-M</span> 500 <span class="at">-x</span> 0.1 SRR17045222_1.fastq SRR17045222_2.fastq</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># rename merged file to index it</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> out.extendedFrags.fastq file1.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flash</span> <span class="at">-m</span> 50 <span class="at">-M</span> 500 <span class="at">-x</span> 0.1 SRR17045223_1.fastq SRR17045223_2.fastq</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> out.extendedFrags.fastq file2.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flash</span> <span class="at">-m</span> 50 <span class="at">-M</span> 500 <span class="at">-x</span> 0.1 SRR17045226_1.fastq SRR17045226_2.fastq</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> out.extendedFrags.fastq file2.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flash</span> <span class="at">-m</span> 50 <span class="at">-M</span> 500 <span class="at">-x</span> 0.1 SRR17045227_2.fastq SRR17045227_2.fastq</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> out.extendedFrags.fastq file2.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we filter low quality reads (here the data is kind of a fake as the fastq download needs to be adjusted wit the prefetch script)</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install vsearch</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> file<span class="pp">*</span> <span class="kw">;</span> <span class="cf">do</span> <span class="ex">vsearch</span> <span class="at">--fastq_filter</span> <span class="va">$f</span> <span class="at">--fastq_maxee</span> 1.0 <span class="at">--fastqout</span> <span class="va">$f</span><span class="dt">\_</span>filtered <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is getting messy here (delete unwanted files)</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>notCombined<span class="pp">*</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>hist</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>histogram</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Too lazy to empty the trash yourself ? the terminal will do that for us <code>gio trash --empty</code></p>
+</div>
+</div>
+<p>Let’s convert fastq to fasta</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install seqtk</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="pp">*</span>fastq_filtered <span class="kw">;</span> <span class="cf">do</span> <span class="ex">seqtk</span> seq <span class="at">-a</span> <span class="va">$f</span> <span class="op">&gt;</span> <span class="va">$f</span>.fasta <span class="kw">;</span> <span class="cf">done</span> <span class="kw">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Blast is commented out as it is unlikely to work - we could try with internal database one day</p>
+</div>
+</div>
+<p>To save time let’s just use 10 reads from each file for taxonomic identification - we will use GenBank <code>nt database</code></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="pp">*</span>fastq_filtered.fasta <span class="kw">;</span> <span class="cf">do</span> <span class="fu">head</span> <span class="at">-20</span> <span class="va">$f</span> <span class="op">&gt;</span> <span class="va">$f</span><span class="dt">\h</span>ead <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Simplify the naming</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install rename</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="ex">rename</span> <span class="st">'s/.fastq_filtered.fastahead/.fasta/g'</span> <span class="pp">*</span>fastq_filtered.fastahead <span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="blast" class="level3">
+<h3 class="anchored" data-anchor-id="blast">Blast</h3>
+<p>Let’s try - it may not work at all, first install</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install ncbi-blast+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nt <span class="at">-remote</span> <span class="at">-outfmt</span> 6 <span class="at">-max_target_seqs</span> 1 <span class="at">-perc_identity</span> 95 <span class="op">&gt;</span> file1_blast.txt </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nr <span class="at">-remote</span>  <span class="op">&gt;</span> file1_blast2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If doesnt work - use web based blast ### <span class="citation" data-cites="ANDRZEJ">(<a href="#ref-ANDRZEJ" role="doc-biblioref"><strong>ANDRZEJ?</strong></a>)</span>, How, instructions missing</p>
+<p>Let’s make ASV table and visualise the data</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file<span class="pp">[</span><span class="ss">0</span><span class="pp">-</span><span class="ss">9</span><span class="pp">]*</span>.fastq_filtered.fasta <span class="op">&gt;</span> all_samples.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install vsearch</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="ex">vsearch</span> <span class="at">--derep_fulllength</span> all_samples.fasta   <span class="at">--output</span> dereplicated.fasta  <span class="at">--sizeout</span>  <span class="at">--relabel</span> ASV_</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vsearch</span> <span class="at">--sortbysize</span> dereplicated.fasta  <span class="at">--output</span> dereplicated_no_singletons.fasta  <span class="at">--minsize</span> 2</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="ex">vsearch</span> <span class="at">--cluster_unoise</span> dereplicated_no_singletons.fasta <span class="at">--minsize</span> 2  <span class="at">--unoise_alpha</span> 2   <span class="at">--centroids</span> ASVs.fasta</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="ex">vsearch</span> <span class="at">--usearch_global</span> all_samples.fasta <span class="at">--db</span> ASVs.fasta   <span class="at">--id</span> 0.97     <span class="at">--otutabout</span> ASV_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will use <a href="https://www.microbiomeanalyst.ca/">MicrobiomeAnalyst</a> - every tool needs the input in some specific format - here we need to change the table as well</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/#OTU ID/#NAME/g'</span> ASV_table.txt <span class="op">&gt;</span> ASV_table_MA.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We need some metadata (all invented here)</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-1</span> ASV_table_MA.txt <span class="kw">|</span> <span class="fu">fmt</span> <span class="at">-1</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/NAME/NAME, sample/g'</span>  <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/11$/11,fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/13$/13,fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/21$/21,fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/22$/22,fish/g'</span> <span class="kw">|</span><span class="fu">sed</span> <span class="st">'s/23$/23,not_a_fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/24$/24,not_a_fish/g'</span> <span class="kw">|</span><span class="fu">sed</span> <span class="st">'s/25$/25,not_a_fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/27$/27,not_a_fish/g'</span> <span class="op">&gt;</span> metadata.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="visualise-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="visualise-the-data">Visualise the data</h2>
-<!--
-DP can we redo this to a NB?
--->
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>python append_braycurtis3.py ASV_table_MA.txt</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and after</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>python pcoa_with_metadata_quick_legend.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="visualise-the-data-with-python" class="level2">
+<h2 class="anchored" data-anchor-id="visualise-the-data-with-python">Visualise the data with python</h2>
+<p>Following this link you can interrogate the same table (<code>ASV_table_MA.txt</code>) in the interactive jupyter notebook.</p>
+<p><strong>To compute Braycurtis distances</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fcompute_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
+<p><strong>To visualize the PCoA</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisuallize_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
 <section id="test-running-code-online" class="level3">
 <h3 class="anchored" data-anchor-id="test-running-code-online">Test running code online</h3>
 <p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <div id="cell-fig-polar" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="fig-polar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">

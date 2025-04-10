@@ -1,0 +1,9 @@
+bokeh
+matplotlib
+numpy
+pandas
+panel
+plotly
+seaborn
+scikit-bio
+scikit-learn
