@@ -1,4 +1,6 @@
-bokeh
+ipywidgets_bokeh>=1.6.0
+jupyter==1.1.1
+jupyter_bokeh>=4.0.5
 matplotlib
 numpy
 pandas
