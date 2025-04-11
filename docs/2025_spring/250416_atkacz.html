@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrzej Tkacz atkacz@ualg.pt">
 <meta name="dcterms.date" content="2026-04-04">
 
 <title>atkacz – BioHap: Bioinformatics, Handy and Practical</title>
@@ -220,8 +219,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
+  <li><a href="#simple-linux-an-introduction-to-genomic-analysis-on-linux" id="toc-simple-linux-an-introduction-to-genomic-analysis-on-linux" class="nav-link active" data-scroll-target="#simple-linux-an-introduction-to-genomic-analysis-on-linux"># Simple Linux – An Introduction to Genomic Analysis on Linux</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
+  <li><a href="#step-1-install-virtualbox-at-i-did-not-check-any-of-this" id="toc-step-1-install-virtualbox-at-i-did-not-check-any-of-this" class="nav-link" data-scroll-target="#step-1-install-virtualbox-at-i-did-not-check-any-of-this">Step 1: Install VirtualBox (<span class="citation" data-cites="AT">(<strong>AT?</strong>)</span> I did not check any of this)</a></li>
   <li><a href="#step-2-create-a-new-virtual-machine-for-ubuntu" id="toc-step-2-create-a-new-virtual-machine-for-ubuntu" class="nav-link" data-scroll-target="#step-2-create-a-new-virtual-machine-for-ubuntu">Step 2: Create a New Virtual Machine for Ubuntu</a></li>
   <li><a href="#step-3-configure-and-install-ubuntu" id="toc-step-3-configure-and-install-ubuntu" class="nav-link" data-scroll-target="#step-3-configure-and-install-ubuntu">Step 3: Configure and Install Ubuntu</a></li>
   </ul></li>
@@ -233,18 +234,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#wild-cards" id="toc-wild-cards" class="nav-link" data-scroll-target="#wild-cards">Wild cards</a></li>
   <li><a href="#working-with-multiple-files" id="toc-working-with-multiple-files" class="nav-link" data-scroll-target="#working-with-multiple-files">Working with multiple files</a></li>
   </ul></li>
-  <li><a href="#genomics" id="toc-genomics" class="nav-link" data-scroll-target="#genomics">Genomics</a>
+  <li><a href="#genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one" id="toc-genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one" class="nav-link" data-scroll-target="#genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one">Genomics (<span class="citation" data-cites="AT">(<strong>AT?</strong>)</span>: either have installation section of all the tools, or notify one by one!)</a>
   <ul class="collapse">
   <li><a href="#word-on-e-utilities" id="toc-word-on-e-utilities" class="nav-link" data-scroll-target="#word-on-e-utilities">Word on E-Utilities</a></li>
   <li><a href="#esearch" id="toc-esearch" class="nav-link" data-scroll-target="#esearch">ESearch</a></li>
   <li><a href="#get-the-data" id="toc-get-the-data" class="nav-link" data-scroll-target="#get-the-data">Get the data</a></li>
-  <li><a href="#reads-manipulation" id="toc-reads-manipulation" class="nav-link" data-scroll-target="#reads-manipulation">Reads manipulation</a></li>
+  <li><a href="#raw-reads-manipulation" id="toc-raw-reads-manipulation" class="nav-link" data-scroll-target="#raw-reads-manipulation">Raw Reads Manipulation</a></li>
   <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">Blast</a></li>
   </ul></li>
-  <li><a href="#visualise-the-data-with-python" id="toc-visualise-the-data-with-python" class="nav-link" data-scroll-target="#visualise-the-data-with-python">Visualise the data with python</a>
-  <ul class="collapse">
-  <li><a href="#test-running-code-online" id="toc-test-running-code-online" class="nav-link" data-scroll-target="#test-running-code-online">Test running code online</a></li>
-  </ul></li>
+  <li><a href="#visualise-the-data-with-python" id="toc-visualise-the-data-with-python" class="nav-link" data-scroll-target="#visualise-the-data-with-python">Visualise the data with python</a></li>
   </ul>
 </nav>
     </div>
@@ -253,7 +251,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2025_spring/250416_atkacz.html">Spring 2025</a></li><li class="breadcrumb-item"><a href="../2025_spring/250416_atkacz.html">Simple Linux – An Introduction to Genomic Analysis on Linux</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Simple Linux – An Introduction to Genomic Analysis on Linux</h1>
 </div>
 
 
@@ -263,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Andrzej Tkacz <a href="mailto:atkacz@ualg.pt">atkacz@ualg.pt</a> </p>
+             <p>Andrzej Tkacz <a href="mailto:atkacz@ualg.pt">atkacz@ualg.pt</a>, David Paleček <a href="mailto:dpalecek@ualg.pt">dpalecek@ualg.pt</a> </p>
           </div>
   </div>
     
@@ -282,11 +279,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="simple-linux-an-introduction-to-genomic-analysis-on-linux" class="level2">
+<h2 class="anchored" data-anchor-id="simple-linux-an-introduction-to-genomic-analysis-on-linux"># Simple Linux – An Introduction to Genomic Analysis on Linux</h2>
+<p>date: 16/04/2025 authors: Andrzej Tkacz <a href="mailto:atkacz@ualg.pt">atkacz@ualg.pt</a>, David Paleček <a href="mailto:dpalecek@ualg.pt">dpalecek@ualg.pt</a> —</p>
 <p>Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.</p>
+</section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>No extra setup needed for <code>Linux</code> and <code>MacOS</code> machines. For windows the recommended way is to install <a href="here is the link">VBox</a>. See the steps to follow:</p>
-<p>Here are the instructions: Installing Ubuntu on VirtualBox ### Step 1: Install VirtualBox</p>
+<p>Here are the instructions: Installing Ubuntu on VirtualBox</p>
+<section id="step-1-install-virtualbox-at-i-did-not-check-any-of-this" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-install-virtualbox-at-i-did-not-check-any-of-this">Step 1: Install VirtualBox (<span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span> I did not check any of this)</h3>
 <ul>
 <li>Run the Installer:</li>
 <li>After downloading the <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox installer</a> (<code>.exe</code> file for WinOS, <code>.dmg</code> for MacOS), double-click on it to launch the setup wizard.</li>
@@ -295,15 +298,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Complete Installation:</li>
 <li>Once the installation is complete, launch VirtualBox.</li>
 </ul>
+</section>
 <section id="step-2-create-a-new-virtual-machine-for-ubuntu" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-create-a-new-virtual-machine-for-ubuntu">Step 2: Create a New Virtual Machine for Ubuntu</h3>
 <ul>
 <li>Open VirtualBox and Create a New VM: Click on the <code>New</code> button.</li>
-<li>Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select “Linux” as the type, and choose “Ubuntu (64-bit)” as the version.</li>
+<li>Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select “Linux” as the type, and choose <code>Ubuntu (64-bit)</code> as the version.</li>
 <li>Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.</li>
 <li>Create a Virtual Hard Disk:
 <ul>
-<li>Choose “Create a virtual hard disk now” and click “Create”.</li>
+<li>Choose “Create a virtual hard disk now” and click <code>Create</code>.</li>
 <li>Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).</li>
 </ul></li>
 </ul>
@@ -313,13 +317,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Attach the Ubuntu ISO:
 <ul>
-<li>Select your new VM, click on “Settings”, then navigate to the “Storage” section.</li>
+<li>Select your new VM, click on <code>Settings</code>, then navigate to the <code>Storage</code> section.</li>
 <li>Under the “Controller: IDE” (or SATA), click on the empty optical drive.</li>
-<li>Click the small disk icon on the right and choose “Choose a disk file”. Browse to and select the Ubuntu ISO you downloaded.</li>
+<li>Click the small disk icon on the right and choose <code>Choose a disk file</code>. Browse to and select the Ubuntu ISO you downloaded.</li>
 </ul></li>
 <li>Start the Virtual Machine:
 <ul>
-<li>With the ISO attached, click “Start”.</li>
+<li>With the ISO attached, click <code>Start</code>.</li>
 <li>The VM will boot from the ISO, and you should see the Ubuntu welcome screen.</li>
 </ul></li>
 <li>Install Ubuntu:
@@ -327,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Follow the on-screen instructions in the Ubuntu installer:
 <ul>
 <li>Choose your language and keyboard layout.</li>
-<li>Select “Install Ubuntu”.</li>
+<li>Select <code>Install Ubuntu</code>.</li>
 <li>Follow prompts to set up your timezone, create a user account, and configure your disk (use the default settings for a virtual disk).</li>
 <li>Once the installation is complete, you’ll be prompted to restart the VM.</li>
 </ul></li>
@@ -504,8 +508,8 @@ Quantas lágrimas chorei</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song  <span class="co"># of course it doesn't work ... - what shall I do now ?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="genomics" class="level2">
-<h2 class="anchored" data-anchor-id="genomics">Genomics</h2>
+<section id="genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one" class="level2">
+<h2 class="anchored" data-anchor-id="genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one">Genomics (<span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span>: either have installation section of all the tools, or notify one by one!)</h2>
 <section id="word-on-e-utilities" class="level3">
 <h3 class="anchored" data-anchor-id="word-on-e-utilities">Word on E-Utilities</h3>
 <p>Taken from official <a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/">website</a>:</p>
@@ -553,8 +557,8 @@ Note
 <!-- To check the sequencing quality - it is a GUI software
 ????fastqc -->
 </section>
-<section id="reads-manipulation" class="level3">
-<h3 class="anchored" data-anchor-id="reads-manipulation">Reads manipulation</h3>
+<section id="raw-reads-manipulation" class="level3">
+<h3 class="anchored" data-anchor-id="raw-reads-manipulation">Raw Reads Manipulation</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install flash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>First merge the reads</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge</span></span>
@@ -625,7 +629,7 @@ Caution
 <div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nt <span class="at">-remote</span> <span class="at">-outfmt</span> 6 <span class="at">-max_target_seqs</span> 1 <span class="at">-perc_identity</span> 95 <span class="op">&gt;</span> file1_blast.txt </span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nr <span class="at">-remote</span>  <span class="op">&gt;</span> file1_blast2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If doesnt work - use web based blast ### <span class="citation" data-cites="ANDRZEJ">(<a href="#ref-ANDRZEJ" role="doc-biblioref"><strong>ANDRZEJ?</strong></a>)</span>, How, instructions missing</p>
+<p>If doesnt work - use web based blast ### <span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span>, How, instructions missing</p>
 <p>Let’s make ASV table and visualise the data</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file<span class="pp">[</span><span class="ss">0</span><span class="pp">-</span><span class="ss">9</span><span class="pp">]*</span>.fastq_filtered.fasta <span class="op">&gt;</span> all_samples.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
@@ -645,39 +649,9 @@ Caution
 <h2 class="anchored" data-anchor-id="visualise-the-data-with-python">Visualise the data with python</h2>
 <p>Following this link you can interrogate the same table (<code>ASV_table_MA.txt</code>) in the interactive jupyter notebook.</p>
 <p><strong>To compute Braycurtis distances</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fcompute_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
-<p><strong>To visualize the PCoA</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisuallize_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
-<section id="test-running-code-online" class="level3">
-<h3 class="anchored" data-anchor-id="test-running-code-online">Test running code online</h3>
-<p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="cell-fig-polar" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="fig-polar" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="250416_atkacz_files/figure-html/fig-polar-output-1.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: A line plot on a polar axis
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<p><strong>To visualize the PCoA</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisualize_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

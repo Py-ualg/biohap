@@ -1,7 +1,7 @@
 # Simple Linux – An Introduction to Genomic Analysis on Linux
 ---
 date: 16/04/2025
-author: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt)
+authors: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 ---
 
 Large files or datasets—especially those containing genomic data—no problem.
@@ -15,7 +15,8 @@ No extra setup needed for `Linux` and `MacOS` machines. For windows the recommen
 
 Here are the instructions:
 Installing Ubuntu on VirtualBox
-### Step 1: Install VirtualBox
+
+### Step 1: Install VirtualBox (@AT I did not check any of this)
 
 - Run the Installer:
 - After downloading the [VirtualBox installer](https://www.virtualbox.org/wiki/Downloads) (`.exe` file for WinOS, `.dmg` for MacOS),
@@ -28,25 +29,25 @@ double-click on it to launch the setup wizard.
 ### Step 2: Create a New Virtual Machine for Ubuntu
 
 - Open VirtualBox and Create a New VM: Click on the `New` button.
-- Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select "Linux" as the type, and choose "Ubuntu (64-bit)" as the version.
+- Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select "Linux" as the type, and choose `Ubuntu (64-bit)` as the version.
 - Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.
 - Create a Virtual Hard Disk:
-  - Choose "Create a virtual hard disk now" and click "Create".
+  - Choose "Create a virtual hard disk now" and click `Create`.
   - Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).
 
 ### Step 3: Configure and Install Ubuntu
 
 - Attach the Ubuntu ISO:
-  - Select your new VM, click on "Settings", then navigate to the "Storage" section.
+  - Select your new VM, click on `Settings`, then navigate to the `Storage` section.
   - Under the "Controller: IDE" (or SATA), click on the empty optical drive.
-  - Click the small disk icon on the right and choose "Choose a disk file". Browse to and select the Ubuntu ISO you downloaded.
+  - Click the small disk icon on the right and choose `Choose a disk file`. Browse to and select the Ubuntu ISO you downloaded.
 - Start the Virtual Machine:
-  - With the ISO attached, click "Start".
+  - With the ISO attached, click `Start`.
   - The VM will boot from the ISO, and you should see the Ubuntu welcome screen.
 - Install Ubuntu:
   - Follow the on-screen instructions in the Ubuntu installer:
     - Choose your language and keyboard layout.
-    - Select "Install Ubuntu".
+    - Select `Install Ubuntu`.
     - Follow prompts to set up your timezone, create a user account, and configure your disk (use the default settings for a virtual disk).
     - Once the installation is complete, you’ll be prompted to restart the VM.
 
@@ -314,7 +315,7 @@ Now let's try previous code
 grep Maria maria_joanna_song  # of course it doesn't work ... - what shall I do now ?
 ```
 
-## Genomics
+## Genomics (@AT: either have installation section of all the tools, or notify one by one!)
 
 ### Word on E-Utilities
 
@@ -392,7 +393,7 @@ for f in SRR* ; do fastq-dump --split-files  $f ; done
 <!-- To check the sequencing quality - it is a GUI software
 ????fastqc -->
 
-### Reads manipulation
+### Raw Reads Manipulation
 
 ```bash
 sudo apt install flash
@@ -490,7 +491,7 @@ blastn -query file1.fasta -db nr -remote  > file1_blast2.txt
 ```
 
 If doesnt work - use web based blast
-### @ANDRZEJ, How, instructions missing
+### @AT, How, instructions missing
 
 Let's make ASV table and visualise the data
 
@@ -528,26 +529,4 @@ Following this link you can interrogate the same table (`ASV_table_MA.txt`) in t
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fcompute_braycurtis.ipynb)
 
 **To visualize the PCoA**
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisuallize_braycurtis.ipynb)
-
-### Test running code online
-
-For a demonstration of a line plot on a polar axis, see @fig-polar.
-
-```{python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisualize_braycurtis.ipynb)
