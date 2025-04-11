@@ -1,7 +1,10 @@
 # Simple Linux – An Introduction to Genomic Analysis on Linux
+
 ---
 date: 16/04/2025
-authors: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+
+author: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+
 ---
 
 Large files or datasets—especially those containing genomic data—no problem.
@@ -493,7 +496,7 @@ blastn -query file1.fasta -db nr -remote  > file1_blast2.txt
 If doesnt work - use web based blast
 ### @AT, How, instructions missing
 
-Let's make ASV table and visualise the data
+Let's create ASV table and visualise the data
 
 ```bash
 cat file[0-9]*.fastq_filtered.fasta > all_samples.fasta

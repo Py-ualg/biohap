@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-04-04">
+<meta name="author" content="Andrzej Tkacz atkacz@ualg.pt, David Paleček dpalecek@ualg.pt">
 
 <title>atkacz – BioHap: Bioinformatics, Handy and Practical</title>
 <style>
@@ -219,7 +219,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simple-linux-an-introduction-to-genomic-analysis-on-linux" id="toc-simple-linux-an-introduction-to-genomic-analysis-on-linux" class="nav-link active" data-scroll-target="#simple-linux-an-introduction-to-genomic-analysis-on-linux"># Simple Linux – An Introduction to Genomic Analysis on Linux</a></li>
+  <li><a href="#simple-linux-an-introduction-to-genomic-analysis-on-linux" id="toc-simple-linux-an-introduction-to-genomic-analysis-on-linux" class="nav-link active" data-scroll-target="#simple-linux-an-introduction-to-genomic-analysis-on-linux">Simple Linux – An Introduction to Genomic Analysis on Linux</a>
+  <ul class="collapse">
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
   <li><a href="#step-1-install-virtualbox-at-i-did-not-check-any-of-this" id="toc-step-1-install-virtualbox-at-i-did-not-check-any-of-this" class="nav-link" data-scroll-target="#step-1-install-virtualbox-at-i-did-not-check-any-of-this">Step 1: Install VirtualBox (<span class="citation" data-cites="AT">(<strong>AT?</strong>)</span> I did not check any of this)</a></li>
@@ -243,6 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">Blast</a></li>
   </ul></li>
   <li><a href="#visualise-the-data-with-python" id="toc-visualise-the-data-with-python" class="nav-link" data-scroll-target="#visualise-the-data-with-python">Visualise the data with python</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -267,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 4, 2026</p>
+      <p class="date">16/04/2025</p>
     </div>
   </div>
   
@@ -279,11 +281,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="simple-linux-an-introduction-to-genomic-analysis-on-linux" class="level2">
-<h2 class="anchored" data-anchor-id="simple-linux-an-introduction-to-genomic-analysis-on-linux"># Simple Linux – An Introduction to Genomic Analysis on Linux</h2>
-<p>date: 16/04/2025 authors: Andrzej Tkacz <a href="mailto:atkacz@ualg.pt">atkacz@ualg.pt</a>, David Paleček <a href="mailto:dpalecek@ualg.pt">dpalecek@ualg.pt</a> —</p>
+<section id="simple-linux-an-introduction-to-genomic-analysis-on-linux" class="level1">
+<h1>Simple Linux – An Introduction to Genomic Analysis on Linux</h1>
 <p>Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.</p>
-</section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>No extra setup needed for <code>Linux</code> and <code>MacOS</code> machines. For windows the recommended way is to install <a href="here is the link">VBox</a>. See the steps to follow:</p>
@@ -630,7 +630,7 @@ Caution
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nr <span class="at">-remote</span>  <span class="op">&gt;</span> file1_blast2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If doesnt work - use web based blast ### <span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span>, How, instructions missing</p>
-<p>Let’s make ASV table and visualise the data</p>
+<p>Let’s create ASV table and visualise the data</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file<span class="pp">[</span><span class="ss">0</span><span class="pp">-</span><span class="ss">9</span><span class="pp">]*</span>.fastq_filtered.fasta <span class="op">&gt;</span> all_samples.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install vsearch</span>
@@ -652,6 +652,7 @@ Caution
 <p><strong>To visualize the PCoA</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisualize_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
