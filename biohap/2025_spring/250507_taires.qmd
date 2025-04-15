@@ -1,9 +1,262 @@
 # Microbiome Analysis of Amplicon Sequencing
+
 ---
 date: 07/05/2025
-author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt) 
+
+author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+
 ---
+
 This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data
 to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess
 (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine
 organisms.
+
+## Setup
+
+This tutorial requires you to be able to run QIIME2. We provide you with access to `redi` server, where it is preinstalled. However if you want to set it up yourself, the full instructions are [here](https://docs.qiime2.org/2024.10/install/native/). Beware that below is UNIX specific setup. We did these parts:
+
+### Install miniconda
+
+1. Download installer from [here](https://www.anaconda.com/download?utm_source=anacondadocs&utm_medium=documentation&utm_campaign=download&utm_content=installwindows)
+2. Your downloaded file is executable (`.exe` on Win, `.pkg` on Mac and `.sh` on Linux). Run the install
+
+### Update conda and install QIIME2
+
+```bash
+# update your conda
+conda update conda
+
+# create conda environment for amplicon qiime2
+conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml
+```
+
+## Input files
+
+In the [repository](https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires), you can find almost all the necessary input files.
+
+First look at your `manifest` file, which specifies sample ids, and reads name files, in this case we use paired ends, to two file_paths per line are present. The path needs to be changed to conform with your file system location
+
+```bash
+# close vi editor with Esc, then :q
+vi Manifest_file_Species.txt
+```
+
+You see weird `^M` characters, let's remove those
+
+1. Either use `dos2unix Manifest_file_Species.txt`
+2. Or replace them using `sed`
+
+```bash
+# \r/ refers to Windows line ending
+sed -i 's/\r//g' Manifest_file_Species.txt
+```
+
+Run `vi` again to confirm successful replacement and also to select copy part of the path you want to replace next.
+
+1. Select with the cursor the path (this automatically enter into your clipboard)
+2. probably something like `/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/`
+3. exit the vi editor again `Esc` and `:q`
+
+Replace the string with correct path
+
+::: {.callout-tip}
+- Middle mouse button click pastes your mouse selection, ie clipboard on the command line
+- You can get your correct path using `pwd` to print current folder path (assuming you are where you `Samples` folder is)
+:::
+
+```bash
+sed -i 's|/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/|<YOUR_PATH_TO_FOLDER_Samples>|g' Manifest_file_Species.txt
+```
+
+::: {.callout-note collapse="true"}
+Note that since our strings contained `/` character we used `|` to separate the parts of the `sed` command. That was not necessary in the case above  `s/\r//g` where `/` plays a role of the separator
+
+`sed` command
+s: substitute
+our flag `g` means *replace all occurance on the line*.
+
+`s/pattern/replacement/flags`
+:::
+
+Confirm again in the `vi editor` the correct manifest file.
+
+## QIIME2
+
+### Import data
+
+```bash
+qiime tools import \
+    --type 'SampleData[PairedEndSequencesWithQuality]' \
+    --input-path Manifest_file_Species.txt \
+    --output-path demux.qza \
+    --input-format PairedEndFastqManifestPhred33V2
+```
+
+`type` describes that we have paired ends with Q scores (fastq) inputs. `input-path` is our manifest file, describing where all the files are. *demux.qza* will be our `output-path` file and `input-format` describes your sequencing technology, *33V2* means?????
+
+### Create visualization file for demultiplexed data
+
+```bash
+qiime demux summarize --i-data demux.qza --o-visualization demux.qzv
+```
+
+- `--i-data`: input, which is output of importing data previously
+- `--o-visualization`: output filename
+
+### Denoise with DADA2
+
+`dada2` is an R [package](https://www.bioconductor.org/packages/release/bioc/html/dada2.html), which will be used here. This step can take substantial time and resource.
+
+```bash
+qiime dada2 denoise-paired \
+    --i-demultiplexed-seqs demux.qza \
+    --p-trim-left-f 0 \
+    --p-trim-left-r 0 \
+    --p-trunc-len-f 200 \
+    --p-trunc-len-r 210 \
+    --p-n-threads 0 \
+    --o-table table.qza \
+    --o-representative-sequences rep-seqs.qza \
+    --o-denoising-stats denoising-stats.qza \
+    --verbose
+```
+
+TODO: explain the input params
+
+- `--p-trim-left-f`: xxx
+- `--p-trim-left-r`: xxx
+- `--p-trunc-len-f`: xxx
+- `--p-trunc-len-r`: xxx
+- `--p-n-threads 0`: xxx
+- `--o-table`: output table filename
+- `--o-representative-sequences`: xxx
+- `--o-denoising-stats`: statistics filename specification
+- `--verbose`: write extensive progress on the screen
+
+::: {.callout-note collapse="true" title="Sample output on the screen"}
+R version 4.3.3 (2024-02-29)
+Loading required package: Rcpp
+DADA2: 1.30.0 / Rcpp: 1.0.13.1 / RcppParallel: 5.1.9
+2) Filtering ........................
+3) Learning Error Rates
+208608800 total bases in 1043044 reads from 17 samples will be used for learning the error rates.
+219039240 total bases in 1043044 reads from 17 samples will be used for learning the error rates.
+3) Denoise samples ........................
+........................
+5) Remove chimeras (method = consensus)
+6) Report read numbers through the pipeline
+7) Write output
+Saved FeatureTable[Frequency] to: table.qza
+Saved FeatureData[Sequence] to: rep-seqs.qza
+Saved SampleData[DADA2Stats] to: denoising-stats.qza
+:::
+
+### DADA2 output visualization
+
+```bash
+qiime metadata tabulate \
+    --m-input-file denoising-stats.qza \
+    --o-visualization denoising-stats.qzv
+```
+
+Arguments specify `input` and `output` files. Now we summarize ...?
+
+```bash
+qiime feature-table summarize \
+    --i-table table.qza \
+    --o-visualization table.qzv
+```
+
+And finally tabulate the sequences.
+
+```bash
+qiime feature-table tabulate-seqs \
+    --i-data rep-seqs.qza \
+    --o-visualization rep-seqs.qzv
+```
+
+### Taxonomy assignment using **Silva** database
+
+The database is no in the repo bacause of its size, download it. If you work on `redi`, the database is located at `<fill in path DP>`. This is also *time-consuming step*
+
+The classifier needs to match our `scikit-learn` package version used by the QIIME2 version. Here the version is `1.4.2`, download the classfier [here](https://data.qiime2.org/classifiers/sklearn-1.4.2/silva/silva-138-99-nb-classifier.qza)
+
+```bash
+qiime feature-classifier classify-sklearn \
+    --i-classifier silva-138-99-nb-classifier.qza \
+    --i-reads rep-seqs.qza \
+    --o-classification taxonomy.qza
+```
+
+### Create output for visualization
+
+```bash
+qiime metadata tabulate \
+    --m-input-file taxonomy.qza \
+    --o-visualization taxonomy.qzv
+```
+
+### Export feature table (BIOM format)
+
+```bash
+qiime tools export \
+    --input-path table.qza \
+    --output-path feature-table
+```
+
+### Export taxonomy table
+
+```bash
+qiime tools export \
+    --input-path taxonomy.qza \
+    --output-path taxonomy
+```
+
+To move further with the analysis, open the taxonomy file and change the header. When you open it, you’ll see the header looks like this:
+
+`Feature ID Taxon   Confidence`
+
+You need to change it to this:
+
+`#otu-id	taxonomy	Confidence`
+
+::: {.callout-important}
+ALL spaces are tabs
+:::
+
+Can you figure out the `sed` command do do that?
+
+::: {.callout-note collapse="true" title="Solution"}
+```bash
+sed -i '0,/^[^\t]*\t[^\t]*/s/#otu-id\ttaxonomy\tConfidence/' taxonomy.tsv
+```
+:::
+
+### Combine the feature table with the taxonomy table
+
+```bash
+biom add-metadata \
+    --input-fp feature-table/feature-table.biom \
+    --observation-metadata-fp taxonomy/taxonomy.tsv \
+    --output-fp biom-with-taxonomy.biom
+```
+
+### Convert `.biom` table to `.txt` table
+
+```bash
+biom convert \
+    --input-fp biom-with-taxonomy.biom \
+    --output-fp ASV_table.tsv \
+    --to-tsv --header-key taxonomy
+```
+
+### Visualize `.qzv` files
+
+Get the data tables to your PC using `ssh` protocol
+
+- `ssh` on linux
+- Putty on Windows
+- Mac???
+
+Open [QIIME2](https://view.qiime2.org/) webpage and drag the qzv files in there.

@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -185,7 +220,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#microbiome-analysis-of-amplicon-sequencing" id="toc-microbiome-analysis-of-amplicon-sequencing" class="nav-link active" data-scroll-target="#microbiome-analysis-of-amplicon-sequencing"># Microbiome Analysis of Amplicon Sequencing</a></li>
+  <li><a href="#microbiome-analysis-of-amplicon-sequencing" id="toc-microbiome-analysis-of-amplicon-sequencing" class="nav-link active" data-scroll-target="#microbiome-analysis-of-amplicon-sequencing">Microbiome Analysis of Amplicon Sequencing</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#install-miniconda" id="toc-install-miniconda" class="nav-link" data-scroll-target="#install-miniconda">Install miniconda</a></li>
+  <li><a href="#update-conda-and-install-qiime2" id="toc-update-conda-and-install-qiime2" class="nav-link" data-scroll-target="#update-conda-and-install-qiime2">Update conda and install QIIME2</a></li>
+  </ul></li>
+  <li><a href="#input-files" id="toc-input-files" class="nav-link" data-scroll-target="#input-files">Input files</a></li>
+  <li><a href="#qiime2" id="toc-qiime2" class="nav-link" data-scroll-target="#qiime2">QIIME2</a>
+  <ul class="collapse">
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import data</a></li>
+  <li><a href="#create-visualization-file-for-demultiplexed-data" id="toc-create-visualization-file-for-demultiplexed-data" class="nav-link" data-scroll-target="#create-visualization-file-for-demultiplexed-data">Create visualization file for demultiplexed data</a></li>
+  <li><a href="#denoise-with-dada2" id="toc-denoise-with-dada2" class="nav-link" data-scroll-target="#denoise-with-dada2">Denoise with DADA2</a></li>
+  <li><a href="#dada2-output-visualization" id="toc-dada2-output-visualization" class="nav-link" data-scroll-target="#dada2-output-visualization">DADA2 output visualization</a></li>
+  <li><a href="#taxonomy-assignment-using-silva-database" id="toc-taxonomy-assignment-using-silva-database" class="nav-link" data-scroll-target="#taxonomy-assignment-using-silva-database">Taxonomy assignment using <strong>Silva</strong> database</a></li>
+  <li><a href="#create-output-for-visualization" id="toc-create-output-for-visualization" class="nav-link" data-scroll-target="#create-output-for-visualization">Create output for visualization</a></li>
+  <li><a href="#export-feature-table-biom-format" id="toc-export-feature-table-biom-format" class="nav-link" data-scroll-target="#export-feature-table-biom-format">Export feature table (BIOM format)</a></li>
+  <li><a href="#export-taxonomy-table" id="toc-export-taxonomy-table" class="nav-link" data-scroll-target="#export-taxonomy-table">Export taxonomy table</a></li>
+  <li><a href="#combine-the-feature-table-with-the-taxonomy-table" id="toc-combine-the-feature-table-with-the-taxonomy-table" class="nav-link" data-scroll-target="#combine-the-feature-table-with-the-taxonomy-table">Combine the feature table with the taxonomy table</a></li>
+  <li><a href="#convert-.biom-table-to-.txt-table" id="toc-convert-.biom-table-to-.txt-table" class="nav-link" data-scroll-target="#convert-.biom-table-to-.txt-table">Convert <code>.biom</code> table to <code>.txt</code> table</a></li>
+  <li><a href="#visualize-.qzv-files" id="toc-visualize-.qzv-files" class="nav-link" data-scroll-target="#visualize-.qzv-files">Visualize <code>.qzv</code> files</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -210,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 5, 2025</p>
+      <p class="date">07/05/2025</p>
     </div>
   </div>
   
@@ -222,11 +279,249 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="microbiome-analysis-of-amplicon-sequencing" class="level2">
-<h2 class="anchored" data-anchor-id="microbiome-analysis-of-amplicon-sequencing"># Microbiome Analysis of Amplicon Sequencing</h2>
-<p>date: 07/05/2025 author: Tânia Aires <a href="mailto:taires@ualg.pt">taires@ualg.pt</a>, David Paleček <a href="mailto:dpalecek@ualg.pt">dpalecek@ualg.pt</a> — This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.</p>
+<section id="microbiome-analysis-of-amplicon-sequencing" class="level1">
+<h1>Microbiome Analysis of Amplicon Sequencing</h1>
+<p>This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.</p>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>This tutorial requires you to be able to run QIIME2. We provide you with access to <code>redi</code> server, where it is preinstalled. However if you want to set it up yourself, the full instructions are <a href="https://docs.qiime2.org/2024.10/install/native/">here</a>. Beware that below is UNIX specific setup. We did these parts:</p>
+<section id="install-miniconda" class="level3">
+<h3 class="anchored" data-anchor-id="install-miniconda">Install miniconda</h3>
+<ol type="1">
+<li>Download installer from <a href="https://www.anaconda.com/download?utm_source=anacondadocs&amp;utm_medium=documentation&amp;utm_campaign=download&amp;utm_content=installwindows">here</a></li>
+<li>Your downloaded file is executable (<code>.exe</code> on Win, <code>.pkg</code> on Mac and <code>.sh</code> on Linux). Run the install</li>
+</ol>
+</section>
+<section id="update-conda-and-install-qiime2" class="level3">
+<h3 class="anchored" data-anchor-id="update-conda-and-install-qiime2">Update conda and install QIIME2</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update your conda</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update conda</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create conda environment for amplicon qiime2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-n</span> qiime2-amplicon-2024.10 <span class="at">--file</span> https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="input-files" class="level2">
+<h2 class="anchored" data-anchor-id="input-files">Input files</h2>
+<p>In the <a href="https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires">repository</a>, you can find almost all the necessary input files.</p>
+<p>First look at your <code>manifest</code> file, which specifies sample ids, and reads name files, in this case we use paired ends, to two file_paths per line are present. The path needs to be changed to conform with your file system location</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># close vi editor with Esc, then :q</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vi</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You see weird <code>^M</code> characters, let’s remove those</p>
+<ol type="1">
+<li>Either use <code>dos2unix Manifest_file_Species.txt</code></li>
+<li>Or replace them using <code>sed</code></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># \r/ refers to Windows line ending</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/\r//g'</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run <code>vi</code> again to confirm successful replacement and also to select copy part of the path you want to replace next.</p>
+<ol type="1">
+<li>Select with the cursor the path (this automatically enter into your clipboard)</li>
+<li>probably something like <code>/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/</code></li>
+<li>exit the vi editor again <code>Esc</code> and <code>:q</code></li>
+</ol>
+<p>Replace the string with correct path</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Middle mouse button click pastes your mouse selection, ie clipboard on the command line</li>
+<li>You can get your correct path using <code>pwd</code> to print current folder path (assuming you are where you <code>Samples</code> folder is)</li>
+</ul>
+</div>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s|/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/|&lt;YOUR_PATH_TO_FOLDER_Samples&gt;|g'</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Note that since our strings contained <code>/</code> character we used <code>|</code> to separate the parts of the <code>sed</code> command. That was not necessary in the case above <code>s/\r//g</code> where <code>/</code> plays a role of the separator</p>
+<p><code>sed</code> command s: substitute our flag <code>g</code> means <em>replace all occurance on the line</em>.</p>
+<p><code>s/pattern/replacement/flags</code></p>
+</div>
+</div>
+</div>
+<p>Confirm again in the <code>vi editor</code> the correct manifest file.</p>
+</section>
+<section id="qiime2" class="level2">
+<h2 class="anchored" data-anchor-id="qiime2">QIIME2</h2>
+<section id="import-data" class="level3">
+<h3 class="anchored" data-anchor-id="import-data">Import data</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--type</span> <span class="st">'SampleData[PairedEndSequencesWithQuality]'</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-path</span> Manifest_file_Species.txt <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-path</span> demux.qza <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-format</span> PairedEndFastqManifestPhred33V2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>type</code> describes that we have paired ends with Q scores (fastq) inputs. <code>input-path</code> is our manifest file, describing where all the files are. <em>demux.qza</em> will be our <code>output-path</code> file and <code>input-format</code> describes your sequencing technology, <em>33V2</em> means?????</p>
+</section>
+<section id="create-visualization-file-for-demultiplexed-data" class="level3">
+<h3 class="anchored" data-anchor-id="create-visualization-file-for-demultiplexed-data">Create visualization file for demultiplexed data</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> demux summarize <span class="at">--i-data</span> demux.qza <span class="at">--o-visualization</span> demux.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--i-data</code>: input, which is output of importing data previously</li>
+<li><code>--o-visualization</code>: output filename</li>
+</ul>
+</section>
+<section id="denoise-with-dada2" class="level3">
+<h3 class="anchored" data-anchor-id="denoise-with-dada2">Denoise with DADA2</h3>
+<p><code>dada2</code> is an R <a href="https://www.bioconductor.org/packages/release/bioc/html/dada2.html">package</a>, which will be used here. This step can take substantial time and resource.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--i-demultiplexed-seqs</span> demux.qza <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--p-trim-left-f</span> 0 <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--p-trim-left-r</span> 0 <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--p-trunc-len-f</span> 200 <span class="dt">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--p-trunc-len-r</span> 210 <span class="dt">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--p-n-threads</span> 0 <span class="dt">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-table</span> table.qza <span class="dt">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-representative-sequences</span> rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-denoising-stats</span> denoising-stats.qza <span class="dt">\</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">--verbose</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>TODO: explain the input params</p>
+<ul>
+<li><code>--p-trim-left-f</code>: xxx</li>
+<li><code>--p-trim-left-r</code>: xxx</li>
+<li><code>--p-trunc-len-f</code>: xxx</li>
+<li><code>--p-trunc-len-r</code>: xxx</li>
+<li><code>--p-n-threads 0</code>: xxx</li>
+<li><code>--o-table</code>: output table filename</li>
+<li><code>--o-representative-sequences</code>: xxx</li>
+<li><code>--o-denoising-stats</code>: statistics filename specification</li>
+<li><code>--verbose</code>: write extensive progress on the screen</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Sample output on the screen">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sample output on the screen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>R version 4.3.3 (2024-02-29) Loading required package: Rcpp DADA2: 1.30.0 / Rcpp: 1.0.13.1 / RcppParallel: 5.1.9 2) Filtering …………………… 3) Learning Error Rates 208608800 total bases in 1043044 reads from 17 samples will be used for learning the error rates. 219039240 total bases in 1043044 reads from 17 samples will be used for learning the error rates. 3) Denoise samples …………………… …………………… 5) Remove chimeras (method = consensus) 6) Report read numbers through the pipeline 7) Write output Saved FeatureTable[Frequency] to: table.qza Saved FeatureData[Sequence] to: rep-seqs.qza Saved SampleData[DADA2Stats] to: denoising-stats.qza</p>
+</div>
+</div>
+</div>
+</section>
+<section id="dada2-output-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="dada2-output-visualization">DADA2 output visualization</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--m-input-file</span> denoising-stats.qza <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-visualization</span> denoising-stats.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Arguments specify <code>input</code> and <code>output</code> files. Now we summarize …?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--i-table</span> table.qza <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-visualization</span> table.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And finally tabulate the sequences.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table tabulate-seqs <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--i-data</span> rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-visualization</span> rep-seqs.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="taxonomy-assignment-using-silva-database" class="level3">
+<h3 class="anchored" data-anchor-id="taxonomy-assignment-using-silva-database">Taxonomy assignment using <strong>Silva</strong> database</h3>
+<p>The database is no in the repo bacause of its size, download it. If you work on <code>redi</code>, the database is located at <code>&lt;fill in path DP&gt;</code>. This is also <em>time-consuming step</em></p>
+<p>The classifier needs to match our <code>scikit-learn</code> package version used by the QIIME2 version. Here the version is <code>1.4.2</code>, download the classfier <a href="https://data.qiime2.org/classifiers/sklearn-1.4.2/silva/silva-138-99-nb-classifier.qza">here</a></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--i-classifier</span> silva-138-99-nb-classifier.qza <span class="dt">\</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--i-reads</span> rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-classification</span> taxonomy.qza</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="create-output-for-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="create-output-for-visualization">Create output for visualization</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="dt">\</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--m-input-file</span> taxonomy.qza <span class="dt">\</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-visualization</span> taxonomy.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="export-feature-table-biom-format" class="level3">
+<h3 class="anchored" data-anchor-id="export-feature-table-biom-format">Export feature table (BIOM format)</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools export <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-path</span> table.qza <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-path</span> feature-table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="export-taxonomy-table" class="level3">
+<h3 class="anchored" data-anchor-id="export-taxonomy-table">Export taxonomy table</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools export <span class="dt">\</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-path</span> taxonomy.qza <span class="dt">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-path</span> taxonomy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To move further with the analysis, open the taxonomy file and change the header. When you open it, you’ll see the header looks like this:</p>
+<p><code>Feature ID Taxon   Confidence</code></p>
+<p>You need to change it to this:</p>
+<p><code>#otu-id    taxonomy    Confidence</code></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ALL spaces are tabs</p>
+</div>
+</div>
+<p>Can you figure out the <code>sed</code> command do do that?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'0,/^[^\t]*\t[^\t]*/s/#otu-id\ttaxonomy\tConfidence/'</span> taxonomy.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="combine-the-feature-table-with-the-taxonomy-table" class="level3">
+<h3 class="anchored" data-anchor-id="combine-the-feature-table-with-the-taxonomy-table">Combine the feature table with the taxonomy table</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> add-metadata <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-fp</span> feature-table/feature-table.biom <span class="dt">\</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--observation-metadata-fp</span> taxonomy/taxonomy.tsv <span class="dt">\</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-fp</span> biom-with-taxonomy.biom</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="convert-.biom-table-to-.txt-table" class="level3">
+<h3 class="anchored" data-anchor-id="convert-.biom-table-to-.txt-table">Convert <code>.biom</code> table to <code>.txt</code> table</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> convert <span class="dt">\</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-fp</span> biom-with-taxonomy.biom <span class="dt">\</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-fp</span> ASV_table.tsv <span class="dt">\</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--to-tsv</span> <span class="at">--header-key</span> taxonomy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualize-.qzv-files" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-.qzv-files">Visualize <code>.qzv</code> files</h3>
+<p>Get the data tables to your PC using <code>ssh</code> protocol</p>
+<ul>
+<li><code>ssh</code> on linux</li>
+<li>Putty on Windows</li>
+<li>Mac???</li>
+</ul>
+<p>Open <a href="https://view.qiime2.org/">QIIME2</a> webpage and drag the qzv files in there.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
