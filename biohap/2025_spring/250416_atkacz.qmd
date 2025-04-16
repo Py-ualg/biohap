@@ -19,15 +19,11 @@ No extra setup needed for `Linux` and `MacOS` machines. For windows the recommen
 Here are the instructions:
 Installing Ubuntu on VirtualBox
 
-### Step 1: Install VirtualBox (@AT I did not check any of this)
+### Step 1: Install VirtualBox
 
 - Run the Installer:
-- After downloading the [VirtualBox installer](https://www.virtualbox.org/wiki/Downloads) (`.exe` file for WinOS, `.dmg` for MacOS),
-double-click on it to launch the setup wizard.
-- Follow Setup Instructions:
-- Accept the license agreement, choose your installation options, and proceed with the default settings for most users.
-- Complete Installation:
-- Once the installation is complete, launch VirtualBox.
+- After downloading the [VirtualBox installer](https://www.virtualbox.org/wiki/Downloads) (`.exe` file for WinOS, `.dmg` for MacOS), double-click on it to launch the setup wizard and follow default installation instructions.
+- Launch VirtualBox.
 
 ### Step 2: Create a New Virtual Machine for Ubuntu
 
@@ -35,17 +31,20 @@ double-click on it to launch the setup wizard.
 - Name and Operating System: Give your VM a name (e.g., “Ubuntu”), select "Linux" as the type, and choose `Ubuntu (64-bit)` as the version.
 - Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.
 - Create a Virtual Hard Disk:
-  - Choose "Create a virtual hard disk now" and click `Create`.
-  - Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).
+  - Choose *Create a virtual hard disk now*.
+  - Select the VDI (VirtualBox Disk Image) format, and set the disk size (a minimum of 20 GB is recommended).
 
 ### Step 3: Configure and Install Ubuntu
 
-- Attach the Ubuntu ISO:
+- Attach the Ubuntu ISO after [downloading](https://ubuntu.com/download/desktop):
   - Select your new VM, click on `Settings`, then navigate to the `Storage` section.
   - Under the "Controller: IDE" (or SATA), click on the empty optical drive.
   - Click the small disk icon on the right and choose `Choose a disk file`. Browse to and select the Ubuntu ISO you downloaded.
 - Start the Virtual Machine:
   - With the ISO attached, click `Start`.
+  - :::{.callout-note}
+    You might need to restart your machine
+    :::
   - The VM will boot from the ISO, and you should see the Ubuntu welcome screen.
 - Install Ubuntu:
   - Follow the on-screen instructions in the Ubuntu installer:
