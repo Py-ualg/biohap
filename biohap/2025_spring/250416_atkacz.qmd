@@ -269,6 +269,10 @@ diff maria_joanna_song donald_trump_song
 vimdiff *song
 ```
 
+:::{.callout-note}
+exit vim using `Esc` + `:q` which closes the file, alternatively `Esc` + `:wq` which saves the file.
+:::
+
 ### Working with multiple files
 
 Have a look how a loop is being used here
@@ -317,7 +321,7 @@ Now let's try previous code
 grep Maria maria_joanna_song  # of course it doesn't work ... - what shall I do now ?
 ```
 
-## Genomics (@AT: either have installation section of all the tools, or notify one by one!)
+## Genomics
 
 ### Word on E-Utilities
 
@@ -347,6 +351,10 @@ Once installation is complete, run:
 
 to set the PATH for the current terminal session.
 
+::: {.callout-tip title="Windows"}
+You can try to install SRA-toolkit from [here](https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit)
+:::
+
 ### [ESearch](https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch)
 
 Let's download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)
@@ -355,7 +363,7 @@ Let's download some data from the Genbank - it is 16S V4 amplicon data (here the
 esearch -db sra -query PRJNA783372 | efetch -format runinfo > SraRunTable.csv
 ```
 
-We only need the SRRnumber
+We only need the SRRnumber, `-f1` means first field.
 
 ```bash
 cut -f1 -d, SraRunTable*.csv  > runs.txt
@@ -372,7 +380,7 @@ tail -4 runs.txt > runs4.txt
 Ok, now we download the actual raw data
 
 ```bash
-prefetch --option-file runs9.txt
+prefetch --option-file runs4.txt
 ```
 
 In case of
@@ -493,7 +501,7 @@ blastn -query file1.fasta -db nr -remote  > file1_blast2.txt
 ```
 
 If doesnt work - use web based blast
-### @AT, How, instructions missing
+### @DP, How, instructions missing
 
 Let's create ASV table and visualise the data
 
