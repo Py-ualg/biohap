@@ -400,8 +400,9 @@ Let's unpack it
 for f in SRR* ; do fastq-dump --split-files  $f ; done
 ```
 
-<!-- To check the sequencing quality - it is a GUI software
-????fastqc -->
+:::{.callout-tip}
+To visualize quality scores, small GUI tool [`fastqc`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) could be used
+:::
 
 ### Raw Reads Manipulation
 
@@ -500,8 +501,9 @@ blastn -query file1.fasta -db nt -remote -outfmt 6 -max_target_seqs 1 -perc_iden
 blastn -query file1.fasta -db nr -remote  > file1_blast2.txt
 ```
 
-If doesnt work - use web based blast
-### @DP, How, instructions missing
+#### If local `blastn` does not run on your PC
+
+Use the web-based blast, for example on the [ncbi server](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=tblastn).
 
 Let's create ASV table and visualise the data
 
@@ -540,3 +542,74 @@ Following this link you can interrogate the same table (`ASV_table_MA.txt`) in t
 
 **To visualize the PCoA**
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisualize_braycurtis.ipynb)
+
+## Local python scripts
+
+If you have python installed you can run scripts which are in this [folder](https://github.com/Py-ualg/biohap/tree/main/assets/250416_atkacz).
+
+
+
+```bash
+python append_braycurtis3.py ASV_table_MA.txt &&
+python pcoa_with_metadata_quick_legend.py
+```
+
+## Finally
+
+The power of command line lies in the fact, that once you test your pipeline command by command, you can copy all the commands into a so-called `bash` script and rerun the whole thing at once.
+
+:::{.callout-caution}
+You may want to create a separate new virtual environment (example uses `conda`) and install necessary dependencies first
+
+```bash
+# create virtual environment
+conda create -n gen-test python
+
+# activate it
+conda activate gen-test
+
+# install deps (pip or conda install)
+pip install dask
+pip install --upgrade --force-reinstall scipy dask
+pip install pyarrow
+
+python3 append_braycurtis3.py ASV_table_MA.txt
+
+# dependencies for the second script
+pip install numpy==1.24.3
+pip install seaborn
+pip install panel
+pip install scikit-bio
+
+python3 pcoa_with_metadata_quick_work.py 
+```
+:::
+
+```bash
+# make a new folder for a test
+mkdir pipeline_test
+
+# copy python scripts too, if you want to visualize the results.
+cp *.py ./pipeline_test
+
+# take the commands from the command list file
+grep -A 1000 "genomics part" course_linux_commands | sed '/fastqc/d' | sed '/\*\*\*/d' > ./pipeline_test/my_first_pipeline.sh 
+```
+
+Run the pipeline with
+
+```bash
+bash my_fist_pipeline.sh
+```
+
+:::{.callout-caution}
+You might need to make the script executable
+```bash
+chmod +x my_fist_pipeline.sh
+
+# then you can run directly
+./my_fist_pipeline.sh
+```
+:::
+
+

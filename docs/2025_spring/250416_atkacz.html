@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9073159f2da7c4c0044f0df261652202.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-889d5fcf7d593712212775a3bbf62723.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
-  <li><a href="#step-1-install-virtualbox-at-i-did-not-check-any-of-this" id="toc-step-1-install-virtualbox-at-i-did-not-check-any-of-this" class="nav-link" data-scroll-target="#step-1-install-virtualbox-at-i-did-not-check-any-of-this">Step 1: Install VirtualBox (<span class="citation" data-cites="AT">(<strong>AT?</strong>)</span> I did not check any of this)</a></li>
+  <li><a href="#step-1-install-virtualbox" id="toc-step-1-install-virtualbox" class="nav-link" data-scroll-target="#step-1-install-virtualbox">Step 1: Install VirtualBox</a></li>
   <li><a href="#step-2-create-a-new-virtual-machine-for-ubuntu" id="toc-step-2-create-a-new-virtual-machine-for-ubuntu" class="nav-link" data-scroll-target="#step-2-create-a-new-virtual-machine-for-ubuntu">Step 2: Create a New Virtual Machine for Ubuntu</a></li>
   <li><a href="#step-3-configure-and-install-ubuntu" id="toc-step-3-configure-and-install-ubuntu" class="nav-link" data-scroll-target="#step-3-configure-and-install-ubuntu">Step 3: Configure and Install Ubuntu</a></li>
   </ul></li>
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#wild-cards" id="toc-wild-cards" class="nav-link" data-scroll-target="#wild-cards">Wild cards</a></li>
   <li><a href="#working-with-multiple-files" id="toc-working-with-multiple-files" class="nav-link" data-scroll-target="#working-with-multiple-files">Working with multiple files</a></li>
   </ul></li>
-  <li><a href="#genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one" id="toc-genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one" class="nav-link" data-scroll-target="#genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one">Genomics (<span class="citation" data-cites="AT">(<strong>AT?</strong>)</span>: either have installation section of all the tools, or notify one by one!)</a>
+  <li><a href="#genomics" id="toc-genomics" class="nav-link" data-scroll-target="#genomics">Genomics</a>
   <ul class="collapse">
   <li><a href="#word-on-e-utilities" id="toc-word-on-e-utilities" class="nav-link" data-scroll-target="#word-on-e-utilities">Word on E-Utilities</a></li>
   <li><a href="#esearch" id="toc-esearch" class="nav-link" data-scroll-target="#esearch">ESearch</a></li>
@@ -244,6 +244,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">Blast</a></li>
   </ul></li>
   <li><a href="#visualise-the-data-with-python" id="toc-visualise-the-data-with-python" class="nav-link" data-scroll-target="#visualise-the-data-with-python">Visualise the data with python</a></li>
+  <li><a href="#local-python-scripts" id="toc-local-python-scripts" class="nav-link" data-scroll-target="#local-python-scripts">Local python scripts</a></li>
+  <li><a href="#finally" id="toc-finally" class="nav-link" data-scroll-target="#finally">Finally</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,15 +290,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>No extra setup needed for <code>Linux</code> and <code>MacOS</code> machines. For windows the recommended way is to install <a href="here is the link">VBox</a>. See the steps to follow:</p>
 <p>Here are the instructions: Installing Ubuntu on VirtualBox</p>
-<section id="step-1-install-virtualbox-at-i-did-not-check-any-of-this" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-install-virtualbox-at-i-did-not-check-any-of-this">Step 1: Install VirtualBox (<span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span> I did not check any of this)</h3>
+<section id="step-1-install-virtualbox" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-install-virtualbox">Step 1: Install VirtualBox</h3>
 <ul>
 <li>Run the Installer:</li>
-<li>After downloading the <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox installer</a> (<code>.exe</code> file for WinOS, <code>.dmg</code> for MacOS), double-click on it to launch the setup wizard.</li>
-<li>Follow Setup Instructions:</li>
-<li>Accept the license agreement, choose your installation options, and proceed with the default settings for most users.</li>
-<li>Complete Installation:</li>
-<li>Once the installation is complete, launch VirtualBox.</li>
+<li>After downloading the <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox installer</a> (<code>.exe</code> file for WinOS, <code>.dmg</code> for MacOS), double-click on it to launch the setup wizard and follow default installation instructions.</li>
+<li>Launch VirtualBox.</li>
 </ul>
 </section>
 <section id="step-2-create-a-new-virtual-machine-for-ubuntu" class="level3">
@@ -307,15 +306,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Assign Memory: Allocate at least 2048 MB (2 GB) of RAM (or higher if your system permits) to ensure smooth operation.</li>
 <li>Create a Virtual Hard Disk:
 <ul>
-<li>Choose “Create a virtual hard disk now” and click <code>Create</code>.</li>
-<li>Select the VDI (VirtualBox Disk Image) format, allocate storage dynamically, and set the disk size (a minimum of 20 GB is recommended).</li>
+<li>Choose <em>Create a virtual hard disk now</em>.</li>
+<li>Select the VDI (VirtualBox Disk Image) format, and set the disk size (a minimum of 20 GB is recommended).</li>
 </ul></li>
 </ul>
 </section>
 <section id="step-3-configure-and-install-ubuntu" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-configure-and-install-ubuntu">Step 3: Configure and Install Ubuntu</h3>
 <ul>
-<li>Attach the Ubuntu ISO:
+<li>Attach the Ubuntu ISO after <a href="https://ubuntu.com/download/desktop">downloading</a>:
 <ul>
 <li>Select your new VM, click on <code>Settings</code>, then navigate to the <code>Storage</code> section.</li>
 <li>Under the “Controller: IDE” (or SATA), click on the empty optical drive.</li>
@@ -324,6 +323,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Start the Virtual Machine:
 <ul>
 <li>With the ISO attached, click <code>Start</code>.</li>
+<li><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You might need to restart your machine</p>
+</div>
+</div></li>
 <li>The VM will boot from the ISO, and you should see the Ubuntu welcome screen.</li>
 </ul></li>
 <li>Install Ubuntu:
@@ -478,6 +490,19 @@ Quantas lágrimas chorei</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">-u</span> <span class="pp">*</span>song </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> maria_joanna_song donald_trump_song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vimdiff</span> <span class="pp">*</span>song</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>exit vim using <code>Esc</code> + <code>:q</code> which closes the file, alternatively <code>Esc</code> + <code>:wq</code> which saves the file.</p>
+</div>
+</div>
 </section>
 <section id="working-with-multiple-files" class="level3">
 <h3 class="anchored" data-anchor-id="working-with-multiple-files">Working with multiple files</h3>
@@ -508,8 +533,8 @@ Quantas lágrimas chorei</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> Maria maria_joanna_song  <span class="co"># of course it doesn't work ... - what shall I do now ?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one" class="level2">
-<h2 class="anchored" data-anchor-id="genomics-at-either-have-installation-section-of-all-the-tools-or-notify-one-by-one">Genomics (<span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span>: either have installation section of all the tools, or notify one by one!)</h2>
+<section id="genomics" class="level2">
+<h2 class="anchored" data-anchor-id="genomics">Genomics</h2>
 <section id="word-on-e-utilities" class="level3">
 <h3 class="anchored" data-anchor-id="word-on-e-utilities">Word on E-Utilities</h3>
 <p>Taken from official <a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/">website</a>:</p>
@@ -523,12 +548,25 @@ Quantas lágrimas chorei</code></pre>
 <p>Once installation is complete, run:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">${HOME}</span>/edirect:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to set the PATH for the current terminal session.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Windows">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Windows
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can try to install SRA-toolkit from <a href="https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit">here</a></p>
+</div>
+</div>
 </section>
 <section id="esearch" class="level3">
 <h3 class="anchored" data-anchor-id="esearch"><a href="https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch">ESearch</a></h3>
 <p>Let’s download some data from the Genbank - it is 16S V4 amplicon data (here the metadata)</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">esearch</span> <span class="at">-db</span> sra <span class="at">-query</span> PRJNA783372 <span class="kw">|</span> <span class="ex">efetch</span> <span class="at">-format</span> runinfo <span class="op">&gt;</span> SraRunTable.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We only need the SRRnumber</p>
+<p>We only need the SRRnumber, <code>-f1</code> means first field.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> <span class="at">-d,</span> SraRunTable<span class="pp">*</span>.csv  <span class="op">&gt;</span> runs.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To save time we will work on four samples only</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-4</span> runs.txt <span class="op">&gt;</span> runs4.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -536,7 +574,7 @@ Quantas lágrimas chorei</code></pre>
 <section id="get-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="get-the-data">Get the data</h3>
 <p>Ok, now we download the actual raw data</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="at">--option-file</span> runs9.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prefetch</span> <span class="at">--option-file</span> runs4.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In case of</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -554,8 +592,19 @@ Note
 </div>
 <p>Let’s unpack it</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> SRR<span class="pp">*</span> <span class="kw">;</span> <span class="cf">do</span> <span class="ex">fastq-dump</span> <span class="at">--split-files</span>  <span class="va">$f</span> <span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- To check the sequencing quality - it is a GUI software
-????fastqc -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To visualize quality scores, small GUI tool <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/"><code>fastqc</code></a> could be used</p>
+</div>
+</div>
 </section>
 <section id="raw-reads-manipulation" class="level3">
 <h3 class="anchored" data-anchor-id="raw-reads-manipulation">Raw Reads Manipulation</h3>
@@ -629,7 +678,9 @@ Caution
 <div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nt <span class="at">-remote</span> <span class="at">-outfmt</span> 6 <span class="at">-max_target_seqs</span> 1 <span class="at">-perc_identity</span> 95 <span class="op">&gt;</span> file1_blast.txt </span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ex">blastn</span> <span class="at">-query</span> file1.fasta <span class="at">-db</span> nr <span class="at">-remote</span>  <span class="op">&gt;</span> file1_blast2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If doesnt work - use web based blast ### <span class="citation" data-cites="AT">(<a href="#ref-AT" role="doc-biblioref"><strong>AT?</strong></a>)</span>, How, instructions missing</p>
+<section id="if-local-blastn-does-not-run-on-your-pc" class="level4">
+<h4 class="anchored" data-anchor-id="if-local-blastn-does-not-run-on-your-pc">If local <code>blastn</code> does not run on your PC</h4>
+<p>Use the web-based blast, for example on the <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&amp;PAGE_TYPE=BlastSearch&amp;BLAST_SPEC=&amp;LINK_LOC=blasttab&amp;LAST_PAGE=tblastn">ncbi server</a>.</p>
 <p>Let’s create ASV table and visualise the data</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> file<span class="pp">[</span><span class="ss">0</span><span class="pp">-</span><span class="ss">9</span><span class="pp">]*</span>.fastq_filtered.fasta <span class="op">&gt;</span> all_samples.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if not installed, do</span></span>
@@ -645,11 +696,82 @@ Caution
 <div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-1</span> ASV_table_MA.txt <span class="kw">|</span> <span class="fu">fmt</span> <span class="at">-1</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/NAME/NAME, sample/g'</span>  <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/11$/11,fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/13$/13,fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/21$/21,fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/22$/22,fish/g'</span> <span class="kw">|</span><span class="fu">sed</span> <span class="st">'s/23$/23,not_a_fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/24$/24,not_a_fish/g'</span> <span class="kw">|</span><span class="fu">sed</span> <span class="st">'s/25$/25,not_a_fish/g'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/27$/27,not_a_fish/g'</span> <span class="op">&gt;</span> metadata.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
+</section>
 <section id="visualise-the-data-with-python" class="level2">
 <h2 class="anchored" data-anchor-id="visualise-the-data-with-python">Visualise the data with python</h2>
 <p>Following this link you can interrogate the same table (<code>ASV_table_MA.txt</code>) in the interactive jupyter notebook.</p>
 <p><strong>To compute Braycurtis distances</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fcompute_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
 <p><strong>To visualize the PCoA</strong> <a href="https://mybinder.org/v2/gh/Py-ualg/biohap/HEAD?urlpath=%2Fdoc%2Ftree%2Fassets%2F250416_atkacz%2Fvisualize_braycurtis.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"></a></p>
+</section>
+<section id="local-python-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="local-python-scripts">Local python scripts</h2>
+<p>If you have python installed you can run scripts which are in this <a href="https://github.com/Py-ualg/biohap/tree/main/assets/250416_atkacz">folder</a>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> append_braycurtis3.py ASV_table_MA.txt <span class="kw">&amp;&amp;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> pcoa_with_metadata_quick_legend.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="finally" class="level2">
+<h2 class="anchored" data-anchor-id="finally">Finally</h2>
+<p>The power of command line lies in the fact, that once you test your pipeline command by command, you can copy all the commands into a so-called <code>bash</code> script and rerun the whole thing at once.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may want to create a separate new virtual environment (example uses <code>conda</code>) and install necessary dependencies first</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create virtual environment</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> gen-test python</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># activate it</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate gen-test</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co"># install deps (pip or conda install)</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install dask</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> <span class="at">--force-reinstall</span> scipy dask</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pyarrow</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> append_braycurtis3.py ASV_table_MA.txt</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="co"># dependencies for the second script</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy==1.24.3</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install seaborn</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install panel</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install scikit-bio</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> pcoa_with_metadata_quick_work.py </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a new folder for a test</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> pipeline_test</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># copy python scripts too, if you want to visualize the results.</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="pp">*</span>.py ./pipeline_test</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># take the commands from the command list file</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-A</span> 1000 <span class="st">"genomics part"</span> course_linux_commands <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'/fastqc/d'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'/\*\*\*/d'</span> <span class="op">&gt;</span> ./pipeline_test/my_first_pipeline.sh </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run the pipeline with</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> my_fist_pipeline.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You might need to make the script executable</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x my_fist_pipeline.sh</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then you can run directly</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./my_fist_pipeline.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
 </section>

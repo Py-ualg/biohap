@@ -249,9 +249,13 @@ for f in *fastq_filtered ; do seqtk seq -a $f > $f.fasta ; done ;
 
 *** if doesnt work - use web based blast
 
+*** we need to reduce the size of the files (or use HPC)
+
+for f in *.fastq_filtered.fasta ; do head -2000 $f > $f\head ; done
+
 
 **** let's make ASV table and visualise the data
-cat file[0-9]*.fastq_filtered.fasta > all_samples.fasta
+cat file[0-9]*.fastq_filtered.fastahead > all_samples.fasta
 
 vsearch --derep_fulllength all_samples.fasta   --output dereplicated.fasta  --sizeout  --relabel ASV_
 vsearch --sortbysize dereplicated.fasta  --output dereplicated_no_singletons.fasta  --minsize 2
@@ -268,11 +272,22 @@ head -1 ASV_table_MA.txt | fmt -1 | sed 's/NAME/NAME, sample/g'  | sed 's/11$/11
 
 
 **** home made tool to visualise the data
-python append_braycurtis3.py ASV_table_MA.txt &&
-python pcoa_with_metadata_quick_legend.py 
+python3 append_braycurtis3.py ASV_table_MA.txt &&
+python3 pcoa_with_metadata_quick_legend.py 
 
+*** we may need to install a few things here
+pip3 install dask
+pip install --upgrade --force-reinstall scipy dask
+pip install pyarrow
 
+python3 append_braycurtis3.py ASV_table_MA.txt
 
+pip install numpy==1.24.3
+pip install seaborn
+pip install panel
+pip install scikit-bio
+
+python3 pcoa_with_metadata_quick_work.py 
 
 
 *** final task - let's create a whole pipeline - to run it we will bash it, i.e. bash my_fist_pipeline.sh (maybe make a new folder for it called pipeline_test)

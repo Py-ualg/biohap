@@ -1,7 +1,7 @@
 # Microbiome Analysis of Amplicon Sequencing
 
 ---
-date: 07/05/2025
+date: 07/05/2025, **Work in progress**
 
 author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 
