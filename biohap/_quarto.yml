@@ -9,6 +9,7 @@ website:
     style: docked
     pinned: true
     align: left
+    logo: assets/logo_ccmar.png
     collapse-level: 2
     background: light
     contents:

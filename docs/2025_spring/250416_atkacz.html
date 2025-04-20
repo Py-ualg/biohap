@@ -129,9 +129,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">BioHap: Bioinformatics, Handy and Practical</a> 
-    </div>
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/logo_ccmar.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -713,14 +713,16 @@ Caution
 <h2 class="anchored" data-anchor-id="finally">Finally</h2>
 <p>The power of command line lies in the fact, that once you test your pipeline command by command, you can copy all the commands into a so-called <code>bash</code> script and rerun the whole thing at once.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Caution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You may want to create a separate new virtual environment (example uses <code>conda</code>) and install necessary dependencies first</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create virtual environment</span></span>
@@ -743,6 +745,7 @@ Caution
 <span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install scikit-bio</span>
 <span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> pcoa_with_metadata_quick_work.py </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a new folder for a test</span></span>

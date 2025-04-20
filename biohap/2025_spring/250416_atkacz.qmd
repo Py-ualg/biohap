@@ -558,7 +558,7 @@ python pcoa_with_metadata_quick_legend.py
 
 The power of command line lies in the fact, that once you test your pipeline command by command, you can copy all the commands into a so-called `bash` script and rerun the whole thing at once.
 
-:::{.callout-caution}
+:::{.callout-caution collapse="true"}
 You may want to create a separate new virtual environment (example uses `conda`) and install necessary dependencies first
 
 ```bash
