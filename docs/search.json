@@ -188,12 +188,12 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Preface",
+    "title": "BIOinformatics: Handy and Practical",
     "section": "",
-    "text": "Preface\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happened in Spring 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo visit the source files for the workshops and the webpage, visit our Github. To learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "BIOinformatics: Handy and Practical\nThis is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happened in Spring 2025.\nUntil this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.\nTo visit the source files for the workshops and the webpage, visit our Github. To learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
       "Introduction",
-      "Preface"
+      "BIOinformatics: Handy and Practical"
     ]
   }
 ]

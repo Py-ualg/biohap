@@ -1,4 +1,4 @@
-# Preface {.unnumbered}
+# BIOinformatics: Handy and Practical {.unnumbered}
 
 This is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happened in *Spring 2025*.
 

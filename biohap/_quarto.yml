@@ -5,13 +5,20 @@ project:
 website:
   title: "BioHap: Bioinformatics, Handy and Practical"
   search: true
+  navbar:
+    background: light
+    align: left
+    logo: logo_ccmar.png
+
   sidebar:
     style: docked
     pinned: true
     align: left
-    logo: assets/logo_ccmar.png
     collapse-level: 2
     background: light
+    tools:
+      - icon: github
+        href: "https://github.com/Py-ualg/biohap"
     contents:
       - section: "Introduction"
         contents:
