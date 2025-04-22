@@ -9,7 +9,7 @@ author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dp
 
 This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data
 to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess
-(QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine
+(QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine
 organisms.
 
 ## Setup
@@ -93,7 +93,7 @@ qiime tools import \
     --input-format PairedEndFastqManifestPhred33V2
 ```
 
-`type` describes that we have paired ends with Q scores (fastq) inputs. `input-path` is our manifest file, describing where all the files are. *demux.qza* will be our `output-path` file and `input-format` describes your sequencing technology, *33V2* means?????
+`type` describes that we have paired ends with Q scores (fastq) inputs. `input-path` is our manifest file, describing where all the files are. *demux.qza* will be our `output-path` file and `input-format` describes your sequencing technology, PairedEndFastq means that your data was sequenced with Forward and Reverse primers and you have two fastq files per sample that should be joined. Phred33 refers to the type of Phred scores in your fastq file. This is the lastest version and used for most recent Illumina sequencers. V2 is the version of the manifest file format you are using.
 
 ### Create visualization file for demultiplexed data
 
@@ -111,10 +111,10 @@ qiime demux summarize --i-data demux.qza --o-visualization demux.qzv
 ```bash
 qiime dada2 denoise-paired \
     --i-demultiplexed-seqs demux.qza \
-    --p-trim-left-f 0 \
-    --p-trim-left-r 0 \
-    --p-trunc-len-f 200 \
-    --p-trunc-len-r 210 \
+    --p-trim-left-f x \
+    --p-trim-left-r y \
+    --p-trunc-len-f z \
+    --p-trunc-len-r n \
     --p-n-threads 0 \
     --o-table table.qza \
     --o-representative-sequences rep-seqs.qza \
@@ -124,15 +124,15 @@ qiime dada2 denoise-paired \
 
 TODO: explain the input params
 
-- `--p-trim-left-f`: xxx
-- `--p-trim-left-r`: xxx
-- `--p-trunc-len-f`: xxx
-- `--p-trunc-len-r`: xxx
-- `--p-n-threads 0`: xxx
+- `--p-trim-left-f`: xxx (see demux.qzv file)
+- `--p-trim-left-r`: xxx (see demux.qzv file)
+- `--p-trunc-len-f`: xxx (see demux.qzv file)
+- `--p-trunc-len-r`: xxx (see demux.qzv file)
+- `--p-n-threads 0`: xxx (the number of CPUs threads the tool should use during processing, zero means "use all the threads available")
 - `--o-table`: output table filename
-- `--o-representative-sequences`: xxx
+- `--o-representative-sequences`: representative sequences file name
 - `--o-denoising-stats`: statistics filename specification
-- `--verbose`: write extensive progress on the screen
+- `--verbose`: write extensive progress on the screen (since this script does several things it is advisable to run it so we can follow the flow)
 
 ::: {.callout-note collapse="true" title="Sample output on the screen"}
 R version 4.3.3 (2024-02-29)
@@ -178,7 +178,7 @@ qiime feature-table tabulate-seqs \
 
 ### Taxonomy assignment using **Silva** database
 
-The database is no in the repo bacause of its size, download it. If you work on `redi`, the database is located at `<fill in path DP>`. This is also *time-consuming step*
+The database is now in the repo because of its size, download it. If you work on `redi`, the database is located at `<fill in path DP>`. This is also a *time-consuming step*
 
 The classifier needs to match our `scikit-learn` package version used by the QIIME2 version. Here the version is `1.4.2`, download the classfier [here](https://data.qiime2.org/classifiers/sklearn-1.4.2/silva/silva-138-99-nb-classifier.qza)
 
