@@ -37,6 +37,22 @@ In the [repository](https://github.com/Py-ualg/biohap/tree/main/assets/250507_ta
 
 First look at your `manifest` file, which specifies sample ids, and reads name files, in this case we use paired ends, to two file_paths per line are present. The path needs to be changed to conform with your file system location
 
+### Getting files to the server
+
+To get the data tables from the server to your PC or opposite, use `ssh` protocol.
+
+- Linux: should be part of the core installation
+- Putty on Windows, or [ssh client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh#access-windows-ssh-client-and-ssh-server)
+- Mac: part of the install 
+
+Once you have `ssh` setup, do `ssh <USER>@10.36.5.158`, and then enter your password. You are the user connecting(@) to the server (10.36.5.158, redi).
+
+::: {.callout-note collapse="true"}
+If you are not at the University internet (eduroam or fixed), first you will need to connect to it via [UAlg VPN service](https://www.ualg.pt/suporte-informatico).
+:::
+
+### File preparations
+
 ```bash
 # close vi editor with Esc, then :q
 vi Manifest_file_Species.txt
@@ -103,6 +119,10 @@ qiime demux summarize --i-data demux.qza --o-visualization demux.qzv
 
 - `--i-data`: input, which is output of importing data previously
 - `--o-visualization`: output filename
+
+### Visualize `.qzv` files
+
+Every time you create `.qzv` table, it is to be visualized at  QIIME2 webpage for quality control and taking decisions for next steps. Open [QIIME2](https://view.qiime2.org/) webpage and drag the qzv files in there. Use the `ssh` as described [above](#getting-files-to-the-server) to get the data to your PC.
 
 ### Denoise with DADA2
 
@@ -251,12 +271,13 @@ biom convert \
     --to-tsv --header-key taxonomy
 ```
 
-### Visualize `.qzv` files
+## MicrobiomeAnalyst (MA)
 
-Get the data tables to your PC using `ssh` protocol
+Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate `abundance` and `taxonomy` tables. In the GH repo are two scripts to do that without going into the details. Both have hardcoded input ASV table name `ASV_table_original.txt` which you need to conform too. Outputs will be `ASV_table.tsv` and `taxonomy.tsv`, respectively.
 
-- `ssh` on linux
-- Putty on Windows
-- Mac???
+```bash
+./convert_ASV_abundances.sh
+./convert_ASV_taxonomy.sh
+```
 
-Open [QIIME2](https://view.qiime2.org/) webpage and drag the qzv files in there.
+MA can do too many things to cover here, the subset we will use is described in Tania's presentation available on GH too.
