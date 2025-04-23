@@ -1,0 +1,144 @@
+#NAME	Species	Reproduction_Strategy
+Ev13.B	Eunicella_verrucosa	Broadcast Spawner
+Ev14.B	Eunicella_verrucosa	Broadcast Spawner
+Ev17a.B	Eunicella_verrucosa	Broadcast Spawner
+Ev18a.B	Eunicella_verrucosa	Broadcast Spawner
+Ev18b.B	Eunicella_verrucosa	Broadcast Spawner
+Ev19b.B	Eunicella_verrucosa	Broadcast Spawner
+Ev20.B	Eunicella_verrucosa	Broadcast Spawner
+Ev21a.B	Eunicella_verrucosa	Broadcast Spawner
+Ev22a.B	Eunicella_verrucosa	Broadcast Spawner
+Ev24.B	Eunicella_verrucosa	Broadcast Spawner
+Ev3.B	Eunicella_verrucosa	Broadcast Spawner
+Ev4.B	Eunicella_verrucosa	Broadcast Spawner
+Pg19.B	Paramuricea_grayi_P	Surface Brooder
+Pg20.B	Paramuricea_grayi_P	Surface Brooder
+Pg21.B	Paramuricea_grayi_P	Surface Brooder
+Pg22.B	Paramuricea_grayi_P	Surface Brooder
+Pg25.B	Paramuricea_grayi_P	Surface Brooder
+Pg26.B	Paramuricea_grayi_P	Surface Brooder
+Pg29.B	Paramuricea_grayi_Y	Broadcast Spawner
+Pg30.B	Paramuricea_grayi_Y	Broadcast Spawner
+Pg31.B	Paramuricea_grayi_Y	Broadcast Spawner
+Pg32.B	Paramuricea_grayi_Y	Broadcast Spawner
+Pg33.B	Paramuricea_grayi_Y	Broadcast Spawner
+Pg35.B	Paramuricea_grayi_Y	Broadcast Spawner
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
