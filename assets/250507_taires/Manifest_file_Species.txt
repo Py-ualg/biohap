@@ -1,0 +1,33 @@
+sample-id	forward-absolute-filepath	reverse-absolute-filepath
+Ev3.B	/home/taires/workshop_qiime2/Samples/Ev3.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev3.B_2.fastq.gz
+Ev4.B	/home/taires/workshop_qiime2/Samples/Ev4.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev4.B_2.fastq.gz
+Ev13.B	/home/taires/workshop_qiime2/Samples/Ev13.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev13.B_2.fastq.gz
+Ev14.B	/home/taires/workshop_qiime2/Samples/Ev14.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev14.B_2.fastq.gz
+Ev17a.B	/home/taires/workshop_qiime2/Samples/Ev17a.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev17a.B_2.fastq.gz
+Ev18a.B	/home/taires/workshop_qiime2/Samples/Ev18a.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev18a.B_2.fastq.gz
+Ev18b.B	/home/taires/workshop_qiime2/Samples/Ev18b.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev18b.B_2.fastq.gz
+Ev19b.B	/home/taires/workshop_qiime2/Samples/Ev19b.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev19b.B_2.fastq.gz
+Ev20.B	/home/taires/workshop_qiime2/Samples/Ev20.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev20.B_2.fastq.gz
+Ev21a.B	/home/taires/workshop_qiime2/Samples/Ev21a.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev21a.B_2.fastq.gz
+Ev22a.B	/home/taires/workshop_qiime2/Samples/Ev22a.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev22a.B_2.fastq.gz
+Ev24.B	/home/taires/workshop_qiime2/Samples/Ev24.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Ev24.B_2.fastq.gz
+Pg19.B	/home/taires/workshop_qiime2/Samples/Pg19.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg19.B_2.fastq.gz
+Pg20.B	/home/taires/workshop_qiime2/Samples/Pg20.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg20.B_2.fastq.gz
+Pg21.B	/home/taires/workshop_qiime2/Samples/Pg21.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg21.B_2.fastq.gz
+Pg22.B	/home/taires/workshop_qiime2/Samples/Pg22.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg22.B_2.fastq.gz
+Pg25.B	/home/taires/workshop_qiime2/Samples/Pg25.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg25.B_2.fastq.gz
+Pg26.B	/home/taires/workshop_qiime2/Samples/Pg26.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg26.B_2.fastq.gz
+Pg29.B	/home/taires/workshop_qiime2/Samples/Pg29.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg29.B_2.fastq.gz
+Pg30.B	/home/taires/workshop_qiime2/Samples/Pg30.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg30.B_2.fastq.gz
+Pg31.B	/home/taires/workshop_qiime2/Samples/Pg31.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg31.B_2.fastq.gz
+Pg32.B	/home/taires/workshop_qiime2/Samples/Pg32.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg32.B_2.fastq.gz
+Pg33.B	/home/taires/workshop_qiime2/Samples/Pg33.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg33.B_2.fastq.gz
+Pg35.B	/home/taires/workshop_qiime2/Samples/Pg35.B_1.fastq.gz	/home/taires/workshop_qiime2/Samples/Pg35.B_2.fastq.gz
+
+
+
+
+
+
+
+
