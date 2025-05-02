@@ -7,10 +7,13 @@ author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dp
 
 ---
 
-This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data
-to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess
-(QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine
-organisms.
+This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine organisms.
+
+In particular, we will ask **following scientific questions** (TODO from Tania's presentation):
+
+1. 1
+2. 2
+3. 3
 
 ## Setup
 
@@ -33,32 +36,52 @@ conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distr
 
 ## Input files
 
-In the [repository](https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires), you can find almost all the necessary input files.
+In the [repository](https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires), you can find almost all the necessary input files, including **pdf version of Tania's introductory presentation**.
 
-First look at your `manifest` file, which specifies sample ids, and reads name files, in this case we use paired ends, to two file_paths per line are present. The path needs to be changed to conform with your file system location
+To facilitate download, follow this [link](https://filesender.fccn.pt/?s=download&token=3ad93e94-8a32-46e8-b0fb-9716b6af557e) for bulk download. This link will expire on 01/06/2025, so then you need to download files to your *local* mahcine one by one from Github. Or better, setup yourself a [Gihub acocunt](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and you can clone the whole `biohap` repository.
 
 ### Getting files to the server
 
-To get the data tables from the server to your PC or opposite, use `ssh` protocol.
+To get the data tables from the server to your PC or opposite, `ssh` protocol exists.
 
 - Linux: should be part of the core installation
 - Putty on Windows, or [ssh client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh#access-windows-ssh-client-and-ssh-server)
-- Mac: part of the install 
+- Mac: part of the install
 
-Once you have `ssh` setup, do `ssh <USER>@10.36.5.158`, and then enter your password. You are the user connecting(@) to the server (10.36.5.158, redi).
+Once you have `ssh` setup, do `ssh <USER>@10.36.5.158`, and then enter your password. You are the *user* connecting(@) to the server (10.36.5.158, redi).
 
 ::: {.callout-note collapse="true"}
 If you are not at the University internet (eduroam or fixed), first you will need to connect to it via [UAlg VPN service](https://www.ualg.pt/suporte-informatico).
 :::
 
+In your `/home/<user>` directory (you can see the location using `pwd` command), create a new folder
+
+```bash
+mkdir workshop_qiime2
+
+# and navigate to it
+cd workshop_qiime2
+```
+
+To copy the files to the server, instead of standard `cp` we need to use secure `scp`
+
+```bash
+# scp from to, -r means with the subfolder structure (recursive)
+scp -r "<path-to-your-downloads-perhaps>\Samples"  <user>@10.36.5.158:/home/<user>/workshop_qiime2/
+```
+
+Other files can be transferred in the similar manner.
+
 ### File preparations
+
+First look at your `manifest` file, which specifies sample ids, and reads name files, in this case we use paired ends, two file_paths per line are present.
 
 ```bash
 # close vi editor with Esc, then :q
 vi Manifest_file_Species.txt
 ```
 
-You see weird `^M` characters, let's remove those
+The path needs to be changed to conform with your file system location. You see weird `^M` characters, let's remove those
 
 1. Either use `dos2unix Manifest_file_Species.txt`
 2. Or replace them using `sed`
@@ -78,6 +101,7 @@ Replace the string with correct path
 
 ::: {.callout-tip}
 - Middle mouse button click pastes your mouse selection, ie clipboard on the command line
+- Alternatively also right click and select `paste`.
 - You can get your correct path using `pwd` to print current folder path (assuming you are where you `Samples` folder is)
 :::
 
@@ -98,6 +122,14 @@ our flag `g` means *replace all occurance on the line*.
 Confirm again in the `vi editor` the correct manifest file.
 
 ## QIIME2
+
+QIIME2 is installed in a sort of container (conda environment), which allows you to work on different project which need different dependencies in parallel. First confirm that the correct conda environment is activated
+
+```bash
+conda activate qiime2-amplicon-2024.10
+```
+
+Your command line should look similar to `(qiime2-amplicon-2024.10) [XXXX@redi ~]$` now.
 
 ### Import data
 
@@ -123,6 +155,10 @@ qiime demux summarize --i-data demux.qza --o-visualization demux.qzv
 ### Visualize `.qzv` files
 
 Every time you create `.qzv` table, it is to be visualized at  QIIME2 webpage for quality control and taking decisions for next steps. Open [QIIME2](https://view.qiime2.org/) webpage and drag the qzv files in there. Use the `ssh` as described [above](#getting-files-to-the-server) to get the data to your PC.
+
+```bash
+scp <user>@10.36.5.158:/home/<user>/workshop_qiime2/demux.qzv "absolute-path-on-your-PC-to-folder-you-want-your-file"
+```
 
 ### Denoise with DADA2
 
@@ -196,15 +232,26 @@ qiime feature-table tabulate-seqs \
     --o-visualization rep-seqs.qzv
 ```
 
+Use your `scp` skills again to transfer `denoising-stats.qzv`, `rep-seqs.qzv` and `table.qzv` to your PC. Hint, it is better to do it not from `redi` but from your PC's command line.
+
+::: {.callout-tip, collapse="true" title="Solution"}
+```bash
+scp user@10.36.5.158:/home/<user>/workshop_qiime2/*.qzv "path-to-destination-folder"
+```
+:::
+
 ### Taxonomy assignment using **Silva** database
 
 The database is now in the repo because of its size, download it. If you work on `redi`, the database is located at `<fill in path DP>`. This is also a *time-consuming step*
 
-The classifier needs to match our `scikit-learn` package version used by the QIIME2 version. Here the version is `1.4.2`, download the classfier [here](https://data.qiime2.org/classifiers/sklearn-1.4.2/silva/silva-138-99-nb-classifier.qza)
+The classifier needs to match our `scikit-learn` package version used by the QIIME2 version. At `redi`, the version is `1.4.2`, and we have already put in the shared location path
+`/opt/shared/silva-138-99-nb-classifier.qza`.
+
+In other use case, download the classfier [here](https://data.qiime2.org/classifiers/sklearn-1.4.2/silva/silva-138-99-nb-classifier.qza). If you use your own classifier, the below specifications of the classifier might change.
 
 ```bash
 qiime feature-classifier classify-sklearn \
-    --i-classifier silva-138-99-nb-classifier.qza \
+    --i-classifier /opt/shared/silva-138-99-nb-classifier.qza \
     --i-reads rep-seqs.qza \
     --o-classification taxonomy.qza
 ```
