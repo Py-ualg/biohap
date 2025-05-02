@@ -9,11 +9,11 @@ author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dp
 
 This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine organisms.
 
-In particular, we will ask **following scientific questions** (TODO from Tania's presentation):
+In particular, we will ask **following scientific questions**:
 
-1. 1 - Is cold-water coral microbiome species-specific?
-2. 2 - Is the microbiome related to the reproductive strategy?
-3. 3 - Or is the microbiome shaped by both factors?
+1. Is microbiome of cold-water corals species-specific?
+2. Is the microbiome related to the reproductive strategy?
+3. Or is the microbiome shaped by both factors?
 
 ## Setup
 
