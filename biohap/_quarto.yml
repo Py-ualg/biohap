@@ -9,6 +9,8 @@ website:
     background: light
     align: left
     logo: logo_ccmar.png
+    logo-link: https://www.ccmar.ualg.pt/
+    logo-width: 200px
 
   sidebar:
     style: docked
@@ -33,6 +35,9 @@ website:
       - section: "Fall 2025"
         contents:
           - 2025_fall/call.qmd
+      - section: "Basics"
+        contents:
+          - basics/abundance_tables.qmd
       - references.qmd
 
 bibliography: references.bib
@@ -48,7 +53,7 @@ format:
     # css: styles.css
     # include-after-body: js.html
     grid:
-      sidebar-width: 250px
+      sidebar-width: 350px
       body-width: 900px
       margin-width: 300px
   # pdf:

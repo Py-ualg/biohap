@@ -24,6 +24,6 @@ NR > 1 && !/^#/ {
 }
 ' ASV_table_cleaned.txt > taxonomy_dp_tabs.tsv
 
-sed '/^[ \t]*$/d' taxonomy_dp_tabs.tsv > taxonomy.tsv
+sed '/^[ \t]*$/d' taxonomy_dp_tabs.tsv > taxonomy.txt
 rm taxonomy_dp_tabs.tsv
 rm ASV_table_cleaned.txt

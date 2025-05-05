@@ -1,0 +1,145 @@
+# Abundance table preprocessing
+
+---
+date: 05/05/2025
+
+author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+
+jupyter: python3
+format:
+  html:
+    code-fold: true
+---
+
+**Work in progress**
+
+This is a personal commitment to understand the effect (variance) of abundance table normalization and scaling methods on downstream tasks, which may be differential analysis etc.
+
+::: {.callout-note collapse="true" title="TODO"}
+Compare R based methods to the python ones.
+:::
+
+Most well-known packages have the normalization methods implemented so raw data tables can be supplied to them, such as QIIME2 or refseq. For EMO-BON analysis, I do not use those (might be a mistake, because of bug risks), so I need to understand them properly.
+
+Load SSU combined taxonomy from 181 EMO-BON samplings.
+
+```{python}
+import pandas as pd
+import numpy as np
+from skbio.diversity import beta_diversity
+
+#| code-fold: false
+# read the data from github
+ssu_url = "https://github.com/emo-bon/momics-demos/raw/refs/heads/main/data/parquet_files/metagoflow_analyses.SSU.parquet"
+
+ssu = pd.read_parquet(ssu_url)
+
+# change abundance to int
+ssu['abundance'] = ssu['abundance'].astype(int)
+ssu.head()
+```
+
+Let's order them by abundance
+
+```{python}
+ssu.sort_values(by='abundance', inplace=True, ascending=False)
+
+ssu
+```
+
+## Total Sum Scaling (TSS) followed by Square Root Transformation
+
+### TSS
+
+- converts raw counts into relative abundances, alternative name Relative Abundance Normalization. Simple division by sum of abundances in each sample separately.
+- Purpose: Adjusts for varying sequencing depths between samples.
+- [reference](https://doi.org/10.1371/journal.pcbi.1003531), McMurdie, P. J., & Holmes, S. (2014). Waste not, want not: why rarefying microbiome data is inadmissible. PLoS computational biology, 10(4), e1003531.
+
+### Square root transformation to relative abundances
+
+- This is a variance-stabilizing transformation — it reduces the effect of highly abundant taxa and improves comparability across samples.
+- It’s commonly used before distance-based analyses like Bray–Curtis dissimilarity or ordination (e.g., NMDS, PCoA).
+- [reference](https://doi.org/10.1007/s004420100716), Legendre, P., & Gallagher, E. D. (2001). Ecologically meaningful transformations for ordination of species data. Oecologia, 129(2), 271–280.
+
+Here is a function to pivot the taxonomy:
+
+```{python}
+def pivot_taxonomic_data(df: pd.DataFrame, values_col='abundance') -> pd.DataFrame:
+    """
+    Prepares the taxonomic data (LSU and SSU tables) for analysis.
+
+    Args:
+        df (pd.DataFrame): The input DataFrame containing taxonomic information.
+
+    Returns:
+        pd.DataFrame: A pivot table with taxonomic data.
+    """
+    # Select relevant columns
+    df['taxonomic_concat'] = (
+        df['ncbi_tax_id'].astype(str) + 
+        ';sk_' + df['superkingdom'].fillna('') + 
+        ';k_' + df['kingdom'].fillna('') + 
+        ';p_' + df['phylum'].fillna('') + 
+        ';c_' + df['class'].fillna('') + 
+        ';o_' + df['order'].fillna('') + 
+        ';f_' + df['family'].fillna('') + 
+        ';g_' + df['genus'].fillna('') + 
+        ';s_' + df['species'].fillna('')
+    )
+    pivot_table = df.pivot_table(
+        index=['ncbi_tax_id','taxonomic_concat'], 
+        columns='ref_code', 
+        values=values_col,
+    ).fillna(0)
+    pivot_table = pivot_table.reset_index()
+    # change inex name
+    pivot_table.columns.name = None
+
+    return pivot_table
+```
+
+, and methods to calculate to apply various scaling and normalization methods:
+
+```{python}
+#| code-fold: false
+def TSS(df, sampleIds='ref_code'):
+    """ Calculate TSS"""
+    df['abundance_TSS'] = df.groupby(sampleIds)['abundance'].transform(lambda x: x / x.sum())
+    return df
+```
+
+## Now I want to systematically transform and send downstream
+
+Downstream tasks are
+
+- Beta diversity
+- PCoA
+- ???
+
+```{python}
+#| code-fold: false
+
+ssu = TSS(ssu)
+
+assert ssu[ssu['ref_code'] == 'EMOBON00009']['abundance_TSS'].sum() == 1.0
+ssu.head()
+```
+
+Calculate and plot Beta diversity
+
+```{python}
+import seaborn as sns
+
+pivot = pivot_taxonomic_data(ssu, values_col='abundance_TSS')
+metric = 'braycurtis'
+pivot.head()
+
+
+```
+
+```{python}
+beta = beta_diversity(metric, pivot.iloc[:, 2:].T)
+sns.heatmap(beta.to_data_frame(), vmin=0, vmax=1.0, cmap="viridis")
+```
+
+### How do I evaluate difference between methods?

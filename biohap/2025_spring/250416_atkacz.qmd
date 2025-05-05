@@ -42,7 +42,7 @@ Installing Ubuntu on VirtualBox
   - Click the small disk icon on the right and choose `Choose a disk file`. Browse to and select the Ubuntu ISO you downloaded.
 - Start the Virtual Machine:
   - With the ISO attached, click `Start`.
-  - :::{.callout-note}
+  - ::: {.callout-note}
     You might need to restart your machine
     :::
   - The VM will boot from the ISO, and you should see the Ubuntu welcome screen.
@@ -269,7 +269,7 @@ diff maria_joanna_song donald_trump_song
 vimdiff *song
 ```
 
-:::{.callout-note}
+::: {.callout-note}
 exit vim using `Esc` + `:q` which closes the file, alternatively `Esc` + `:wq` which saves the file.
 :::
 
@@ -385,7 +385,7 @@ prefetch --option-file runs4.txt
 
 In case of
 
-:::{.callout-note}
+::: {.callout-note}
 In case of `Command 'prefetch' not found` run
 
 ```bash
@@ -400,7 +400,7 @@ Let's unpack it
 for f in SRR* ; do fastq-dump --split-files  $f ; done
 ```
 
-:::{.callout-tip}
+::: {.callout-tip}
 To visualize quality scores, small GUI tool [`fastqc`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) could be used
 :::
 
@@ -453,7 +453,7 @@ rm *histogram
 rm *fastq
 ```
 
-:::{.callout-tip}
+::: {.callout-tip}
 Too lazy to empty the trash yourself ? the terminal will do that for us
 `gio trash --empty`
 :::
@@ -467,7 +467,7 @@ sudo apt install seqtk
 for f in *fastq_filtered ; do seqtk seq -a $f > $f.fasta ; done ; 
 ```
 
-:::{.callout-caution}
+::: {.callout-caution}
 Blast is commented out as it is unlikely to work - we could try with internal database one day
 :::
 
@@ -558,7 +558,7 @@ python pcoa_with_metadata_quick_legend.py
 
 The power of command line lies in the fact, that once you test your pipeline command by command, you can copy all the commands into a so-called `bash` script and rerun the whole thing at once.
 
-:::{.callout-caution collapse="true"}
+::: {.callout-caution collapse="true"}
 You may want to create a separate new virtual environment (example uses `conda`) and install necessary dependencies first
 
 ```bash
@@ -602,14 +602,14 @@ Run the pipeline with
 bash my_fist_pipeline.sh
 ```
 
-:::{.callout-caution}
+::: {.callout-caution}
 You might need to make the script executable
+
 ```bash
 chmod +x my_fist_pipeline.sh
 
 # then you can run directly
 ./my_fist_pipeline.sh
 ```
+
 :::
-
-

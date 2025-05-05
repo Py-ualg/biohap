@@ -7,4 +7,4 @@ NR==2 {
 NR>2 && !/^#/ {
   for (i=1; i<NF; i++) printf "%s\t", $i
   print ""
-}' ASV_table_original.txt > ASV_table.tsv
+}' ASV_table_original.txt > ASV_table.txt
