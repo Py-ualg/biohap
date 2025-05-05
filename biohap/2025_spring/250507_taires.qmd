@@ -11,7 +11,9 @@ This workshop will provide an overview of microbiome data analysis from Illumina
 
 In particular, we will ask **following scientific questions**:
 
-1. Is microbiome of cold-water corals species-specific?
+In a coral associated microbiome dataset, where we have two different coral species (with one incipient speciation) and two different reproductive strategies, we want to address the following questions:
+
+1. Is the microbiome of these cold-water corals species-specific?
 2. Is the microbiome related to the reproductive strategy?
 3. Or is the microbiome shaped by both factors?
 
