@@ -234,7 +234,7 @@ qiime feature-table tabulate-seqs \
 
 Use your `scp` skills again to transfer `denoising-stats.qzv`, `rep-seqs.qzv` and `table.qzv` to your PC. Hint, it is better to do it not from `redi` but from your PC's command line.
 
-::: {.callout-tip, collapse="true" title="Solution"}
+::: {.callout-tip collapse="true" title="Solution"}
 ```bash
 scp user@10.36.5.158:/home/<user>/workshop_qiime2/*.qzv "path-to-destination-folder"
 ```

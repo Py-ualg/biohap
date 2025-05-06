@@ -308,9 +308,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="microbiome-analysis-of-amplicon-sequencing" class="level1">
 <h1>Microbiome Analysis of Amplicon Sequencing</h1>
 <p>This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine organisms.</p>
-<p>In particular, we will ask <strong>following scientific questions</strong>:</p>
+<p>In a coral associated microbiome dataset, where we have two different coral species (with one incipient speciation) and two different reproductive strategies, we want to address the <strong>following scientific questions</strong>:</p>
 <ol type="1">
-<li>Is microbiome of cold-water corals species-specific?</li>
+<li>Is the microbiome of these cold-water corals species-specific?</li>
 <li>Is the microbiome related to the reproductive strategy?</li>
 <li>Or is the microbiome shaped by both factors?</li>
 </ol>
@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="input-files" class="level2">
 <h2 class="anchored" data-anchor-id="input-files">Input files</h2>
 <p>In the <a href="https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires">repository</a>, you can find almost all the necessary input files, including <strong>pdf version of Tania’s introductory presentation</strong>.</p>
-<p>To facilitate download, follow this <a href="https://filesender.fccn.pt/?s=download&amp;token=3ad93e94-8a32-46e8-b0fb-9716b6af557e">link</a> for bulk download. This link will expire on 01/06/2025, so then you need to download files to your <em>local</em> mahcine one by one from Github. Or better, setup yourself a <a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account">Gihub acocunt</a> and you can clone the whole <code>biohap</code> repository.</p>
+<p>To facilitate download, follow this <a href="https://filesender.fccn.pt/?s=download&amp;token=3ad93e94-8a32-46e8-b0fb-9716b6af557e">link</a> for bulk download. This link will expire on 01/06/2025, so then you need to download files to your <em>local</em> mahcine one by one from Github. Or better, setup yourself a <a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account">Gihub account</a> and you can clone the whole <code>biohap</code> repository.</p>
 <section id="getting-files-to-the-server" class="level3">
 <h3 class="anchored" data-anchor-id="getting-files-to-the-server">Getting files to the server</h3>
 <p>To get the data tables from the server to your PC or opposite, <code>ssh</code> protocol exists.</p>
@@ -514,9 +514,22 @@ Sample output on the screen
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--i-data</span> rep-seqs.qza <span class="dt">\</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-visualization</span> rep-seqs.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use your <code>scp</code> skills again to transfer <code>denoising-stats.qzv</code>, <code>rep-seqs.qzv</code> and <code>table.qzv</code> to your PC. Hint, it is better to do it not from <code>redi</code> but from your PC’s command line.</p>
-<p>::: {.callout-tip, collapse=“true” title=“Solution”}</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> user@10.36.5.158:/home/<span class="op">&lt;</span>user<span class="op">&gt;</span>/workshop_qiime2/<span class="pp">*</span>.qzv <span class="st">"path-to-destination-folder"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
+</div>
+</div>
 </section>
 <section id="taxonomy-assignment-using-silva-database" class="level3">
 <h3 class="anchored" data-anchor-id="taxonomy-assignment-using-silva-database">Taxonomy assignment using <strong>Silva</strong> database</h3>
@@ -564,7 +577,7 @@ Important
 </div>
 <p>Can you figure out the <code>sed</code> command do do that?</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -573,7 +586,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'1s/.*/#otu-id\ttaxonomy\tConfidence/'</span> ~/the_name_of_the_folder_where_you_are_working/taxonomy/taxonomy.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
