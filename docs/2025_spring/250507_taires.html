@@ -392,8 +392,7 @@ Note
 <section id="file-preparations" class="level3">
 <h3 class="anchored" data-anchor-id="file-preparations">File preparations</h3>
 <p>First look at your <code>manifest</code> file, which specifies sample ids, and reads name files, in this case we use paired ends, two file_paths per line are present.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># close vi editor with Esc, then :q</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vi</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The path needs to be changed to conform with your file system location. You see weird <code>^M</code> characters, let’s remove those</p>
 <ol type="1">
 <li>Either use <code>dos2unix Manifest_file_Species.txt</code></li>
@@ -401,13 +400,12 @@ Note
 </ol>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># \r/ refers to Windows line ending</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/\r//g'</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Run <code>vi</code> again to confirm successful replacement and also to select copy part of the path you want to replace next.</p>
+<p>Run <code>cat</code> command again to confirm successful substitution. Select part of the path you want to replace next.</p>
 <ol type="1">
-<li>Select with the cursor the path (this automatically enter into your clipboard)</li>
+<li>Select with the cursor the path (this automatically enters into your clipboard), or right mouse click and select copy</li>
 <li>probably something like <code>/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/</code></li>
-<li>exit the vi editor again <code>Esc</code> and <code>:q</code></li>
 </ol>
-<p>Replace the string with correct path</p>
+<p>Now we substitute the string with correct path</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -421,7 +419,7 @@ Tip
 <ul>
 <li>Middle mouse button click pastes your mouse selection, ie clipboard on the command line</li>
 <li>Alternatively also right click and select <code>paste</code>.</li>
-<li>You can get your correct path using <code>pwd</code> to print current folder path (assuming you are where you <code>Samples</code> folder is)</li>
+<li>You can get your correct path using <code>pwd</code> to print current folder path (assuming you are where your <code>Samples</code> folder is)</li>
 </ul>
 </div>
 </div>
@@ -444,7 +442,7 @@ Note
 </div>
 </div>
 </div>
-<p>Confirm again in the <code>vi editor</code> the correct manifest file.</p>
+<p>Confirm again using <code>cat</code> that your manifest file is correct.</p>
 </section>
 </section>
 <section id="qiime2" class="level2">
@@ -628,8 +626,27 @@ Solution
 <section id="microbiomeanalyst-ma" class="level2">
 <h2 class="anchored" data-anchor-id="microbiomeanalyst-ma">MicrobiomeAnalyst (MA)</h2>
 <p>Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate <code>abundance</code> and <code>taxonomy</code> tables. In the GH repo, there are two scripts to do that without going into the details. Both have hardcoded input ASV table name <code>ASV_table_original_CoralSpecies_Original.tsv</code> which you need to conform too. Outputs will be <code>ASV_table_MA.txt</code> and <code>taxonomy_MA.txt</code>, respectively.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./convert_ASV_abundances.sh</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./convert_ASV_taxonomy.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Permissions">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Permissions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Running the shell script requires that executable (<code>x</code>) permissions for the file, which probably after <code>scp</code> is not the case. To enable execution, run:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x convert_ASV_abundances.sh</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x convert_ASV_taxonomy.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>with <code>ls</code>, the executable files should appear in green.</p>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./convert_ASV_abundances.sh</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./convert_ASV_taxonomy.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Together with the provided <code>metadata_MA.txt</code>, which assigns each sample to a coral species, those are the three files you need to <code>scp</code> to your local machine for MA web interface upload. MA can do too many things for you, the subset we will use is described in Tania’s presentation available on GH too.</p>
 <p>The fun starts <a href="https://www.microbiomeanalyst.ca/">here</a>, <code>Click here to start</code> the session and select <em>Marker data profiling</em>.</p>
 <div class="quarto-figure quarto-figure-center">

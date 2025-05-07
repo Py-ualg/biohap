@@ -81,8 +81,7 @@ Other files can be transferred in the similar manner.
 First look at your `manifest` file, which specifies sample ids, and reads name files, in this case we use paired ends, two file_paths per line are present.
 
 ```bash
-# close vi editor with Esc, then :q
-vi Manifest_file_Species.txt
+cat Manifest_file_Species.txt
 ```
 
 The path needs to be changed to conform with your file system location. You see weird `^M` characters, let's remove those
@@ -95,18 +94,17 @@ The path needs to be changed to conform with your file system location. You see 
 sed -i 's/\r//g' Manifest_file_Species.txt
 ```
 
-Run `vi` again to confirm successful replacement and also to select copy part of the path you want to replace next.
+Run `cat` command again to confirm successful substitution. Select part of the path you want to replace next.
 
-1. Select with the cursor the path (this automatically enter into your clipboard)
+1. Select with the cursor the path (this automatically enters into your clipboard), or right mouse click and select copy
 2. probably something like `/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/`
-3. exit the vi editor again `Esc` and `:q`
 
-Replace the string with correct path
+Now we substitute the string with correct path
 
 ::: {.callout-tip}
 - Middle mouse button click pastes your mouse selection, ie clipboard on the command line
 - Alternatively also right click and select `paste`.
-- You can get your correct path using `pwd` to print current folder path (assuming you are where you `Samples` folder is)
+- You can get your correct path using `pwd` to print current folder path (assuming you are where your `Samples` folder is)
 :::
 
 ```bash
@@ -123,7 +121,7 @@ our flag `g` means *replace all occurance on the line*.
 `s/pattern/subtitution/flags`
 :::
 
-Confirm again in the `vi editor` the correct manifest file.
+Confirm again using `cat` that your manifest file is correct.
 
 ## QIIME2
 
@@ -325,6 +323,17 @@ biom convert \
 ## MicrobiomeAnalyst (MA)
 
 Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate `abundance` and `taxonomy` tables. In the GH repo, there are two scripts to do that without going into the details. Both have hardcoded input ASV table name `ASV_table_original_CoralSpecies_Original.tsv` which you need to conform too. Outputs will be `ASV_table_MA.txt` and `taxonomy_MA.txt`, respectively.
+
+::: {.callout-warning collapse="true" title="Permissions"}
+Running the shell script requires that executable (`x`) permissions for the file, which probably after `scp` is not the case. To enable execution, run:
+
+```bash
+chmod +x convert_ASV_abundances.sh
+chmod +x convert_ASV_taxonomy.sh
+```
+
+with `ls`, the executable files should appear in green.
+:::
 
 ```bash
 ./convert_ASV_abundances.sh
