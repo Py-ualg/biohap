@@ -42,7 +42,7 @@ conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distr
 
 In the [repository](https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires), you can find almost all the necessary input files, including **pdf version of Tania's introductory presentation**.
 
-To facilitate download, follow this [link](https://filesender.fccn.pt/?s=download&token=d8db7075-8eaf-49c0-b154-028a48af9cd2) for bulk download. This link will expire on 06/06/2025, after that you need to download files to your *local* mahcine one by one from Github. Or better, setup yourself a [Gihub account](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and you can clone the whole `biohap` repository.
+To facilitate download, follow this [link](https://filesender.fccn.pt/?s=download&token=3d6474cb-9147-4d77-bbde-44724a9c1392) for bulk download. This link will expire on 06/06/2025, after that you need to download files to your *local* mahcine one by one from Github. Or better, setup yourself a [Gihub account](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and you can clone the whole `biohap` repository.
 
 ### Getting files to the server
 

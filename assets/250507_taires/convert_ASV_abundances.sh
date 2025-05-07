@@ -10,4 +10,4 @@ NR>2 && !/^#/ {
           printf "\t%s", int($i)
   }
   print ""
-}' ASV_table_CoralSpecies_Original.tsv > ASV_table_MA.txt
+}' ASV_table.tsv > ASV_table_MA.txt
