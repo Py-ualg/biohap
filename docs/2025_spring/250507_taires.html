@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt">
+<meta name="dcterms.date" content="2025-07-05">
 
 <title>taires – BioHap: Bioinformatics, Handy and Practical</title>
 <style>
@@ -293,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">07/05/2025, <strong>Work in progress</strong></p>
+      <p class="date">07/05/2025</p>
     </div>
   </div>
   
@@ -307,6 +308,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="microbiome-analysis-of-amplicon-sequencing" class="level1">
 <h1>Microbiome Analysis of Amplicon Sequencing</h1>
+<div class="callout callout-style-default callout-note callout-titled" title="Last change">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Last change
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>May 7, 2025</p>
+</div>
+</div>
+</div>
 <p>This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine organisms.</p>
 <p>In a coral associated microbiome dataset, where we have two different coral species (with one incipient speciation) and two different reproductive strategies, we want to address the <strong>following scientific questions</strong>:</p>
 <ol type="1">
@@ -336,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="input-files" class="level2">
 <h2 class="anchored" data-anchor-id="input-files">Input files</h2>
 <p>In the <a href="https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires">repository</a>, you can find almost all the necessary input files, including <strong>pdf version of Tania’s introductory presentation</strong>.</p>
-<p>To facilitate download, follow this <a href="https://filesender.fccn.pt/?s=download&amp;token=3ad93e94-8a32-46e8-b0fb-9716b6af557e">link</a> for bulk download. This link will expire on 01/06/2025, so then you need to download files to your <em>local</em> mahcine one by one from Github. Or better, setup yourself a <a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account">Gihub account</a> and you can clone the whole <code>biohap</code> repository.</p>
+<p>To facilitate download, follow this <a href="https://filesender.fccn.pt/?s=download&amp;token=d8db7075-8eaf-49c0-b154-028a48af9cd2">link</a> for bulk download. This link will expire on 06/06/2025, after that you need to download files to your <em>local</em> mahcine one by one from Github. Or better, setup yourself a <a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account">Gihub account</a> and you can clone the whole <code>biohap</code> repository.</p>
 <section id="getting-files-to-the-server" class="level3">
 <h3 class="anchored" data-anchor-id="getting-files-to-the-server">Getting files to the server</h3>
 <p>To get the data tables from the server to your PC or opposite, <code>ssh</code> protocol exists.</p>
@@ -347,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Once you have <code>ssh</code> setup, do <code>ssh &lt;USER&gt;@10.36.5.158</code>, and then enter your password. You are the <em>user</em> connecting(@) to the server (10.36.5.158, redi).</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -356,7 +373,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If you are not at the University internet (eduroam or fixed), first you will need to connect to it via <a href="https://www.ualg.pt/suporte-informatico">UAlg VPN service</a>.</p>
 </div>
@@ -410,7 +427,7 @@ Tip
 </div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s|/Users/microbiomes/Documents/Microbiomes/Coral_Microbiome_Workshop_sps_comparison/|&lt;YOUR_PATH_TO_FOLDER_Samples&gt;|g'</span> Manifest_file_Species.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -419,11 +436,11 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Note that since our strings contained <code>/</code> character we used <code>|</code> to separate the parts of the <code>sed</code> command. That was not necessary in the case above <code>s/\r//g</code> where <code>/</code> plays a role of the separator</p>
 <p><code>sed</code> command s: substitute our flag <code>g</code> means <em>replace all occurance on the line</em>.</p>
-<p><code>s/pattern/replacement/flags</code></p>
+<p><code>s/pattern/subtitution/flags</code></p>
 </div>
 </div>
 </div>
@@ -484,7 +501,7 @@ Note
 <li><code>--verbose</code>: write extensive progress on the screen (since this script does several things it is advisable to run it so we can follow the flow)</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Sample output on the screen">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -493,7 +510,7 @@ Sample output on the screen
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>R version 4.3.3 (2024-02-29) Loading required package: Rcpp DADA2: 1.30.0 / Rcpp: 1.0.13.1 / RcppParallel: 5.1.9 2) Filtering …………………… 3) Learning Error Rates 208608800 total bases in 1043044 reads from 17 samples will be used for learning the error rates. 219039240 total bases in 1043044 reads from 17 samples will be used for learning the error rates. 3) Denoise samples …………………… …………………… 5) Remove chimeras (method = consensus) 6) Report read numbers through the pipeline 7) Write output Saved FeatureTable[Frequency] to: table.qza Saved FeatureData[Sequence] to: rep-seqs.qza Saved SampleData[DADA2Stats] to: denoising-stats.qza</p>
 </div>
@@ -515,7 +532,7 @@ Sample output on the screen
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--o-visualization</span> rep-seqs.qzv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use your <code>scp</code> skills again to transfer <code>denoising-stats.qzv</code>, <code>rep-seqs.qzv</code> and <code>table.qzv</code> to your PC. Hint, it is better to do it not from <code>redi</code> but from your PC’s command line.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -524,7 +541,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> user@10.36.5.158:/home/<span class="op">&lt;</span>user<span class="op">&gt;</span>/workshop_qiime2/<span class="pp">*</span>.qzv <span class="st">"path-to-destination-folder"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -577,7 +594,7 @@ Important
 </div>
 <p>Can you figure out the <code>sed</code> command do do that?</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -586,7 +603,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'1s/.*/#otu-id\ttaxonomy\tConfidence/'</span> ~/the_name_of_the_folder_where_you_are_working/taxonomy/taxonomy.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -610,10 +627,18 @@ Solution
 </section>
 <section id="microbiomeanalyst-ma" class="level2">
 <h2 class="anchored" data-anchor-id="microbiomeanalyst-ma">MicrobiomeAnalyst (MA)</h2>
-<p>Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate <code>abundance</code> and <code>taxonomy</code> tables. In the GH repo are two scripts to do that without going into the details. Both have hardcoded input ASV table name <code>ASV_table_original.txt</code> which you need to conform too. Outputs will be <code>ASV_table.tsv</code> and <code>taxonomy.tsv</code>, respectively.</p>
+<p>Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate <code>abundance</code> and <code>taxonomy</code> tables. In the GH repo, there are two scripts to do that without going into the details. Both have hardcoded input ASV table name <code>ASV_table_original_CoralSpecies_Original.tsv</code> which you need to conform too. Outputs will be <code>ASV_table_MA.txt</code> and <code>taxonomy_MA.txt</code>, respectively.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./convert_ASV_abundances.sh</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./convert_ASV_taxonomy.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>MA can do too many things to cover here, the subset we will use is described in Tania’s presentation available on GH too.</p>
+<p>Together with the provided <code>metadata_MA.txt</code>, which assigns each sample to a coral species, those are the three files you need to <code>scp</code> to your local machine for MA web interface upload. MA can do too many things for you, the subset we will use is described in Tania’s presentation available on GH too.</p>
+<p>The fun starts <a href="https://www.microbiomeanalyst.ca/">here</a>, <code>Click here to start</code> the session and select <em>Marker data profiling</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/ma_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>MA inputs</figcaption>
+</figure>
+</div>
+<p>You need to select the first three input files (<code>OTU/ASV table</code>, <code>Metadata file</code>, <code>Taxonomy table</code>), and from the dropdown, choose <code>Taxonomy labels</code> to be <em>QIIME</em>.</p>
 
 
 </section>

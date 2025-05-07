@@ -5,6 +5,9 @@ NR==2 {
   print ""
 }
 NR>2 && !/^#/ {
-  for (i=1; i<NF; i++) printf "%s\t", $i
+  printf "%s", $1  # print the first column as-is
+  for (i=2; i<NF; i++) {
+          printf "\t%s", int($i)
+  }
   print ""
-}' ASV_table_original.txt > ASV_table.txt
+}' ASV_table_CoralSpecies_Original.tsv > ASV_table_MA.txt

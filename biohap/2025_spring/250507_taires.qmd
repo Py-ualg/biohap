@@ -1,11 +1,15 @@
 # Microbiome Analysis of Amplicon Sequencing
 
 ---
-date: 07/05/2025, **Work in progress**
+date: 07/05/2025
 
 author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 
 ---
+
+::: {.callout-note collapse="true" title="Last change"}
+May 7, 2025
+:::
 
 This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine organisms.
 
@@ -38,7 +42,7 @@ conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distr
 
 In the [repository](https://github.com/Py-ualg/biohap/tree/main/assets/250507_taires), you can find almost all the necessary input files, including **pdf version of Tania's introductory presentation**.
 
-To facilitate download, follow this [link](https://filesender.fccn.pt/?s=download&token=3ad93e94-8a32-46e8-b0fb-9716b6af557e) for bulk download. This link will expire on 01/06/2025, so then you need to download files to your *local* mahcine one by one from Github. Or better, setup yourself a [Gihub account](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and you can clone the whole `biohap` repository.
+To facilitate download, follow this [link](https://filesender.fccn.pt/?s=download&token=d8db7075-8eaf-49c0-b154-028a48af9cd2) for bulk download. This link will expire on 06/06/2025, after that you need to download files to your *local* mahcine one by one from Github. Or better, setup yourself a [Gihub account](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and you can clone the whole `biohap` repository.
 
 ### Getting files to the server
 
@@ -116,7 +120,7 @@ Note that since our strings contained `/` character we used `|` to separate the 
 s: substitute
 our flag `g` means *replace all occurance on the line*.
 
-`s/pattern/replacement/flags`
+`s/pattern/subtitution/flags`
 :::
 
 Confirm again in the `vi editor` the correct manifest file.
@@ -320,11 +324,17 @@ biom convert \
 
 ## MicrobiomeAnalyst (MA)
 
-Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate `abundance` and `taxonomy` tables. In the GH repo are two scripts to do that without going into the details. Both have hardcoded input ASV table name `ASV_table_original.txt` which you need to conform too. Outputs will be `ASV_table.tsv` and `taxonomy.tsv`, respectively.
+Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate `abundance` and `taxonomy` tables. In the GH repo, there are two scripts to do that without going into the details. Both have hardcoded input ASV table name `ASV_table_original_CoralSpecies_Original.tsv` which you need to conform too. Outputs will be `ASV_table_MA.txt` and `taxonomy_MA.txt`, respectively.
 
 ```bash
 ./convert_ASV_abundances.sh
 ./convert_ASV_taxonomy.sh
 ```
 
-MA can do too many things to cover here, the subset we will use is described in Tania's presentation available on GH too.
+Together with the provided `metadata_MA.txt`, which assigns each sample to a coral species, those are the three files you need to `scp` to your local machine for MA web interface upload. MA can do too many things for you, the subset we will use is described in Tania's presentation available on GH too.
+
+The fun starts [here](https://www.microbiomeanalyst.ca/), `Click here to start` the session and select *Marker data profiling*.
+
+![MA inputs](figs/ma_screenshot.png)
+
+You need to select the first three input files (`OTU/ASV table`, `Metadata file`, `Taxonomy table`), and from the dropdown, choose `Taxonomy labels` to be *QIIME*.

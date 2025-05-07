@@ -1,5 +1,5 @@
 # Remove trailing characters (spaces or tabs) and convert Windows-style line endings to Unix-style
-sed -e 's/[ \t]*$//' -e 's/\r$//' ASV_table_original.txt > ASV_table_cleaned.txt
+sed -e 's/[ \t]*$//' -e 's/\r$//' ASV_table_CoralSpecies_Original.tsv > ASV_table_cleaned.txt
 
 awk -F'\t' '
 BEGIN {
@@ -24,6 +24,6 @@ NR > 1 && !/^#/ {
 }
 ' ASV_table_cleaned.txt > taxonomy_dp_tabs.tsv
 
-sed '/^[ \t]*$/d' taxonomy_dp_tabs.tsv > taxonomy.txt
+sed '/^[ \t]*$/d' taxonomy_dp_tabs.tsv > taxonomy_MA.txt
 rm taxonomy_dp_tabs.tsv
 rm ASV_table_cleaned.txt
