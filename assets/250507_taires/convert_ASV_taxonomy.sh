@@ -1,5 +1,12 @@
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <ASV_table.tsv>"
+  exit 1
+fi
+
+input_file="$1"
+
 # Remove trailing characters (spaces or tabs) and convert Windows-style line endings to Unix-style
-sed -e 's/[ \t]*$//' -e 's/\r$//' ASV_table.tsv > ASV_table_cleaned.txt
+sed -e 's/[ \t]*$//' -e 's/\r$//' "$input_file" > ASV_table_cleaned.txt
 
 awk -F'\t' '
 BEGIN {

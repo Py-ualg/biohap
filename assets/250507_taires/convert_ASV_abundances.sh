@@ -1,3 +1,10 @@
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <ASV_table.tsv>"
+  exit 1
+fi
+
+input_file="$1"
+
 awk -F'\t' '
 NR==2 {
   printf "#NAME"
@@ -10,4 +17,4 @@ NR>2 && !/^#/ {
           printf "\t%s", int($i)
   }
   print ""
-}' ASV_table.tsv > ASV_table_MA.txt
+}' "$input_file" > ASV_table_MA.txt
