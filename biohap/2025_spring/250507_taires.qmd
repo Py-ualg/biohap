@@ -58,7 +58,7 @@ Once you have `ssh` setup, do `ssh <USER>@10.36.5.158`, and then enter your pass
 If you are not at the University internet (eduroam or fixed), first you will need to connect to it via [UAlg VPN service](https://www.ualg.pt/suporte-informatico).
 :::
 
-In your `/home/<user>` directory (you can see the location using `pwd` command), create a new folder
+In your `/home/<USER>` directory (you can see the location using `pwd` command), create a new folder
 
 ```bash
 mkdir workshop_qiime2
@@ -71,7 +71,7 @@ To copy the files to the server, instead of standard `cp` we need to use secure 
 
 ```bash
 # scp from to, -r means with the subfolder structure (recursive)
-scp -r "<path-to-your-downloads-perhaps>\Samples"  <user>@10.36.5.158:/home/<user>/workshop_qiime2/
+scp -r "<path-to-your-downloads-perhaps>\Samples"  <USER>@10.36.5.158:/home/<USER>/workshop_qiime2/
 ```
 
 Other files can be transferred in the similar manner.
@@ -139,7 +139,7 @@ Your command line should look similar to `(qiime2-amplicon-2024.10) [XXXX@redi ~
 ```bash
 qiime tools import \
     --type 'SampleData[PairedEndSequencesWithQuality]' \
-    --input-path Manifest_file_Species.txt \
+    --input-path /opt/shared/Manifest_file_Species.txt \
     --output-path demux.qza \
     --input-format PairedEndFastqManifestPhred33V2
 ```
@@ -160,7 +160,7 @@ qiime demux summarize --i-data demux.qza --o-visualization demux.qzv
 Every time you create `.qzv` table, it is to be visualized at  QIIME2 webpage for quality control and taking decisions for next steps. Open [QIIME2](https://view.qiime2.org/) webpage and drag the qzv files in there. Use the `ssh` as described [above](#getting-files-to-the-server) to get the data to your PC.
 
 ```bash
-scp <user>@10.36.5.158:/home/<user>/workshop_qiime2/demux.qzv "absolute-path-on-your-PC-to-folder-you-want-your-file"
+scp <USER>@10.36.5.158:/home/<USER>/workshop_qiime2/demux.qzv "absolute-path-on-your-PC-to-folder-you-want-your-file"
 ```
 
 ### Denoise with DADA2
@@ -240,7 +240,7 @@ Use your `scp` skills again to transfer `denoising-stats.qzv`, `rep-seqs.qzv` an
 ::: {.callout-tip collapse="true" title="Solution"}
 
 ```bash
-scp user@10.36.5.158:/home/<user>/workshop_qiime2/*.qzv "path-to-destination-folder"
+scp <USER>@10.36.5.158:/home/<USER>/workshop_qiime2/*.qzv "path-to-destination-folder"
 ```
 
 :::

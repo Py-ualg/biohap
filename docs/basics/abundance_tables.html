@@ -311,7 +311,7 @@ TODO
 </div>
 <p>Most well-known packages have the normalization methods implemented so raw data tables can be supplied to them, such as QIIME2 or refseq. For EMO-BON analysis, I do not use those (might be a mistake, because of bug risks), so I need to understand them properly.</p>
 <p>Load SSU combined taxonomy from 181 EMO-BON samplings.</p>
-<div id="da900a82" class="cell" data-execution_count="1">
+<div id="f1e666b7" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -427,7 +427,7 @@ TODO
 </div>
 </div>
 <p>Let’s order them by abundance</p>
-<div id="3e51dc29" class="cell" data-execution_count="2">
+<div id="eddcb432" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ssu.sort_values(by<span class="op">=</span><span class="st">'abundance'</span>, inplace<span class="op">=</span><span class="va">True</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
@@ -635,7 +635,7 @@ TODO
 <li><a href="https://doi.org/10.1007/s004420100716">reference</a>, Legendre, P., &amp; Gallagher, E. D. (2001). Ecologically meaningful transformations for ordination of species data. Oecologia, 129(2), 271–280.</li>
 </ul>
 <p>Here is a function to pivot the taxonomy:</p>
-<div id="bb5c5732" class="cell" data-execution_count="3">
+<div id="bdc53189" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pivot_taxonomic_data(df: pd.DataFrame, values_col<span class="op">=</span><span class="st">'abundance'</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
@@ -673,7 +673,7 @@ TODO
 </details>
 </div>
 <p>, and methods to calculate to apply various scaling and normalization methods:</p>
-<div id="2f8da77d" class="cell" data-execution_count="4">
+<div id="8fbc66c6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TSS(df, sampleIds<span class="op">=</span><span class="st">'ref_code'</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Calculate TSS"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'abundance_TSS'</span>] <span class="op">=</span> df.groupby(sampleIds)[<span class="st">'abundance'</span>].transform(<span class="kw">lambda</span> x: x <span class="op">/</span> x.<span class="bu">sum</span>())</span>
@@ -689,7 +689,7 @@ TODO
 <li>PCoA</li>
 <li>???</li>
 </ul>
-<div id="4af04f13" class="cell" data-execution_count="5">
+<div id="f66a3314" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ssu <span class="op">=</span> TSS(ssu)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> ssu[ssu[<span class="st">'ref_code'</span>] <span class="op">==</span> <span class="st">'EMOBON00009'</span>][<span class="st">'abundance_TSS'</span>].<span class="bu">sum</span>() <span class="op">==</span> <span class="fl">1.0</span></span>
@@ -799,7 +799,7 @@ TODO
 </div>
 </div>
 <p>Calculate and plot Beta diversity</p>
-<div id="0af79e36" class="cell" data-execution_count="6">
+<div id="033ecd04" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -967,7 +967,7 @@ TODO
 </div>
 </div>
 </div>
-<div id="b7c74adb" class="cell" data-execution_count="7">
+<div id="2a83f032" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> beta_diversity(metric, pivot.iloc[:, <span class="dv">2</span>:].T)</span>

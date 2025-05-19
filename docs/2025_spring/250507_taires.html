@@ -379,14 +379,14 @@ Note
 </div>
 </div>
 </div>
-<p>In your <code>/home/&lt;user&gt;</code> directory (you can see the location using <code>pwd</code> command), create a new folder</p>
+<p>In your <code>/home/&lt;USER&gt;</code> directory (you can see the location using <code>pwd</code> command), create a new folder</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> workshop_qiime2</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and navigate to it</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> workshop_qiime2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To copy the files to the server, instead of standard <code>cp</code> we need to use secure <code>scp</code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scp from to, -r means with the subfolder structure (recursive)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> <span class="st">"&lt;path-to-your-downloads-perhaps&gt;\Samples"</span>  <span class="op">&lt;</span>user<span class="op">&gt;</span>@10.36.5.158:/home/<span class="op">&lt;</span>user<span class="op">&gt;</span>/workshop_qiime2/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> <span class="st">"&lt;path-to-your-downloads-perhaps&gt;\Samples"</span>  <span class="op">&lt;</span>USER<span class="op">&gt;</span>@10.36.5.158:/home/<span class="op">&lt;</span>USER<span class="op">&gt;</span>/workshop_qiime2/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Other files can be transferred in the similar manner.</p>
 </section>
 <section id="file-preparations" class="level3">
@@ -454,7 +454,7 @@ Note
 <h3 class="anchored" data-anchor-id="import-data">Import data</h3>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="dt">\</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--type</span> <span class="st">'SampleData[PairedEndSequencesWithQuality]'</span> <span class="dt">\</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-path</span> Manifest_file_Species.txt <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-path</span> /opt/shared/Manifest_file_Species.txt <span class="dt">\</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-path</span> demux.qza <span class="dt">\</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input-format</span> PairedEndFastqManifestPhred33V2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>type</code> describes that we have paired ends with Q scores (fastq) inputs. <code>input-path</code> is our manifest file, describing where all the files are. <em>demux.qza</em> will be our <code>output-path</code> file and <code>input-format</code> describes your sequencing technology, PairedEndFastq means that your data was sequenced with Forward and Reverse primers and you have two fastq files per sample that should be joined. Phred33 refers to the type of Phred scores in your fastq file. This is the lastest version and used for most recent Illumina sequencers. V2 is the version of the manifest file format you are using.</p>
@@ -470,7 +470,7 @@ Note
 <section id="visualize-.qzv-files" class="level3">
 <h3 class="anchored" data-anchor-id="visualize-.qzv-files">Visualize <code>.qzv</code> files</h3>
 <p>Every time you create <code>.qzv</code> table, it is to be visualized at QIIME2 webpage for quality control and taking decisions for next steps. Open <a href="https://view.qiime2.org/">QIIME2</a> webpage and drag the qzv files in there. Use the <code>ssh</code> as described <a href="#getting-files-to-the-server">above</a> to get the data to your PC.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>user<span class="op">&gt;</span>@10.36.5.158:/home/<span class="op">&lt;</span>user<span class="op">&gt;</span>/workshop_qiime2/demux.qzv <span class="st">"absolute-path-on-your-PC-to-folder-you-want-your-file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>USER<span class="op">&gt;</span>@10.36.5.158:/home/<span class="op">&lt;</span>USER<span class="op">&gt;</span>/workshop_qiime2/demux.qzv <span class="st">"absolute-path-on-your-PC-to-folder-you-want-your-file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="denoise-with-dada2" class="level3">
 <h3 class="anchored" data-anchor-id="denoise-with-dada2">Denoise with DADA2</h3>
@@ -541,7 +541,7 @@ Solution
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> user@10.36.5.158:/home/<span class="op">&lt;</span>user<span class="op">&gt;</span>/workshop_qiime2/<span class="pp">*</span>.qzv <span class="st">"path-to-destination-folder"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>USER<span class="op">&gt;</span>@10.36.5.158:/home/<span class="op">&lt;</span>USER<span class="op">&gt;</span>/workshop_qiime2/<span class="pp">*</span>.qzv <span class="st">"path-to-destination-folder"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
