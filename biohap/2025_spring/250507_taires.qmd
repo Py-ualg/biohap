@@ -327,7 +327,7 @@ biom convert \
 
 ## MicrobiomeAnalyst (MA)
 
-Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate `abundance` and `taxonomy` tables. In the GH repo, there are two scripts to do that without going into the details. Both have hardcoded input ASV table name `ASV_table_original_CoralSpecies_Original.tsv` which you need to conform too. Outputs will be `ASV_table_MA.txt` and `taxonomy_MA.txt`, respectively.
+Unfortunately the ASV table is not directly compatible with the MA. We need to split it into separate `abundance` and `taxonomy` tables. In the GH repo, there are two scripts to do that without going into the details. Both have hardcoded input ASV table name `ASV_table.tsv` which you need to conform too. Outputs will be `ASV_table_MA.txt` and `taxonomy_MA.txt`, respectively.
 
 ::: {.callout-warning collapse="true" title="Permissions"}
 Running the shell script requires that executable (`x`) permissions for the file, which probably after `scp` is not the case. To enable execution, run:
