@@ -10,3 +10,4 @@ plotly
 seaborn
 scikit-bio
 scikit-learn
+nbformat
