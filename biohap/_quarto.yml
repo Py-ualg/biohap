@@ -30,7 +30,7 @@ website:
         contents:
           - 2025_spring/250416_atkacz.qmd
           - 2025_spring/250507_taires.qmd
-          - 2025_spring/250604_iduarte.qmd
+          - 2025_spring/250604_iduarte/250604_iduarte.qmd
 
       - section: "Fall 2025"
         contents:
