@@ -2,10 +2,10 @@
 ---
 date: 04/06/2025, **Work in progress**
 
-author: Isabel Duarte [iduarte@ualg.pt](mailto:iduarte@ualg.pt)
+author: Isabel Duarte [giduarte@ualg.pt](mailto:giduarte@ualg.pt)
 ---
 
 Introduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning
 how to choose the right Generalized linear model (GLM) for your question and your data. Participants will 
-learn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially 
+learn essential concepts and basic workflow, from pre-processing raw count data to identifying differentially 
 expressed genes. 
