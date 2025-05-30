@@ -301,12 +301,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Self-learning &amp; Training | Differential Gene Expression Analysis (bulk RNA-seq) (<a href="https://hbctraining.github.io/Intro-to-DGE/schedule/links-to-lessons.html">here</a>).</p>
 <p>These course materials are based on the tutorials developed by the teaching team at Harvard Chan Bioinformatics Core (HBC).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Theory</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tutorial HBC</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" aria-current="page"><strong>Theory</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><strong>Tutorial HBC</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false"><strong>Tutorial NF-core</strong></a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>RNA-seq is a leading method for quantifying RNA levels in biological samples, leveraging next-generation sequencing (NGS) technologies. The process begins with RNA extraction and conversion to cDNA, followed by sequencing to produce reads representing the RNA present in a sample.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">RNA-seq Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Differential Expression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Functional Analysis</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<section id="overview" class="level4">
-<h4 class="anchored" data-anchor-id="overview">Overview</h4>
-<p>RNA-seq is a leading method for quantifying RNA levels in biological samples, leveraging next-generation sequencing (NGS) technologies. The process begins with RNA extraction and conversion to cDNA, followed by sequencing to produce reads representing the RNA present in a sample. These data are processed through a standard workflow with three main stages, as summarized in the figure below:</p>
+<p>These data are processed through a standard workflow with three main stages, as summarized in the figure below:</p>
 <ol type="1">
 <li><strong>Data pre-processing</strong> – improves read quality by removing contaminants and adapters.</li>
 <li><strong>Alignment and quantification</strong> – maps reads to a reference genome and estimates gene expression, either through traditional or faster lightweight methods.</li>
@@ -321,9 +324,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This course will not cover the first two steps. It will begin with a gene count matrix and proceed with differential expression analysis, visualization, and a brief overview of functional enrichment.</p>
 <hr>
-</section>
-<section id="differential-expression-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="differential-expression-analysis"><strong>Differential Expression Analysis</strong></h4>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Differential expression (DE) analysis compares gene expression levels across conditions (e.g., disease vs.&nbsp;healthy) to identify genes with statistically significant changes. This is typically done using tools like <strong>DESeq2</strong>, a robust R package designed for analyzing RNA-seq count data.</p>
 <ol type="1">
 <li><p><strong>Input Requirements</strong>:</p>
@@ -350,9 +352,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The main factor of interest is usually placed last for clarity.</p></li>
 </ul></li>
 </ol>
-</section>
-<section id="de-with-deseq2" class="level4">
-<h4 class="anchored" data-anchor-id="de-with-deseq2">DE with DESeq2</h4>
+<section id="de-with-deseq2" class="level5">
+<h5 class="anchored" data-anchor-id="de-with-deseq2">DE with DESeq2</h5>
 <p>DESeq2 is a widely used R package for identifying differentially expressed (DE) genes from RNA-seq count data. RNA-seq data typically exhibit many low-count genes and a long-tailed distribution due to highly expressed genes, requiring specialized statistical modeling. The major steps in DESeq2 are the following:</p>
 <ol type="1">
 <li><p><strong>Normalization</strong></p>
@@ -390,8 +391,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <hr>
 </section>
-<section id="functional-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="functional-analysis"><strong>Functional Analysis</strong></h4>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>After identifying differentially expressed (DE) genes, <strong>functional analysis</strong> helps interpret their biological relevance by uncovering the pathways, processes, or interactions they may be involved in. This includes:</p>
 <ul>
 <li><strong>Functional enrichment analysis</strong> – identifies overrepresented biological processes, molecular functions, cellular components, or pathways.</li>
@@ -406,9 +407,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>The test evaluates whether the overlap between the DE gene list and a gene set exceeds what would be expected by chance, pointing to potentially meaningful biological mechanisms.</p>
 <p>Tools commonly used for functional enrichment include <strong>Gene Ontology</strong>, <strong>KEGG</strong>, <strong>Reactome</strong>, <strong>clusterProfiler</strong>, and <strong>g:Profiler</strong>. These support the biological interpretation of DE results and help uncover pathways affected by the experimental condition.</p>
-</section>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <section id="quality-control" class="level4">
 <h4 class="anchored" data-anchor-id="quality-control">Quality control</h4>
 <section id="setup" class="level5">
@@ -476,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="differential-expression" class="level4">
-<h4 class="anchored" data-anchor-id="differential-expression">Differential expression</h4>
+<section id="differential-expression-1" class="level4">
+<h4 class="anchored" data-anchor-id="differential-expression-1">Differential expression</h4>
 <ol type="1">
 <li>edgeR analysis</li>
 </ol>
@@ -760,6 +763,538 @@ mus38  7.889512  fat</code></pre>
 <li><p>Functional enrichment</p></li>
 <li><p>Biological insights</p></li>
 </ol>
+</section>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<section id="differential-expression-analysis-with-deseq2" class="level4">
+<h4 class="anchored" data-anchor-id="differential-expression-analysis-with-deseq2">Differential Expression Analysis with DESeq2</h4>
+<p>In this tutorial, we will guide you through the practical steps necessary to set up the RStudio project, load the required libraries and data, execute the DESeq2 analysis, and a final simple functional enrichment analysis.</p>
+<p>Reference: <a href="https://nf-co.re/rnaseq/3.18.0/docs/usage/deanalysis/de_rstudio" class="uri">https://nf-co.re/rnaseq/3.18.0/docs/usage/deanalysis/de_rstudio</a></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">1. Setup</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2. Quality control</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">3. Visualise the results</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">4. Functional analysis</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>As with any analysis, the first step is to create a folder to store your work.</p>
+<ol type="1">
+<li>Choose an appropriate location on your computer, then set up the following folder structure:</li>
+</ol>
+<pre><code>  rnaseq_counts2bio_course/    
+  ├── data/    
+  ├── scripts/    
+  ├── de_results/    
+  └── sandbox/   </code></pre>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tip: Set Up a Clear Folder Structure Early">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip: Set Up a Clear Folder Structure Early
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Before collecting data, define a clear folder structure and file naming convention. This improves organization, avoids confusion, and supports collaboration. A consistent setup helps you and your team quickly locate and understand files.</p>
+<p>Start organized - your future self (and collaborators) will thank you!</p>
+<p>Suggested <em>minimal</em> structure for a data analysis project:</p>
+<pre><code>project_name_no_spaces_no_special_chars/    
+├── data/            # Raw and processed data
+│   ├── raw/         
+│   └── processed/   
+├── scripts/         # Analysis and processing code
+├── output/          # Figures, tables, results
+└── sandbox/         # Exploratory work (not for sharing)</code></pre>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Create a new RStudio project inside the <code>rnaseq_counts2bio_course</code> folder:</li>
+</ol>
+<p>2.1 Go to the <strong>File</strong> menu and select <strong>New Project</strong>;</p>
+<p>2.2 Select <strong>New Directory</strong>, <strong>New Project</strong>, name the project as shown below and click on <strong>Create Project</strong>;</p>
+<p>The new project will be automatically opened in RStudio.</p>
+<p>We can check whether we are in the correct working directory with <code>getwd()</code>.</p>
+<p>Next, go to the <strong>File menu</strong>, select <strong>New File</strong> and then <strong>R Script</strong> to create a script editor in which we will save all commands required for the analysis. In the editor type:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Differential expression analysis with DESeq2 ####</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>and save the file as <code>de_script.R</code> inside the <code>scripts</code> folder. From now on, each command described in the course can be added to your script.</p>
+<p>The analysis requires several R packages. To use them, we need to load the following libraries:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Loading libraries ####</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyverse: collection of R packages for data manipulation, visualization and modeling</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># DESeq2: package for differential gene expression analysis</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DESeq2"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># pheatmap: package for creating heatmaps, which will be used to visualise the results</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pheatmap"</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># RColorBrewer: package for creating color palettes, which will be used to customise the heatmaps</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"RColorBrewer"</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ggrepel: package that provides geoms for ggplot2 to repel overlapping text labels in the plots</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggrepel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and the pre-computed DESeq2 object (<code>dds</code>) generated by the nfcore/rnaseq pipeline. In this tutorial we will analyse the <code>dds</code> object generated by running the alignment with <strong>STAR</strong> and the quantification with <strong>Salmon</strong>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Import the dds obtained from nfcore/rnaseq ####</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"/workspace/gitpod/training/results_star_salmon/star_salmon/deseq2_qc/deseq2.dds.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, a user could choose to analyse the the <code>dds</code> object generated by running only <strong>Salmon</strong> for both lightweight alignment and quantification.</p>
+<p>In DESEq2, the <code>dds</code> object is a central data structure that contains the following components:</p>
+<ul>
+<li><p><code>countData</code>: a matrix of raw count data, where each row represents a gene and each column represents a sample;</p></li>
+<li><p><code>colData</code>: a data frame containing information about the samples, such as the experimental design, treatment and other relevant metadata;</p></li>
+<li><p><code>design</code>: a formula specifying the experimental design utilised to estimate the dispersion and the log2 fold change.</p></li>
+</ul>
+<p>All these components can be checked with specific commands:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### dds inspection ####</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">counts</span>(dds)) <span class="co"># to check the raw counts</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(dds) <span class="co"># to check the sample info</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">design</span>(dds) <span class="co"># to check the design formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>colData</code> and the <code>design</code> are the ones created within the nfcore/rnaseq pipeline and must be reorganised prior to the analysis. With the following commands we will create our metadata starting from the info stored in the <code>dds</code>. We will rename the column of the <code>colData</code>, we will ensure that the rownames of the metadata are present in the same order as the column names and finally we will update the <code>colData</code> of the <code>dds</code> object with our newly created metadata.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Creation of metadata starting from the dds colData ####</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">colData</span>(dds)<span class="sc">$</span>sample,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition =</span> <span class="fu">colData</span>(dds)<span class="sc">$</span>Group1,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">replica =</span> <span class="fu">colData</span>(dds)<span class="sc">$</span>Group2</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign names to rows of metadata</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(metadata) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(<span class="fu">counts</span>(dds))</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill the dds colData with the generated metadata</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(dds) <span class="ot">&lt;-</span> metadata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To avoid errors in DESeq2 is essential to check that sample names match between the <code>colData</code> and the <code>countData</code>, and that the sample are in the correct order:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Check that sample names match in both files ####</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">colnames</span>(dds<span class="sc">$</span>counts) <span class="sc">%in%</span> <span class="fu">rownames</span>(metadata)) <span class="co"># Must be TRUE</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">colnames</span>(dds<span class="sc">$</span>counts) <span class="sc">==</span> <span class="fu">rownames</span>(metadata)) <span class="co"># Must be TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that everything is setted up, we can proceed to generate a new DESeq2 object with the corrected metadata and the right design:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Creation of a new dds ####</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>dds_new  <span class="ot">&lt;-</span> <span class="fu">DESeqDataSet</span>(dds, <span class="at">design =</span> <span class="sc">~</span> condition)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dds inspection</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">counts</span>(dds_new)) <span class="co"># to check the raw counts</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(dds_new) <span class="co"># to check the sample info</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">design</span>(dds_new) <span class="co"># to check the design formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before running the different steps of the analysis, a good practice consists in pre-filtering the genes to remove those with very low counts. This is useful to improve computational efficiency and enhance interpretability. In general, it is reasonable to keep only genes with a sum counts of at least 10 for a minimal number of 3 samples:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Pre-filtering ####</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a minimal number of samples = 3</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>smallestGroupSize <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Select genes with a sum counts of at least 10 in 3 samples</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">counts</span>(dds_new) <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">&gt;=</span> smallestGroupSize</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the genes that pass the threshold</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>dds_filtered <span class="ot">&lt;-</span> dds_new[keep,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, it is time to run the differential expression analysis with the <code>DESeq()</code> function:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Run the DESeq2 analysis ####</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>dds_final <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>DESeq()</code> function is a high-level wrapper that simplifies the process of differential expression analysis by combining multiple steps into a single function call. This makes the workflow more user-friendly and ensures that all necessary pre-processing and statistical steps are executed in the correct order. The key functions that <strong>DESeq2</strong> calls include:</p>
+<ul>
+<li><p><code>estimateSizeFactors</code>: to normalise the count data;</p></li>
+<li><p><code>estimateDispersion</code>: to estimate the dispersion;</p></li>
+<li><p><code>nbinomWaldTest</code>: to perform differential expression test.</p></li>
+</ul>
+<p>The individual functions can be carried out also singularly as shown below:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Differential expression analysis step-by-step ####</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>dds_final <span class="ot">&lt;-</span> <span class="fu">estimateSizeFactors</span>(dds_filtered)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>dds_final <span class="ot">&lt;-</span> <span class="fu">estimateDispersions</span>(dds_final)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>dds_final <span class="ot">&lt;-</span> <span class="fu">nbinomWaldTest</span>(dds_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>The next step in the DESeq2 workflow is to perform quality control (QC) analysis on our data. This analysis is crucial for identifying potential issues ensuring that the data are suitable for downstream analysis. For QC analysis, it is useful to work with transformed versions of the count data, <code>variance-stabilised (vst)</code> or <code>regularised log-transformed (rlog)</code> counts. While, the rlog is more robust to outliers and extreme values, vst is computationally faster and so preferred for larger dataset.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These transformations are used for visualisation purposes, while DESeq2 requires raw counts (non- normalized (i.e., not TPMs, RPKMs, FPKMs, …)) for differential expression analysis.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Transform normalised counts for data visualisation ####</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A user can choose among vst and rlog. In this tutorial we will work with rlog transformed data.</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>rld <span class="ot">&lt;-</span> <span class="fu">rlog</span>(dds_final, <span class="at">blind =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>rlog</code> and the <code>vst</code> transformations have an argument, <strong>blind</strong> that can be set to:</p>
+<ul>
+<li><p><strong>TRUE</strong> (default): useful for QC analysis because it re-estimates the dispersion, allowing for comparison of samples in an unbiased manner with respect to experimental conditions;</p></li>
+<li><p><strong>FALSE</strong>: the function utilizes the already estimated dispersion, generally applied when differences in counts are expected to be due to the experimental design.</p></li>
+</ul>
+<p>Next, we perform <strong>Principal Component Analysis (PCA)</strong> to explore the data. DESeq2 provides a built-in function, <code>plotPCA()</code>, which uses <a href="https://ggplot2.tidyverse.org">ggplot2</a> for visualisation, taking the <code>rld</code> (or the <code>vst</code>) object as input. Since the <strong>treatment</strong> is the principal condition of interest in our metadata, we will use the <code>condition</code> information from our metadata to plot the PCA:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot PCA ####</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>pca_plot <span class="ot">&lt;-</span> <span class="fu">plotPCA</span>(rld, <span class="at">intgroup =</span> <span class="st">"condition"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"de_results/pca_plot.png"</span>, <span class="at">plot =</span> pca_plot, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The second essential step in QC analysis is <strong>Hierarchical Clustering</strong>. Although DESeq2 does not have a built-in function for this analysis, we can use the <code>pheatmap()</code> function from the <strong>pheatmap</strong> package. We will extract the matrix of rlog-transformed counts from the <code>rld</code> object (pheatmap input), compute pairwise correlations and plot the heatmap:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot sample to sample distance (hierarchical clustering) ####</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the matrix of rlog-transformed counts from the rld object</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(rld)))  <span class="co"># Calculate pairwise distances between samples using the dist() function with Euclidean distance as the default method. By transposing the matrix with t(), we ensure that samples become rows and genes become columns, so that the dist function computes pairwise distances between samples.</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert distances to a matrix</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>sampleDistMatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sampleDists)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the row and column names of the distance matrix</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(rld<span class="sc">$</span>condition, rld<span class="sc">$</span>replica, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(rld<span class="sc">$</span>condition, rld<span class="sc">$</span>replica, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color palette for the heatmap</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Greens"</span>)))(<span class="dv">255</span>) <span class="co"># function from RColorBrewer package</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the heatmap</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>clustering_plot <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(sampleDistMatrix,</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">clustering_distance_rows =</span> sampleDists,</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">clustering_distance_cols =</span> sampleDists,</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>                            <span class="at">col =</span> colors,</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fontsize_col =</span> <span class="dv">8</span>,</span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fontsize_row =</span> <span class="dv">8</span>)</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"de_results/clustering_plot.png"</span>, <span class="at">plot =</span> clustering_plot, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The normalised counts stored in the <code>dds</code> can be inspected with the <code>counts()</code> function and saved in our de_results folder:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Inspect the normalised counts ####</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the normalised counts to inspect the data</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">counts</span>(dds_final, <span class="at">normalized =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the raw counts (not normalised) to compare with the normalised counts</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">counts</span>(dds_final))</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the normalised counts from the DESeq2 object to a tibble</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>normalised_counts <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">counts</span>(dds_final, <span class="at">normalized =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for gene names to the normalised counts tibble</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(<span class="fu">counts</span>(dds_final))</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Relocate the gene column to the first position</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>normalised_counts <span class="ot">&lt;-</span> normalised_counts <span class="sc">%&gt;%</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(gene, <span class="at">.before =</span> control_rep1)</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the normalised counts</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(normalised_counts, <span class="at">file =</span> <span class="st">"de_results/normalised_counts.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>results()</code> function in DESeq2 is used to extract the results of the DE analysis. This function takes the <code>dds</code> object as input and returns a DataFrame containing the results of the analysis:</p>
+<ul>
+<li><p><strong>baseMean</strong>: the average expression level of the gene across all samples;</p></li>
+<li><p><strong>log2FoldChange</strong>: the log2 fold change of the gene between the condition of interest and the reference level;</p></li>
+<li><p><strong>lfcSE</strong>: the standard error of the log2 fold change;</p></li>
+<li><p><strong>stat</strong>: the Wald statistic, which is used to calculate the p-value;</p></li>
+<li><p><strong>pvalue</strong>: the p-value from the Wald test indicates the probability of observing the measured difference in gene expression (log2 fold change) by chance, assuming no true difference exists (null hypothesis). A low p-value suggests that the observed expression change between samples is unlikely due to random chance, so we can reject the null hypothesis –&gt; the gene is differentially expressed;</p></li>
+<li><p><strong>padj</strong>: the adjusted p-value, which takes into account multiple testing corrections, (Benjamini-Hochberg method default) to control the false discovery rate;</p></li>
+</ul>
+<p>The <code>results()</code> function returns the results for all genes in the analysis with an adjusted p-value below a specific FDR cutoff, set by default to 0.1. This threshold can be modified with the parameter <code>alpha</code>. The <code>results()</code> function can also be customised to filter the results based on certain criteria (log2 fold change or padj) or to set a specific contrast (specific comparison between two or more levels).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The order of the contrast names determines the direction of the fold change that is reported in the results. Specifically, the first level of the contrast is the condition of interest and the second level is the reference level.</p>
+</div>
+</div>
+<p>Notice that in this tutorial the contrast is already correctly specified.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Extract results table from the dds object ####</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds_final)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualise the results</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise the results showing the number of tested genes (genes with non-zero total read count), the genes up- and down-regulated at the selected threshold (alpha) and the number of genes excluded by the multiple testing due to a low mean count</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co"># DESeq2 function to extract the name of the contrast</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">resultsNames</span>(dds_final)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co"># res &lt;- results(dds, contrast = c("design_formula", "condition_of_interest", "reference_condition"))</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Command to set the contrast, if necessary</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the res object inside another variable because the original res file will be required for other functions</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>res_viz <span class="ot">&lt;-</span> res</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Add gene names as a new column to the results table</span></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>res_viz<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(res)</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the results to a tibble for easier manipulation and relocate the gene column to the first position</span></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>res_viz <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(res_viz) <span class="sc">%&gt;%</span></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(gene, <span class="at">.before =</span> baseMean)</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results table</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(res_viz, <span class="at">file =</span> <span class="st">"de_results/de_result_table.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the <em>Experimental Design</em> section, we emphasised the importance of estimating the log2 fold change threshold using a statistical power calculation, rather than selecting it arbitrarily. This approach ensures that the chosen threshold is statistically appropriate and tailored to the specifics of the experiment. However, since we are working with simulated data for demonstration purposes, we will use a padj threshold of 0.05 and consider genes with a log2 fold change of at least 1 or -1 as differentially expressed.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Extract significant DE genes from the results ####</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the results to include only significantly DE genes with a padj less than 0.05 and a log2FoldChange of at least 1 or -1</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>resSig <span class="ot">&lt;-</span> <span class="fu">subset</span>(res_viz, padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(log2FoldChange) <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the results to a tibble for easier manipulation and relocate the gene column to the first position</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>resSig <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(resSig) <span class="sc">%&gt;%</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(gene, <span class="at">.before =</span> baseMean)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Order the significant genes by their adjusted p-value (padj) in ascending order</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>resSig <span class="ot">&lt;-</span> resSig[<span class="fu">order</span>(resSig<span class="sc">$</span>padj),]</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the final results table of significant genes</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>resSig</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the significant DE genes</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(resSig, <span class="at">file =</span> <span class="st">"de_results/sig_de_genes.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Now that we have obtained the results of the differential expression analysis, it’s time to visualise the data to gain a deeper understanding of the biological processes that are affected by the experimental conditions. Visualisation is a crucial step in RNA-seq analysis, as it allows us to identify patterns and trends in the data that may not be immediately apparent from the numerical results.</p>
+<p>In the following sections, we will explore different types of plots that are commonly used to visualise the results of RNA-seq analysis, including:</p>
+<ul>
+<li><strong>MA plot</strong>: scatter plot commonly utilised to visualise the results of the DE analysis for all the samples. The plot displays the mean of the normalised counts on the x-axis and the log2 fold change on the y-axis. This allows the visualisation of the relationship between the magnitude of the fold change and the mean expression level of the genes. Genes that are differentially expressed will appear farthest from the horizontal line, while genes with low expression levels will appear closer to the line.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### MA plot ####</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The MA plot is not a ggplot, so we have to save it in a different way</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Open a graphics device to save the plot as a PNG file</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">"MA_plot.png"</span>, <span class="at">width =</span> <span class="dv">1500</span>, <span class="at">height =</span> <span class="dv">100</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the MA plot (it will be saved to the file instead of displayed on screen)</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the device to save the file</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>counts plot</strong>: plot of the normalised counts for a single gene across the different conditions in your experiment. It’s particularly useful for visualising the expression levels of specific genes of interest and comparing them across sample groups.</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot a specific gene in this case ENSG00000142192, a DE gene ####</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">"de_results/plotCounts.png"</span>, <span class="at">width =</span> <span class="dv">1000</span>, <span class="at">height =</span> <span class="dv">1200</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCounts</span>(dds_final, <span class="at">gene =</span> <span class="st">"ENSG00000142192"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>heatmap</strong>: plot of the normalised counts for all the significant genes obtained with the <code>pheatmap()</code> function. The heatmap provides insights into genes and sample relationships that may not be apparent from individual gene plots alone.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Heatmap ####</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract only the first column (gene names) from the result object containing the significant genes</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>significant_genes <span class="ot">&lt;-</span> resSig[, <span class="dv">1</span>]</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract normalised counts for significant genes from the normalised counts matrix and convert the gene column to row names</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>significant_counts <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(normalised_counts, significant_genes, <span class="at">by =</span> <span class="st">"gene"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"gene"</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the heatmap using pheatmap</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>heatmap <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(significant_counts,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">cluster_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fontsize =</span> <span class="dv">8</span>,</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">scale =</span> <span class="st">"row"</span>,</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fontsize_row =</span> <span class="dv">8</span>,</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">height =</span> <span class="dv">10</span>)</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"de_results/heatmap.png"</span>, <span class="at">plot =</span> heatmap, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>volcano plot</strong>: scatter plot that displays the log2 fold change on the x-axis and the log transformed padj on the y-axis. This allows for the visualisation of both the magnitude and significance of the changes in gene expression between two conditions. Genes that are differentially expressed (i.e., have a large log2 fold change) and are statistically significant (i.e., have a low padj) will appear in the left (downregulated genes) or in the right (upregulated genes) corners of the plot making easier their identification.</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Volcano plot ####</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the results to a tibble and add a column indicating differential expression status</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>res_tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(res) <span class="sc">%&gt;%</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diffexpressed =</span> <span class="fu">case_when</span>(</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    log2FoldChange <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">'upregulated'</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;</span> padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">'downregulated'</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">'not_de'</span>))</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column with gene names</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>res_tb<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(res)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Relocate the gene column to the first position</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>res_tb <span class="ot">&lt;-</span>  res_tb <span class="sc">%&gt;%</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(gene, <span class="at">.before =</span> baseMean)</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Order the table by padj and add a new column for gene labels</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>res_tb <span class="ot">&lt;-</span> res_tb <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(padj) <span class="sc">%&gt;%</span></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genelabels =</span> <span class="st">""</span>)</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Label the top 5 most significant genes</span></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>res_tb<span class="sc">$</span>genelabels[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> res_tb<span class="sc">$</span>gene[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a volcano plot using ggplot2</span></span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>volcano_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> res_tb, <span class="fu">aes</span>(<span class="at">x =</span> log2FoldChange, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(padj), <span class="at">col =</span> diffexpressed)) <span class="sc">+</span></span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> genelabels), <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">max.overlaps =</span> <span class="cn">Inf</span>) <span class="sc">+</span></span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"DE genes treatment versus control"</span>) <span class="sc">+</span></span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.25</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"upregulated"</span> <span class="ot">=</span> <span class="st">"red"</span>,</span>
+<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"downregulated"</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
+<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"not_de"</span> <span class="ot">=</span> <span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb40-42"><a href="#cb40-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">'DE genes'</span>) <span class="sc">+</span></span>
+<span id="cb40-43"><a href="#cb40-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb40-44"><a href="#cb40-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-45"><a href="#cb40-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
+<span id="cb40-46"><a href="#cb40-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-47"><a href="#cb40-47" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"de_results/volcano_plot.png"</span>, <span class="at">plot =</span> volcano_plot, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>The output of the differential expression analysis is a list of significant DE genes. To uncover the underlying biological mechanisms, various downstream analyses can be performed, such as functional enrichment analysis (identify overrepresented biological processes, molecular functions, cellular components or pathways), and network analysis (group genes based on similar expression patterns to identify novel interactions). To facilitate the interpretation of the resulting list of DE genes, a range of freely available web- and R-based tools can be employed.</p>
+<p>In this tutorial, we will explore an enrichment analysis technique known as Over-Representation Analysis (ORA), a powerful tool for identifying biological pathways or processes significantly enriched within the list of DE genes. The underlying statistic behind ORA is the <strong>hypergeometric test</strong>, which considers three key components:</p>
+<ul>
+<li><p><strong>Universe</strong>: the background list of genes (for example the genes annotated in a genome);</p></li>
+<li><p><strong>GeneSet</strong>: a collection of genes annotated by a reference database (such as Gene Ontology), and known to be involved in a particular biological pathway or process;</p></li>
+<li><p><strong>Gene List</strong>: the differentially expressed genes.</p></li>
+</ul>
+<p>The hypergeometric test calculates the probability of observing a certain number of genes from the gene set (pathway or process) within the gene list (DE genes) by chance. An important aspect of this analysis is the concept of <strong>membership</strong>. It defines the relationship between DE genes and genes from the analysed gene set. By knowing which genes belong to which pathway/process, we can determine whether the observed overlap between DE genes and the particular pathway/process is greater than what would be expected by random chance.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Enrichment analysis (ORA) ####</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading libraries</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># clusterProfiler: package for enrichment analysis</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># org.Hs.eg.db: package for the human gene annotation database</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co"># cowplot: package for combining multiple plots</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"cowplot"</span>) <span class="co"># To install the package missing in the current RStudio env</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare gene list</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the log2 fold change values from the results data frame</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>gene_list <span class="ot">&lt;-</span> res<span class="sc">$</span>log2FoldChange</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Name the vector with the corresponding gene identifiers</span></span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gene_list) <span class="ot">&lt;-</span> res<span class="sc">$</span>gene</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the list in decreasing order (required for clusterProfiler)</span></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>gene_list <span class="ot">&lt;-</span> <span class="fu">sort</span>(gene_list, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the significantly differentially expressed genes from the results data frame</span></span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>res_genes <span class="ot">&lt;-</span> resSig<span class="sc">$</span>gene</span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Run GO enrichment analysis using the enrichGO function</span></span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>go_enrich <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">gene =</span> res_genes,                <span class="co"># Genes of interest</span></span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">universe =</span> <span class="fu">names</span>(gene_list),     <span class="co"># Background gene set</span></span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">OrgDb =</span> org.Hs.eg.db,            <span class="co"># Annotation database</span></span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyType =</span> <span class="st">'ENSEMBL'</span>,             <span class="co"># Key type for gene identifiers</span></span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">readable =</span> <span class="cn">TRUE</span>,                 <span class="co"># Convert gene IDs to gene names</span></span>
+<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">ont =</span> <span class="st">"ALL"</span>,                     <span class="co"># Ontology: can be "BP", "MF", "CC", or "ALL"</span></span>
+<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,             <span class="co"># P-value cutoff for significance</span></span>
+<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">qvalueCutoff =</span> <span class="fl">0.10</span>              <span class="co"># Q-value cutoff for significance</span></span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot of the top enriched GO terms</span></span>
+<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>barplot <span class="ot">&lt;-</span> <span class="fu">barplot</span>(</span>
+<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>  go_enrich,</span>
+<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Enrichment analysis barplot"</span>,</span>
+<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">font.size =</span> <span class="dv">8</span></span>
+<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dot plot of the top enriched GO terms</span></span>
+<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a>dotplot <span class="ot">&lt;-</span> <span class="fu">dotplot</span>(</span>
+<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a>  go_enrich,</span>
+<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Enrichment analysis dotplot"</span>,</span>
+<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">font.size =</span> <span class="dv">8</span></span>
+<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the bar plot and dot plot into a single plot grid</span></span>
+<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a>go_plot <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(barplot, dotplot, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
+<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"de_results/go_plot.png"</span>, <span class="at">plot =</span> go_plot, <span class="at">width =</span> <span class="dv">13</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
 </div>
 </div>
