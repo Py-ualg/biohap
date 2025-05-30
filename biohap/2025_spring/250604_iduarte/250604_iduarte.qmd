@@ -1,11 +1,406 @@
-# RNA-Seq Data Analysis in R - From Counts to Biological Insights
 ---
-date: 04/06/2025, **Work in progress**
-
+title: "RNA-Seq Data Analysis in R | From Counts to Biological Insights"
 author: Isabel Duarte [giduarte@ualg.pt](mailto:giduarte@ualg.pt)
+date: 04 june 2025
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    code-fold: show
+    code-summary: "Code"
+editor: visual
 ---
 
-Introduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning
-how to choose the right Generalized linear model (GLM) for your question and your data. Participants will 
-learn essential concepts and basic workflow, from pre-processing raw count data to identifying differentially 
-expressed genes. 
+# RNA-seq Analysis Crash Course
+
+Welcome! This crash course walks you through RNA-seq data analysis in R: From raw count matrices to functional interpretation of differentially expressed genes.
+
+### Learning Objectives
+
+1.  Perform quality control of the data.
+2.  Identify the R commands needed to run a differential expression analysis using `edgeR` and `DESeq2`.
+3.  Visualize the DE results.
+4.  Undertake functional annotation of data, and perform functional enrichment analysis.
+5.  Visualize functionally enriched biological categories.
+
+#### References
+
+Self-learning & Training \| Differential Gene Expression Analysis (bulk RNA-seq) ([here](https://hbctraining.github.io/Intro-to-DGE/schedule/links-to-lessons.html)).
+
+These course materials are based on the tutorials developed by the teaching team at Harvard Chan Bioinformatics Core (HBC).
+
+::: panel-tabset
+### Theory
+
+#### Overview
+
+RNA-seq is a leading method for quantifying RNA levels in biological samples, leveraging next-generation sequencing (NGS) technologies. The process begins with RNA extraction and conversion to cDNA, followed by sequencing to produce reads representing the RNA present in a sample. These data are processed through a standard workflow with three main stages, as summarized in the figure below:
+
+1.  **Data pre-processing** – improves read quality by removing contaminants and adapters.
+2.  **Alignment and quantification** – maps reads to a reference genome and estimates gene expression, either through traditional or faster lightweight methods.
+3.  **Differential expression analysis** – identifies and visualizes genes with significant expression differences.
+
+Additional downstream analyses (e.g., functional enrichment, co-expression, or multi-omics integration) are popular ways to derive biological insights from these analyses.
+
+![Adapted from: <https://nf-co.re/rnaseq/dev/docs/usage/differential_expression_analysis/theory>](figs/rna-seq_course.png)
+
+This course will not cover the first two steps. It will begin with a gene count matrix and proceed with differential expression analysis, visualization, and a brief overview of functional enrichment.
+
+---
+
+#### **Differential Expression Analysis**
+
+Differential expression (DE) analysis compares gene expression levels across conditions (e.g., disease vs. healthy) to identify genes with statistically significant changes. This is typically done using tools like **DESeq2**, a robust R package designed for analyzing RNA-seq count data.
+
+
+
+1.  **Input Requirements**:
+
+    -   A **count matrix** (genes × samples).
+    -   A **metadata table** describing sample attributes.
+
+2.  **Quality Control**:
+
+    -   Use **PCA** and **hierarchical clustering** to explore variation and detect outliers.
+    -   Transform counts using **variance stabilizing transformation (vst)** or **regularized log (rlog)** to ensure comparable variance across genes, improving downstream analysis.
+
+3.  **Filtering**:
+
+    -   Remove genes with low or zero counts to improve sensitivity and reduce false positives.
+
+4.  **Design Formula**:
+
+    -   Specifies how gene counts depend on experimental factors.
+
+    -   Can include main conditions and covariates (e.g., sex, batch, stage).
+
+    -   Example:
+
+        ``` r
+        design = ~ condition
+        design = ~ sex + developmental_stage + condition
+        ```
+
+    -   The main factor of interest is usually placed last for clarity.
+
+
+#### DE with DESeq2
+
+DESeq2 is a widely used R package for identifying differentially expressed (DE) genes from RNA-seq count data. RNA-seq data typically exhibit many low-count genes and a long-tailed distribution due to highly expressed genes, requiring specialized statistical modeling. The major steps in DESeq2 are the following:
+
+1. **Normalization**
+
+   * Adjusts for sequencing depth and RNA composition using **size factors** calculated via the median ratio method.
+   * Normalized counts are used for visualization but **raw counts must be used for DESeq2 modeling**.
+
+2. **Dispersion Estimation**
+
+   * RNA-seq data show **overdispersion** (variance > mean).
+   * DESeq2 models count data using the **negative binomial distribution**.
+   * Dispersion is estimated:
+
+     * Globally (common dispersion),
+     * Per gene (gene-wise dispersion),
+     * Then refined through **shrinkage toward a fitted mean-dispersion curve** to improve stability, especially with small sample sizes.
+   * Genes with extreme variability are **not shrunk** to avoid false positives.
+
+3. **Model Fitting and Hypothesis Testing**
+
+   * A **generalized linear model (GLM)** is fit to each gene’s normalized counts.
+   * DESeq2 tests whether gene expression differs significantly between groups:
+
+     * **Wald test** for simple comparisons (e.g., treated vs. control),
+     * **Likelihood Ratio Test (LRT)** for more complex designs with multiple variables.
+   * Each test returns a **log2 fold change** and a **p-value**.
+
+4. **Multiple Testing Correction**
+
+   * To control for false positives from testing thousands of genes, DESeq2 adjusts p-values using **Benjamini-Hochberg FDR correction**.
+   * An FDR cutoff of <0.05 means that 5% of DE genes may be false positives.
+
+---
+
+#### **Functional Analysis**
+
+After identifying differentially expressed (DE) genes, **functional analysis** helps interpret their biological relevance by uncovering the pathways, processes, or interactions they may be involved in. This includes:
+
+* **Functional enrichment analysis** – identifies overrepresented biological processes, molecular functions, cellular components, or pathways.
+* **Network analysis** – groups genes with similar expression patterns to reveal potential interactions.
+
+This course focuses on **Over-Representation Analysis (ORA)**, a common enrichment method that uses the **hypergeometric test** to assess whether certain biological pathways or gene sets are statistically enriched in the DE gene list.
+
+Key components of ORA:
+
+* **Universe** – the full set of genes considered (e.g., all genes in the genome).
+* **Gene Set** – a group of genes annotated to a particular function or pathway (e.g., from Gene Ontology).
+* **Gene List** – the list of DE genes identified in the analysis.
+
+The test evaluates whether the overlap between the DE gene list and a gene set exceeds what would be expected by chance, pointing to potentially meaningful biological mechanisms.
+
+Tools commonly used for functional enrichment include **Gene Ontology**, **KEGG**, **Reactome**, **clusterProfiler**, and **g\:Profiler**. These support the biological interpretation of DE results and help uncover pathways affected by the experimental condition.
+
+
+### Tutorial HBC
+#### Quality control
+
+##### Setup
+
+1.  Load packages and data
+
+```{r}
+#| eval: true
+#| warning: false
+#| message: false
+
+# Load required packages
+library(here)
+library(tidyverse)
+library(readxl)
+library(edgeR)
+library(limma)
+library(DESeq2)
+
+# Create list to save the analysis objects
+de_edger <- list()
+de_deseq <- list()
+
+# Load gene counts data and sample metadata
+counts <- readxl::read_xlsx(here::here("2025_spring/250604_iduarte/data/diet_mice_counts.xlsx"), col_names = TRUE, sheet = 1)
+
+metadata <- read.table(file=here::here("2025_spring/250604_iduarte/data/diet_mice_metadata.txt"), 
+                        header = TRUE,
+                        sep = "\t", dec = ".",
+                        stringsAsFactors = TRUE)
+
+```
+
+2.  Check if the data and metadata sample ids match
+
+```{r}
+#| eval: true
+
+### Ensure the sample metadata matches the identity and order of the columns in the expression data
+
+# Order the sample ids from the metadata (smaller file) by the colnames from the counts
+if (setequal(colnames(counts)[-c(1, 2)], metadata$sample_id)) {
+  metadata <- metadata[match(colnames(counts)[-c(1, 2)], metadata$sample_id),]
+} else {
+  stop("Error: The set of sample ids is not equal in both datasets.")
+}
+
+```
+
+3.  Tidy the data
+
+```{r}
+#| eval: true
+
+# Transform count data-frame to matrix with row names
+# and remove NAs (if they exist)
+counts_matrix <- counts[-1] %>%
+na.omit() %>%
+column_to_rownames(var = "gene_symbol") %>%
+as.matrix()
+```
+
+4.  PCA \| validation of experimental design
+
+5.  Hierarchical clustering of the correlation matrix
+
+#### Differential expression
+
+1.  edgeR analysis
+
+Create design and contrast matrices \| Modelling Diet and Gender
+
+```{r}
+#| eval: true
+
+# Design matrix using the model for categorical variables diet and gender
+design_diet <- model.matrix( ~ 0 + diet + gender, data = metadata)
+#design_diet <- model.matrix( ~ 0 + diet, data = metadata)
+
+# Contrasts matrix: Differences between diets
+contrasts_diet <- limma::makeContrasts(
+(dietfat - dietlean),
+levels=colnames(design_diet)
+)
+
+```
+
+2.  Extract differentially expressed genes
+
+```{r}
+#| eval: true
+
+# Create a list 
+
+# Create a DGEList object
+de_edger$dge_data <- DGEList(counts = counts_matrix)
+
+# Filter low-expression genes
+de_edger$keep <- filterByExpr(de_edger$dge_data,
+design = design_diet)
+
+de_edger$dge_data_filtered <- de_edger$dge_data[de_edger$keep, , 
+                                                keep.lib.sizes=FALSE]
+
+# Perform Library Size Normalization | Slow step
+de_edger$dge_data_filtered <- calcNormFactors(de_edger$dge_data_filtered)
+
+# Estimate dispersions | Slow step
+de_edger$dge_data_filtered <- estimateDisp(de_edger$dge_data_filtered,
+design = design_diet)
+
+### To perform likelihood ratio tests
+# Fit the negative binomial generalized log-linear model
+de_edger$fit <- glmFit(de_edger$dge_data_filtered,
+design=design_diet,
+contrast = contrasts_diet)
+
+# Perform likelihood ratio tests
+de_edger$lrt <- glmLRT(de_edger$fit)
+
+# Extract the differentially expressed genes
+de_edger$topGenes <- topTags(de_edger$lrt, n=NULL,
+adjust.method = "BH", 
+sort.by = "PValue", 
+p.value = 0.05)
+
+# Look at the Differentially expressed genes
+de_edger$topGenes
+
+```
+
+3.  DESeq2 analysis
+
+Detailed explanations can be found [here.](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/04b_DGE_DESeq2_analysis.html)
+
+```{r}
+#| warning: false
+
+# Step 1: Create a DESeqDataSet object
+# The matrix is generated by the function
+de_deseq$dds <- DESeqDataSetFromMatrix(countData = counts_matrix,
+                              colData = metadata,
+                              design = ~ 0 + diet + gender)
+
+# Step 2: Run the DESeq function to perform the analysis
+de_deseq$dds <- DESeq(de_deseq$dds)
+
+# Step 3: Extract results
+# Replace 'condition_treated_vs_untreated' with the actual comparison you are interested in
+de_deseq$results <- results(de_deseq$dds, contrast = c("diet", "fat", "lean"))
+
+# Step 4: Apply multiple testing correction
+# The results function by default applies the Benjamini-Hochberg procedure to control FDR
+# Extract results with adjusted p-value (padj) less than 0.05 (common threshold for significance)
+de_deseq$significant_results <- de_deseq$results[which(de_deseq$results$padj < 0.05), ]
+
+# View the differentially expressed genes
+de_deseq$significant_results[order(de_deseq$significant_results$padj), ]
+
+```
+
+##### Visualize the data
+
+```{r}
+#| warning: false
+
+# DESeq2
+
+# DESeq2 creates a matrix when you use the counts() function
+## First convert normalized_counts to a data frame and transfer the row names to a new column called "gene"
+normalized_counts <- counts(de_deseq$dds, normalized=T) %>% 
+                     data.frame() %>%
+                     rownames_to_column(var="gene_symbol") %>%
+                     as_tibble() 
+
+# Plot expression for single gene
+plotCounts(de_deseq$dds, gene="TAMM41", intgroup="diet") 
+plotCounts(de_deseq$dds, gene="TAMM41", intgroup="gender") 
+
+# # Save plotcounts to a data frame object to use ggplots
+d <- plotCounts(de_deseq$dds, gene="TAMM41", intgroup="diet", returnData=TRUE)
+
+# View d
+head(d)
+
+# Draw with ggplot a single gene
+ggplot(d, aes(x = diet, y = count, color = diet)) + 
+    geom_point(position=position_jitter(w = 0.1,h = 0)) +
+    ggrepel::geom_text_repel(aes(label = rownames(d))) + 
+    theme_bw() +
+    ggtitle("TAMM41") +
+    theme(plot.title = element_text(hjust = 0.5))
+
+# View the top 20 genes
+## Order results by padj values
+top12_sigOE_genes <- rownames(as.data.frame(de_deseq$significant_results))[1:12]
+
+## normalized counts for top 20 significant genes
+top12_sigOE_norm <- normalized_counts %>%
+        filter(gene_symbol %in% top12_sigOE_genes)
+
+# Make a tidy table to plot
+top12_counts <- pivot_longer(top12_sigOE_norm, starts_with("mus"), names_to = "sample_id", values_to = "ncounts" )
+
+# Add metadata
+top12_counts_metadata <- left_join(top12_counts, metadata, by = "sample_id")
+
+# ## Plot using ggplot2
+ggplot(top12_counts_metadata, aes(x = gene_symbol, y = ncounts)) +
+        geom_boxplot(aes(fill = diet)) +
+        scale_y_log10() +
+        xlab("Genes") +
+        ylab("log10 Normalized Counts") +
+        ggtitle("Top 12 Significant DE Genes") +
+        theme_bw() +
+	theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+	theme(plot.title = element_text(hjust = 0.5)) 
+
+# ## Boxplots of diet per genes
+ggplot(top12_counts_metadata) +
+        geom_boxplot(aes(x = diet, y = ncounts, fill = diet)) +
+        scale_y_log10() +
+        xlab("Diet") +
+        ylab("log10 Normalized Counts") +
+        ggtitle("Top 12 Significant DE Genes") +
+        theme_bw() +
+  facet_wrap(facets="gene_symbol")
+
+# ## Boxplots of gender per genes
+ggplot(top12_counts_metadata) +
+        geom_boxplot(aes(x = interaction(gender, diet), y = ncounts, 
+                         fill = interaction(gender, diet)), show.legend = FALSE) +
+        scale_y_log10() +
+        xlab("Gender.Diet") +
+        ylab("log10 Normalized Counts") +
+        ggtitle("Top 12 Significant DE Genes") +
+        theme_bw() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  facet_wrap(facets="gene_symbol")
+
+## Volcanoplot 
+
+as.data.frame(de_deseq$results) %>%
+  rownames_to_column(var="gene_symbol") -> results_df
+
+ggplot(results_df, aes(x=log2FoldChange, y=-log10(padj))) +
+  geom_point()
+
+```
+
+#### Functional enrichment
+
+1.  Functional annotation
+
+2.  Functional enrichment
+
+3.  Biological insights
+:::
+
+
+
