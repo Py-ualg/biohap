@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BioHap: Bioinformatics, Handy and Practical</title>
+<title>Theory – BioHap: Bioinformatics, Handy and Practical</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,24 +20,58 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,10 +110,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logo_ccmar.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo_ccmar.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">BioHap: Bioinformatics, Handy and Practical</span>
     </a>
   </div>
@@ -93,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li><li class="breadcrumb-item"><a href="./index.html">BIOinformatics: Handy and Practical</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Theory</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -119,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BIOinformatics: Handy and Practical</span></a>
   </div>
 </li>
@@ -136,20 +170,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2025_spring/250416_atkacz.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2025_spring/250416_atkacz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Simple Linux – An Introduction to Genomic Analysis on Linux</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2025_spring/250507_taires.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2025_spring/250507_taires.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Microbiome Analysis of Amplicon Sequencing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2025_spring/250604_iduarte/250604_iduarte.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RNA-Seq Data Analysis in R | From Counts to Biological Insights</span></a>
+  <a href="../../2025_spring/250604_iduarte/250604_iduarte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial NF-core</span></a>
   </div>
 </li>
       </ul>
@@ -165,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2025_fall/call.html" class="sidebar-item-text sidebar-link">
+  <a href="../../2025_fall/call.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Call for contributions</span></a>
   </div>
 </li>
@@ -182,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basics/abundance_tables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../basics/abundance_tables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abundance table preprocessing</span></a>
   </div>
 </li>
@@ -190,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -199,29 +233,138 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#bioinformatics-handy-and-practical" id="toc-bioinformatics-handy-and-practical" class="nav-link active" data-scroll-target="#bioinformatics-handy-and-practical">BIOinformatics: Handy and Practical</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Theory</h1>
+</div>
 
 
 
-<section id="bioinformatics-handy-and-practical" class="level1 unnumbered">
-<h1 class="unnumbered">BIOinformatics: Handy and Practical</h1>
-<p>This is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happened in <em>Spring 2025</em>.</p>
-<p>Until this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced. Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis, helping you turn raw sequence files into meaningful biological insights.</p>
-<p>To visit the source files for the workshops and the webpage, visit our <a href="https://github.com/Py-ualg/biohap">Github</a>. To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>RNA-seq is a leading method for quantifying RNA levels in biological samples, leveraging next-generation sequencing (NGS) technologies. The process begins with RNA extraction and conversion to cDNA, followed by sequencing to produce reads representing the RNA present in a sample.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">RNA-seq Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Differential Expression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Functional Analysis</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>RNA-seq data are processed through a standard workflow with three main stages:</p>
+<ol type="1">
+<li><strong>Data pre-processing</strong> – improves read quality by removing contaminants and adapters.</li>
+<li><strong>Alignment and quantification</strong> – maps reads to a reference genome and estimates gene expression, either through traditional or faster lightweight methods.</li>
+<li><strong>Differential expression analysis</strong> – identifies and visualizes genes with significant expression differences.</li>
+</ol>
+<p>Additional downstream analyses (e.g., functional enrichment, co-expression, or multi-omics integration) are popular ways to derive biological insights from these analyses.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/rna-seq_course.png" class="img-fluid figure-img"></p>
+<figcaption>Adapted from: <a href="https://nf-co.re/rnaseq/dev/docs/usage/differential_expression_analysis/theory" class="uri">https://nf-co.re/rnaseq/dev/docs/usage/differential_expression_analysis/theory</a></figcaption>
+</figure>
+</div>
+<p><strong>Note</strong> | As shown in the above scheme, this course will <strong>not</strong> cover the first two steps. It will begin with a gene count matrix and proceed with differential expression analysis, visualization, and a brief overview of functional enrichment.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Differential expression (DE) analysis compares gene expression levels across conditions (e.g., disease vs.&nbsp;healthy) to identify genes with statistically significant changes. This is typically done using tools like <strong>DESeq2</strong>, a robust R package designed for analyzing RNA-seq count data.</p>
+<ol type="1">
+<li><p><strong>Input Requirements</strong>:</p>
+<ul>
+<li>A <strong>count matrix</strong> (genes × samples).</li>
+<li>A <strong>metadata table</strong> describing sample attributes.</li>
+</ul></li>
+<li><p><strong>Quality Control</strong>:</p>
+<ul>
+<li>Use <strong>PCA</strong> and <strong>hierarchical clustering</strong> to explore variation and detect outliers.</li>
+<li>Transform counts using <strong>variance stabilizing transformation (vst)</strong> or <strong>regularized log (rlog)</strong> to ensure comparable variance across genes, improving downstream analysis.</li>
+</ul></li>
+<li><p><strong>Filtering</strong>:</p>
+<ul>
+<li>Remove genes with low or zero counts to improve sensitivity and reduce false positives.</li>
+</ul></li>
+<li><p><strong>Design Formula</strong>:</p>
+<ul>
+<li><p>Specifies how gene counts depend on experimental factors.</p></li>
+<li><p>Can include main conditions and covariates (e.g., sex, batch, stage).</p></li>
+<li><p>Example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>design <span class="ot">=</span> <span class="er">~</span> condition</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>design <span class="ot">=</span> <span class="er">~</span> sex <span class="sc">+</span> developmental_stage <span class="sc">+</span> condition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The main factor of interest is usually placed last for clarity.</p></li>
+</ul></li>
+</ol>
+<section id="de-with-deseq2" class="level5">
+<h5 class="anchored" data-anchor-id="de-with-deseq2">DE with DESeq2</h5>
+<p>DESeq2 is a widely used R package for identifying differentially expressed (DE) genes from RNA-seq count data. RNA-seq data typically exhibit many low-count genes and a long-tailed distribution due to highly expressed genes, requiring specialized statistical modeling. The major steps in DESeq2 are the following:</p>
+<ol type="1">
+<li><p><strong>Normalization</strong></p>
+<ul>
+<li>Adjusts for sequencing depth and RNA composition using <strong>size factors</strong> calculated via the median ratio method.</li>
+<li>Normalized counts are used for visualization but <strong>raw counts must be used for DESeq2 modeling</strong>.</li>
+</ul></li>
+<li><p><strong>Dispersion Estimation</strong></p>
+<ul>
+<li><p>RNA-seq data show <strong>overdispersion</strong> (variance &gt; mean).</p></li>
+<li><p>DESeq2 models count data using the <strong>negative binomial distribution</strong>.</p></li>
+<li><p>Dispersion is estimated:</p>
+<ul>
+<li>Globally (common dispersion),</li>
+<li>Per gene (gene-wise dispersion),</li>
+<li>Then refined through <strong>shrinkage toward a fitted mean-dispersion curve</strong> to improve stability, especially with small sample sizes.</li>
+</ul></li>
+<li><p>Genes with extreme variability are <strong>not shrunk</strong> to avoid false positives.</p></li>
+</ul></li>
+<li><p><strong>Model Fitting and Hypothesis Testing</strong></p>
+<ul>
+<li><p>A <strong>generalized linear model (GLM)</strong> is fit to each gene’s normalized counts.</p></li>
+<li><p>DESeq2 tests whether gene expression differs significantly between groups:</p>
+<ul>
+<li><strong>Wald test</strong> for simple comparisons (e.g., treated vs.&nbsp;control),</li>
+<li><strong>Likelihood Ratio Test (LRT)</strong> for more complex designs with multiple variables.</li>
+</ul></li>
+<li><p>Each test returns a <strong>log2 fold change</strong> and a <strong>p-value</strong>.</p></li>
+</ul></li>
+<li><p><strong>Multiple Testing Correction</strong></p>
+<ul>
+<li>To control for false positives from testing thousands of genes, DESeq2 adjusts p-values using <strong>Benjamini-Hochberg FDR correction</strong>.</li>
+<li>An FDR cutoff of &lt;0.05 means that 5% of DE genes may be false positives.</li>
+</ul></li>
+</ol>
 </section>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>After identifying differentially expressed (DE) genes, <strong>functional analysis</strong> helps interpret their biological relevance by uncovering the pathways, processes, or interactions they may be involved in. This includes:</p>
+<ul>
+<li><strong>Functional enrichment analysis</strong> – identifies overrepresented biological processes, molecular functions, cellular components, or pathways.</li>
+<li><strong>Network analysis</strong> – groups genes with similar expression patterns to reveal potential interactions.</li>
+</ul>
+<p>This course focuses on <strong>Over-Representation Analysis (ORA)</strong>, a common enrichment method that uses the <strong>hypergeometric test</strong> to assess whether certain biological pathways or gene sets are statistically enriched in the DE gene list.</p>
+<p>Key components of ORA:</p>
+<ul>
+<li><strong>Universe</strong> – the full set of genes considered (e.g., all genes in the genome).</li>
+<li><strong>Gene Set</strong> – a group of genes annotated to a particular function or pathway (e.g., from Gene Ontology).</li>
+<li><strong>Gene List</strong> – the list of DE genes identified in the analysis.</li>
+</ul>
+<p>The test evaluates whether the overlap between the DE gene list and a gene set exceeds what would be expected by chance, pointing to potentially meaningful biological mechanisms.</p>
+<p>Tools commonly used for functional enrichment include <strong>Gene Ontology</strong>, <strong>KEGG</strong>, <strong>Reactome</strong>, <strong>clusterProfiler</strong>, and <strong>g:Profiler</strong>. These support the biological interpretation of DE results and help uncover pathways affected by the experimental condition.</p>
+</div>
+</div>
+</div>
+<hr>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
