@@ -98,6 +98,18 @@ From now on, each command described in the course will be added to this script.
 
 ```{r load_packages, eval=TRUE, message=FALSE, warning=FALSE}
 
+# # Install the required packages if not already installed
+# install.packages(c("pak"))
+# 
+# pak::pkg_install(c("BiocManager", "remotes", "here", "tidyverse",        
+# "DESeq2", "pheatmap", "RColorBrewer", "ggrepel", "clusterProfiler",
+# "enrichplot", "org.Mm.eg.db", "patchwork", "ComplexHeatmap"
+# ))
+# 
+# # Install the course data package
+# pak::pak("patterninstitute/OSD758")
+
+
 # Load packages
 library("here")            # package to find your current working directory
 library("tidyverse")       # packages for data manipulation and visualization
@@ -112,7 +124,6 @@ library("patchwork")         # combining multiple plots
 library("ComplexHeatmap")  # to draw heatmaps
 
 # Install and load package containing the data
-# pak::pak("patterninstitute/OSD758") # uncomment when needed
 library(OSD758)
 
 # Gene expression in Counts
@@ -547,6 +558,8 @@ sig_normalised_counts <- normalised_counts |>
 # The 2 transpositions are required because, by default, scale applies to the columns.
 sig_normalised_counts_scaled <- t(scale(t(sig_normalised_counts)))   # scale rows, not columns
 
+# Find min and max values to get meaningful colors in heatmaps
+range(sig_normalised_counts_scaled)
 
 # Complex heatmap
 de_plots$ht <- ComplexHeatmap::Heatmap(sig_normalised_counts_scaled[1:200, ],
@@ -565,7 +578,7 @@ de_plots$ht <- ComplexHeatmap::Heatmap(sig_normalised_counts_scaled[1:200, ],
                         column_gap = unit(2, "mm"),
                         border = "grey",
                         na_col = "white",
-                        # Color range using the min and max values calculated in range_markers_scaled_mat
+                        # Color range (min and max values from sig_normalised_counts_scaled)
                         col = circlize::colorRamp2(c(-4, 0, 6), c("skyblue3", "white", "forestgreen")),
                         column_names_gp = grid::gpar(fontsize = 9),
                         row_names_gp = grid::gpar(fontsize = 5),
@@ -664,14 +677,14 @@ fun_enrich$de_genes_fc <-
 
 # Run GO enrichment analysis using the enrichGO function
 fun_enrich$ego <- clusterProfiler::enrichGO(
-  gene = fun_enrich$de_genes_fc$ensembl_gen_id,                     # Genes of interest
-  universe = ensembl2symbol$ensembl_gen_id,  # Background gene set
-  OrgDb = org.Mm.eg.db,                   # Annotation database
-  keyType = 'ENSEMBL',                    # Key type for gene identifiers
-  readable = TRUE,                        # Convert gene IDs to gene names
-  ont = "BP",                            # Ontology: can be "BP", "MF", "CC", or "ALL"
-  pvalueCutoff = 0.05,                    # P-value cutoff for significance
-  qvalueCutoff = 0.10                     # Q-value cutoff for significance
+  gene = fun_enrich$de_genes_fc$ensembl_gen_id, # Genes of interest
+  universe = ensembl2symbol$ensembl_gen_id,     # Background gene set
+  OrgDb = org.Mm.eg.db,                         # Annotation database
+  keyType = 'ENSEMBL',                          # Key type for gene identifiers
+  readable = TRUE,                              # Convert gene IDs to gene names
+  ont = "BP",                                   # Ontology: can be "BP", "MF", "CC", or "ALL"
+  pvalueCutoff = 0.05,                          # P-value cutoff for significance
+  qvalueCutoff = 0.10                           # Q-value cutoff for significance
 )
 
 
