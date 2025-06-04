@@ -1,4 +1,16 @@
-## ----load_packages, eval=TRUE, message=FALSE, warning=FALSE------------------------------------------------
+## ----load_packages, eval=TRUE, message=FALSE, warning=FALSE-----------------------------------------------
+
+# # Install the required packages if not already installed
+# install.packages(c("pak"))
+# 
+# pak::pkg_install(c("BiocManager", "remotes", "here", "tidyverse",        
+# "DESeq2", "pheatmap", "RColorBrewer", "ggrepel", "clusterProfiler",
+# "enrichplot", "org.Mm.eg.db", "patchwork", "ComplexHeatmap"
+# ))
+# 
+# # Install the course data package
+# pak::pak("patterninstitute/OSD758")
+
 
 # Load packages
 library("here")            # package to find your current working directory
@@ -14,7 +26,6 @@ library("patchwork")         # combining multiple plots
 library("ComplexHeatmap")  # to draw heatmaps
 
 # Install and load package containing the data
-# pak::pak("patterninstitute/OSD758") # uncomment when needed
 library(OSD758)
 
 # Gene expression in Counts
@@ -27,7 +38,7 @@ samples <- OSD758::samples()
 
 
 
-## ----vst, eval=TRUE, message=FALSE, warning=FALSE----------------------------------------------------------
+## ----vst, eval=TRUE, message=FALSE, warning=FALSE---------------------------------------------------------
 
 # Create a list to save the QC results
 qc <- list()
@@ -37,7 +48,7 @@ qc$vst <- DESeq2::vst(raw_counts, blind = TRUE)
 
 
 
-## ----pca, eval=TRUE----------------------------------------------------------------------------------------
+## ----pca, eval=TRUE---------------------------------------------------------------------------------------
 
 # Run PCA
 qc$pca_vst <- prcomp(t(qc$vst)) 
@@ -100,7 +111,7 @@ qc$pca_gravity_acceleration /
 
 
 
-## ----dist_clust, eval=TRUE---------------------------------------------------------------------------------
+## ----dist_clust, eval=TRUE--------------------------------------------------------------------------------
 
 # Plot sample to sample distance for hierarchical clustering
 
@@ -123,7 +134,7 @@ qc$dist_clustering <- pheatmap::pheatmap(
 
 
 
-## ----corr_clustering, eval=TRUE----------------------------------------------------------------------------
+## ----corr_clustering, eval=TRUE---------------------------------------------------------------------------
 
 ### Compute pairwise correlation values
 qc$sample_corr <- cor(qc$vst)
@@ -140,7 +151,7 @@ qc$corr_clustering <-
 
 
 
-## ----check_ids, eval=TRUE----------------------------------------------------------------------------------
+## ----check_ids, eval=TRUE---------------------------------------------------------------------------------
 
 # Create list to save the analysis objects
 de_deseq <- list()
@@ -154,7 +165,7 @@ raw_counts <- raw_counts[, samples$sample_id]
 
 
 
-## ----de_analysis, eval=TRUE, warning=FALSE, message=FALSE--------------------------------------------------
+## ----de_analysis, eval=TRUE, warning=FALSE, message=FALSE-------------------------------------------------
 
 # Make sure the factor levels are ordered so that the desired baseline comes first.
 # DESeq2 uses the first level from factors as the baseline.
@@ -178,7 +189,7 @@ de_deseq$dds <- DESeq(de_deseq$dds)
 
 
 
-## ----dds_view, eval=TRUE, output=FALSE---------------------------------------------------------------------
+## ----dds_view, eval=TRUE, output=FALSE--------------------------------------------------------------------
 
 # Check the design formula
 DESeq2::design(de_deseq$dds) 
@@ -199,7 +210,7 @@ head(normalised_counts)
 
 
 
-## ----de_res, eval=TRUE, output=FALSE-----------------------------------------------------------------------
+## ----de_res, eval=TRUE, output=FALSE----------------------------------------------------------------------
 
 # Find the names of the estimated effects (coefficients) of the model
 DESeq2::resultsNames(de_deseq$dds)
@@ -220,7 +231,7 @@ DESeq2::summary(de_deseq$res_micro_vs_1G)
 
 
 
-## ----sig_res, eval=TRUE, output=FALSE----------------------------------------------------------------------
+## ----sig_res, eval=TRUE, output=FALSE---------------------------------------------------------------------
 
 # Extract significant results (padj < 0.05) and convert to tibble
 de_deseq$sig_033_vs_1G <-
@@ -248,7 +259,7 @@ head(de_deseq$sig_micro_vs_1G)
 
 
 
-## ----degs_heatmaps, eval=TRUE, fig.height=12, fig.width=12-------------------------------------------------
+## ----degs_heatmaps, eval=TRUE, fig.height=12, fig.width=12------------------------------------------------
 
 # List to save all the visualization plots
 de_plots <- list()
@@ -274,6 +285,8 @@ sig_normalised_counts <- normalised_counts |>
 # The 2 transpositions are required because, by default, scale applies to the columns.
 sig_normalised_counts_scaled <- t(scale(t(sig_normalised_counts)))   # scale rows, not columns
 
+# Find min and max values to get meaningful colors in heatmaps
+range(sig_normalised_counts_scaled)
 
 # Complex heatmap
 de_plots$ht <- ComplexHeatmap::Heatmap(sig_normalised_counts_scaled[1:200, ],
@@ -292,7 +305,7 @@ de_plots$ht <- ComplexHeatmap::Heatmap(sig_normalised_counts_scaled[1:200, ],
                         column_gap = unit(2, "mm"),
                         border = "grey",
                         na_col = "white",
-                        # Color range using the min and max values calculated in range_markers_scaled_mat
+                        # Color range (min and max values from sig_normalised_counts_scaled)
                         col = circlize::colorRamp2(c(-4, 0, 6), c("skyblue3", "white", "forestgreen")),
                         column_names_gp = grid::gpar(fontsize = 9),
                         row_names_gp = grid::gpar(fontsize = 5),
@@ -303,7 +316,7 @@ ComplexHeatmap::draw(de_plots$ht, heatmap_legend_side = "right")
 
 
 
-## ----volcano, eval=TRUE, warning=FALSE---------------------------------------------------------------------
+## ----volcano, eval=TRUE, warning=FALSE--------------------------------------------------------------------
 
 # Add a column with differential expression status and add gene symbol to the results
 sig_res_annot <- 
@@ -347,7 +360,7 @@ de_plots$volcano_plot
 
 
 
-## ----func_enrich, eval=TRUE, warning=FALSE, message=FALSE, fig.height=10, fig.width=12---------------------
+## ----func_enrich, eval=TRUE, warning=FALSE, message=FALSE, fig.height=10, fig.width=12--------------------
 
 # Enrichment analysis (ORA)
 
@@ -362,14 +375,14 @@ fun_enrich$de_genes_fc <-
 
 # Run GO enrichment analysis using the enrichGO function
 fun_enrich$ego <- clusterProfiler::enrichGO(
-  gene = fun_enrich$de_genes_fc$ensembl_gen_id,                     # Genes of interest
-  universe = ensembl2symbol$ensembl_gen_id,  # Background gene set
-  OrgDb = org.Mm.eg.db,                   # Annotation database
-  keyType = 'ENSEMBL',                    # Key type for gene identifiers
-  readable = TRUE,                        # Convert gene IDs to gene names
-  ont = "BP",                            # Ontology: can be "BP", "MF", "CC", or "ALL"
-  pvalueCutoff = 0.05,                    # P-value cutoff for significance
-  qvalueCutoff = 0.10                     # Q-value cutoff for significance
+  gene = fun_enrich$de_genes_fc$ensembl_gen_id, # Genes of interest
+  universe = ensembl2symbol$ensembl_gen_id,     # Background gene set
+  OrgDb = org.Mm.eg.db,                         # Annotation database
+  keyType = 'ENSEMBL',                          # Key type for gene identifiers
+  readable = TRUE,                              # Convert gene IDs to gene names
+  ont = "BP",                                   # Ontology: can be "BP", "MF", "CC", or "ALL"
+  pvalueCutoff = 0.05,                          # P-value cutoff for significance
+  qvalueCutoff = 0.10                           # Q-value cutoff for significance
 )
 
 
