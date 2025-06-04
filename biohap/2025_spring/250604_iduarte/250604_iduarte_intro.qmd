@@ -8,7 +8,14 @@ RNA-seq is a leading method for quantifying RNA levels in biological samples, le
 ::: panel-tabset
 #### RNA-seq overview
 
-RNA-seq data are processed through a standard workflow with three main stages:
+
+Lab Protocol Overview
+
+![](figs/rna-seq_lab.png)
+
+\
+
+RNA-seq data (i.e. **reads**) are processed through a standard workflow with three main stages:
 
 1.  **Data pre-processing** – improves read quality by removing contaminants and adapters.
 2.  **Alignment and quantification** – maps reads to a reference genome and estimates gene expression, either through traditional or faster lightweight methods.
