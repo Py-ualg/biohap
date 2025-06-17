@@ -29,15 +29,16 @@ website:
         contents:
           - index.qmd
 
+      - section: "Fall 2025"
+        contents:
+          - 2025_fall/call.qmd
+
       - section: "Spring 2025"
         contents:
           - 2025_spring/250416_atkacz.qmd
           - 2025_spring/250507_taires.qmd
           - 2025_spring/250604_iduarte/250604_iduarte.qmd
 
-      - section: "Fall 2025"
-        contents:
-          - 2025_fall/call.qmd
       - section: "Basics"
         contents:
           - basics/abundance_tables.qmd
