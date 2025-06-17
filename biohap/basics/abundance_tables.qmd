@@ -9,6 +9,9 @@ jupyter: python3
 format:
   html:
     code-fold: true
+
+execute:
+    freeze: true
 ---
 
 **Work in progress**

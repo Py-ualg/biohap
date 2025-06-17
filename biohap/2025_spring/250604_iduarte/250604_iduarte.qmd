@@ -37,6 +37,8 @@ Attribution | These course materials are freely adapted from a combination betwe
   - *The Carpentries Incubator* guided tutorial: [RNA-seq analysis with Bioconductor](https://carpentries-incubator.github.io/bioc-rnaseq/)
   - *The Harvard Chan Bioinformatics Core* tutorial: [Differential Gene Expression Analysis (bulk RNA-seq)](https://hbctraining.github.io/Intro-to-DGE/schedule/links-to-lessons.html)
 
+Newer versions of this tutorial based on different dataset can be found [here](https://instructr.github.io/rnaseq_counts2bio/).
+
 ## Hands-on tutorial
 
 :::{.panel-tabset}

@@ -96,6 +96,8 @@ From now on, each command described in the course will be added to this script.
 
 **1.1 Load packages and data**
 
+If you are a Windows user, please install first [RTools](https://cran.r-project.org/bin/windows/Rtools/) which match your exact R version.
+
 ```{r load_packages, eval=TRUE, message=FALSE, warning=FALSE}
 
 # # Install the required packages if not already installed
