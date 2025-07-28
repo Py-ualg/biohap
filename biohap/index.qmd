@@ -1,10 +1,3 @@
-# BIOinformatics: Handy and Practical {.unnumbered}
+# 🔗 Online version of the tutorial
 
-This is a compilation of bioinformatics knowledge at CCMAR-Algarve. First series of hands-on workshop happened in *Spring 2025*.
-
-Until this day, three hands-on workshops designed to equip researchers with essential data analysis skills for bioinformatics have been announced.
-Every month, you will get served a workshop which cover a key aspect of biological data analysis, from RNA-seq to microbiome analysis,
-helping you turn raw sequence files into meaningful biological insights. 
-
-To visit the source files for the workshops and the webpage, visit our [Github](https://github.com/Py-ualg/biohap).
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+[BioHaP main deployment site](https://py-ualg.github.io/biohap/2025_spring/250507_taires.html)
