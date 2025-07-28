@@ -8,7 +8,7 @@ author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dp
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-June 2, 2025
+July 28, 2025
 :::
 
 This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with marine organisms.
@@ -173,7 +173,7 @@ This is easiest to do from your local machine side, for which you need to open a
 scp <USERNAME>@10.36.5.158:/home/<USERNAME>/workshop_qiime2/demux.qzv "absolute-path-on-your-PC-to-folder-you-want-your-file"
 ```
 
-Go to https://view.qiime2.org and drag any `.qzv` file to visualize it.
+Go to [QIIME2](https://view.qiime2.org) and drag any `.qzv` file to visualize it.
 
 ### Denoise with DADA2
 
@@ -198,8 +198,9 @@ qiime dada2 denoise-paired \
 Note: When choosing where to trim the sequences, after looking at the demux file, besides taking into account that low quality nucleotides should be removed, we need to make sure that the forward (R1) and reverse (R2) sequences, after trimming, can still overlap. A good overlap may be between 20 and 100bp.
 
 Let’s say:
-  - Your amplicon is 450 bp
-  - Your reads are 250 bp each (paired-end)
+
+- Your amplicon is 450 bp
+- Your reads are 250 bp each (paired-end)
 
 If both reads are high-quality all the way: 250 (R1) + 250 (R2) = 500 bp, with expected overlap: ~50 bp, 🍏
 But if you truncate reads too aggressively (e.g., with --p-trunc-len-f 200 --p-trunc-len-r 180), R1 becomes 200 bp, R2 becomes 180 bp. Then:
