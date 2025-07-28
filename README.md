@@ -1,6 +1,6 @@
 # BioHaP: Bioinformatics, Handy and Practical
 
-Visit deployed tutorials [here](https://py-ualg.github.io/biohap/). Reach out and let's already start setting up *Fall 2025* edition.
+Visit deployed [tutorials](https://py-ualg.github.io/biohap/). Reach out and let's already start setting up *Fall 2025* edition.
 
 ## Spring 2025 edition
 
@@ -17,7 +17,7 @@ Large files or datasets—especially those containing genomic data—no problem.
 
 **Requirements**: bash command line tool such, for windows WSL, or VBox are good. Alternatively, if comfortable, ask for account on HPC (contact David).
 
-## 2️⃣ Microbiome Analysis of Amplicon Sequencing 
+## 2️⃣ Microbiome Analysis of Amplicon Sequencing
 
 **Tânia Aires [contact](mailto:taires@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
