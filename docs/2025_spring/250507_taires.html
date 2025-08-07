@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Tânia Aires taires@ualg.pt, David Paleček dpalecek@ualg.pt">
 <meta name="dcterms.date" content="2025-07-05">
 
 <title>taires – BioHap: Bioinformatics, Handy and Practical</title>
@@ -299,6 +298,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
     
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/https://doi.org/10.5281/zenodo.16759291">https://doi.org/10.5281/zenodo.16759291</a>
+      </p>
+    </div>
+  </div>
   </div>
   
 
@@ -320,7 +327,7 @@ Last change
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>June 2, 2025</p>
+<p>July 28, 2025</p>
 </div>
 </div>
 </div>
@@ -504,7 +511,7 @@ Note
 <p>Every time you create <code>.qzv</code> table, it is to be visualized at QIIME2 webpage for quality control and taking decisions for next steps. Open <a href="https://view.qiime2.org/">QIIME2</a> webpage and drag the qzv files in there. Use the <code>ssh</code> as described <a href="#getting-files-to-the-server">above</a> to get the data to your PC.</p>
 <p>This is easiest to do from your local machine side, for which you need to open additional powershell for Windows or terminal for mac users (NOT logged in to the server).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>USERNAME<span class="op">&gt;</span>@10.36.5.158:/home/<span class="op">&lt;</span>USERNAME<span class="op">&gt;</span>/workshop_qiime2/demux.qzv <span class="st">"absolute-path-on-your-PC-to-folder-you-want-your-file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Go to https://view.qiime2.org and drag any <code>.qzv</code> file to visualize it.</p>
+<p>Go to <a href="https://view.qiime2.org">QIIME2</a> and drag any <code>.qzv</code> file to visualize it.</p>
 </section>
 <section id="denoise-with-dada2" class="level3">
 <h3 class="anchored" data-anchor-id="denoise-with-dada2">Denoise with DADA2</h3>
@@ -531,7 +538,11 @@ Trimming
 </div>
 <div class="callout-body-container callout-body">
 <p>Note: When choosing where to trim the sequences, after looking at the demux file, besides taking into account that low quality nucleotides should be removed, we need to make sure that the forward (R1) and reverse (R2) sequences, after trimming, can still overlap. A good overlap may be between 20 and 100bp.</p>
-<p>Let’s say: - Your amplicon is 450 bp - Your reads are 250 bp each (paired-end)</p>
+<p>Let’s say:</p>
+<ul>
+<li>Your amplicon is 450 bp</li>
+<li>Your reads are 250 bp each (paired-end)</li>
+</ul>
 <p>If both reads are high-quality all the way: 250 (R1) + 250 (R2) = 500 bp, with expected overlap: ~50 bp, 🍏 But if you truncate reads too aggressively (e.g., with –p-trunc-len-f 200 –p-trunc-len-r 180), R1 becomes 200 bp, R2 becomes 180 bp. Then:</p>
 <p>200 + 180 = 380 &lt; 450 The sequences won’t be able to overlap,🍎</p>
 <p>If, for example, all your reverse reads are very low quality (usually the quality of R2 reads are lower than R1) the analysis can be done using only R1 sequences as single-end sequences. But first, complain to your sequencing centre.</p>

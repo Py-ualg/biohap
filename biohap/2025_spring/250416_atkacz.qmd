@@ -3,8 +3,9 @@
 ---
 date: 16/04/2025
 
-author: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+authors: Andrzej Tkacz [atkacz@ualg.pt](mailto:atkacz@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 
+doi: https://doi.org/10.5281/zenodo.16530108
 ---
 
 Large files or datasets—especially those containing genomic data—no problem.

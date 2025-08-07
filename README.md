@@ -38,6 +38,7 @@ This workshop will provide an overview of microbiome data analysis from Illumina
 
 **Isabel Duarte [contact](mailto:isabel.duarte@gmail.com)**
 
+- [Tess.elixir](https://tess.elixir-europe.org/materials/rna-seq-from-counts-2-biological-insights)
 - 🗓 Date: June 4, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 

@@ -3,8 +3,9 @@
 ---
 date: 07/05/2025
 
-author: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+authors: Tânia Aires [taires@ualg.pt](mailto:taires@ualg.pt), David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 
+doi: https://doi.org/10.5281/zenodo.16759291
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
