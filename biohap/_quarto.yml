@@ -6,7 +6,7 @@ execute:
   freeze: true
 
 website:
-  title: "BioHap: Bioinformatics, Handy and Practical"
+  title: "Simple Linux - An Introduction to Genomic Analysis on Linux"
   search: true
   navbar:
     background: light
@@ -25,26 +25,10 @@ website:
       - icon: github
         href: "https://github.com/Py-ualg/biohap"
     contents:
-      - section: "Introduction"
+      - section: "Contents"
         contents:
           - index.qmd
-
-      - section: "Fall 2025"
-        contents:
-          - 2025_fall/call.qmd
-
-      - section: "Spring 2025"
-        contents:
           - 2025_spring/250416_atkacz.qmd
-          - 2025_spring/250507_taires.qmd
-          - 2025_spring/250604_iduarte/250604_iduarte.qmd
-
-      - section: "Basics"
-        contents:
-          - basics/abundance_tables.qmd
-      - references.qmd
-
-bibliography: references.bib
 
 format:
   html:
@@ -54,14 +38,10 @@ format:
       - brand
     code-copy: true
     code-overflow: wrap
-    # css: styles.css
-    # include-after-body: js.html
     grid:
       sidebar-width: 350px
       body-width: 900px
       margin-width: 300px
-  # pdf:
-  #   documentclass: scrreprt
 
 
 
