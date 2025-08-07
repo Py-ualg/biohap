@@ -8,6 +8,8 @@ Visit deployed [tutorials](https://py-ualg.github.io/biohap/). Reach out and let
 
 **Andrzej Tkacz [contact](mailto:atkacz@ualg.pt)**
 
+- [![DOI](https://zenodo.org/badge/961890771.svg)](https://doi.org/10.5281/zenodo.16530108)
+- [Tess.elixir](https://tess.elixir-europe.org/materials/simple-linux-an-introduction-to-genomic-analysis-on-linux)
 - 🗓 Date: April 16, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 
