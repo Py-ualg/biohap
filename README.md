@@ -21,14 +21,16 @@ Large files or datasets—especially those containing genomic data—no problem.
 
 **Tânia Aires [contact](mailto:taires@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16759291.svg)](https://doi.org/10.5281/zenodo.16759291)
+- [Tess.elixir](https://tess.elixir-europe.org/materials/microbiome-analysis-of-amplicon-sequencing)
 - 🗓 Date: May 7, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 
-This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst, Phyloseq) microbiome data, in particular bacteria associated with marine organisms.
+This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with cold-water corals.
 
 **Coverage**: QIIME2, MicrobiomeAnalyst
 
-**Requirements**: HPC account (contact David) for running QIIME2, R studio for Phyloseq.
+**Requirements**: HPC account (contact David) for running QIIME2
 
 ## 3️⃣ RNA-Seq Data Analysis in R - From Counts to Biological Insights
 
