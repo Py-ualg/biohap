@@ -3,6 +3,9 @@ authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
 ---
 
+There are many parallel technologies to employ in each step. The pipeline here heavily uses `python` to generate the graph
+and `fuseki` for exposing the SPARQL endpoint. Here only for local testing. 
+
 ::: panel-tabset
 #### Outline
 
@@ -23,15 +26,58 @@ a coherent whole. [https://www.researchobject.org](https://www.researchobject.or
 ![Image credit: Goble, C. (2024, February 16). FAIR Digital Research Objects: Metadata Journeys. University of Auckland Seminar, Auckland. Zenodo. https://doi.org/10.5281/zenodo.10710142](figs/ro-crate_packaging.png)
 
 As we are going to work with [EMO-BON](https://www.embrc.eu/emo-bon/) metagenomics data, let's download
-some of the RO-Crates. They contain only the pointers to the actual data files, so the payload is moderate.
+some of the first built RO-Crates [GitHub repository](https://github.com/emo-bon/analysis-results-cluster-01-crate)
 
+The easiest way is to clone the whole repository
+```bash
+git clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git
+```
 
 #### fuseki setup
+
 Expose your triples as a SPARQL end-point accessible over HTTP. 
 Fuseki provides REST-style interaction with your RDF data.
+
+```bash
+wget https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz
+
+# open the archive
+tar -xvf apache-jena-fuseki-5.6.0.tar.gz
+
+cd apache-jena-fuseki-5.6.0/
+
+# start the server
+./fuseki-server
 ```
 
+This should show you similar to
 ```
+15:46:47 INFO  Config          :: Fuseki Base = /home/david-palecek/coding/apache-jena-fuseki-5.6.0/run
+15:46:47 INFO  Config          :: No databases: dir=/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/configuration
+15:46:48 INFO  Config          :: UI Base = fuseki-server.jar
+15:46:48 INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini
+```
+
+Now opening your localhost, http://localhost:3030/, you should see
+
+![](figs/fuseki_screenshot.png)
+
+#### Upload data and generate a graph
+
+In `fuseki`, go `new dataset` -> `add data` -> select the `.ttl` files and `upload all`
+
+#### Basics of SPARQL
+
+The direct way from `fuseki` is to edit the query in `actions`. The shown staring point is
+
+```sparQL
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT * WHERE {
+  ?sub ?pred ?obj .
+} LIMIT 10
+```
+
 :::
 
 ------------------------------------------------------------------------
