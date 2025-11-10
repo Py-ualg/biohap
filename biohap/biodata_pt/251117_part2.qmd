@@ -1,0 +1,7 @@
+# Frontend data processing
+
+---
+date: 17/11/2025
+
+authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+---

@@ -1,0 +1,29 @@
+---
+title: "EMO-BON Metagenomics: From Backend Integration to Frontend Processing"
+date: 17 November 2025
+author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+editor: source
+---
+
+This course should give you set of minimal examples on how to generate a knowldge graph 
+from set of RO-Crates, and query against it using SPARQL or python `rdflib`.
+
+In the second part focused on a specific use case of EMO-BON data, the pilot implementation of the
+Virtual Research Environment is introduced. 
+
+What is omitted here is how to organize the data and build the RO-Crates themselves.
+
+## Hands-on tutorial
+
+:::{.panel-tabset}
+
+### **Backend data integration**
+
+{{< include 251117_part1.qmd >}}
+
+
+### **Frontend data processing **
+
+{{< include 251117_part2.qmd >}}
+
+:::

@@ -1,0 +1,22 @@
+# Training on accessing, processing, and curating datasets 2025
+
+---
+date: 3/11/2025 and 17/11/2025
+
+authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+---
+
+EMO-BON establishes a long-term omics observatory for marine biodiversity through bimonthly 
+sampling of coastal waters and both soft and hard sediments across more than 20 stations in Europe. 
+Standard operating procedures are applied for sample collection, sequencing, and workflow analysis 
+to ensure consistent taxonomic and functional annotation. FAIR principles are implemented using 
+appropriate ontologies, RO-Crates, and a Python-based data analysis toolkit prepared for deployment 
+in Virtual Research Environments (VREs).
+
+## Session 1
+Online session hosted online on 3rd November ([slides](https://raw.githubusercontent.com/Py-ualg/biohap/refs/heads/main/assets/251103_dpalecek/DataStewards_emobon_david.pdf))
+
+## Session 2
+Faculty of Pharmacy of the University of Porto, 17th November during the ELIXIR Portugal All Hands 2025
+
+
