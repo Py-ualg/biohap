@@ -62,21 +62,101 @@ Now opening your localhost, http://localhost:3030/, you should see
 
 ![](figs/fuseki_screenshot.png)
 
-#### Upload data and generate a graph
+##### Upload data and generate a graph
 
 In `fuseki`, go `new dataset` -> `add data` -> select the `.ttl` files and `upload all`
 
-#### Basics of SPARQL
+##### Basics SPARQL querries
 
-The direct way from `fuseki` is to edit the query in `actions`. The shown staring point is
+The direct way from `fuseki` is to edit the query in `actions`. Accesible introduction with examples 
+https://www.w3.org/TR/sparql11-query/
+The shown staring point is
 
-```sparQL
+```sql
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT * WHERE {
   ?sub ?pred ?obj .
 } LIMIT 10
 ```
+
+```sql
+PREFIX sdo: <http://schema.org/>
+
+SELECT ?x ?dtype
+WHERE {
+  ?x sdo:encodingFormat
+  FILTER regex(?dtype, "^html")
+}
+```
+
+##### Python implementation
+
+It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from a jupyter notebook.
+
+The example notebook is [online](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/ro-crate_sparql_endpoint.ipynb) but also
+already setup in the `momics-demos` repository. The notebook includes all the steps of setting up the SparQL endpoint for your future reference.
+
+1. Get the RO-Crate from GitHub.
+2. Serialize the RO-Crate into a turtle `.ttl` file.
+3. Create a graph from the `turtle` file.
+4. Query and retrieve `json`, `xml`, `sparql`, `text`, `csv`, `tsv`, `thrift`.
+5. Downstream `pandas` operations.
+
+the basic patterns for the above (note that everything is in the jupyter NB)
+
+```python
+from rdflib import Graph
+
+g = Graph()
+# rdflib accepts a JSON-LD string as input
+g.parse(data=jsonld_text, format="json-ld", publicID=base)
+```
+
+adding more triples to a graph
+```python
+for triple in g:
+    combined_graph.add(triple)
+
+# Serialize combined graph to TTL format and save to file
+ttl_content = combined_graph.serialize(format='turtle')
+
+# save the ttl
+with open(output_file_path, 'w', encoding='utf-8') as f:
+    f.write(ttl_content)
+
+
+# upload the combined graph to the fuseki endpoint
+uri = "http://example.org/graphs/emobon_combined"
+# Use the Graph Store Protocol endpoint for Fuseki
+gsp_url = "http://localhost:3030/rocrate/data?graph=" + uri
+
+headers = {"Content-Type": "text/turtle"}
+
+resp = requests.put(gsp_url, data=ttl_content.encode("utf-8"), headers=headers, timeout=60)
+
+# raise for HTTP error
+try:
+    resp.raise_for_status()
+except requests.HTTPError as e:
+    raise RuntimeError(f"Upload failed: {resp.status_code} {resp.text}") from e
+```
+
+To query against the endpoint
+
+```python
+q = "SELECT (COUNT(*) AS ?c) WHERE { ?s ?p ?o }"
+r = requests.get("http://localhost:3030/rocrate/query", params={"query": q}, headers={"Accept": "application/sparql-results+json"})
+print(r.json())
+```
+
+`json` is relatively easy to convert to a dataframe
+
+```python
+
+```
+
+Other option
 
 :::
 
