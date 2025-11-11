@@ -6,17 +6,18 @@ editor: source
 There are many parallel technologies to employ in each step. The pipeline here heavily uses `python` to generate the graph
 and `fuseki` for exposing the SPARQL endpoint. Here only for local testing. 
 
-::: panel-tabset
+::: {.panel-tabset}
+
 #### Outline
 
-1. Pull finished ro-crates 
+1. RO-Crates
 2. fuseki setup
 3. generate a graph
 4. basics of SPARQL
 5. setup NB for sparQL querries locally
-6. Filter the emobon data
+6. ??Filter the emobon data??
 
-#### Pull RO-Crates
+#### RO-Crates
 
 A RO-Crate is an integrated view through which you can see an entire Research Object; 
 the methods, the data, the output and the outcomes of a project or a piece of work. 
@@ -25,15 +26,9 @@ a coherent whole. [https://www.researchobject.org](https://www.researchobject.or
 
 ![Image credit: Goble, C. (2024, February 16). FAIR Digital Research Objects: Metadata Journeys. University of Auckland Seminar, Auckland. Zenodo. https://doi.org/10.5281/zenodo.10710142](figs/ro-crate_packaging.png)
 
-As we are going to work with [EMO-BON](https://www.embrc.eu/emo-bon/) metagenomics data, let's download
-some of the first built RO-Crates [GitHub repository](https://github.com/emo-bon/analysis-results-cluster-01-crate)
+Note that we already have some of the EMO-BON RO-Crates locall in `/emobon_demo/ro-crates/analysis-results-cluster-01-crate/`.
 
-The easiest way is to clone the whole repository
-```bash
-git clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git
-```
-
-#### fuseki setup
+#### fuseki
 
 Expose your triples as a SPARQL end-point accessible over HTTP. 
 Fuseki provides REST-style interaction with your RDF data.
@@ -66,7 +61,7 @@ Now opening your localhost, http://localhost:3030/, you should see
 
 In `fuseki`, go `new dataset` -> `add data` -> select the `.ttl` files and `upload all`
 
-##### Basics SPARQL querries
+#### SPARQL
 
 The direct way from `fuseki` is to edit the query in `actions`. Accesible introduction with examples 
 https://www.w3.org/TR/sparql11-query/
@@ -85,35 +80,57 @@ PREFIX sdo: <http://schema.org/>
 
 SELECT ?x ?dtype
 WHERE {
-  ?x sdo:encodingFormat
-  FILTER regex(?dtype, "^html")
+  ?x sdo:encodingFormat ?dtype .
+  FILTER regex(str(?dtype), "^text/html", "i")
 }
 ```
 
-##### Python implementation
+```sql
+PREFIX sdo: <http://schema.org/>
+
+SELECT ?x ?dtype ?durl
+WHERE {
+  ?x sdo:encodingFormat ?dtype ;
+     sdo:downloadUrl ?durl .
+  FILTER regex(str(?dtype), "^text/html", "i")
+}
+```
+
+```sql
+PREFIX sdo: <http://schema.org/>
+
+SELECT ?subject ?predicate ?object ?durl
+WHERE {
+  ?subject ?predicate ?object .
+  FILTER regex(str(?object), "SSU-taxonomy-summary", "i")
+  OPTIONAL { ?object sdo:downloadUrl ?durl }
+}
+LIMIT 50
+```
+
+##### **Python implementation**
 
 It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from a jupyter notebook.
 
-The example notebook is [online](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/ro-crate_sparql_endpoint.ipynb) but also
-already setup in the `momics-demos` repository. The notebook includes all the steps of setting up the SparQL endpoint for your future reference.
+The example notebook is [online](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/ro-crate_sparql_endpoint.ipynb) 
+which is part of the `momics-demos` repository, therefore you have it already locally with all installed dependencies too.
+The notebook includes all the steps of setting up the SparQL endpoint for your future reference. 
 
 1. Get the RO-Crate from GitHub.
 2. Serialize the RO-Crate into a turtle `.ttl` file.
-3. Create a graph from the `turtle` file.
-4. Query and retrieve `json`, `xml`, `sparql`, `text`, `csv`, `tsv`, `thrift`.
-5. Downstream `pandas` operations.
+3. Create a graph from `turtle` or `json-LD` file.
 
-the basic patterns for the above (note that everything is in the jupyter NB)
-
+::: {.callout-note collapse="true" title="Pattern"}
 ```python
 from rdflib import Graph
-
 g = Graph()
 # rdflib accepts a JSON-LD string as input
 g.parse(data=jsonld_text, format="json-ld", publicID=base)
 ```
+:::
+4. Add triples at will and add graph to `fuseki`
 
-adding more triples to a graph
+::: {.callout-note collapse="true" title="Pattern"}
 ```python
 for triple in g:
     combined_graph.add(triple)
@@ -141,7 +158,11 @@ try:
 except requests.HTTPError as e:
     raise RuntimeError(f"Upload failed: {resp.status_code} {resp.text}") from e
 ```
+:::
+5. [Query and retrieve `json`, `xml`, `sparql`, `text`, `csv`, `tsv`, `thrift`.]{style="color:green;"}
+6. [Downstream `pandas` operations.]{style="color:green;"}
 
+Since we have already ingested the triples from the RO-Crates, [we start at step 5.]{style="color:green;"} 
 To query against the endpoint
 
 ```python
@@ -150,13 +171,33 @@ r = requests.get("http://localhost:3030/rocrate/query", params={"query": q}, hea
 print(r.json())
 ```
 
-`json` is relatively easy to convert to a dataframe
+returned `json` is relatively easy to convert to a dataframe (`sparql_json_to_df` function)
 
 ```python
+vars_ = sparql_json.get("head", {}).get("vars", [])
+rows = []
 
+for binding in sparql_json.get("results", {}).get("bindings", []):
+    row = {}
+    for var in vars_:
+        # Some results might not bind all variables
+        if var in binding:
+            row[var] = binding[var]["value"]
+        else:
+            row[var] = None
+    rows.append(row)
+
+df = pd.DataFrame(rows, columns=vars_)
 ```
 
-Other option
+These are just miminal patterns examples, run the fully functional example in
+your local NB, `...../emobon_demo/momics-demos/momics-demos/wfs_extra/ro-crate_sparql_endpoint.ipynb`, 
+starting at section 5
+
+::: {.callout-tip}
+There is a python wrapper for SPARQL [SPARQLWrapper](https://sparqlwrapper.readthedocs.io/en/latest/main.html),
+which is `pip` installable and can be used as a standard python module but also as a command line script.
+:::
 
 :::
 

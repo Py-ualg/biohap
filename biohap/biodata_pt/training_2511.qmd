@@ -5,13 +5,73 @@ author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
 ---
 
-This course should give you set of minimal examples on how to generate a knowldge graph 
-from set of RO-Crates, and query against it using SPARQL or python `rdflib`.
+::: {.callout-note collapse="true" title="Last change"}
+November 11, 2025
+:::
 
-In the second part focused on a specific use case of EMO-BON data, the pilot implementation of the
-Virtual Research Environment is introduced. 
+This course should give you set of minimal examples on how to generate a knowledge graph 
+from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`.
+
+Second part focused on a specific use case of EMO-BON data, the pilot implementation of the
+Virtual Research Environment is introduced, basic analysis performed, issues reported,
+extended analysis proposed.
 
 What is omitted here is how to organize the data and build the RO-Crates themselves.
+
+## Environmental setup
+
+This setup serves is ubiquitus for both parts of the tutorial. We will clone two repositories and install one of them.
+To keep everything exactly the same, we create a designated folder
+
+```bash
+mkdir emobon_demo
+cd emobon_demo
+```
+
+Create a dedicated conda/python environment
+
+```
+# if you are using conda
+conda create -n "emobon" python=3.10  # or higher
+conda activate emobon
+```
+
+### Python resources needed for this tutorial
+
+```bash
+# create a folder
+mkdir momics-demos
+cd momics-demos
+
+# clone the repository into newly created folder
+git clone https://github.com/emo-bon/momics-demos.git
+
+# step into the repository
+cd momics-demos
+
+# install dependencies using pip
+pip install -e .
+
+# setup jupyter kernel
+ipython kernel install --user --name "emobon"
+```
+
+### For the backend part:
+
+As we are going to work with [EMO-BON](https://www.embrc.eu/emo-bon/) metagenomics data, one way is to download
+some of the RO-Crates [GitHub repository](https://github.com/emo-bon/analysis-results-cluster-01-crate) manually.
+
+Easier, however. is to clone the whole repository. Navigate back to the `..../emobon_demo/` and do:
+
+```bash
+mkdir ro-crates
+cd ro-crates
+
+git clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git
+```
+
+As you see in the GH as well, you have now the RO-Crates per sample and corresponding `.ttl` files.
+
 
 ## Hands-on tutorial
 
