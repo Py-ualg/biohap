@@ -30,7 +30,7 @@ cd emobon_demo
 
 Create a dedicated conda/python environment
 
-```
+```bash
 # if you are using conda
 conda create -n "emobon" python=3.10  # or higher
 conda activate emobon

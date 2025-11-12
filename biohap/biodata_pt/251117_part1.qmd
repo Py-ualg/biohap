@@ -31,7 +31,16 @@ Note that we already have some of the EMO-BON RO-Crates locall in `/emobon_demo/
 #### fuseki
 
 Expose your triples as a SPARQL end-point accessible over HTTP. 
-Fuseki provides REST-style interaction with your RDF data.
+Fuseki provides REST-style interaction with your RDF data. It is a java endpoint, therefore,
+you might need to install `java` first if `java -version` shows nothing.
+
+```bash
+sudo apt update
+sudo apt install -y openjdk-17-jre-headless
+java -version
+```
+
+Here comes the fuseki download itself.
 
 ```bash
 wget https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz
@@ -75,6 +84,17 @@ SELECT * WHERE {
 } LIMIT 10
 ```
 
+::: {.callout-note collapse="true" title="How many triples do we have?"}
+```sql
+SELECT (COUNT(*) as ?c)
+WHERE {
+  ?subject ?predicate ?object .
+}
+LIMIT 10
+```
+:::
+
+::: {.callout-note collapse="true" title="Filter out all the `text/html` files."}
 ```sql
 PREFIX sdo: <http://schema.org/>
 
@@ -84,6 +104,9 @@ WHERE {
   FILTER regex(str(?dtype), "^text/html", "i")
 }
 ```
+:::
+
+::: {.callout-note collapse="true" title="Return also the `sdo:downloadUrl` of those files."}
 
 ```sql
 PREFIX sdo: <http://schema.org/>
@@ -95,7 +118,15 @@ WHERE {
   FILTER regex(str(?dtype), "^text/html", "i")
 }
 ```
+:::
 
+Now you can click the link of one of the `Krona` files, open them in the browser and with no surprise,
+it is a Krona plot.
+
+Now let's get the real metaGOflow outputs, SSU taxonomy tables. Hint for the exercise below,
+match `regex` of the `object` on "SSU-taxonomy-summary".
+
+::: {.callout-note collapse="true" title="Return SSU taxonomy download links."}
 ```sql
 PREFIX sdo: <http://schema.org/>
 
@@ -107,12 +138,13 @@ WHERE {
 }
 LIMIT 50
 ```
+:::
 
 ##### **Python implementation**
 
 It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from a jupyter notebook.
 
-The example notebook is [online](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/ro-crate_sparql_endpoint.ipynb) 
+The example notebook is [online](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb) 
 which is part of the `momics-demos` repository, therefore you have it already locally with all installed dependencies too.
 The notebook includes all the steps of setting up the SparQL endpoint for your future reference. 
 
