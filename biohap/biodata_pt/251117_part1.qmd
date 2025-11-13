@@ -3,8 +3,7 @@ authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
 ---
 
-There are many parallel technologies to employ in each step. The pipeline here heavily uses `python` to generate the graph
-and `fuseki` for exposing the SPARQL endpoint. Here only for local testing. 
+There are many parallel technologies to employ in each step. The pipeline here heavily uses `python` to enerate the graph and `fuseki` for exposing the SPARQL endpoint. Here only for local testing.
 
 ::: {.panel-tabset}
 
@@ -12,17 +11,14 @@ and `fuseki` for exposing the SPARQL endpoint. Here only for local testing.
 
 1. RO-Crates
 2. fuseki setup
-3. generate a graph
-4. basics of SPARQL
-5. setup NB for sparQL querries locally
-6. ??Filter the emobon data??
+3. generate and ingest graph
+4. basic SPARQL queries
+5. Jupyter NB for local SPARQL
+6. Combine local and public endpoints
 
 #### RO-Crates
 
-A RO-Crate is an integrated view through which you can see an entire Research Object; 
-the methods, the data, the output and the outcomes of a project or a piece of work. 
-Linking all this together enables the sharing of research outputs with their context, as 
-a coherent whole. [https://www.researchobject.org](https://www.researchobject.org/ro-crate/about_ro_crate)
+A RO-Crate is an integrated view through which you can see an entire Research Object; the methods, the data, the output and the outcomes of a project or a piece of work. Linking all this together enables the sharing of research outputs with their context, as a coherent whole. [https://www.researchobject.org](https://www.researchobject.org/ro-crate/about_ro_crate)
 
 ![Image credit: Goble, C. (2024, February 16). FAIR Digital Research Objects: Metadata Journeys. University of Auckland Seminar, Auckland. Zenodo. https://doi.org/10.5281/zenodo.10710142](figs/ro-crate_packaging.png)
 
@@ -30,9 +26,7 @@ Note that we already have some of the EMO-BON RO-Crates locall in `/emobon_demo/
 
 #### fuseki
 
-Expose your triples as a SPARQL end-point accessible over HTTP. 
-Fuseki provides REST-style interaction with your RDF data. It is a java endpoint, therefore,
-you might need to install `java` first if `java -version` shows nothing.
+Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. It is a java ndpoint, therefore, you might need to install `java` first if `java -version` shows nothing.
 
 ```bash
 sudo apt update
@@ -55,26 +49,23 @@ cd apache-jena-fuseki-5.6.0/
 ```
 
 This should show you similar to
-```
+
+```bash
 15:46:47 INFO  Config          :: Fuseki Base = /home/david-palecek/coding/apache-jena-fuseki-5.6.0/run
 15:46:47 INFO  Config          :: No databases: dir=/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/configuration
 15:46:48 INFO  Config          :: UI Base = fuseki-server.jar
 15:46:48 INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini
 ```
 
-Now opening your localhost, http://localhost:3030/, you should see
-
-![](figs/fuseki_screenshot.png)
+Now opening your localhost, http://localhost:3030/, you should see ![fuseki server](figs/fuseki_screenshot.png)
 
 ##### Upload data and generate a graph
 
-In `fuseki`, go `new dataset` -> `add data` -> select the `.ttl` files and `upload all`
+In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files and `upload all`
 
 #### SPARQL
 
-The direct way from `fuseki` is to edit the query in `actions`. Accesible introduction with examples 
-https://www.w3.org/TR/sparql11-query/
-The shown staring point is
+The direct way from `fuseki` is to edit the query in `actions`. See more detailed but accesible introduction with [examples](https://www.w3.org/TR/sparql11-query/). When you click `query`, the default query is shown
 
 ```sql
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -84,151 +75,135 @@ SELECT * WHERE {
 } LIMIT 10
 ```
 
+, which queries all the triples in the graph.
+
 ::: {.callout-note collapse="true" title="How many triples do we have?"}
-```sql
-SELECT (COUNT(*) as ?c)
-WHERE {
-  ?subject ?predicate ?object .
-}
-LIMIT 10
-```
+
+  ```sql
+  SELECT (COUNT(*) as ?c)
+  WHERE {
+    ?subject ?predicate ?object .
+  }
+  LIMIT 10
+  ```
+
 :::
 
 ::: {.callout-note collapse="true" title="Filter out all the `text/html` files."}
-```sql
-PREFIX sdo: <http://schema.org/>
 
-SELECT ?x ?dtype
-WHERE {
-  ?x sdo:encodingFormat ?dtype .
-  FILTER regex(str(?dtype), "^text/html", "i")
-}
-```
+  ```sql
+  PREFIX sdo: <http://schema.org/>
+
+  SELECT ?x ?dtype
+  WHERE {
+    ?x sdo:encodingFormat ?dtype .
+    FILTER regex(str(?dtype), "^text/html", "i")
+  }
+  ```
+
 :::
 
 ::: {.callout-note collapse="true" title="Return also the `sdo:downloadUrl` of those files."}
 
-```sql
-PREFIX sdo: <http://schema.org/>
+  ```sql
+  PREFIX sdo: <http://schema.org/>
 
-SELECT ?x ?dtype ?durl
-WHERE {
-  ?x sdo:encodingFormat ?dtype ;
-     sdo:downloadUrl ?durl .
-  FILTER regex(str(?dtype), "^text/html", "i")
-}
-```
+  SELECT ?x ?dtype ?durl
+  WHERE {
+    ?x sdo:encodingFormat ?dtype ;
+      sdo:downloadUrl ?durl .
+    FILTER regex(str(?dtype), "^text/html", "i")
+  }
+  ```
+
 :::
 
-Now you can click the link of one of the `Krona` files, open them in the browser and with no surprise,
-it is a Krona plot.
+Now you can click the link of one of the `Krona` files, open them in the browser and with no surprise, it is a Krona plot.
 
-Now let's get the real metaGOflow outputs, SSU taxonomy tables. Hint for the exercise below,
-match `regex` of the `object` on "SSU-taxonomy-summary".
+Now let's get the real metaGOflow outputs, specifically SSU taxonomy tables. There are several ways how to do it.
+
+**1. RO-Crate browser**
+EMBRC hosts the [RO-Crate viewer](https://data.emobon.embrc.eu/) for the EMO-BON data
+
+**2. Local SPARQL**
+Write a query to get the `sdo:downloadUrl` links, put them into your browser, which automatically triggers the download. *Hint for the exercise below, match `regex` of the `object` on "SSU-taxonomy-summary".*
 
 ::: {.callout-note collapse="true" title="Return SSU taxonomy download links."}
-```sql
-PREFIX sdo: <http://schema.org/>
 
-SELECT ?subject ?predicate ?object ?durl
-WHERE {
-  ?subject ?predicate ?object .
-  FILTER regex(str(?object), "SSU-taxonomy-summary", "i")
-  OPTIONAL { ?object sdo:downloadUrl ?durl }
-}
-LIMIT 50
-```
+  ```sql
+  PREFIX sdo: <http://schema.org/>
+
+  SELECT ?subject ?predicate ?object ?durl
+  WHERE {
+    ?subject ?predicate ?object .
+    FILTER regex(str(?object), "SSU-taxonomy-summary", "i")
+    OPTIONAL { ?object sdo:downloadUrl ?durl }
+  }
+  LIMIT 50
+  ```
+
 :::
 
-##### **Python implementation**
+**3. Use data version control (`DVC`) tool**
+Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its [documentation](https://dvc.org/doc).
+
+#### Python implementation
 
 It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from a jupyter notebook.
 
-The example notebook is [online](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb) 
-which is part of the `momics-demos` repository, therefore you have it already locally with all installed dependencies too.
-The notebook includes all the steps of setting up the SparQL endpoint for your future reference. 
+First we reproduce what we did until now from [Jupyter notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb) which is part of the `momics-demos` repository, therefore you have it already locally with all installed dependencies too.
 
-1. Get the RO-Crate from GitHub.
-2. Serialize the RO-Crate into a turtle `.ttl` file.
-3. Create a graph from `turtle` or `json-LD` file.
-
-::: {.callout-note collapse="true" title="Pattern"}
-```python
-from rdflib import Graph
-g = Graph()
-# rdflib accepts a JSON-LD string as input
-g.parse(data=jsonld_text, format="json-ld", publicID=base)
-```
-:::
-4. Add triples at will and add graph to `fuseki`
-
-::: {.callout-note collapse="true" title="Pattern"}
-```python
-for triple in g:
-    combined_graph.add(triple)
-
-# Serialize combined graph to TTL format and save to file
-ttl_content = combined_graph.serialize(format='turtle')
-
-# save the ttl
-with open(output_file_path, 'w', encoding='utf-8') as f:
-    f.write(ttl_content)
-
-
-# upload the combined graph to the fuseki endpoint
-uri = "http://example.org/graphs/emobon_combined"
-# Use the Graph Store Protocol endpoint for Fuseki
-gsp_url = "http://localhost:3030/rocrate/data?graph=" + uri
-
-headers = {"Content-Type": "text/turtle"}
-
-resp = requests.put(gsp_url, data=ttl_content.encode("utf-8"), headers=headers, timeout=60)
-
-# raise for HTTP error
-try:
-    resp.raise_for_status()
-except requests.HTTPError as e:
-    raise RuntimeError(f"Upload failed: {resp.status_code} {resp.text}") from e
-```
-:::
-5. [Query and retrieve `json`, `xml`, `sparql`, `text`, `csv`, `tsv`, `thrift`.]{style="color:green;"}
-6. [Downstream `pandas` operations.]{style="color:green;"}
-
-Since we have already ingested the triples from the RO-Crates, [we start at step 5.]{style="color:green;"} 
-To query against the endpoint
+Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint
 
 ```python
-q = "SELECT (COUNT(*) AS ?c) WHERE { ?s ?p ?o }"
-r = requests.get("http://localhost:3030/rocrate/query", params={"query": q}, headers={"Accept": "application/sparql-results+json"})
+q = """
+SELECT (COUNT(*) AS ?c) 
+WHERE { 
+  ?s ?p ?o
+}
+"""
+
+r = requests.get("http://localhost:3030/emobon/query", params={"query": q}, headers={"Accept": "application/sparql-results+json"})
 print(r.json())
 ```
 
 returned `json` is relatively easy to convert to a dataframe (`sparql_json_to_df` function)
 
 ```python
-vars_ = sparql_json.get("head", {}).get("vars", [])
-rows = []
+def sparql_json_to_df(sparql_json):
+    """
+    Convert a SPARQL SELECT query JSON result to a pandas DataFrame.
+    
+    Parameters
+    ----------
+    sparql_json : dict
+        JSON returned by Fuseki / SPARQL endpoint with Accept: application/sparql-results+json
+    
+    Returns
+    -------
+    pd.DataFrame
+    """
+    vars_ = sparql_json.get("head", {}).get("vars", [])
+    rows = []
 
-for binding in sparql_json.get("results", {}).get("bindings", []):
-    row = {}
-    for var in vars_:
-        # Some results might not bind all variables
-        if var in binding:
-            row[var] = binding[var]["value"]
-        else:
-            row[var] = None
-    rows.append(row)
+    for binding in sparql_json.get("results", {}).get("bindings", []):
+        row = {}
+        for var in vars_:
+            # Some results might not bind all variables
+            if var in binding:
+                row[var] = binding[var]["value"]
+            else:
+                row[var] = None
+        rows.append(row)
 
-df = pd.DataFrame(rows, columns=vars_)
+    df = pd.DataFrame(rows, columns=vars_)
+    return df
 ```
 
-These are just miminal patterns examples, run the fully functional example in
-your local NB, `...../emobon_demo/momics-demos/momics-demos/wfs_extra/ro-crate_sparql_endpoint.ipynb`, 
-starting at section 5
+[Second notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/01_fuseki_emobon_full.ipynb) includes all the steps of setting up the SparQL endpoint and also combining local queries with public endpoints from wikidata and UniProt.
 
 ::: {.callout-tip}
-There is a python wrapper for SPARQL [SPARQLWrapper](https://sparqlwrapper.readthedocs.io/en/latest/main.html),
-which is `pip` installable and can be used as a standard python module but also as a command line script.
+There is a python wrapper for SPARQL [SPARQLWrapper](https://sparqlwrapper.readthedocs.io/en/latest/main.html), which is `pip` installable and can be used as a standard python module but also as a command line script.
 :::
 
 :::

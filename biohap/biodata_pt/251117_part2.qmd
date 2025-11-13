@@ -3,5 +3,5 @@
 ---
 date: 17/11/2025
 
-authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 ---
