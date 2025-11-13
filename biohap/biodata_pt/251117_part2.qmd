@@ -1,7 +1,19 @@
-# Frontend data processing
-
 ---
-date: 17/11/2025
-
-author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+editor: source
 ---
+
+Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard `.csv` tables, just compressed into `.parquet` files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally. 
+
+::: {.panel-tabset}
+
+#### Outline
+
+1. Test panel dashboard
+2. Switch to interactive mode for deeper exploration
+3. Hackathon
+
+#### Testing panel dashboard
+
+All dependencies were installed in the setup, open
+:::

@@ -3,7 +3,7 @@ authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
 ---
 
-There are many parallel technologies to employ in each step. The pipeline here heavily uses `python` to enerate the graph and `fuseki` for exposing the SPARQL endpoint. Here only for local testing.
+There are many parallel technologies to employ in each step. The pipeline here relies on `fuseki` for exposing the SPARQL endpoint and uses `python` to query the graph.
 
 ::: {.panel-tabset}
 
