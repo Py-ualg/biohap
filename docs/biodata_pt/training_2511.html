@@ -270,10 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#python-resources" id="toc-python-resources" class="nav-link" data-scroll-target="#python-resources">Python resources</a></li>
   <li><a href="#backend-setup" id="toc-backend-setup" class="nav-link" data-scroll-target="#backend-setup">Backend setup:</a></li>
   </ul></li>
-  <li><a href="#hands-on-tutorial" id="toc-hands-on-tutorial" class="nav-link" data-scroll-target="#hands-on-tutorial">Hands-on tutorial</a>
-  <ul class="collapse">
-  <li><a href="#frontend-data-processing" id="toc-frontend-data-processing" class="nav-link" data-scroll-target="#frontend-data-processing"><strong>Frontend data processing</strong></a></li>
-  </ul></li>
+  <li><a href="#hands-on-tutorial" id="toc-hands-on-tutorial" class="nav-link" data-scroll-target="#hands-on-tutorial">Hands-on tutorial</a></li>
   </ul>
 </nav>
     </div>
@@ -380,12 +377,12 @@ Last change
 <section id="hands-on-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="hands-on-tutorial">Hands-on tutorial</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" aria-current="page"><strong>Backend data integration</strong></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" aria-current="page"><strong>Backend data integration</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><strong>Frontend data processing</strong></a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>There are many parallel technologies to employ in each step. The pipeline here relies on <code>fuseki</code> for exposing the SPARQL endpoint and uses <code>python</code> to query the graph.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">SPARQL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Python implementation</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ol type="1">
@@ -428,7 +425,16 @@ Last change
 <section id="upload-data-and-generate-a-graph" class="level5">
 <h5 class="anchored" data-anchor-id="upload-data-and-generate-a-graph">Upload data and generate a graph</h5>
 <p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files and <code>upload all</code> or one by one. This is a shortcut, because many times you will not have access to the <code>.ttl</code> serialized version of the RO-Crate. In that case, the starting point is <code>ro-crate-metadata.json</code> file, which is always at the root of every RO-Crate.</p>
-<p>::: {callout-note title=“Pseudo python code”}</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Pseudo python code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pseudo python code
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the json file and convert it to a graph</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">".../ro-crate-metadata.json"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
@@ -442,13 +448,12 @@ Last change
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>{<span class="st">"Content-Type"</span>: <span class="st">"text/turtle"</span>},</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  timeout<span class="op">=</span><span class="dv">60</span>,</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</div>
 </div>
 </div>
 <p>The full example is in this <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/fuseki_create_sparql_endpoint_GH.ipynb">notebook</a>.</p>
-<section id="sparql" class="level4">
-<h4 class="anchored" data-anchor-id="sparql">SPARQL</h4>
+</section>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>The direct way from <code>fuseki</code> is to edit the query in <code>actions</code>. See more detailed but accesible introduction with <a href="https://www.w3.org/TR/sparql11-query/">examples</a>. When you click <code>query</code>, the default query is shown</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PREFIX rdf: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">1999</span><span class="op">/</span><span class="dv">02</span><span class="op">/</span><span class="dv">22</span><span class="op">-</span>rdf<span class="op">-</span>syntax<span class="op">-</span>ns#<span class="op">&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>PREFIX rdfs: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">2000</span><span class="op">/</span><span class="dv">01</span><span class="op">/</span>rdf<span class="op">-</span>schema#<span class="op">&gt;</span></span>
@@ -457,7 +462,7 @@ Last change
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>} <span class="kw">LIMIT</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>, which queries all the triples in the graph.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How many triples do we have?">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -466,7 +471,7 @@ How many triples do we have?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> (<span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">as</span> ?c)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
@@ -477,7 +482,7 @@ How many triples do we have?
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Filter out all the `text/html` files.">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -486,7 +491,7 @@ Filter out all the <code>text/html</code> files.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -499,7 +504,7 @@ Filter out all the <code>text/html</code> files.
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Return also the `sdo:downloadUrl` of those files.">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -508,7 +513,7 @@ Return also the <code>sdo:downloadUrl</code> of those files.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -526,7 +531,7 @@ Return also the <code>sdo:downloadUrl</code> of those files.
 <p><strong>1. RO-Crate browser</strong> EMBRC hosts the <a href="https://data.emobon.embrc.eu/">RO-Crate viewer</a> for the EMO-BON data</p>
 <p><strong>2. Local SPARQL</strong> Write a query to get the <code>sdo:downloadUrl</code> links, put them into your browser, which automatically triggers the download. <em>Hint for the exercise below, match <code>regex</code> of the <code>object</code> on “SSU-taxonomy-summary”.</em></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Return SSU taxonomy download links.">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -535,7 +540,7 @@ Return SSU taxonomy download links.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -550,9 +555,8 @@ Return SSU taxonomy download links.
 </div>
 </div>
 <p><strong>3. Use data version control (<code>DVC</code>) tool</strong> Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its <a href="https://dvc.org/doc">documentation</a>.</p>
-</section>
-<section id="python-implementation" class="level4">
-<h4 class="anchored" data-anchor-id="python-implementation">Python implementation</h4>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <p>It is possible to export the tables form the <code>fuseki</code> for subsequent work, but let’s do everything seamlessly from a jupyter notebook.</p>
 <p>First we reproduce what we did until now from <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb">Jupyter notebook</a> which is part of the <code>momics-demos</code> repository, therefore you have it already locally with all installed dependencies too.</p>
 <p>Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint</p>
@@ -608,32 +612,31 @@ Tip
 <p>There is a python wrapper for SPARQL <a href="https://sparqlwrapper.readthedocs.io/en/latest/main.html">SPARQLWrapper</a>, which is <code>pip</code> installable and can be used as a standard python module but also as a command line script.</p>
 </div>
 </div>
-</section>
 </div>
 </div>
 </div>
 <hr>
-<section id="frontend-data-processing" class="level3">
-<h3 class="anchored" data-anchor-id="frontend-data-processing"><strong>Frontend data processing</strong></h3>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard <code>.csv</code> tables, just compressed into <code>.parquet</code> files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Testing panel dashboard</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Interactive mode</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Testing panel dashboard</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Interactive mode</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <ol type="1">
 <li>Test panel dashboard</li>
 <li>Switch to interactive mode for deeper exploration</li>
 <li>Hackathon</li>
 </ol>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>All dependencies were installed in the setup. Initialize the jupyter server with</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> momics-demos</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Open <code>wf2_diversity/diversities_panel.ipynb</code>. It looks and it is a native python notebook code. However clicking the panel icon <img src="./figs/panel_icon.png" alt="panel icon" width="16"> initiates the dashboard.</p>
 <p>After getting familiar with the functionality, figure out on the PCoA beta diversity plots, which categorical variables show the highest <code>explained variance</code> on the first two PCA components.</p>
 </div>
-<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Every dashboard is also available for interactive mode <code>..._interactive.ipynb</code>. After discovering one of the main drivers, we would like to see what drives this difference.</p>
 <p>Select one sample from each category and try to identify the taxa responsible from the variance.</p>
 <section id="hints" class="level5">
@@ -659,10 +662,11 @@ Tip
 </div>
 </div>
 </div>
-<p>:::</p>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

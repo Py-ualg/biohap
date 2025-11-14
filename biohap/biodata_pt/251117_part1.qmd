@@ -52,7 +52,7 @@ Now opening your localhost, http://localhost:3030/, you should see the following
 
 In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files and `upload all` or one by one. This is a shortcut, because many times you will not have access to the `.ttl` serialized version of the RO-Crate. In that case, the starting point is `ro-crate-metadata.json` file, which is always at the root of every RO-Crate.
 
-::: {callout-note title="Pseudo python code"}
+::: {.callout-note title="Pseudo python code"}
 
   ```python
   # read the json file and convert it to a graph
