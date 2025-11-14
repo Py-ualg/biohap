@@ -5,9 +5,7 @@ editor: source
 
 There are many parallel technologies to employ in each step. The pipeline here relies on `fuseki` for exposing the SPARQL endpoint and uses `python` to query the graph.
 
-::: {.panel-tabset}
-
-#### Outline
+### Outline
 
 1. RO-Crates
 2. fuseki setup
@@ -15,6 +13,8 @@ There are many parallel technologies to employ in each step. The pipeline here r
 4. basic SPARQL queries
 5. Jupyter NB for local SPARQL
 6. Combine local and public endpoints
+
+::: {.panel-tabset}
 
 #### RO-Crates
 
