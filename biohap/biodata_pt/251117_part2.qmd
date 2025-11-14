@@ -3,7 +3,7 @@ authors: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
 ---
 
-Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard `.csv` tables, just compressed into `.parquet` files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally. 
+Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard `.csv` tables, just compressed into `.parquet` files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally.
 
 ::: {.panel-tabset}
 
@@ -15,5 +15,42 @@ Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly sepa
 
 #### Testing panel dashboard
 
-All dependencies were installed in the setup, open
+All dependencies were installed in the setup. Initialize the jupyter server with
+
+```bash
+cd momics-demos
+python -m jupyterlab
+```
+
+Open `wf2_diversity/diversities_panel.ipynb`. It looks and it is a native python notebook code. However clicking the panel icon <img src="./figs/panel_icon.png" alt="panel icon" width="16"/> initiates the dashboard.
+
+After getting familiar with the functionality, figure out on the PCoA beta diversity plots, which categorical variables show the highest `explained variance` on the first two PCA components.
+
+#### Interactive mode
+
+Every dashboard is also available for interactive mode `..._interactive.ipynb`. After discovering one of the main drivers, we would like to see what drives this difference.
+
+Select one sample from each category and try to identify the taxa responsible from the variance.
+
+##### Hints
+
+1. One approach could be the permonova test removing the taxa one by one. Permonova is implemented in `marine-omics-methods`
+2. Alternatively compute correlation of each `taxon` with the PC1 and PC2, rank the features
+3. Fit features as vectors onto PCoA (envfit). This is the most widely used method, especially in ecology (vegan package in R). In Python (via scikit-bio):
+
+```python
+    from skbio.stats.ordination import cca_scores
+
+    # envfit equivalent not built-in, but you can manually regress:
+    import scipy.stats as st
+
+    results = {}
+    for feature in abund.columns:
+        slope_x, _, r_x, _, _ = st.linregress(coords["PC1"], abund[feature])
+        slope_y, _, r_y, _, _ = st.linregress(coords["PC2"], abund[feature])
+        results[feature] = (r_x, r_y)
+
+    vectors = pd.DataFrame(results, index=["r_PC1", "r_PC2"]).T
+```
+
 :::

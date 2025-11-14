@@ -26,22 +26,9 @@ Note that we already have some of the EMO-BON RO-Crates locall in `/emobon_demo/
 
 #### fuseki
 
-Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. It is a java ndpoint, therefore, you might need to install `java` first if `java -version` shows nothing.
+Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server as follows
 
 ```bash
-sudo apt update
-sudo apt install -y openjdk-17-jre-headless
-java -version
-```
-
-Here comes the fuseki download itself.
-
-```bash
-wget https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz
-
-# open the archive
-tar -xvf apache-jena-fuseki-5.6.0.tar.gz
-
 cd apache-jena-fuseki-5.6.0/
 
 # start the server
@@ -57,11 +44,35 @@ This should show you similar to
 15:46:48 INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini
 ```
 
-Now opening your localhost, http://localhost:3030/, you should see ![fuseki server](figs/fuseki_screenshot.png)
+Now opening your localhost, http://localhost:3030/, you should see the following page
+
+![fuseki server](figs/fuseki_screenshot.png)
 
 ##### Upload data and generate a graph
 
-In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files and `upload all`
+In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files and `upload all` or one by one. This is a shortcut, because many times you will not have access to the `.ttl` serialized version of the RO-Crate. In that case, the starting point is `ro-crate-metadata.json` file, which is always at the root of every RO-Crate.
+
+::: {callout-note title="Pseudo python code"}
+
+  ```python
+  # read the json file and convert it to a graph
+  file = ".../ro-crate-metadata.json"
+  with open(file, "r", encoding="utf-8") as f:
+      jsonld_text = f.read()
+  g = jsonld_to_rdflib(jsonld_text)
+
+  # upload data to the endpoint
+  resp = requests.put(
+    fuseki_url,
+    data=g.serialize(format="turtle").encode("utf-8"),
+    headers={"Content-Type": "text/turtle"},
+    timeout=60,
+  )
+  ```
+
+:::
+
+The full example is in this [notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/fuseki_create_sparql_endpoint_GH.ipynb).
 
 #### SPARQL
 

@@ -9,19 +9,15 @@ editor: source
 November 11, 2025
 :::
 
-This course should give you set of minimal examples on how to generate a knowledge graph 
-from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`.
+This course should give you set of minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`.
 
-Second part focused on a specific use case of EMO-BON data, the pilot implementation of the
-Virtual Research Environment is introduced, basic analysis performed, issues reported,
-extended analysis proposed.
+Second part focused on a specific use case of EMO-BON data, the pilot implementation of the Virtual Research Environment is introduced, basic analysis performed, issues reported, extended analysis proposed.
 
 What is omitted here is how to organize the data and build the RO-Crates themselves.
 
 ## Environmental setup
 
-This setup serves is ubiquitus for both parts of the tutorial. We will clone two repositories and install one of them.
-To keep everything exactly the same, we create a designated folder
+This setup serves is ubiquitus for both parts of the tutorial. We will clone two repositories and install one of them. To keep everything exactly the same, we create a designated folder
 
 ```bash
 mkdir emobon_demo
@@ -36,7 +32,7 @@ conda create -n "emobon" python=3.10  # or higher
 conda activate emobon
 ```
 
-### Python resources needed for this tutorial
+### Python resources
 
 ```bash
 # create a folder
@@ -56,10 +52,9 @@ pip install -e .
 ipython kernel install --user --name "emobon"
 ```
 
-### For the backend part:
+### Backend setup:
 
-As we are going to work with [EMO-BON](https://www.embrc.eu/emo-bon/) metagenomics data, one way is to download
-some of the RO-Crates [GitHub repository](https://github.com/emo-bon/analysis-results-cluster-01-crate) manually.
+As we are going to work with [EMO-BON](https://www.embrc.eu/emo-bon/) metagenomics data, one way is to download some of the RO-Crates [GitHub repository](https://github.com/emo-bon/analysis-results-cluster-01-crate) manually.
 
 Easier, however. is to clone the whole repository. Navigate back to the `..../emobon_demo/` and do:
 
@@ -70,8 +65,24 @@ cd ro-crates
 git clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git
 ```
 
-As you see in the GH as well, you have now the RO-Crates per sample and corresponding `.ttl` files.
+As you see in the GH as well, you have now the RO-Crates per sample and corresponding `.ttl` files to simplify your life.
 
+We will use [fuseki](https://jena.apache.org/documentation/fuseki2/index.html) server for a SPARQL endpoint. It is a java ndpoint, therefore, you might need to install `java` first if `java -version` command does not return anything.
+
+```bash
+sudo apt update
+sudo apt install -y openjdk-17-jre-headless
+java -version
+```
+
+Here comes the fuseki download itself. Please chose appropriate folder for this. For direct download visit this [page](https://jena.apache.org/download/index.cgi).
+
+```bash
+wget https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz
+
+# open the archive
+tar -xvf apache-jena-fuseki-5.6.0.tar.gz
+```
 
 ## Hands-on tutorial
 
@@ -81,8 +92,7 @@ As you see in the GH as well, you have now the RO-Crates per sample and correspo
 
 {{< include 251117_part1.qmd >}}
 
-
-### **Frontend data processing **
+### **Frontend data processing**
 
 {{< include 251117_part2.qmd >}}
 

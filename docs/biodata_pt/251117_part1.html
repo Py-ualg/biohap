@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>There are many parallel technologies to employ in each step. The pipeline here relies on <code>fuseki</code> for exposing the SPARQL endpoint and uses <code>python</code> to query the graph.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">SPARQL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Python implementation</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ol type="1">
@@ -313,32 +313,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note that we already have some of the EMO-BON RO-Crates locall in <code>/emobon_demo/ro-crates/analysis-results-cluster-01-crate/</code>.</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. It is a java ndpoint, therefore, you might need to install <code>java</code> first if <code>java -version</code> shows nothing.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> openjdk-17-jre-headless</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here comes the fuseki download itself.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># open the archive</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvf</span> apache-jena-fuseki-5.6.0.tar.gz</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> apache-jena-fuseki-5.6.0/</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># start the server</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">./fuseki-server</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server as follows</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> apache-jena-fuseki-5.6.0/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># start the server</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./fuseki-server</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This should show you similar to</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: Fuseki Base = /home/david-palecek/coding/apache-jena-fuseki-5.6.0/run</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: No databases: dir=/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/configuration</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Config          :: UI Base = fuseki-server.jar</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now opening your localhost, http://localhost:3030/, you should see <img src="figs/fuseki_screenshot.png" class="img-fluid" alt="fuseki server"></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: Fuseki Base = /home/david-palecek/coding/apache-jena-fuseki-5.6.0/run</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: No databases: dir=/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/configuration</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Config          :: UI Base = fuseki-server.jar</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now opening your localhost, http://localhost:3030/, you should see the following page</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fuseki_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>fuseki server</figcaption>
+</figure>
+</div>
 <section id="upload-data-and-generate-a-graph" class="level5">
 <h5 class="anchored" data-anchor-id="upload-data-and-generate-a-graph">Upload data and generate a graph</h5>
-<p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files and <code>upload all</code></p>
+<p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files and <code>upload all</code> or one by one. This is a shortcut, because many times you will not have access to the <code>.ttl</code> serialized version of the RO-Crate. In that case, the starting point is <code>ro-crate-metadata.json</code> file, which is always at the root of every RO-Crate.</p>
+<p>::: {callout-note title=“Pseudo python code”}</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the json file and convert it to a graph</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">".../ro-crate-metadata.json"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    jsonld_text <span class="op">=</span> f.read()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> jsonld_to_rdflib(jsonld_text)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># upload data to the endpoint</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> requests.put(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  fuseki_url,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  data<span class="op">=</span>g.serialize(<span class="bu">format</span><span class="op">=</span><span class="st">"turtle"</span>).encode(<span class="st">"utf-8"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>{<span class="st">"Content-Type"</span>: <span class="st">"text/turtle"</span>},</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  timeout<span class="op">=</span><span class="dv">60</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+</div>
+</div>
+<p>The full example is in this <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/fuseki_create_sparql_endpoint_GH.ipynb">notebook</a>.</p>
+<section id="sparql" class="level4">
+<h4 class="anchored" data-anchor-id="sparql">SPARQL</h4>
 <p>The direct way from <code>fuseki</code> is to edit the query in <code>actions</code>. See more detailed but accesible introduction with <a href="https://www.w3.org/TR/sparql11-query/">examples</a>. When you click <code>query</code>, the default query is shown</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>PREFIX rdf: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">1999</span><span class="op">/</span><span class="dv">02</span><span class="op">/</span><span class="dv">22</span><span class="op">-</span>rdf<span class="op">-</span>syntax<span class="op">-</span>ns#<span class="op">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>PREFIX rdfs: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">2000</span><span class="op">/</span><span class="dv">01</span><span class="op">/</span>rdf<span class="op">-</span>schema#<span class="op">&gt;</span></span>
@@ -440,8 +455,9 @@ Return SSU taxonomy download links.
 </div>
 </div>
 <p><strong>3. Use data version control (<code>DVC</code>) tool</strong> Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its <a href="https://dvc.org/doc">documentation</a>.</p>
-</div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+</section>
+<section id="python-implementation" class="level4">
+<h4 class="anchored" data-anchor-id="python-implementation">Python implementation</h4>
 <p>It is possible to export the tables form the <code>fuseki</code> for subsequent work, but let’s do everything seamlessly from a jupyter notebook.</p>
 <p>First we reproduce what we did until now from <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb">Jupyter notebook</a> which is part of the <code>momics-demos</code> repository, therefore you have it already locally with all installed dependencies too.</p>
 <p>Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint</p>
@@ -497,12 +513,11 @@ Tip
 <p>There is a python wrapper for SPARQL <a href="https://sparqlwrapper.readthedocs.io/en/latest/main.html">SPARQLWrapper</a>, which is <code>pip</code> installable and can be used as a standard python module but also as a command line script.</p>
 </div>
 </div>
-</div>
-</div>
-</div>
+<p>:::</p>
 <hr>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

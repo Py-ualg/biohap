@@ -267,10 +267,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#environmental-setup" id="toc-environmental-setup" class="nav-link active" data-scroll-target="#environmental-setup">Environmental setup</a>
   <ul class="collapse">
-  <li><a href="#python-resources-needed-for-this-tutorial" id="toc-python-resources-needed-for-this-tutorial" class="nav-link" data-scroll-target="#python-resources-needed-for-this-tutorial">Python resources needed for this tutorial</a></li>
-  <li><a href="#for-the-backend-part" id="toc-for-the-backend-part" class="nav-link" data-scroll-target="#for-the-backend-part">For the backend part:</a></li>
+  <li><a href="#python-resources" id="toc-python-resources" class="nav-link" data-scroll-target="#python-resources">Python resources</a></li>
+  <li><a href="#backend-setup" id="toc-backend-setup" class="nav-link" data-scroll-target="#backend-setup">Backend setup:</a></li>
   </ul></li>
-  <li><a href="#hands-on-tutorial" id="toc-hands-on-tutorial" class="nav-link" data-scroll-target="#hands-on-tutorial">Hands-on tutorial</a></li>
+  <li><a href="#hands-on-tutorial" id="toc-hands-on-tutorial" class="nav-link" data-scroll-target="#hands-on-tutorial">Hands-on tutorial</a>
+  <ul class="collapse">
+  <li><a href="#frontend-data-processing" id="toc-frontend-data-processing" class="nav-link" data-scroll-target="#frontend-data-processing"><strong>Frontend data processing</strong></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -336,8 +339,8 @@ Last change
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you are using conda</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> <span class="st">"emobon"</span> python=3.10  <span class="co"># or higher</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate emobon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="python-resources-needed-for-this-tutorial" class="level3">
-<h3 class="anchored" data-anchor-id="python-resources-needed-for-this-tutorial">Python resources needed for this tutorial</h3>
+<section id="python-resources" class="level3">
+<h3 class="anchored" data-anchor-id="python-resources">Python resources</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a folder</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> momics-demos</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> momics-demos</span>
@@ -354,26 +357,35 @@ Last change
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># setup jupyter kernel</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ex">ipython</span> kernel install <span class="at">--user</span> <span class="at">--name</span> <span class="st">"emobon"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="for-the-backend-part" class="level3">
-<h3 class="anchored" data-anchor-id="for-the-backend-part">For the backend part:</h3>
+<section id="backend-setup" class="level3">
+<h3 class="anchored" data-anchor-id="backend-setup">Backend setup:</h3>
 <p>As we are going to work with <a href="https://www.embrc.eu/emo-bon/">EMO-BON</a> metagenomics data, one way is to download some of the RO-Crates <a href="https://github.com/emo-bon/analysis-results-cluster-01-crate">GitHub repository</a> manually.</p>
 <p>Easier, however. is to clone the whole repository. Navigate back to the <code>..../emobon_demo/</code> and do:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ro-crates</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ro-crates</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As you see in the GH as well, you have now the RO-Crates per sample and corresponding <code>.ttl</code> files.</p>
+<p>As you see in the GH as well, you have now the RO-Crates per sample and corresponding <code>.ttl</code> files to simplify your life.</p>
+<p>We will use <a href="https://jena.apache.org/documentation/fuseki2/index.html">fuseki</a> server for a SPARQL endpoint. It is a java ndpoint, therefore, you might need to install <code>java</code> first if <code>java -version</code> command does not return anything.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> openjdk-17-jre-headless</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here comes the fuseki download itself. Please chose appropriate folder for this. For direct download visit this <a href="https://jena.apache.org/download/index.cgi">page</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># open the archive</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvf</span> apache-jena-fuseki-5.6.0.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="hands-on-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="hands-on-tutorial">Hands-on tutorial</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" aria-current="page"><strong>Backend data integration</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><strong>Frontend data processing </strong></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" aria-current="page"><strong>Backend data integration</strong></a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>There are many parallel technologies to employ in each step. The pipeline here relies on <code>fuseki</code> for exposing the SPARQL endpoint and uses <code>python</code> to query the graph.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">SPARQL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Python implementation</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ol type="1">
@@ -396,38 +408,53 @@ Last change
 <p>Note that we already have some of the EMO-BON RO-Crates locall in <code>/emobon_demo/ro-crates/analysis-results-cluster-01-crate/</code>.</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. It is a java ndpoint, therefore, you might need to install <code>java</code> first if <code>java -version</code> shows nothing.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> openjdk-17-jre-headless</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here comes the fuseki download itself.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># open the archive</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvf</span> apache-jena-fuseki-5.6.0.tar.gz</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> apache-jena-fuseki-5.6.0/</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># start the server</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">./fuseki-server</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server as follows</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> apache-jena-fuseki-5.6.0/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># start the server</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./fuseki-server</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This should show you similar to</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: Fuseki Base = /home/david-palecek/coding/apache-jena-fuseki-5.6.0/run</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: No databases: dir=/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/configuration</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Config          :: UI Base = fuseki-server.jar</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now opening your localhost, http://localhost:3030/, you should see <img src="figs/fuseki_screenshot.png" class="img-fluid" alt="fuseki server"></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: Fuseki Base = /home/david-palecek/coding/apache-jena-fuseki-5.6.0/run</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:47</span> INFO  Config          :: No databases: dir=/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/configuration</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Config          :: UI Base = fuseki-server.jar</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">15:46:48</span> INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now opening your localhost, http://localhost:3030/, you should see the following page</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fuseki_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>fuseki server</figcaption>
+</figure>
+</div>
 <section id="upload-data-and-generate-a-graph" class="level5">
 <h5 class="anchored" data-anchor-id="upload-data-and-generate-a-graph">Upload data and generate a graph</h5>
-<p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files and <code>upload all</code></p>
+<p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files and <code>upload all</code> or one by one. This is a shortcut, because many times you will not have access to the <code>.ttl</code> serialized version of the RO-Crate. In that case, the starting point is <code>ro-crate-metadata.json</code> file, which is always at the root of every RO-Crate.</p>
+<p>::: {callout-note title=“Pseudo python code”}</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the json file and convert it to a graph</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">".../ro-crate-metadata.json"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    jsonld_text <span class="op">=</span> f.read()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> jsonld_to_rdflib(jsonld_text)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># upload data to the endpoint</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> requests.put(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  fuseki_url,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  data<span class="op">=</span>g.serialize(<span class="bu">format</span><span class="op">=</span><span class="st">"turtle"</span>).encode(<span class="st">"utf-8"</span>),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>{<span class="st">"Content-Type"</span>: <span class="st">"text/turtle"</span>},</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  timeout<span class="op">=</span><span class="dv">60</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+</div>
+</div>
+<p>The full example is in this <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/fuseki_create_sparql_endpoint_GH.ipynb">notebook</a>.</p>
+<section id="sparql" class="level4">
+<h4 class="anchored" data-anchor-id="sparql">SPARQL</h4>
 <p>The direct way from <code>fuseki</code> is to edit the query in <code>actions</code>. See more detailed but accesible introduction with <a href="https://www.w3.org/TR/sparql11-query/">examples</a>. When you click <code>query</code>, the default query is shown</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PREFIX rdf: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">1999</span><span class="op">/</span><span class="dv">02</span><span class="op">/</span><span class="dv">22</span><span class="op">-</span>rdf<span class="op">-</span>syntax<span class="op">-</span>ns#<span class="op">&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>PREFIX rdfs: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">2000</span><span class="op">/</span><span class="dv">01</span><span class="op">/</span>rdf<span class="op">-</span>schema#<span class="op">&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">WHERE</span> {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  ?sub ?pred ?obj .</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>} <span class="kw">LIMIT</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PREFIX rdf: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">1999</span><span class="op">/</span><span class="dv">02</span><span class="op">/</span><span class="dv">22</span><span class="op">-</span>rdf<span class="op">-</span>syntax<span class="op">-</span>ns#<span class="op">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>PREFIX rdfs: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">2000</span><span class="op">/</span><span class="dv">01</span><span class="op">/</span>rdf<span class="op">-</span>schema#<span class="op">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">WHERE</span> {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  ?sub ?pred ?obj .</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>} <span class="kw">LIMIT</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>, which queries all the triples in the graph.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="How many triples do we have?">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -441,11 +468,11 @@ How many triples do we have?
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> (<span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">as</span> ?c)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  ?subject ?predicate ?<span class="dt">object</span> .</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> (<span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">as</span> ?c)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  ?subject ?predicate ?<span class="dt">object</span> .</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -461,13 +488,13 @@ Filter out all the <code>text/html</code> files.
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ?x ?dtype</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  ?x sdo<span class="ch">:encodingFormat</span> ?dtype .</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FILTER</span> regex(str(?dtype), <span class="ot">"^text/html"</span>, <span class="ot">"i"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ?x ?dtype</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  ?x sdo<span class="ch">:encodingFormat</span> ?dtype .</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FILTER</span> regex(str(?dtype), <span class="ot">"^text/html"</span>, <span class="ot">"i"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -483,14 +510,14 @@ Return also the <code>sdo:downloadUrl</code> of those files.
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ?x ?dtype ?durl</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  ?x sdo<span class="ch">:encodingFormat</span> ?dtype ;</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    sdo<span class="ch">:downloadUrl</span> ?durl .</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FILTER</span> regex(str(?dtype), <span class="ot">"^text/html"</span>, <span class="ot">"i"</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ?x ?dtype ?durl</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  ?x sdo<span class="ch">:encodingFormat</span> ?dtype ;</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    sdo<span class="ch">:downloadUrl</span> ?durl .</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FILTER</span> regex(str(?dtype), <span class="ot">"^text/html"</span>, <span class="ot">"i"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -510,62 +537,63 @@ Return SSU taxonomy download links.
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ?subject ?predicate ?<span class="dt">object</span> ?durl</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  ?subject ?predicate ?<span class="dt">object</span> .</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FILTER</span> regex(str(?<span class="dt">object</span>), <span class="ot">"SSU-taxonomy-summary"</span>, <span class="ot">"i"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  OPTIONAL { ?<span class="dt">object</span> sdo<span class="ch">:downloadUrl</span> ?durl }</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PREFIX sdo: <span class="op">&lt;</span>http:<span class="op">//</span><span class="kw">schema</span>.org<span class="op">/&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ?subject ?predicate ?<span class="dt">object</span> ?durl</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  ?subject ?predicate ?<span class="dt">object</span> .</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FILTER</span> regex(str(?<span class="dt">object</span>), <span class="ot">"SSU-taxonomy-summary"</span>, <span class="ot">"i"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  OPTIONAL { ?<span class="dt">object</span> sdo<span class="ch">:downloadUrl</span> ?durl }</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p><strong>3. Use data version control (<code>DVC</code>) tool</strong> Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its <a href="https://dvc.org/doc">documentation</a>.</p>
-</div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+</section>
+<section id="python-implementation" class="level4">
+<h4 class="anchored" data-anchor-id="python-implementation">Python implementation</h4>
 <p>It is possible to export the tables form the <code>fuseki</code> for subsequent work, but let’s do everything seamlessly from a jupyter notebook.</p>
 <p>First we reproduce what we did until now from <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb">Jupyter notebook</a> which is part of the <code>momics-demos</code> repository, therefore you have it already locally with all installed dependencies too.</p>
 <p>Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT (COUNT(*) AS ?c) </span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE { </span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">  ?s ?p ?o</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(<span class="st">"http://localhost:3030/emobon/query"</span>, params<span class="op">=</span>{<span class="st">"query"</span>: q}, headers<span class="op">=</span>{<span class="st">"Accept"</span>: <span class="st">"application/sparql-results+json"</span>})</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r.json())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT (COUNT(*) AS ?c) </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE { </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">  ?s ?p ?o</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(<span class="st">"http://localhost:3030/emobon/query"</span>, params<span class="op">=</span>{<span class="st">"query"</span>: q}, headers<span class="op">=</span>{<span class="st">"Accept"</span>: <span class="st">"application/sparql-results+json"</span>})</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r.json())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>returned <code>json</code> is relatively easy to convert to a dataframe (<code>sparql_json_to_df</code> function)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sparql_json_to_df(sparql_json):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Convert a SPARQL SELECT query JSON result to a pandas DataFrame.</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    sparql_json : dict</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">        JSON returned by Fuseki / SPARQL endpoint with Accept: application/sparql-results+json</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">    pd.DataFrame</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    vars_ <span class="op">=</span> sparql_json.get(<span class="st">"head"</span>, {}).get(<span class="st">"vars"</span>, [])</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> []</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> binding <span class="kw">in</span> sparql_json.get(<span class="st">"results"</span>, {}).get(<span class="st">"bindings"</span>, []):</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> {}</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> var <span class="kw">in</span> vars_:</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Some results might not bind all variables</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> var <span class="kw">in</span> binding:</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                row[var] <span class="op">=</span> binding[var][<span class="st">"value"</span>]</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>                row[var] <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        rows.append(row)</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rows, columns<span class="op">=</span>vars_)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sparql_json_to_df(sparql_json):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Convert a SPARQL SELECT query JSON result to a pandas DataFrame.</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    sparql_json : dict</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">        JSON returned by Fuseki / SPARQL endpoint with Accept: application/sparql-results+json</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">    pd.DataFrame</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    vars_ <span class="op">=</span> sparql_json.get(<span class="st">"head"</span>, {}).get(<span class="st">"vars"</span>, [])</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> []</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> binding <span class="kw">in</span> sparql_json.get(<span class="st">"results"</span>, {}).get(<span class="st">"bindings"</span>, []):</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> {}</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> var <span class="kw">in</span> vars_:</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Some results might not bind all variables</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> var <span class="kw">in</span> binding:</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>                row[var] <span class="op">=</span> binding[var][<span class="st">"value"</span>]</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>                row[var] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        rows.append(row)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rows, columns<span class="op">=</span>vars_)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/01_fuseki_emobon_full.ipynb">Second notebook</a> includes all the steps of setting up the SparQL endpoint and also combining local queries with public endpoints from wikidata and UniProt.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -580,33 +608,61 @@ Tip
 <p>There is a python wrapper for SPARQL <a href="https://sparqlwrapper.readthedocs.io/en/latest/main.html">SPARQLWrapper</a>, which is <code>pip</code> installable and can be used as a standard python module but also as a command line script.</p>
 </div>
 </div>
+</section>
 </div>
 </div>
 </div>
 <hr>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<section id="frontend-data-processing" class="level3">
+<h3 class="anchored" data-anchor-id="frontend-data-processing"><strong>Frontend data processing</strong></h3>
 <p>Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard <code>.csv</code> tables, just compressed into <code>.parquet</code> files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Testing panel dashboard</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Testing panel dashboard</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Interactive mode</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <ol type="1">
 <li>Test panel dashboard</li>
 <li>Switch to interactive mode for deeper exploration</li>
 <li>Hackathon</li>
 </ol>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>All dependencies were installed in the setup, open</p>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>All dependencies were installed in the setup. Initialize the jupyter server with</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> momics-demos</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open <code>wf2_diversity/diversities_panel.ipynb</code>. It looks and it is a native python notebook code. However clicking the panel icon <img src="./figs/panel_icon.png" alt="panel icon" width="16"> initiates the dashboard.</p>
+<p>After getting familiar with the functionality, figure out on the PCoA beta diversity plots, which categorical variables show the highest <code>explained variance</code> on the first two PCA components.</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>Every dashboard is also available for interactive mode <code>..._interactive.ipynb</code>. After discovering one of the main drivers, we would like to see what drives this difference.</p>
+<p>Select one sample from each category and try to identify the taxa responsible from the variance.</p>
+<section id="hints" class="level5">
+<h5 class="anchored" data-anchor-id="hints">Hints</h5>
+<ol type="1">
+<li>One approach could be the permonova test removing the taxa one by one. Permonova is implemented in <code>marine-omics-methods</code></li>
+<li>Alternatively compute correlation of each <code>taxon</code> with the PC1 and PC2, rank the features</li>
+<li>Fit features as vectors onto PCoA (envfit). This is the most widely used method, especially in ecology (vegan package in R). In Python (via scikit-bio):</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> skbio.stats.ordination <span class="im">import</span> cca_scores</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># envfit equivalent not built-in, but you can manually regress:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> scipy.stats <span class="im">as</span> st</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feature <span class="kw">in</span> abund.columns:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        slope_x, _, r_x, _, _ <span class="op">=</span> st.linregress(coords[<span class="st">"PC1"</span>], abund[feature])</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        slope_y, _, r_y, _, _ <span class="op">=</span> st.linregress(coords[<span class="st">"PC2"</span>], abund[feature])</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        results[feature] <span class="op">=</span> (r_x, r_y)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    vectors <span class="op">=</span> pd.DataFrame(results, index<span class="op">=</span>[<span class="st">"r_PC1"</span>, <span class="st">"r_PC2"</span>]).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+<p>:::</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
