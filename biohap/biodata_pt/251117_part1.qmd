@@ -72,7 +72,7 @@ In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select
 
 :::
 
-The full example is in this [notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/fuseki_create_sparql_endpoint_GH.ipynb).
+The full example is in this [notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/03_fuseki_emobon_GH.ipynb).
 
 #### SPARQL
 
