@@ -5,15 +5,9 @@ editor: source
 
 Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard `.csv` tables, just compressed into `.parquet` files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally.
 
-### Outline
-
-1. Test panel dashboard
-2. Switch to interactive mode for deeper exploration
-3. Hackathon
-
 ::: {.panel-tabset}
 
-#### Testing panel dashboard
+#### Basic Panel Dashboard
 
 All dependencies were installed in the setup. Initialize the jupyter server with
 
@@ -26,7 +20,7 @@ Open `wf2_diversity/diversities_panel.ipynb`. It looks and it is a native python
 
 After getting familiar with the functionality, figure out on the PCoA beta diversity plots, which categorical variables show the highest `explained variance` on the first two PCA components.
 
-#### Interactive mode
+#### Deeper Interactive Mode
 
 Every dashboard is also available for interactive mode `..._interactive.ipynb`. After discovering one of the main drivers, we would like to see what drives this difference.
 

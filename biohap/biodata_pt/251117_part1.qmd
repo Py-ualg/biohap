@@ -5,15 +5,6 @@ editor: source
 
 There are many parallel technologies to employ in each step. The pipeline here relies on `fuseki` for exposing the SPARQL endpoint and uses `python` to query the graph.
 
-### Outline
-
-1. RO-Crates
-2. fuseki setup
-3. generate and ingest graph
-4. basic SPARQL queries
-5. Jupyter NB for local SPARQL
-6. Combine local and public endpoints
-
 ::: {.panel-tabset}
 
 #### RO-Crates
@@ -24,7 +15,7 @@ A RO-Crate is an integrated view through which you can see an entire Research Ob
 
 Note that we already have some of the EMO-BON RO-Crates locall in `/emobon_demo/ro-crates/analysis-results-cluster-01-crate/`.
 
-#### fuseki
+#### Fuseki Server
 
 Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server as follows
 
@@ -48,7 +39,7 @@ Now opening your localhost, http://localhost:3030/, you should see the following
 
 ![fuseki server](figs/fuseki_screenshot.png)
 
-##### Upload data and generate a graph
+##### Upload Dataset / Graph
 
 In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files and `upload all` or one by one. This is a shortcut, because many times you will not have access to the `.ttl` serialized version of the RO-Crate. In that case, the starting point is `ro-crate-metadata.json` file, which is always at the root of every RO-Crate.
 
@@ -158,7 +149,7 @@ Write a query to get the `sdo:downloadUrl` links, put them into your browser, wh
 **3. Use data version control (`DVC`) tool**
 Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its [documentation](https://dvc.org/doc).
 
-#### Python implementation
+#### Python Implementation
 
 It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from a jupyter notebook.
 
@@ -210,6 +201,8 @@ def sparql_json_to_df(sparql_json):
     df = pd.DataFrame(rows, columns=vars_)
     return df
 ```
+
+#### Local + Public Endpoints
 
 [Second notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/01_fuseki_emobon_full.ipynb) includes all the steps of setting up the SparQL endpoint and also combining local queries with public endpoints from wikidata and UniProt.
 

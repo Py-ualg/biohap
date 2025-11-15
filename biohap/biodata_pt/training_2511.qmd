@@ -6,7 +6,7 @@ editor: source
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-November 11, 2025
+November 15, 2025
 :::
 
 This course should give you set of minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`.
@@ -67,7 +67,10 @@ git clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git
 
 As you see in the GH as well, you have now the RO-Crates per sample and corresponding `.ttl` files to simplify your life.
 
-We will use [fuseki](https://jena.apache.org/documentation/fuseki2/index.html) server for a SPARQL endpoint. It is a java ndpoint, therefore, you might need to install `java` first if `java -version` command does not return anything.
+We will use [fuseki](https://jena.apache.org/documentation/fuseki2/index.html) server for a SPARQL endpoint. It is a java ndpoint, therefore, you might need to install `java` first if `java -version` command does not return anything or your version is <17.0.
+
+:::{.panel-tabset}
+#### Linux
 
 ```bash
 sudo apt update
@@ -83,6 +86,12 @@ wget https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-5.6.0.tar.gz
 # open the archive
 tar -xvf apache-jena-fuseki-5.6.0.tar.gz
 ```
+#### Windows
+
+For java, if you have `winget`, you can follow steps [here](https://learn.microsoft.com/en-us/java/openjdk/install#install-on-windows-with-the-windows-package-manager-winget) (not tested by the authors). Otherwise, download OpenJDK `.exe` file from [here](https://learn.microsoft.com/en-us/java/openjdk/download) and install it. You might need to close and reopen the command line window to see the updated version with `java --version` command in your PowerShell.
+
+Download directly the `fuseki` 5.6.0 zip file from [apache](https://jena.apache.org/download/index.cgi) and extract the archive.
+:::
 
 ## Hands-on tutorial
 

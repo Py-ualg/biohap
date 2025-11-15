@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-42fb0fd9f3706fcb29599d1a10f6eca3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed2528994fdac4fb551940ef9902a56d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -320,7 +320,7 @@ Last change
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>November 11, 2025</p>
+<p>November 15, 2025</p>
 </div>
 </div>
 </div>
@@ -363,7 +363,11 @@ Last change
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emo-bon/analysis-results-cluster-01-crate.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As you see in the GH as well, you have now the RO-Crates per sample and corresponding <code>.ttl</code> files to simplify your life.</p>
-<p>We will use <a href="https://jena.apache.org/documentation/fuseki2/index.html">fuseki</a> server for a SPARQL endpoint. It is a java ndpoint, therefore, you might need to install <code>java</code> first if <code>java -version</code> command does not return anything.</p>
+<p>We will use <a href="https://jena.apache.org/documentation/fuseki2/index.html">fuseki</a> server for a SPARQL endpoint. It is a java ndpoint, therefore, you might need to install <code>java</code> first if <code>java -version</code> command does not return anything or your version is &lt;17.0.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Linux</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> openjdk-17-jre-headless</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -372,29 +376,26 @@ Last change
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># open the archive</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvf</span> apache-jena-fuseki-5.6.0.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>For java, if you have <code>winget</code>, you can follow steps <a href="https://learn.microsoft.com/en-us/java/openjdk/install#install-on-windows-with-the-windows-package-manager-winget">here</a> (not tested by the authors). Otherwise, download OpenJDK <code>.exe</code> file from <a href="https://learn.microsoft.com/en-us/java/openjdk/download">here</a> and install it. You might need to close and reopen the command line window to see the updated version with <code>java --version</code> command in your PowerShell.</p>
+<p>Download directly the <code>fuseki</code> 5.6.0 zip file from <a href="https://jena.apache.org/download/index.cgi">apache</a> and extract the archive.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="hands-on-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="hands-on-tutorial">Hands-on tutorial</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" aria-current="page"><strong>Backend data integration</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><strong>Frontend data processing</strong></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><strong>Backend data integration</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><strong>Frontend data processing</strong></a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p>There are many parallel technologies to employ in each step. The pipeline here relies on <code>fuseki</code> for exposing the SPARQL endpoint and uses <code>python</code> to query the graph.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">fuseki</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">SPARQL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Python implementation</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">RO-Crates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Fuseki Server</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">SPARQL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Python Implementation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Local + Public Endpoints</a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<ol type="1">
-<li>RO-Crates</li>
-<li>fuseki setup</li>
-<li>generate and ingest graph</li>
-<li>basic SPARQL queries</li>
-<li>Jupyter NB for local SPARQL</li>
-<li>Combine local and public endpoints</li>
-</ol>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>A RO-Crate is an integrated view through which you can see an entire Research Object; the methods, the data, the output and the outcomes of a project or a piece of work. Linking all this together enables the sharing of research outputs with their context, as a coherent whole. <a href="https://www.researchobject.org/ro-crate/about_ro_crate">https://www.researchobject.org</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -404,7 +405,7 @@ Last change
 </div>
 <p>Note that we already have some of the EMO-BON RO-Crates locall in <code>/emobon_demo/ro-crates/analysis-results-cluster-01-crate/</code>.</p>
 </div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server as follows</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> apache-jena-fuseki-5.6.0/</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,8 +423,8 @@ Last change
 <figcaption>fuseki server</figcaption>
 </figure>
 </div>
-<section id="upload-data-and-generate-a-graph" class="level5">
-<h5 class="anchored" data-anchor-id="upload-data-and-generate-a-graph">Upload data and generate a graph</h5>
+<section id="upload-dataset-graph" class="level5">
+<h5 class="anchored" data-anchor-id="upload-dataset-graph">Upload Dataset / Graph</h5>
 <p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files and <code>upload all</code> or one by one. This is a shortcut, because many times you will not have access to the <code>.ttl</code> serialized version of the RO-Crate. In that case, the starting point is <code>ro-crate-metadata.json</code> file, which is always at the root of every RO-Crate.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Pseudo python code">
 <div class="callout-header d-flex align-content-center">
@@ -450,10 +451,10 @@ Pseudo python code
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>The full example is in this <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/fuseki_create_sparql_endpoint_GH.ipynb">notebook</a>.</p>
+<p>The full example is in this <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/03_fuseki_emobon_GH.ipynb">notebook</a>.</p>
 </section>
 </div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>The direct way from <code>fuseki</code> is to edit the query in <code>actions</code>. See more detailed but accesible introduction with <a href="https://www.w3.org/TR/sparql11-query/">examples</a>. When you click <code>query</code>, the default query is shown</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PREFIX rdf: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">1999</span><span class="op">/</span><span class="dv">02</span><span class="op">/</span><span class="dv">22</span><span class="op">-</span>rdf<span class="op">-</span>syntax<span class="op">-</span>ns#<span class="op">&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>PREFIX rdfs: <span class="op">&lt;</span>http:<span class="op">//</span>www.w3.org<span class="op">/</span><span class="dv">2000</span><span class="op">/</span><span class="dv">01</span><span class="op">/</span>rdf<span class="op">-</span>schema#<span class="op">&gt;</span></span>
@@ -556,7 +557,7 @@ Return SSU taxonomy download links.
 </div>
 <p><strong>3. Use data version control (<code>DVC</code>) tool</strong> Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its <a href="https://dvc.org/doc">documentation</a>.</p>
 </div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <p>It is possible to export the tables form the <code>fuseki</code> for subsequent work, but let’s do everything seamlessly from a jupyter notebook.</p>
 <p>First we reproduce what we did until now from <a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb">Jupyter notebook</a> which is part of the <code>momics-demos</code> repository, therefore you have it already locally with all installed dependencies too.</p>
 <p>Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint</p>
@@ -598,6 +599,8 @@ Return SSU taxonomy download links.
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(rows, columns<span class="op">=</span>vars_)</span>
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
 <p><a href="https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/01_fuseki_emobon_full.ipynb">Second notebook</a> includes all the steps of setting up the SparQL endpoint and also combining local queries with public endpoints from wikidata and UniProt.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -617,30 +620,22 @@ Tip
 </div>
 <hr>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p>Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly separate this second part from the first part, and data starting point will be standard <code>.csv</code> tables, just compressed into <code>.parquet</code> files. Since Blue-Cloud 2026 virtual research environment does not exist, we will run all the analysis locally.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Outline</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Testing panel dashboard</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Interactive mode</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Basic Panel Dashboard</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Deeper Interactive Mode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Hackathon</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<ol type="1">
-<li>Test panel dashboard</li>
-<li>Switch to interactive mode for deeper exploration</li>
-<li>Hackathon</li>
-</ol>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>All dependencies were installed in the setup. Initialize the jupyter server with</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> momics-demos</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Open <code>wf2_diversity/diversities_panel.ipynb</code>. It looks and it is a native python notebook code. However clicking the panel icon <img src="./figs/panel_icon.png" alt="panel icon" width="16"> initiates the dashboard.</p>
 <p>After getting familiar with the functionality, figure out on the PCoA beta diversity plots, which categorical variables show the highest <code>explained variance</code> on the first two PCA components.</p>
 </div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>Every dashboard is also available for interactive mode <code>..._interactive.ipynb</code>. After discovering one of the main drivers, we would like to see what drives this difference.</p>
 <p>Select one sample from each category and try to identify the taxa responsible from the variance.</p>
-<section id="hints" class="level5">
-<h5 class="anchored" data-anchor-id="hints">Hints</h5>
+<p><strong>Hints</strong></p>
 <ol type="1">
 <li>One approach could be the permonova test removing the taxa one by one. Permonova is implemented in <code>marine-omics-methods</code></li>
 <li>Alternatively compute correlation of each <code>taxon</code> with the PC1 and PC2, rank the features</li>
@@ -658,7 +653,9 @@ Tip
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        results[feature] <span class="op">=</span> (r_x, r_y)</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    vectors <span class="op">=</span> pd.DataFrame(results, index<span class="op">=</span>[<span class="st">"r_PC1"</span>, <span class="st">"r_PC2"</span>]).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>This is a free time to try your own ideas with the data building upon the existing functionality of the <code>momics-demos</code>. Do not hesitate to raise issues, and reach out.</p>
 </div>
 </div>
 </div>
