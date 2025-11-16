@@ -630,14 +630,14 @@ Tip
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> momics-demos</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Open <code>wf2_diversity/diversities_panel.ipynb</code>. It looks and it is a native python notebook code. However clicking the panel icon <img src="./figs/panel_icon.png" alt="panel icon" width="16"> initiates the dashboard.</p>
-<p>After getting familiar with the functionality, pick your favourite combination of <code>taxon level</code> + <code>categorical / numerical</code> variables showing certain pattern on the first two PCA components.</p>
+<p>After getting familiar with the functionality, pick your favourite combination of <code>taxon level</code> + <code>categoricall</code> variable showing certain pattern on the first two PCA components.</p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>Every dashboard is also available for interactive mode <code>..._interactive.ipynb</code>. After discovering one of the main drivers, we would like to see what drives this difference.</p>
 <p>Select one sample from each category and try to identify the taxa responsible from the variance.</p>
 <p><strong>Possible options</strong></p>
 <ol type="1">
-<li>One approach could be the permonova test removing the taxa one by one. Permonova is implemented in <code>marine-omics-methods</code> <a href="https://pypi.org/project/marine-omics/">marine-omics</a> on PyPI.</li>
+<li>One approach could be the permonova test removing the taxa one by one. Permonova is implemented in <a href="https://github.com/emo-bon/marine-omics-methods"><code>marine-omics-methods</code></a> (<a href="https://pypi.org/project/marine-omics/">marine-omics</a> on PyPI).</li>
 <li>Alternatively compute correlation of each <code>taxon</code> with the PC1 and PC2, rank the features</li>
 <li>Fit features as vectors onto PCoA (envfit). This is the most widely used method, especially in ecology (vegan package in R). In Python (via scikit-bio):</li>
 </ol>
