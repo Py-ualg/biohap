@@ -6,7 +6,7 @@ editor: source
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-November 15, 2025
+November 16, 2025
 :::
 
 This course should give you set of minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`.
