@@ -4,3 +4,5 @@
 biohap.Rproj
 .venv
 .Rhistory
+
+**/__pycache__/
