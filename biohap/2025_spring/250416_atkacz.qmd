@@ -548,8 +548,6 @@ Following this link you can interrogate the same table (`ASV_table_MA.txt`) in t
 
 If you have python installed you can run scripts which are in this [folder](https://github.com/Py-ualg/biohap/tree/main/assets/250416_atkacz).
 
-
-
 ```bash
 python append_braycurtis3.py ASV_table_MA.txt &&
 python pcoa_with_metadata_quick_legend.py

@@ -155,6 +155,13 @@ It is possible to export the tables form the `fuseki` for subsequent work, but l
 
 First we reproduce what we did until now from [Jupyter notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb) which is part of the `momics-demos` repository, therefore you have it already locally with all installed dependencies too.
 
+First, start a `jupyterlab` server
+
+```bash
+# in the momics-demos/momics-demos folder
+python -m jupyterlab
+```
+
 Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint
 
 ```python
