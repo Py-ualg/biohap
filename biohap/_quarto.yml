@@ -31,7 +31,6 @@ website:
 
       - section: "BioData.pt"
         contents:
-          - biodata_pt/intro.qmd
           - biodata_pt/training_2511.qmd
 
       - section: "Fall 2025"

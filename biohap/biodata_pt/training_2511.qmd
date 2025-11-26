@@ -6,14 +6,22 @@ editor: source
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-November 16, 2025
+November 26, 2025
 :::
 
-This course should give you set of minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`.
+EMO-BON establishes a long-term omics observatory for marine biodiversity through bimonthly sampling of coastal waters and both soft and hard sediments across more than 20 stations in Europe. Standard operating procedures are applied for sample collection, sequencing, and workflow analysis to ensure consistent taxonomic and functional annotation. FAIR principles are implemented using appropriate ontologies, RO-Crates, and a Python-based data analysis toolkit prepared for deployment in Virtual Research Environments (VREs).
 
-Second part focused on a specific use case of EMO-BON data, the pilot implementation of the Virtual Research Environment is introduced, basic analysis performed, issues reported, extended analysis proposed.
+## Session 1
 
-What is omitted here is how to organize the data and build the RO-Crates themselves.
+Online session hosted online on 3rd November ([slides](https://github.com/Py-ualg/biohap/blob/main/assets/2511_dpalecek/DataStewards_emobon_david.pdf))
+
+## Session 2
+
+Faculty of Pharmacy of the University of Porto, 17th November during the ELIXIR Portugal All Hands 2025
+
+This tutorial provides a set of minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`. How to organize the data and build the RO-Crates is beyond scope, but [galaxy tutorial](https://training.galaxyproject.org/topics/fair/tutorials/ro-crate-in-python/tutorial.html) is a great starting point.
+
+Second part focused on a specific use case of EMO-BON data, the pilot implementation of the Virtual Research Environment is introduced, basic visualization and analysis demonstrated, however, more extensive resources will be provided when the VRE is fully deployed and operational.
 
 ## Environmental setup
 
@@ -28,29 +36,33 @@ Create a dedicated conda/python environment
 
 ```bash
 # if you are using conda
-conda create -n "emobon" python=3.10  # or higher
+conda create -n "emobon" python=3.10   # or higher
 conda activate emobon
 ```
 
 ### Python resources
 
+Jupyter notebooks are included in the tutorials [repository](https://github.com/Py-ualg/biohap), which we clone locally
+
 ```bash
 # create a folder
-mkdir momics-demos
-cd momics-demos
+mkdir biohap
+cd biohap
 
 # clone the repository into newly created folder
-git clone https://github.com/emo-bon/momics-demos.git
+git clone https://github.com/Py-ualg/biohap.git
 
 # step into the repository
-cd momics-demos
+cd biohap
 
 # install dependencies using pip
-pip install -e .
+pip install -r requirements-biodata.txt
 
 # setup jupyter kernel
-ipython kernel install --user --name "emobon"
+ipython kernel install --user --name "biohap"
 ```
+
+Separate setup is provided for the Data Analysis Toolkit section.
 
 ### Backend setup
 
@@ -103,7 +115,7 @@ Download directly the `fuseki` 5.6.0 zip file from [apache](https://jena.apache.
 
 {{< include 251117_part1.qmd >}}
 
-### **Frontend data processing**
+### **Data Analysis Toolkit**
 
 {{< include 251117_part2.qmd >}}
 

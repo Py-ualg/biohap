@@ -15,9 +15,20 @@ A RO-Crate is an integrated view through which you can see an entire Research Ob
 
 Note that we already have some of the EMO-BON RO-Crates locall in `/emobon_demo/ro-crates/analysis-results-cluster-01-crate/`.
 
+Description of all the contents of a RO-Crate is contained in its root directory in the `ro-crate-metadata.json`, strictly with this name. We cannot upload directly the `ro-crate-metadata.json` files to the SPARQL endpoint, first they need to be serialized. We do that in the jupyter notebook.
+
+Initialize the `jupyterlab` server
+
+```bash
+# ideally in the biohap folder
+python -m jupyterlab
+```
+
+Open `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`. Run section 0., imports and function definitions. Section 1. serializes ro-crate0metadata.json files to turtle (`.ttl`) compatible with graph ingestion. Do note forget to change the relative path from your `home` to the `analysis-results-cluster-01-crate` folder.
+
 #### Fuseki Server
 
-Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server as follows
+Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data, here running locally on localhost. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server
 
 ```bash
 cd apache-jena-fuseki-5.6.0/
@@ -35,35 +46,37 @@ This should show you similar to
 15:46:48 INFO  Shiro           :: Shiro configuration: file:/home/david-palecek/coding/apache-jena-fuseki-5.6.0/run/shiro.ini
 ```
 
-Now opening your localhost, http://localhost:3030/, you should see the following page
+Now opening a default fuseki port 3030 at http://localhost:3030/, you should see something like
 
 ![fuseki server](figs/fuseki_screenshot.png)
 
 ##### Upload Dataset / Graph
 
-In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files and `upload all` or one by one. This is a shortcut, because many times you will not have access to the `.ttl` serialized version of the RO-Crate. In that case, the starting point is `ro-crate-metadata.json` file, which is always at the root of every RO-Crate.
+In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files we serialized in section RO-Crates and `upload all` or one by one.
 
-::: {.callout-note title="Pseudo python code"}
+How to create new dataset and upload data to it from python is shown in section 3. and 4. of the `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb` notebook.
 
-  ```python
-  # read the json file and convert it to a graph
-  file = ".../ro-crate-metadata.json"
-  with open(file, "r", encoding="utf-8") as f:
-      jsonld_text = f.read()
-  g = jsonld_to_rdflib(jsonld_text)
+Pseudo code for serialization of `ro-crate-metadata.json` and data upload (no new dataset creation) would look like
 
-  # upload data to the endpoint
-  resp = requests.put(
-    fuseki_url,
+```python
+# read the json file and convert it to a graph
+with open(".../ro-crate-metadata.json", "r", encoding="utf-8") as f:
+    jsonld_text = f.read()
+
+g = Graph()
+# rdflib accepts a JSON-LD string as input; base is optional
+g.parse(data=jsonld_text, format="json-ld", publicID=base)
+
+# upload data to the endpoint
+resp = requests.put(
+    FUSEKI_URL,
     data=g.serialize(format="turtle").encode("utf-8"),
     headers={"Content-Type": "text/turtle"},
     timeout=60,
-  )
-  ```
+)
+```
 
-:::
-
-The full example is in this [notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/03_fuseki_emobon_GH.ipynb).
+The example which integrates getting rocrates from GH directly is in `biohap/biodata_pt/python_tools/02_fuseki_emobon_GH.ipynb` or [online](https://github.com/Py-ualg/biohap/blob/main/biohap/biodata_pt/python_tools/02_fuseki_emobon_GH.ipynb).
 
 #### SPARQL
 
@@ -149,16 +162,15 @@ Write a query to get the `sdo:downloadUrl` links, put them into your browser, wh
 **3. Use data version control (`DVC`) tool**
 Shown in the python implementation of the above, which follows in the next section. For more on dvc, check its [documentation](https://dvc.org/doc).
 
-#### Python Implementation
+#### Python SPARQL
 
-It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from a jupyter notebook.
+It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from the jupyter notebook.
 
-First we reproduce what we did until now from [Jupyter notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/02_fuseki_emobon_queries.ipynb) which is part of the `momics-demos` repository, therefore you have it already locally with all installed dependencies too.
+First we reproduce the queries in section 2 of `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb` notebook (or [online](https://github.com/Py-ualg/biohap/blob/main/biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb))
 
-First, start a `jupyterlab` server
+The jupyterlab server should be still running, if not start it again in the `.../biohap` folder.
 
 ```bash
-# in the momics-demos/momics-demos folder
 python -m jupyterlab
 ```
 
@@ -176,7 +188,7 @@ r = requests.get("http://localhost:3030/emobon/query", params={"query": q}, head
 print(r.json())
 ```
 
-returned `json` is relatively easy to convert to a dataframe (`sparql_json_to_df` function)
+In the requests target, you see we query `emobon` dataset, which we created earlier. The returned `json` is relatively easy to convert to a dataframe (`sparql_json_to_df` function)
 
 ```python
 def sparql_json_to_df(sparql_json):
@@ -211,7 +223,7 @@ def sparql_json_to_df(sparql_json):
 
 #### Local + Public Endpoints
 
-[Second notebook](https://github.com/emo-bon/momics-demos/blob/main/wfs_extra/01_fuseki_emobon_full.ipynb) includes all the steps of setting up the SparQL endpoint and also combining local queries with public endpoints from wikidata and UniProt.
+The motivation behind setting up SPARQL graph database is in Section 5 of the `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`, which demonstrates how to combine local queries with public endpoints from wikidata and UniProt.
 
 ::: {.callout-tip}
 There is a python wrapper for SPARQL [SPARQLWrapper](https://sparqlwrapper.readthedocs.io/en/latest/main.html), which is `pip` installable and can be used as a standard python module but also as a command line script.

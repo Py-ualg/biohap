@@ -7,6 +7,26 @@ Because (a) public SPARQL endpoint with all the EMO-BON data, we completaly sepa
 
 ::: {.panel-tabset}
 
+#### Setup
+
+```bash
+# create a folder
+mkdir momics-demos
+cd momics-demos
+
+# clone the repository into newly created folder
+git clone https://github.com/emo-bon/momics-demos.git
+
+# step into the repository
+cd momics-demos
+
+# install dependencies using pip
+pip install -e .
+
+# setup jupyter kernel
+ipython kernel install --user --name "emobon"
+```
+
 #### Basic Panel Dashboard
 
 All dependencies were installed in the setup. Initialize the jupyter server with
