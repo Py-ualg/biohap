@@ -24,7 +24,7 @@ Initialize the `jupyterlab` server
 python -m jupyterlab
 ```
 
-Open `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`. Run section 0., imports and function definitions. Section 1. serializes ro-crate0metadata.json files to turtle (`.ttl`) compatible with graph ingestion. Do note forget to change the relative path from your `home` to the `analysis-results-cluster-01-crate` folder.
+Open `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`. Run **Section 0**, imports and function definitions. **Section 1** serializes ro-crate0metadata.json files to turtle (`.ttl`) compatible with graph ingestion. Do note forget to change the relative path from your `home` to the `analysis-results-cluster-01-crate` folder.
 
 #### Fuseki Server
 
@@ -54,7 +54,7 @@ Now opening a default fuseki port 3030 at http://localhost:3030/, you should see
 
 In `fuseki`, go `new dataset` -> give it a name `emobon` -> `add data` -> select the `.ttl` files we serialized in section RO-Crates and `upload all` or one by one.
 
-How to create new dataset and upload data to it from python is shown in section 3. and 4. of the `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb` notebook.
+How to create new dataset and upload data to it from python is shown in **Section 3 and 4**. of the `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb` notebook.
 
 Pseudo code for serialization of `ro-crate-metadata.json` and data upload (no new dataset creation) would look like
 
@@ -166,7 +166,7 @@ Shown in the python implementation of the above, which follows in the next secti
 
 It is possible to export the tables form the `fuseki` for subsequent work, but let's do everything seamlessly from the jupyter notebook.
 
-First we reproduce the queries in section 2 of `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb` notebook (or [online](https://github.com/Py-ualg/biohap/blob/main/biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb))
+First we reproduce the queries in **Section 2** of `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb` notebook (or [online](https://github.com/Py-ualg/biohap/blob/main/biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb))
 
 The jupyterlab server should be still running, if not start it again in the `.../biohap` folder.
 
@@ -223,11 +223,13 @@ def sparql_json_to_df(sparql_json):
 
 #### Local + Public Endpoints
 
-The motivation behind setting up SPARQL graph database is in Section 5 of the `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`, which demonstrates how to combine local queries with public endpoints from wikidata and UniProt.
+The point behind setting up SPARQL graph database comes together when combining local EMO-BON queries with public SPARQL endpoints from wikidata and UniProt. Demonstration is performed in **Section 5** of the `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`.
 
 ::: {.callout-tip}
 There is a python wrapper for SPARQL [SPARQLWrapper](https://sparqlwrapper.readthedocs.io/en/latest/main.html), which is `pip` installable and can be used as a standard python module but also as a command line script.
 :::
+
+Beyond only getting the data, [Graph based deep learning](https://www.sciencedirect.com/science/article/pii/S2666651021000012?utm_source=chatgpt.com) is a fast-growing field.
 
 :::
 

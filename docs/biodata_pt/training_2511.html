@@ -414,7 +414,7 @@ Last change
 <p>Initialize the <code>jupyterlab</code> server</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ideally in the biohap folder</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Open <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code>. Run section 0., imports and function definitions. Section 1. serializes ro-crate0metadata.json files to turtle (<code>.ttl</code>) compatible with graph ingestion. Do note forget to change the relative path from your <code>home</code> to the <code>analysis-results-cluster-01-crate</code> folder.</p>
+<p>Open <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code>. Run <strong>Section 0</strong>, imports and function definitions. <strong>Section 1</strong> serializes ro-crate0metadata.json files to turtle (<code>.ttl</code>) compatible with graph ingestion. Do note forget to change the relative path from your <code>home</code> to the <code>analysis-results-cluster-01-crate</code> folder.</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Expose your triples as a SPARQL end-point accessible over HTTP. Fuseki provides REST-style interaction with your RDF data, here running locally on localhost. Navigate to your downloaded fuseki files, open the archive if you have not done it yet and start the server</p>
@@ -437,7 +437,7 @@ Last change
 <section id="upload-dataset-graph" class="level5">
 <h5 class="anchored" data-anchor-id="upload-dataset-graph">Upload Dataset / Graph</h5>
 <p>In <code>fuseki</code>, go <code>new dataset</code> -&gt; give it a name <code>emobon</code> -&gt; <code>add data</code> -&gt; select the <code>.ttl</code> files we serialized in section RO-Crates and <code>upload all</code> or one by one.</p>
-<p>How to create new dataset and upload data to it from python is shown in section 3. and 4. of the <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code> notebook.</p>
+<p>How to create new dataset and upload data to it from python is shown in <strong>Section 3 and 4</strong>. of the <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code> notebook.</p>
 <p>Pseudo code for serialization of <code>ro-crate-metadata.json</code> and data upload (no new dataset creation) would look like</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the json file and convert it to a graph</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">".../ro-crate-metadata.json"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
@@ -562,7 +562,7 @@ Return SSU taxonomy download links.
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <p>It is possible to export the tables form the <code>fuseki</code> for subsequent work, but let’s do everything seamlessly from the jupyter notebook.</p>
-<p>First we reproduce the queries in section 2 of <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code> notebook (or <a href="https://github.com/Py-ualg/biohap/blob/main/biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb">online</a>)</p>
+<p>First we reproduce the queries in <strong>Section 2</strong> of <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code> notebook (or <a href="https://github.com/Py-ualg/biohap/blob/main/biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb">online</a>)</p>
 <p>The jupyterlab server should be still running, if not start it again in the <code>.../biohap</code> folder.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since we have already ingested the triples from the RO-Crates, we just need to query the existing endpoint</p>
@@ -606,7 +606,7 @@ Return SSU taxonomy download links.
 <span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
-<p>The motivation behind setting up SPARQL graph database is in Section 5 of the <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code>, which demonstrates how to combine local queries with public endpoints from wikidata and UniProt.</p>
+<p>The point behind setting up SPARQL graph database comes together when combining local EMO-BON queries with public SPARQL endpoints from wikidata and UniProt. Demonstration is performed in <strong>Section 5</strong> of the <code>biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -620,6 +620,7 @@ Tip
 <p>There is a python wrapper for SPARQL <a href="https://sparqlwrapper.readthedocs.io/en/latest/main.html">SPARQLWrapper</a>, which is <code>pip</code> installable and can be used as a standard python module but also as a command line script.</p>
 </div>
 </div>
+<p>Beyond only getting the data, <a href="https://www.sciencedirect.com/science/article/pii/S2666651021000012?utm_source=chatgpt.com">Graph based deep learning</a> is a fast-growing field.</p>
 </div>
 </div>
 </div>
