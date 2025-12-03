@@ -6,7 +6,7 @@ editor: source
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-November 26, 2025
+December 3, 2025
 :::
 
 EMO-BON establishes a long-term omics observatory for marine biodiversity through bimonthly sampling of coastal waters and both soft and hard sediments across more than 20 stations in Europe. Standard operating procedures are applied for sample collection, sequencing, and workflow analysis to ensure consistent taxonomic and functional annotation. FAIR principles are implemented using appropriate ontologies, RO-Crates, and a Python-based data analysis toolkit prepared for deployment in Virtual Research Environments (VREs).
