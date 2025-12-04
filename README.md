@@ -4,10 +4,13 @@ Visit [tutorials](https://py-ualg.github.io/biohap/) online. Reach out and let's
 
 ## Biodata.pt workshop (fall 2025)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17805439.svg)](https://doi.org/10.5281/zenodo.17805439)
+
 **David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
-Minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a sparQL endpoint either directly or using python `rdflib`. The examples are constructed from EMO-BON long-term omics observatory for marine biodiversity.
+Minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a SPARQL endpoint either directly or using python `rdflib`. The examples are constructed from EMO-BON long-term omics observatory for marine biodiversity.
 
+- Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/emo-bon-metagenomics-from-backend-integration-to-frontend-processing)
 - 🗓 Date: November 17, 10:30 - 12:30
 - 📍 Location: Faculty of Pharmacy of the University of Porto.
 
@@ -19,11 +22,11 @@ Minimal examples on how to generate a knowledge graph from set of RO-Crates, and
 
 ### 1️⃣ Simple Linux – An Introduction to Genomic Analysis on Linux
 
-[![DOI](https://zenodo.org/badge/961890771.svg)](https://doi.org/10.5281/zenodo.16530108)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16760061.svg)](https://doi.org/10.5281/zenodo.16760061)
 
 **Andrzej Tkacz [contact](mailto:atkacz@ualg.pt)**
 
-- [Tess.elixir](https://tess.elixir-europe.org/materials/simple-linux-an-introduction-to-genomic-analysis-on-linux)
+- Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/simple-linux-an-introduction-to-genomic-analysis-on-linux)
 - 🗓 Date: April 16, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 
@@ -39,7 +42,7 @@ Large files or datasets—especially those containing genomic data—no problem.
 
 **Tânia Aires [contact](mailto:taires@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
-- [Tess.elixir](https://tess.elixir-europe.org/materials/microbiome-analysis-of-amplicon-sequencing)
+- Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/microbiome-analysis-of-amplicon-sequencing)
 - 🗓 Date: May 7, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 
@@ -53,7 +56,7 @@ This workshop will provide an overview of microbiome data analysis from Illumina
 
 **Isabel Duarte [contact](mailto:isabel.duarte@gmail.com)**
 
-- [Tess.elixir](https://tess.elixir-europe.org/materials/rna-seq-from-counts-2-biological-insights)
+- Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/rna-seq-from-counts-2-biological-insights)
 - 🗓 Date: June 4, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
 

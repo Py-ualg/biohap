@@ -24,7 +24,7 @@ Initialize the `jupyterlab` server
 python -m jupyterlab
 ```
 
-Open `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`. Run **Section 0**, imports and function definitions. **Section 1** serializes ro-crate0metadata.json files to turtle (`.ttl`) compatible with graph ingestion. Do note forget to change the relative path from your `home` to the `analysis-results-cluster-01-crate` folder.
+Open `biohap/biodata_pt/python_tools/01_fuseki_emobon.ipynb`. Run **Section 0**, imports and function definitions. **Section 1** serializes ro-crate-metadata.json files to turtle (`.ttl`) compatible with graph ingestion. Do note forget to change the relative path from your `home` to the `analysis-results-cluster-01-crate` folder.
 
 #### Fuseki Server
 
