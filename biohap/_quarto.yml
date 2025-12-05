@@ -29,13 +29,17 @@ website:
         contents:
           - index.qmd
 
+      - section: "Spring 2026"
+        contents:
+          - 2026_spring/2601_hpc.qmd
+
       - section: "BioData.pt"
         contents:
           - biodata_pt/training_2511.qmd
 
-      - section: "Fall 2025"
+      - section: "Fall 2026"
         contents:
-          - 2025_fall/call.qmd
+          - 2026_fall/call_to_action.qmd
 
       - section: "Spring 2025"
         contents:

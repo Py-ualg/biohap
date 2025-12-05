@@ -1,0 +1,243 @@
+---
+title: "High-Performance Computing: access options, use cases, national applications (in preparation)"
+date: X January 2026
+author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt), ...
+editor: source
+---
+
+::: {.callout-note collapse="true" title="Last change"}
+December 5, 2025
+:::
+
+This hands-on workshop introduces power of high-performance computing and spearheads user to independence through use cases on CCMAR-Algarve `ceta` server and national `Deucalion` FCCN infrastructure.
+
+## Outline
+
+1. Presentation introducing HPC applications, available infrastructure, and access schemes (HPCVLAB person)
+    - who, how (UAlg, Portugal, Europe), what hardware, support
+2. Hands on SLURM cases on `ceta`
+    - Create DB and run Blast (Andrzej)
+    - Nextflow pipelines (David)
+    - ? Conda + Qiime2 (conda env setup with some extra deps can be shown in Andrzej's part) to save time
+3. Extra applications only available on Deucalion
+    - Demonstration or hands on
+
+## Pre-requisites
+
+1. Please get yourself familiar with the spirit of working on command line from last years [Andrzej's introducion](https://py-ualg.github.io/biohap/2025_spring/250416_atkacz.html)
+2. Let us know in advance if you prefer ceta or deucalion account (this iintroduces mess and complexity), we should decide upon testing
+
+:::{.panel-tabset}
+
+### Introduction
+
+link to the slides [].
+
+### SLURM
+
+
+### Blast
+
+First setup a database with
+
+```bash
+mkdir db_patho
+cp XXX.fasta db_patho
+cd db_patho
+
+makeblastdb -in XXX.fasta -dbtype nucl
+cd ..
+```
+
+#### Simple blast
+
+```bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=54
+#SBATCH --job-name=blastn
+#SBATCH --output=blastn_%j.out
+#SBATCH --error=blastn_%j.err
+
+TBC
+....
+
+```
+
+Create a new file `run_blast_simple.sh`, copy the above contents and save it
+
+Make it executable
+
+```bash
+chmod +x run_blast_simple.sh
+```
+
+Submit job by
+
+```bash
+sbatch run_blast_simple.sh
+```
+
+#### Parallelizing blast
+
+Just as an example for your reference of more complicated version, belos we want to process archives (listed in `list_archives`) which do not fit all to your space, therefore we pull via `ssh`, process, delete. Doing this one by one is also not efficient because of little gain on using many CPUs for single `blast`s, therefore we keep running three archives in parallel. It is important to `wait` for archive deletion for after all blasts are finished.
+
+Slurm script can look like this with some logs being written to `blastn_%j.out`:
+
+```bash
+#SBATCH --nodelist=ceta2
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=54
+#SBATCH --job-name=blastn
+#SBATCH --output=blastn_%j.out
+#SBATCH --error=blastn_%j.err
+
+# Path to the automation private key, 
+KEY=/home/davidp/.ssh/id_ed25519
+WORD_SIZE=28
+EVALUE=1e-5
+# Set output directory
+OUTDIR="results/blastn-ws${WORD_SIZE}-$(date +%Y%m%d_%H%M%S)"
+mkdir -p ${OUTDIR}
+
+MAX_JOBS=3
+current_jobs=0
+declare -A start_time end_time runtime
+
+while IFS= read -r ARCHIVE; do
+    echo "Processing: $ARCHIVE"
+    (
+        echo "Downloading ${ARCHIVE}"
+        scp -r -i ${KEY} davidp@10.36.5.158:/usr/local/scratch/open-archives-for-pedro/${ARCHIVE} /home/davidp/ecoli_mapping/archives/${ARCHIVE}/
+        echo "starting blasts ${ARCHIVE}"
+        start_time["$ARCHIVE"]=$(date +%s)
+
+        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/final.contigs.fa \
+            -db VFDB_setA/VFDB_setA_nt.fas \
+            -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+            -max_target_seqs 10 -max_hsps 1 \
+            -evalue ${EVALUE} -word_size ${WORD_SIZE} \
+            -num_threads 1 \
+            -out ${OUTDIR}/${ARCHIVE}_contigs_vfdb-setA.out 2>&1 &
+
+        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/final.contigs.fa \
+            -db megares_v3_DB/megares_database_v3.00.fasta \
+            -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+            -max_target_seqs 10 -max_hsps 1 \
+            -evalue ${EVALUE} -word_size ${WORD_SIZE} \
+            -num_threads 2 \
+            -out ${OUTDIR}/${ARCHIVE}_contigs_megares_v3.out 2>&1 &
+
+        # now merged reads
+        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/*.merged.fasta \
+            -db VFDB_setA/VFDB_setA_nt.fas \
+            -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+            -max_target_seqs 10 -max_hsps 1 \
+            -evalue ${EVALUE} -word_size ${WORD_SIZE} \
+            -num_threads 4 \
+            -out ${OUTDIR}/${ARCHIVE}_merged_vfdb-setA.out 2>&1 &
+
+        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/*.merged.fasta \
+            -db megares_v3_DB/megares_database_v3.00.fasta \
+            -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+            -max_target_seqs 10 -max_hsps 1 \
+            -evalue ${EVALUE} -word_size ${WORD_SIZE} \
+            -num_threads 4 \
+            -out ${OUTDIR}/${ARCHIVE}_merged_megares_v3.out 2>&1 &
+        wait
+
+        end_time["$ARCHIVE"]=$(date +%s)
+        runtime["$ARCHIVE"]=$(( end_time["$ARCHIVE"] - start_time["$ARCHIVE"] ))
+        echo "Completed ${ARCHIVE} in ${runtime[$ARCHIVE]} seconds (all blasts done). Removing archive directory."
+                rm -r /home/davidp/ecoli_mapping/archives/${ARCHIVE}
+        eval end_time_${ARCHIVE}=$(date +%s)
+    ) &
+
+    current_jobs=$((current_jobs + 1))
+
+    # if max number of archives running, wait until one finishes
+    if [ "$current_jobs" -ge "$MAX_JOBS" ]; then
+        wait -n   # wait for any one background job to finish
+        current_jobs=$((current_jobs - 1))
+    fi
+
+done < list_archives
+
+```
+
+### Nextflow
+
+![nf-core](figs/nfcore.png)
+
+Browse the [141 pipelines](https://nf-co.re/pipelines/) that are currently available as part of nf-core.
+
+#### Installation
+
+Normally, you will not need, nor have permissions to install system-wide `nextflow` on the cluster. For you own account or PC, you will need java > 17, if needed follow these [instructions](https://www.nextflow.io/docs/latest/install.html)
+
+Then do the following
+
+::: {.callout-note collapse="true" title="Install"}
+
+```bash
+# Install nextflow
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+```
+
+:::
+
+Typically nf-core pipeline will run in the container, such as `apptainer` or `docker`, for HPC. Different pipelines need different inputs however general structure of calling the pipeline is:
+
+Under the hood, if you are using the pipeline for the first time, it will get pulled from GH into your `~/.nextflow` folder
+
+```bash
+# Launch the pipeline
+nextflow run nf-core/<PIPELINE-NAME> -v <XXX> \
+    --input samplesheet.csv \
+    --output ./results/ \
+    -profile apptainer
+```
+
+In the full example, we set up kraken2 database and will run a [taxprofiler](https://nf-co.re/taxprofiler/1.2.5/) pipeline. Refactor for the example to be shown
+
+```bash
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+##SBATCH --nodelist=ceta2
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=54
+#SBATCH --job-name=taxprof
+#SBATCH --output=nfcore-taxprof_%j.out
+#SBATCH --error=nfcore-taxprof_%j.err
+
+# this is HPC setup dependent
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.15.0.6-2.el8.x86_64
+export NXF_APPTAINER_CACHEDIR=/share/apps/share/nextflow/apptainer_cache
+
+# Set output directory
+OUTDIR="results/nfcore-taxprofiler-$(date +%Y%m%d_%H%M%S)"
+SAMPLE_SHEET="samplesheet_input_nanopore.csv"
+DATABASE_SHEET="databases_input.csv"
+CONFIG="custom.config"
+
+# Create output directory if it doesn't exist
+mkdir -p "$OUTDIR"
+
+# Run Nextflow pipeline
+nextflow run nf-core/taxprofiler -r 1.2.4 \
+    -profile apptainer \
+    -resume \
+    -c "$CONFIG" \
+    --databases "$DATABASE_SHEET" \
+    --outdir "$OUTDIR" \
+    --input "$SAMPLE_SHEET" \
+    --run_kraken2 \
+    --run_krona \
+    --perform_longread_qc
+```
+
+:::
