@@ -241,4 +241,12 @@ nextflow run nf-core/taxprofiler -r 1.2.4 \
     --perform_longread_qc
 ```
 
+### Deucalion
+
+#### Applications
+
+#### Storage
+
+#### Compute
+
 :::
