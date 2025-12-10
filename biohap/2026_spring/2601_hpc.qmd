@@ -14,13 +14,13 @@ This hands-on workshop introduces power of high-performance computing and spearh
 ## Outline
 
 1. Presentation introducing HPC applications, available infrastructure, and access schemes (HPCVLAB person)
-    - who, how (UAlg, Portugal, Europe), what hardware, support
+    - what hardware, who, how, with what support (CCMAR, UAlg, Portugal, Europe)
 2. Hands on SLURM cases on `ceta`
     - Create DB and run Blast (Andrzej)
     - Nextflow pipelines (David)
     - ? Conda + Qiime2 (conda env setup with some extra deps can be shown in Andrzej's part) to save time
-3. Extra applications only available on Deucalion
-    - Demonstration or hands on
+3. Extra applications and tools only available on Deucalion
+    - Demonstration or hands on?
 
 ## Pre-requisites
 
@@ -35,6 +35,7 @@ link to the slides [].
 
 ### SLURM
 
+Simple minimalistic introduction.
 
 ### Blast
 

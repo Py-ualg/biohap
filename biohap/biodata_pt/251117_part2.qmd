@@ -38,7 +38,7 @@ python -m jupyterlab
 
 Open `wf2_diversity/diversities_panel.ipynb`. It looks and it is a native python notebook code. However clicking the panel icon <img src="./figs/panel_icon.png" alt="panel icon" width="16"/> initiates the dashboard.
 
-After getting familiar with the functionality, pick your favourite combination of `taxon level` + `categoricall` variable showing certain pattern on the first two PCA components.
+After getting familiar with the functionality, pick your favourite combination of `taxon level` + `categorical` variable showing certain pattern on the first two PCA components.
 
 #### Deeper Interactive Mode
 
