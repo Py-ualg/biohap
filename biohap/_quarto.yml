@@ -11,6 +11,8 @@ website:
   navbar:
     background: light
     align: left
+    logo: logo_ccmar.png
+    logo-link: https://www.ccmar.ualg.pt/
 
   sidebar:
     style: docked
@@ -18,13 +20,14 @@ website:
     align: left
     collapse-level: 1
     background: light
-    logo: logo_ccmar.png          # <-- logo here
-    logo-link: "https://www.ccmar.ualg.pt/"  # <-- clickable
-    logo-width: 500px
-    tools:
-      - icon: github
-        href: "https://github.com/Py-ualg/biohap"
+    # logo: logo_ccmar.png          # <-- logo here
+    # logo-link: "https://www.ccmar.ualg.pt/"  # <-- clickable
+    # logo-width: 500px
     contents:
+      - text: ""
+        contents:
+          - _sidebar-logo.html
+
       - section: "Introduction"
         contents:
           - index.qmd
@@ -50,6 +53,9 @@ website:
         contents:
           - basics/abundance_tables.qmd
       - references.qmd
+    tools:
+      - icon: github
+        href: "https://github.com/Py-ualg/biohap"
 
 bibliography: references.bib
 
