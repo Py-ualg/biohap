@@ -57,8 +57,6 @@ format:
       - brand
     code-copy: true
     code-overflow: wrap
-    # css: styles.css
-    # include-after-body: js.html
     grid:
       sidebar-width: 350px
       body-width: 900px
