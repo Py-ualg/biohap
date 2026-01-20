@@ -1,57 +1,262 @@
 ---
-title: "High-Performance Computing: access options, use cases, national applications (in preparation)"
-date: X January 2026
-author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt), ...
+title: "High-Performance Computing: CCMAR-CETA & National Infrastructure"
+date: 26 January 2026
+author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-December 5, 2025
+January 20, 2025
 :::
 
-This hands-on workshop introduces power of high-performance computing and spearheads user to independence through use cases on CCMAR-Algarve `ceta` server and national `Deucalion` FCCN infrastructure.
+This hands-on workshop introduces participants to the power of high-performance computing, guiding them toward independent use through practical examples on the `CCMAR-CETA` server. The workshop also includes a presentation from HPCVLAB at UAlg on the national `Deucalion` FCCN infrastructure.
 
 ## Outline
 
-1. Presentation introducing HPC applications, available infrastructure, and access schemes (HPCVLAB person)
-    - who, how (UAlg, Portugal, Europe), what hardware, support
-2. Hands on SLURM cases on `ceta`
-    - Create DB and run Blast (Andrzej)
-    - Nextflow pipelines (David)
-    - ? Conda + Qiime2 (conda env setup with some extra deps can be shown in Andrzej's part) to save time
-3. Extra applications only available on Deucalion
-    - Demonstration or hands on
-
-## Pre-requisites
-
-1. Please get yourself familiar with the spirit of working on command line from last years [Andrzej's introducion](https://py-ualg.github.io/biohap/2025_spring/250416_atkacz.html)
-2. Let us know in advance if you prefer ceta or deucalion account (this iintroduces mess and complexity), we should decide upon testing
+1. Hands on SLURM cases on `CETA`
+    - Basics on editing files on HPC in `Vim`
+    - *Hello world* example submitting a python script
+    - Create DB and run `BLAST`
+    - Nextflow pipelines from `nf-core`
+2. Presentation introducing `Deucalion`, a national FCCN HPC infrastructure, access schemes, support and Graphical interfaces `CETA` does not provide.
 
 :::{.panel-tabset}
 
-### Introduction
+### Pre-requisites
 
-link to the slides [].
+1. Please get yourself familiar with the spirit of working on command line from last years [Andrzej's introducion](https://py-ualg.github.io/biohap/2025_spring/250416_atkacz.html)
+2. To get an account on `CETA`, you need to send your request, together with your **public ssh key** to *cymon[at].ualg.pt*.
 
-### SLURM
+Below are the OS dependent instructions on how to setup the `ssh` including the `ssh-keygen`.
 
+:::{.panel-tabset}
 
-### Blast
+#### Linux and Mac
 
-First setup a database with
+ssh should be already installed by default. If not, install it via your package manager such as:
 
 ```bash
-mkdir db_patho
-cp XXX.fasta db_patho
-cd db_patho
+# linux
+sudo apt install openssh-client
 
-makeblastdb -in XXX.fasta -dbtype nucl
-cd ..
+# mac
+brew install openssh
 ```
 
-#### Simple blast
+#### Windows
+
+If unsure whether you have `OpenSSH` available, go to
+
+```
+Settings → System → Optional Features
+```
+
+- Check if `OpenSSH` is installed. If not, select Add a feature, then find and install both OpenSSH Client and Server.
+- Confirm `OpenSSH` is listed in System and Optional Features.
+
+:::
+
+Open a command line or power shell and execute. To generate the key, execute
 
 ```bash
+ssh-keygen -t rsa -b 4096 -C "yourname@ceta"
+```
+
+Two files will be created in your `/home/.ssh/` directory (on Windows in `users/<name>/.ssh`). The file named `<key>.pub` is the public key and is copied to the server to identify you. The file named `<key>` (without an extension) is your private key; it must be kept secret and never shared with anyone.
+
+### Login, add and edit files
+
+Once you have your account confirmed
+
+There is no Graphical interface available on the server. Typically prepare all your files on your local machine and `scp` them over to the server. Small edits are performed in `vi/vim` editor
+
+#### Vim
+
+create a new file (as `touch` command would as well) or open an existing one
+
+```bash
+vim <file>
+```
+
+Default mode is a command mode. To enter editing mode, press `insert` or `Shift i`
+
+to exit the edit mode, press `ESC`. In the this `normal` mode, pressing combination of letters execute commands
+
+::: {.callout-note collapse="true" title="Examples"}
+
+- `dd` → delete a line your cursor is at
+- `yy` → yank (copy) the current line
+- `p` → paste after the cursor
+- `P` → paste before the cursor
+- `:%d` → to delete everything
+- `u` → undo the last change
+
+and so on and on
+:::
+
+To copy text in editing mode (`shift I`), select text and right-click to paste at the position of the cursor
+
+To save and exit: `ESC` to enter command mode `:wq` (write and quit)
+
+To exit without saving:  `ESC` and `:q!`
+
+### SLURM job
+
+In this section, the hello-world example on submitting a job for exeution is shown. First copy two files over to `CETA` using `scp`. In your PC command line, navigate to the folder containing these files:
+
+- add_2_to_2.py
+- HPC_addition.sh
+
+```bash
+# if you create folder in your /home/<name>/
+mkdir hpc_workshop
+
+# to copy files to that location is done as
+scp add_2_to_2.py HPC_addition.sh <your-ceta-username>@ceta.ualg.pt:/home/<name>/hpc_workshop/
+
+# you can replace /home/<name> with ~
+scp add_2_to_2.py HPC_addition.sh <your-ceta-username>@ceta.ualg.pt:~/hpc_workshop/
+```
+
+::: {.callout-tip collapse="true" title="Copy folders"}
+To copy folders use `scp -r`, which means you can copy the whole material with
+
+```bash
+scp -r HPCcourse <your-ceta-username>@ceta.ualg.pt:/home/hpc_workshop/
+```
+
+:::
+
+`vim` each file and pay attention to these `#SBATCH` lines
+
+```bash
+#SBATCH --job-name=adding_2_and_2
+#SBATCH --output=addition.log
+#SBATCH --error=addition.err
+#SBATCH --nodes=1
+##SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=48
+#SBATCH --partition=all
+#SBATCH --nodelist=ceta1
+#SBATCH --mem=80G
+```
+
+First three lines are to set up how the job appears in the queue and where it wirtes outputs. `CETA` nodes have 56 CPUs, you allocate total of `ntasks-per-node` x `cpus-per-task`
+
+::: {.callout-note collapse="true" title="Nodes memmory"}
+Memory is allowcated for the whole job. Nodes 1-5 have 200 GB of memory, `bigmem` node has 900 GB RAM, which is not useful for most of the jobs. Even if your database has 500 GB, it does not mean it gets all loaded into the RAM, most probably you do not need to run on `bigmem`.
+:::
+
+`#SBATCH --partition=all` means that the job is submitted to all nodes, if there is free compute it will run immediately. This option is overwritten by `#SBATCH --nodelist=ceta1` where we pick specific node for submission. If the resources are not available on `ceta1`, the job will wait in the queue until the resources are freed.
+
+If you wish to pick a node, check the current job queue with:
+
+```bash
+squeue
+
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+12575       all   UDI305    cymon  R 1-03:41:34      1 ceta4
+12578       all many-aa-   leonor  R 1-18:03:38      1 ceta5
+12592       all   saniau    bruno  R   19:49:24      1 ceta1
+12593       all    nano1  jvarela  R   17:04:09      1 ceta1
+12609       all nfcoreMa  jbentes  R      40:12      1 ceta3
+12499    bigmem   UDI299    cymon  R    9:00:25      1 ceta-gen
+```
+
+::: {.callout-note collapse="true" title="+x"}
+Unlike running the script directly in bash with `./HPC_addition.sh`, which needs
+
+```bash
+chmod +x HPC_addition.sh
+```
+
+, SLURM script does not require *executable* +x, if you have `#!/bin/bash` at the top of the script:
+:::
+
+To run the job:
+
+```bash
+sbatch HPC_addition.sh
+```
+
+To cancel a job (do not worry, you can cancel only your own jobs)
+
+```bash
+# for example scancel 12543 
+scancel <job number> 
+```
+
+Execution of this job depends on the queu and resources which are currently used for the jobs. In the setup above, next to our job can run another job on the same node using `#SBATCH --cpus-per-task=6` and `#SBATCH --mem=100G`. Do you agree?
+
+let's investigate the output files, compare
+
+```bash
+ls
+
+# or
+ls -lhrt
+
+# or
+ls -la
+
+# or
+
+ll
+```
+
+### BLAST
+
+Rule of thumbs are:
+
+1. **Do not store large BLAST databases in your home directory.** Home directories usually have strict size and performance limits. Large reference databases should be placed in shared or high-performance storage locations provided by the HPC system. On `CETA` in `/share/data/ncbi-blast/`.
+2. **Database size directly affects performance.** The larger the database, the slower the search. If your analysis does not require certain taxa (e.g. vertebrates), use a filtered or custom database to reduce runtime and resource usage.
+3. **Ask HPC support staff for guidance.** Asking early often saves significant time and compute resources by choosing the right sources, and optimizeing SLURM scripts.
+4. **More CPUs do not always mean faster BLAST.** BLAST performance is often limited by disk I/O and database size rather than CPU. Increasing the number of threads beyond a certain point may yield little or no speedup and can waste allocated resources.
+
+[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) is a sequence alignment tool used to identify similarities between query sequences (nucleotide or protein, `-query`) and sequences stored in a reference database (`-db`). It performs local alignments, allowing for mismatches, insertions, and deletions, and reports the best-scoring matches along with alignment statistics such as scores, identities, and E-values.
+
+Start by copying a `small_SILVA.txt` to your workshop folder as before, which is set of sequences we want to represent as a database compatible with the `blast`. First we setup a database with `makeblastdb`. This software comes with the `blast` as a tool and should be installed for you already (it is possible to install your own software in your account `home` folder but it is a bit tricky)
+
+```bash
+makeblastdb -dbtype nucl -in small_SILVA.txt -out small_SILVA.db
+```
+
+#### New submission script
+
+Let's prepare slurm input file to run local BLAST. First let's use the previous template
+
+```bash
+cp HPC_addition.sh run_blast.sh
+```
+
+```bash
+vim run_blast.sh
+```
+
+#### Changes
+
+1. Instead of python command, replace it with
+
+```bash
+blastn -db small_SILVA.db -query SRR12031251_300bp.fasta -max_target_seqs 1 -outfmt 6  > my_blast_results.txt
+```
+
+2. Blast is not parallelized, unless you ask for more threads with `--num-threads`, therefore you can ask for a single CPU, `--cpus-per-task=1`, than 54 user can run their blasts on the same node.
+
+3. Change the job name, log and error files names to appropriatelly describe your job!!! Do squeue, if the node is busy avoid using it, or remove the `#SBATCH --nodelist=ceta1`. In normal bash, `#` is a comment symbol, in a batch script to uncomment the `#BATCH`, use `##` instead.
+
+The blast job should take less than 1min to finish
+
+### Parallel BLAST
+
+Just as an example for your reference of more complicated version, below we want to blast all fasta files in the directory with filenames ending with `.merged.fasta` against two separate databases (`VFDB_setA_nt.fa` and `megares_database_v3.00.fasta`). Doing this one by one is not efficient because of little gain on using many CPUs for single `blast`s, therefore we keep running `MAX_JOBS` archives in parallel.
+
+Slurm script can look like this with logs being written to `blastn_%j.out`:
+
+```bash
+#!/bin/bash
+
+#SBATCH --partition=all
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=54
@@ -59,118 +264,82 @@ cd ..
 #SBATCH --output=blastn_%j.out
 #SBATCH --error=blastn_%j.err
 
-TBC
-....
-
-```
-
-Create a new file `run_blast_simple.sh`, copy the above contents and save it
-
-Make it executable
-
-```bash
-chmod +x run_blast_simple.sh
-```
-
-Submit job by
-
-```bash
-sbatch run_blast_simple.sh
-```
-
-#### Parallelizing blast
-
-Just as an example for your reference of more complicated version, belos we want to process archives (listed in `list_archives`) which do not fit all to your space, therefore we pull via `ssh`, process, delete. Doing this one by one is also not efficient because of little gain on using many CPUs for single `blast`s, therefore we keep running three archives in parallel. It is important to `wait` for archive deletion for after all blasts are finished.
-
-Slurm script can look like this with some logs being written to `blastn_%j.out`:
-
-```bash
-#SBATCH --nodelist=ceta2
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=54
-#SBATCH --job-name=blastn
-#SBATCH --output=blastn_%j.out
-#SBATCH --error=blastn_%j.err
-
-# Path to the automation private key, 
-KEY=/home/davidp/.ssh/id_ed25519
 WORD_SIZE=28
 EVALUE=1e-5
-# Set output directory
+
+# Input directory with FASTA files (example)
+INDIR="/home/davidp/archives"
+
+# Output directory
 OUTDIR="results/blastn-ws${WORD_SIZE}-$(date +%Y%m%d_%H%M%S)"
-mkdir -p ${OUTDIR}
+mkdir -p "${OUTDIR}"
 
-MAX_JOBS=3
+MAX_JOBS=6
 current_jobs=0
-declare -A start_time end_time runtime
 
-while IFS= read -r ARCHIVE; do
-    echo "Processing: $ARCHIVE"
+for FASTA in ${INDIR}/*/*.merged.fasta; do
+    ARCHIVE=$(basename "$(dirname "$FASTA")")
+    echo "Processing ${ARCHIVE}"
+
     (
-        echo "Downloading ${ARCHIVE}"
-        scp -r -i ${KEY} davidp@10.36.5.158:/usr/local/scratch/open-archives-for-pedro/${ARCHIVE} /home/davidp/ecoli_mapping/archives/${ARCHIVE}/
-        echo "starting blasts ${ARCHIVE}"
-        start_time["$ARCHIVE"]=$(date +%s)
+        start_time=$(date +%s)
 
-        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/final.contigs.fa \
-            -db VFDB_setA/VFDB_setA_nt.fas \
-            -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
-            -max_target_seqs 10 -max_hsps 1 \
-            -evalue ${EVALUE} -word_size ${WORD_SIZE} \
-            -num_threads 1 \
-            -out ${OUTDIR}/${ARCHIVE}_contigs_vfdb-setA.out 2>&1 &
-
-        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/final.contigs.fa \
-            -db megares_v3_DB/megares_database_v3.00.fasta \
-            -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
-            -max_target_seqs 10 -max_hsps 1 \
-            -evalue ${EVALUE} -word_size ${WORD_SIZE} \
-            -num_threads 2 \
-            -out ${OUTDIR}/${ARCHIVE}_contigs_megares_v3.out 2>&1 &
-
-        # now merged reads
-        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/*.merged.fasta \
+        blastn \
+            -query "${FASTA}" \
             -db VFDB_setA/VFDB_setA_nt.fas \
             -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
             -max_target_seqs 10 -max_hsps 1 \
             -evalue ${EVALUE} -word_size ${WORD_SIZE} \
             -num_threads 4 \
-            -out ${OUTDIR}/${ARCHIVE}_merged_vfdb-setA.out 2>&1 &
+            -out "${OUTDIR}/${ARCHIVE}_merged_vfdb-setA.out" &
 
-        blastn -query /home/davidp/ecoli_mapping/archives/${ARCHIVE}/*.merged.fasta \
+        blastn \
+            -query "${FASTA}" \
             -db megares_v3_DB/megares_database_v3.00.fasta \
             -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
             -max_target_seqs 10 -max_hsps 1 \
             -evalue ${EVALUE} -word_size ${WORD_SIZE} \
             -num_threads 4 \
-            -out ${OUTDIR}/${ARCHIVE}_merged_megares_v3.out 2>&1 &
+            -out "${OUTDIR}/${ARCHIVE}_merged_megares_v3.out" &
+
         wait
 
-        end_time["$ARCHIVE"]=$(date +%s)
-        runtime["$ARCHIVE"]=$(( end_time["$ARCHIVE"] - start_time["$ARCHIVE"] ))
-        echo "Completed ${ARCHIVE} in ${runtime[$ARCHIVE]} seconds (all blasts done). Removing archive directory."
-                rm -r /home/davidp/ecoli_mapping/archives/${ARCHIVE}
-        eval end_time_${ARCHIVE}=$(date +%s)
+        end_time=$(date +%s)
+        echo "Completed ${ARCHIVE} in $((end_time - start_time)) seconds"
+
     ) &
 
     current_jobs=$((current_jobs + 1))
 
-    # if max number of archives running, wait until one finishes
     if [ "$current_jobs" -ge "$MAX_JOBS" ]; then
-        wait -n   # wait for any one background job to finish
+        wait -n
         current_jobs=$((current_jobs - 1))
     fi
+done
 
-done < list_archives
-
+wait
+echo "All BLAST jobs completed."
 ```
 
 ### Nextflow
 
 ![nf-core](figs/nfcore.png)
 
-Browse the [141 pipelines](https://nf-co.re/pipelines/) that are currently available as part of nf-core.
+Browse the [141 pipelines](https://nf-co.re/pipelines/) that are currently available as part of nf-core. Why it is a good idea to use them:
+
+1. **Reproducibility**: You start with the raw data, and get all the preprocessing and processsing channeled into single workflow.
+2. **Integration**: Many tools setup in the containers to use out of the box, which might be hard to setup individually.
+3. **Reporting**: Supports comprehensive logs and result reports. If pipeline fails, it can be often salvaged from the cached intermediate state adding `-resume` to the script and rerun.
+
+::: {.callout-caution collapse="true" title="Careful"}
+You might easily generate lots of outputs. Use
+
+```bash
+nextflow clean [run_name|session_id] [options]
+```
+
+after succesful pipeline completion.
+:::
 
 #### Installation
 
@@ -190,8 +359,6 @@ mv nextflow ~/bin/
 
 Typically nf-core pipeline will run in the container, such as `apptainer` or `docker`, for HPC. Different pipelines need different inputs however general structure of calling the pipeline is:
 
-Under the hood, if you are using the pipeline for the first time, it will get pulled from GH into your `~/.nextflow` folder
-
 ```bash
 # Launch the pipeline
 nextflow run nf-core/<PIPELINE-NAME> -v <XXX> \
@@ -200,44 +367,128 @@ nextflow run nf-core/<PIPELINE-NAME> -v <XXX> \
     -profile apptainer
 ```
 
-In the full example, we set up kraken2 database and will run a [taxprofiler](https://nf-co.re/taxprofiler/1.2.5/) pipeline. Refactor for the example to be shown
+::: {.callout-tip collapse="true" title="test first"}
+It is highly recommended to test the pipeline first, before the full run, which is done by adding `test` to the profile parameter, resulting in `-profile test,apptainer`
+:::
+
+Under the hood, if you are using the pipeline for the first time, it will get pulled from GH into your `~/.nextflow` folder
+
+In the full example, we set up kraken2 database and will run a [taxprofiler](https://nf-co.re/taxprofiler/1.2.5/) pipeline for the same sample as the blast before.
+
+Two kraken databases already exists on `CETA` in `/home/share/kraken/`, so that everybody can use them.
+
+::: {.callout-tip collapse="true" title="Quiz"}
+Can you tell me what is the size of those DBs?
+:::
+
+`Taxprofiler` needs minimal input files which are `samples sheet` and `database sheet` to point where your sequence files and databases you want run against are, respectively.
+
+For sample, we will reuse the blast file, copy the following into a new 'samplesheet_biohap.csv', careful it needs to be gzipped file
+
+```bash
+gzip SRR12031251_300bp.fasta
+
+touch samplesheet_biohap.csv
+vi samplesheet_biohap.csv
+
+# copy the full path to your SRR12031251_300bp.fasta
+sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta
+sample1,0,ILLUMINA,,,<rest-of-the-full-path>/SRR12031251_300bp.fasta.gz,
+```
+
+, save and close with `:wq`.
+
+For the database we use the smaller `minusb`, copy the below to the `databases_input.csv`:
+
+```bash
+tool,db_name,db_params,db_path
+kraken2,minusb,,/share/data/kraken/k2_minusb_20250714.tar.gz
+```
 
 ```bash
 #!/bin/bash
 
-#SBATCH --partition=bigmem
-##SBATCH --nodelist=ceta2
+#SBATCH --partition=all
+#SBATCH --nodelist=ceta2
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=54
+#SBATCH --cpus-per-task=4
 #SBATCH --job-name=taxprof
 #SBATCH --output=nfcore-taxprof_%j.out
 #SBATCH --error=nfcore-taxprof_%j.err
 
 # this is HPC setup dependent
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.15.0.6-2.el8.x86_64
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.17.0.10-1.el8.x86_64
 export NXF_APPTAINER_CACHEDIR=/share/apps/share/nextflow/apptainer_cache
 
 # Set output directory
 OUTDIR="results/nfcore-taxprofiler-$(date +%Y%m%d_%H%M%S)"
-SAMPLE_SHEET="samplesheet_input_nanopore.csv"
+SAMPLE_SHEET="samplesheet_biohap.csv"
 DATABASE_SHEET="databases_input.csv"
-CONFIG="custom.config"
 
 # Create output directory if it doesn't exist
 mkdir -p "$OUTDIR"
 
 # Run Nextflow pipeline
-nextflow run nf-core/taxprofiler -r 1.2.4 \
+nextflow run nf-core/taxprofiler -r 1.2.5 \
     -profile apptainer \
-    -resume \
-    -c "$CONFIG" \
     --databases "$DATABASE_SHEET" \
     --outdir "$OUTDIR" \
     --input "$SAMPLE_SHEET" \
     --run_kraken2 \
     --run_krona \
-    --perform_longread_qc
 ```
+
+### Conda environments
+
+This is a minimal example to run `QIIME2` analysis in conda environment. Creating your own environment is beyond the scope of this workshop and you can consult with us any time. We are going to use existing environment
+
+```bash
+# first time, you might need to init conda
+conda init
+
+# activate conda
+conda activate
+
+# list all the environments
+conda env list
+
+# we activate the qiime2-amplicon-2024.5
+conda activate qiime2-amplicon-2024.5
+```
+
+```bash
+#!/bin/bash
+
+#SBATCH --partition=all
+##SBATCH --nodelist=ceta2
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=4
+#SBATCH --job-qiime2
+#SBATCH --output=qiime2_%j.out
+#SBATCH --error=qiime2_%j.err
+
+# Set output directory
+INDIR="/home/davidp/biohap/qiime2"
+OUTDIR="results/qiime2-$(date +%Y%m%d_%H%M%S)"
+
+source ~/.bashrc
+conda activate qiime2-amplicon-2024.5
+
+# Create output directory if it doesn't exist
+mkdir -p "$OUTDIR"
+
+# this is initial step of the qiime2 analysis
+qiime tools import \
+    --type 'SampleData[PairedEndSequencesWithQuality]' \
+    --input-path Manifest_file_Species.txt \
+    --output-path demux.qza \
+    --input-format PairedEndFastqManifestPhred33V2
+
+# below you would mount the rest of your pipeline
+```
+
+Now you can implement the QIIME2 tutorial from the [last year](https://py-ualg.github.io/biohap/2025_spring/250507_taires.html), but on HPC.
 
 :::

@@ -3,24 +3,24 @@ project:
   output-dir: ../docs
 
 execute:
-  freeze: true
+  freeze: auto
 
 website:
-  title: "BioHap: Bioinformatics, Handy and Practical"
+  title: "BioHaP: Bioinformatics, Handy and Practical"
   search: true
   navbar:
     background: light
     align: left
-    logo: logo_ccmar.png
-    logo-link: https://www.ccmar.ualg.pt/
-    logo-width: 200px
 
   sidebar:
     style: docked
     pinned: true
     align: left
-    collapse-level: 2
+    collapse-level: 1
     background: light
+    logo: logo_ccmar.png          # <-- logo here
+    logo-link: "https://www.ccmar.ualg.pt/"  # <-- clickable
+    logo-width: 500px
     tools:
       - icon: github
         href: "https://github.com/Py-ualg/biohap"
@@ -28,18 +28,17 @@ website:
       - section: "Introduction"
         contents:
           - index.qmd
+      - section: "Fall 2026"
+        contents:
+          - 2026_fall/call_to_action.qmd
 
       - section: "Spring 2026"
         contents:
           - 2026_spring/2601_hpc.qmd
 
-      - section: "BioData.pt"
+      - section: "Fall 2025"
         contents:
           - biodata_pt/training_2511.qmd
-
-      - section: "Fall 2026"
-        contents:
-          - 2026_fall/call_to_action.qmd
 
       - section: "Spring 2025"
         contents:

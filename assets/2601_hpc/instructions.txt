@@ -1,0 +1,77 @@
+1. how to use vim - i.e. no GUI on ceta is possible
+
+vim <file>    - that will either create a new file (as touch command would as well) or open an existing one
+
+to write something- shift I
+
+to delete everything- :%d
+
+to copy in- shift I and right-click and paste
+
+to exit and save- escape and :wq
+
+to exit but do not save- escape and :qa!
+
+
+
+
+
+2. running a simple python code in ceta
+please copy in two files: 
+add_2_to_2.py
+HPC_addition.sh
+
+vim each file
+--- pay attention to this #SBATCH lines
+
+check the jobs status at ceta
+squeue
+
+ready to run the job:
+sbatch HPC_addition.sh
+
+let's investigate the output
+
+ls or ls -lhrt
+
+(also useful - to cancel a YOUR job already running write: scancel <job number> - for example scancel 12543) 
+
+
+
+3. setting your own database and running BLAST
+please copy small_SILVA.txt
+
+(this is how you copy between your PC and ceta - you need to change the name though - this ./ means you copy a file from whatever directory you are in)
+
+scp ./small_SILVA.txt andrzej@ceta:/home/andrzej/HPCcourse/
+
+
+
+4. makeblastdb
+this software should be installed for you already (it is possible to install your own software in your folder but it is a bit tricky)
+
+makeblastdb -dbtype nucl -in small_SILVA.txt -out small_SILVA.db
+
+
+
+5. let's prepare slurm input file to run local BLAST
+
+first let's use the previous template
+cp HPC_addition.sh run_blast.sh
+
+vim run_blast.sh
+
+blastn -db small_SILVA.db -query SRR12031251_300bp.fasta -max_target_seqs 1 -outfmt 6  > my_blast_results.txt \
+
+BUT - let's change the job name, log and error files names as well !!! - do squeue, if the node is busy avoid using it
+
+(blast should take less than 1min to finish)
+
+
+6. check the output - now you know how to use HPC at CCMAR - if you want more detailed help just knock at 2.77 or email me at atkacz@ualg.pt
+
+
+
+
+
+
