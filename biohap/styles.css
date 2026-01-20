@@ -1,0 +1,15 @@
+.navbar-logo-link {
+  position: fixed;
+  top: -5px;
+  left: 10px;
+  z-index: 1050;
+}
+
+.navbar-logo-link img {
+  display: block;
+}
+
+/* Add space for the logo in the navbar to avoid title overlap */
+.navbar-title {
+  margin-left: 70px !important;
+}

@@ -10,23 +10,13 @@ website:
   search: true
   navbar:
     background: light
-    align: left
-    logo: logo_ccmar.png
-    logo-link: https://www.ccmar.ualg.pt/
-
   sidebar:
     style: docked
     pinned: true
     align: left
     collapse-level: 1
     background: light
-    # logo: logo_ccmar.png          # <-- logo here
-    # logo-link: "https://www.ccmar.ualg.pt/"  # <-- clickable
-    # logo-width: 500px
     contents:
-      - text: ""
-        contents:
-          - _sidebar-logo.html
 
       - section: "Introduction"
         contents:
@@ -73,6 +63,8 @@ format:
       sidebar-width: 350px
       body-width: 900px
       margin-width: 300px
+    css: styles.css
+    include-after-body: _navbar_logo.html
   # pdf:
   #   documentclass: scrreprt
 
