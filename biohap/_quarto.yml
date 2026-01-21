@@ -14,7 +14,7 @@ website:
     style: docked
     pinned: true
     align: left
-    collapse-level: 1
+    collapse-level: 2
     background: light
     contents:
 

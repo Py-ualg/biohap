@@ -2,13 +2,19 @@
 
 Visit [tutorials](https://py-ualg.github.io/biohap/) online. Reach out and let's get you tutorial scheduled and published.
 
-## Biodata.pt workshop (fall 2025)
+## Spring 2026 edition
+
+### 
+
+## Fall 2025 edition
+
+### Biodata.pt workshop - EMO-BON Metagenomics: From Backend Integration to Frontend Processing
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17805439.svg)](https://doi.org/10.5281/zenodo.17805439)
 
 **David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
-Minimal examples on how to generate a knowledge graph from set of RO-Crates, and use it as a SPARQL endpoint either directly or using python `rdflib`. The examples are constructed from EMO-BON long-term omics observatory for marine biodiversity.
+Minimal examples demonstrating how to generate a knowledge graph from a collection of RO-Crates and query it via a SPARQL endpoint, either directly or using Python (`rdflib`). The examples are based on data from the EMO-BON long-term omics observatory for marine biodiversity.
 
 - Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/emo-bon-metagenomics-from-backend-integration-to-frontend-processing)
 - 🗓 Date: November 17, 10:30 - 12:30
@@ -20,7 +26,7 @@ Minimal examples on how to generate a knowledge graph from set of RO-Crates, and
 
 ## Spring 2025 edition
 
-### 1️⃣ Simple Linux – An Introduction to Genomic Analysis on Linux
+### 1️⃣ Simple Linux - An Introduction to Genomic Analysis on Linux
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16760061.svg)](https://doi.org/10.5281/zenodo.16760061)
 

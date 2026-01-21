@@ -6,7 +6,7 @@ editor: source
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
-January 20, 2025
+January 21, 2025
 :::
 
 This hands-on workshop introduces participants to the power of high-performance computing, guiding them toward independent use through practical examples on the `CCMAR-CETA` server. The workshop also includes a presentation from HPCVLAB at UAlg on the national `Deucalion` FCCN infrastructure.
@@ -22,7 +22,7 @@ This hands-on workshop introduces participants to the power of high-performance 
 
 :::{.panel-tabset}
 
-### Pre-requisites
+### Setup
 
 1. Please get yourself familiar with the spirit of working on command line from last years [Andrzej's introducion](https://py-ualg.github.io/biohap/2025_spring/250416_atkacz.html)
 2. To get an account on `CETA`, you need to send your request, together with your **public ssh key** to *cymon[at].ualg.pt*.
@@ -64,11 +64,35 @@ ssh-keygen -t rsa -b 4096 -C "yourname@ceta"
 
 Two files will be created in your `/home/.ssh/` directory (on Windows in `users/<name>/.ssh`). The file named `<key>.pub` is the public key and is copied to the server to identify you. The file named `<key>` (without an extension) is your private key; it must be kept secret and never shared with anyone.
 
-### Login, add and edit files
+### Downloads
 
-Once you have your account confirmed
+Files necessary to complete this tutorial can be found and downloaded from the biohap [GitHub](https://github.com/Py-ualg/biohap/tree/main/assets/2601_hpc).
 
-There is no Graphical interface available on the server. Typically prepare all your files on your local machine and `scp` them over to the server. Small edits are performed in `vi/vim` editor
+### File management
+
+Once you have your account confirmed, you will be able to login using
+
+```bash
+ssh <username>@ceta.ualg.pt
+```
+
+If you set up a password to access the private key during its generation step, you will be promted to enter it. Otherwise press enter.
+
+::: {.callout-tip collapse="true" title="SSH config"}
+In the `.ssh` folder you can create/edit a `config` file
+
+```bash
+Host ceta
+    HostName ceta.ualg.pt
+    User <your-ceta-user-name>
+    IdentityFile ~/.ssh/<your-ceta-key-filanme>
+```
+
+With such setup, you can login using only `ssh ceta`, your username and server address will get substituted from the config file information.
+
+:::
+
+There is no graphical interface available on the server. Typically prepare all your files on your local machine and `scp` them over to the server. Small edits are performed in `vi/vim` editor
 
 #### Vim
 
@@ -100,7 +124,7 @@ To save and exit: `ESC` to enter command mode `:wq` (write and quit)
 
 To exit without saving:  `ESC` and `:q!`
 
-### SLURM job
+### SLURM
 
 In this section, the hello-world example on submitting a job for exeution is shown. First copy two files over to `CETA` using `scp`. In your PC command line, navigate to the folder containing these files:
 
@@ -439,7 +463,7 @@ nextflow run nf-core/taxprofiler -r 1.2.5 \
     --run_krona \
 ```
 
-### Conda environments
+### Conda
 
 This is a minimal example to run `QIIME2` analysis in conda environment. Creating your own environment is beyond the scope of this workshop and you can consult with us any time. We are going to use existing environment
 
