@@ -1,5 +1,5 @@
 ---
-title: "High-Performance Computing: CCMAR-CETA & National Infrastructure"
+title: "High-Performance Computing: CCMAR's CETA & National Infrastructure"
 date: 26 January 2026
 author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
 editor: source
@@ -9,7 +9,7 @@ editor: source
 January 21, 2025
 :::
 
-This hands-on workshop introduces participants to the power of high-performance computing (HPC), guiding them toward independent use through practical examples on the `CCMAR-CETA` server. The workshop also includes a presentation from HPCVLAB at UAlg on the national `Deucalion` FCCN infrastructure.
+This hands-on workshop introduces participants to the power of high-performance computing (HPC), guiding them toward independent use through practical examples on the CCMAR's `CETA` server. The workshop also includes a presentation from HPCVLAB at UAlg on the national `Deucalion` FCCN infrastructure.
 
 ## Outline
 

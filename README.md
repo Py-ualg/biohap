@@ -4,11 +4,11 @@ Visit [tutorials](https://py-ualg.github.io/biohap/) online. Reach out and let's
 
 ## Spring 2026 edition
 
-### High-Performance Computing: CCMAR-CETA & National Infrastructure
+### High-Performance Computing: CCMAR's CETA & National Infrastructure
 
 **Andrzej Tkacz [contact](mailto:atkacz@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
-This hands-on workshop introduces participants to the power of high-performance computing, guiding them toward independent use through practical examples on the CCMAR-CETA server. The workshop also includes a presentation from HPCVLAB at UAlg on the national Deucalion FCCN infrastructure.
+This hands-on workshop introduces participants to the power of high-performance computing, guiding them toward independent use through practical examples on the CCMAR's CETA server. The workshop also includes a presentation from HPCVLAB at UAlg on the national Deucalion FCCN infrastructure.
 
 - 🗓 Date: January 26, 14:00 - 17:00 (help with technical setup at 13:40)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
