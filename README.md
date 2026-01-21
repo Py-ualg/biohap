@@ -1,10 +1,19 @@
 # BioHaP: Bioinformatics, Handy and Practical
 
-Visit [tutorials](https://py-ualg.github.io/biohap/) online. Reach out and let's get you tutorial scheduled and published.
+Visit [tutorials](https://py-ualg.github.io/biohap/) online. Reach out and let's get your tutorial scheduled and published.
 
 ## Spring 2026 edition
 
-### 
+### High-Performance Computing: CCMAR-CETA & National Infrastructure
+
+**Andrzej Tkacz [contact](mailto:atkacz@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
+
+This hands-on workshop introduces participants to the power of high-performance computing, guiding them toward independent use through practical examples on the CCMAR-CETA server. The workshop also includes a presentation from HPCVLAB at UAlg on the national Deucalion FCCN infrastructure.
+
+- 🗓 Date: January 26, 14:00 - 17:00 (help with technical setup at 13:40)
+- 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
+
+**Coverage**: HPC basics, SLURM, BLAST, nf-core
 
 ## Fall 2025 edition
 
@@ -32,11 +41,11 @@ Minimal examples demonstrating how to generate a knowledge graph from a collecti
 
 **Andrzej Tkacz [contact](mailto:atkacz@ualg.pt)**
 
+Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.
+
 - Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/simple-linux-an-introduction-to-genomic-analysis-on-linux)
 - 🗓 Date: April 16, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
-
-Large files or datasets—especially those containing genomic data—no problem. This workshop introduces essential Linux commands and simple Bash scripts to streamline data manipulation tasks. We’ll cover key operations such as searching for patterns, globally modifying content, and aligning DNA sequences, such as FASTAQ and FASTA files.
 
 **Coverage**: bash, blast
 
@@ -48,11 +57,11 @@ Large files or datasets—especially those containing genomic data—no problem.
 
 **Tânia Aires [contact](mailto:taires@ualg.pt), David Paleček [contact](mailto:dpalecek@ualg.pt)**
 
+This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with cold-water corals.
+
 - Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/microbiome-analysis-of-amplicon-sequencing)
 - 🗓 Date: May 7, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
-
-This workshop will provide an overview of microbiome data analysis from Illumina amplicon sequencing raw data to data processing, visualization and statistics. Participants will learn basic concepts and tools to preprocess (QIIME2) and analyse (MicrobiomeAnalyst) microbiome data, in particular bacteria associated with cold-water corals.
 
 **Coverage**: QIIME2, MicrobiomeAnalyst
 
@@ -62,11 +71,11 @@ This workshop will provide an overview of microbiome data analysis from Illumina
 
 **Isabel Duarte [contact](mailto:isabel.duarte@gmail.com)**
 
+Introduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning how to choose the right Generalized linear model (GLM) for your question and your data. Participants will learn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially expressed genes.
+
 - Tutorial on [Tess.elixir](https://tess.elixir-europe.org/materials/rna-seq-from-counts-2-biological-insights)
 - 🗓 Date: June 4, 15:00 - 17:00 (help with technical setup at 14:30)
 - 📍 Location: CCMAR, Gambelas, building 7, room 1.39.
-
-Introduction to RNA-seq data analysis using R, focusing on differential expression analysis and learning how to choose the right Generalized linear model (GLM) for your question and your data. Participants will learn essential concepts and basic workflow, from preprocessing raw count data to identifying differentially expressed genes.
 
 **Coverage**: BioConductor, DESeq2, tidyverse
 

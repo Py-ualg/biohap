@@ -9,14 +9,14 @@ editor: source
 January 21, 2025
 :::
 
-This hands-on workshop introduces participants to the power of high-performance computing, guiding them toward independent use through practical examples on the `CCMAR-CETA` server. The workshop also includes a presentation from HPCVLAB at UAlg on the national `Deucalion` FCCN infrastructure.
+This hands-on workshop introduces participants to the power of high-performance computing (HPC), guiding them toward independent use through practical examples on the `CCMAR-CETA` server. The workshop also includes a presentation from HPCVLAB at UAlg on the national `Deucalion` FCCN infrastructure.
 
 ## Outline
 
 1. Hands on SLURM cases on `CETA`
-    - Basics on editing files on HPC in `Vim`
+    - Basics of editing files on HPC in `Vim`
     - *Hello world* example submitting a python script
-    - Create DB and run `BLAST`
+    - Create custom database and run `BLAST`
     - Nextflow pipelines from `nf-core`
 2. Presentation introducing `Deucalion`, a national FCCN HPC infrastructure, access schemes, support and Graphical interfaces `CETA` does not provide.
 
