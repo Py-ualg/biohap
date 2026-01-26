@@ -90,6 +90,7 @@ Host ceta
 
 With such setup, you can login using only `ssh ceta`, your username and server address will get substituted from the config file information.
 
+If you need to access `CETA` from another PC in the future, generate a new private/public key pair and add the public key to `.ssh/authorized_keys` file.
 :::
 
 There is no graphical interface available on the server. Typically prepare all your files on your local machine and `scp` them over to the server. Small edits are performed in `vi/vim` editor
@@ -344,6 +345,90 @@ done
 wait
 echo "All BLAST jobs completed."
 ```
+
+In the above example the user, which is not optimal. Better way is to submit all jobs as an array
+
+```bash
+#!/bin/bash
+
+INDIR="/home/davidp/archives"
+FILELIST="blast_inputs.txt"
+
+# Build input list
+find "$INDIR" -type f -name "*.merged.fasta" | sort > "$FILELIST"
+
+N=$(wc -l < "$FILELIST")
+
+echo "Submitting $N BLAST jobs as a SLURM array"
+
+sbatch \
+  --array=1-"$N" \
+  blast_array_job.sh "$FILELIST"
+```
+
+, where SLURM triggers the worker `blast_array_job.sh` per archive. The worker script looks then something like this
+
+```bash
+#!/bin/bash
+#SBATCH --partition=all
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --job-name=blastn
+#SBATCH --output=blastn_%A_%a.out
+#SBATCH --error=blastn_%A_%a.err
+
+set -euo pipefail
+
+WORD_SIZE=28
+EVALUE=1e-5
+
+FILELIST="$1"
+FASTA=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$FILELIST")
+
+ARCHIVE=$(basename "$(dirname "$FASTA")")
+
+OUTDIR="results/blastn-ws${WORD_SIZE}"
+mkdir -p "$OUTDIR"
+
+echo "[$(date)] Processing $ARCHIVE"
+echo "FASTA: $FASTA"
+echo "CPUs allocated: $SLURM_CPUS_PER_TASK"
+
+start_time=$(date +%s)
+
+# Use all CPUs SLURM gives us, split between BLASTs
+THREADS_PER_BLAST=$((SLURM_CPUS_PER_TASK / 2))
+
+blastn \
+  -query "$FASTA" \
+  -db VFDB_setA/VFDB_setA_nt.fas \
+  -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+  -max_target_seqs 10 -max_hsps 1 \
+  -evalue "$EVALUE" -word_size "$WORD_SIZE" \
+  -num_threads "$THREADS_PER_BLAST" \
+  -out "$OUTDIR/${ARCHIVE}_merged_vfdb-setA.out" &
+
+blastn \
+  -query "$FASTA" \
+  -db megares_v3_DB/megares_database_v3.00.fasta \
+  -outfmt "6 qseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+  -max_target_seqs 10 -max_hsps 1 \
+  -evalue "$EVALUE" -word_size "$WORD_SIZE" \
+  -num_threads "$THREADS_PER_BLAST" \
+  -out "$OUTDIR/${ARCHIVE}_merged_megares_v3.out" &
+
+wait
+
+end_time=$(date +%s)
+echo "[$(date)] Completed $ARCHIVE in $((end_time - start_time)) seconds"
+```
+
+- each FASTA is isolated
+- failures don’t affect others
+- clean logs per archive
+- SLURM enforces CPU limits
+- scalable to thousands of inputs.
 
 ### Nextflow
 

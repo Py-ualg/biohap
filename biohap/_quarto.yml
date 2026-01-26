@@ -21,8 +21,6 @@ website:
       - section: "Introduction"
         contents:
           - index.qmd
-      - section: "Fall 2026"
-        contents:
           - 2026_fall/call_to_action.qmd
 
       - section: "Spring 2026"
