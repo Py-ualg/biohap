@@ -1,8 +1,20 @@
 ---
 title: "High-Performance Computing: CCMAR's CETA & National Infrastructure"
 date: 26 January 2026
-author: David Paleček [dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)
+author: David Paleček ([dpalecek@ualg.pt](mailto:dpalecek@ualg.pt)), Andrzej Tkacz ([atkacz@ualg.pt](mailto:atkacz@ualg.pt))
 editor: source
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    code-fold: show
+    code-summary: "Code"
+    fig-width: 12
+    fig-height: 6
+    out.width: "100%"
+    code-overflow: wrap
 ---
 
 ::: {.callout-note collapse="true" title="Last change"}
@@ -19,6 +31,10 @@ This hands-on workshop introduces participants to the power of high-performance 
     - Create custom database and run `BLAST`
     - Nextflow pipelines from `nf-core`
 2. Presentation introducing `Deucalion`, a national FCCN HPC infrastructure, access schemes, support and Graphical interfaces `CETA` does not provide.
+
+## Tutorial
+
+Before the hands-on, you can check out the introductory presentation to [HPC in general](https://github.com/Py-ualg/biohap/blob/main/assets/2601_hpc/hpc_intro.pdf) and specific to [Deucalion](https://github.com/Py-ualg/biohap/blob/main/assets/2601_hpc/national_HPC_infrastructure.pdf).
 
 :::{.panel-tabset}
 
@@ -64,9 +80,13 @@ ssh-keygen -t rsa -b 4096 -C "yourname@ceta"
 
 Two files will be created in your `/home/.ssh/` directory (on Windows in `users/<name>/.ssh`). The file named `<key>.pub` is the public key and is copied to the server to identify you. The file named `<key>` (without an extension) is your private key; it must be kept secret and never shared with anyone.
 
+<button class="btn btn-primary next-tab">Next Step →</button>
+
 ### Downloads
 
 Files necessary to complete this tutorial can be found and downloaded from the biohap [GitHub](https://github.com/Py-ualg/biohap/tree/main/assets/2601_hpc).
+
+<button class="btn btn-primary next-tab">Next Step →</button>
 
 ### File management
 
@@ -124,6 +144,8 @@ To copy text in editing mode (`shift I`), select text and right-click to paste a
 To save and exit: `ESC` to enter command mode `:wq` (write and quit)
 
 To exit without saving:  `ESC` and `:q!`
+
+<button class="btn btn-primary next-tab">Next Step →</button>
 
 ### SLURM
 
@@ -229,6 +251,8 @@ ls -la
 ll
 ```
 
+<button class="btn btn-primary next-tab">Next Step →</button>
+
 ### BLAST
 
 Rule of thumbs are:
@@ -271,6 +295,8 @@ blastn -db small_SILVA.db -query SRR12031251_300bp.fasta -max_target_seqs 1 -out
 3. Change the job name, log and error files names to appropriatelly describe your job!!! Do squeue, if the node is busy avoid using it, or remove the `#SBATCH --nodelist=ceta1`. In normal bash, `#` is a comment symbol, in a batch script to uncomment the `#BATCH`, use `##` instead.
 
 The blast job should take less than 1min to finish
+
+<button class="btn btn-primary next-tab">Next Step →</button>
 
 ### Parallel BLAST
 
@@ -430,6 +456,8 @@ echo "[$(date)] Completed $ARCHIVE in $((end_time - start_time)) seconds"
 - SLURM enforces CPU limits
 - scalable to thousands of inputs.
 
+<button class="btn btn-primary next-tab">Next Step →</button>
+
 ### Nextflow
 
 ![nf-core](figs/nfcore.png)
@@ -548,6 +576,8 @@ nextflow run nf-core/taxprofiler -r 1.2.5 \
     --run_krona \
 ```
 
+<button class="btn btn-primary next-tab">Next Step →</button>
+
 ### Conda
 
 This is a minimal example to run `QIIME2` analysis in conda environment. Creating your own environment is beyond the scope of this workshop and you can consult with us any time. We are going to use existing environment
@@ -601,3 +631,45 @@ qiime tools import \
 Now you can implement the QIIME2 tutorial from the [last year](https://py-ualg.github.io/biohap/2025_spring/250507_taires.html), but on HPC.
 
 :::
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll('.next-tab');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      // 1. Identify the tabset and navigation links
+      const tabPane = this.closest('.tab-pane');
+      const tabContent = tabPane.parentElement;
+      const tabsetContainer = tabContent.parentElement;
+      const activeLink = tabContent.previousElementSibling.querySelector('.nav-link.active');
+      const nextTabLink = activeLink.parentElement.nextElementSibling?.querySelector('.nav-link');
+
+      if (nextTabLink) {
+        // ACTION: Switch to the next tab
+        nextTabLink.click();
+
+        // ACTION: Scroll back to the top of the tabset
+        // We add a small offset (e.g., 20px) so it's not jammed against the top
+        const offset = 20; 
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = tabsetContainer.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth' // Use 'auto' for instant jump
+        });
+
+      } else {
+        // ACTION: If no more tabs, go to next section
+        const nextSection = tabsetContainer.nextElementSibling;
+        if (nextSection) {
+          nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+});
+</script>

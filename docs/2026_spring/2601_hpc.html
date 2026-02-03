@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="David Paleček dpalecek@ualg.pt">
+<meta name="author" content="David Paleček (dpalecek@ualg.pt), Andrzej Tkacz (atkacz@ualg.pt)">
 <meta name="dcterms.date" content="2026-01-26">
 
 <title>High-Performance Computing: CCMAR’s CETA &amp; National Infrastructure – BioHaP: Bioinformatics, Handy and Practical</title>
@@ -255,17 +255,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
     </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#outline" id="toc-outline" class="nav-link active" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#tutorial" id="toc-tutorial" class="nav-link" data-scroll-target="#tutorial">Tutorial</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -282,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>David Paleček <a href="mailto:dpalecek@ualg.pt">dpalecek@ualg.pt</a> </p>
+             <p>David Paleček (<a href="mailto:dpalecek@ualg.pt">dpalecek@ualg.pt</a>), Andrzej Tkacz (<a href="mailto:atkacz@ualg.pt">atkacz@ualg.pt</a>) </p>
           </div>
   </div>
     
@@ -330,6 +331,10 @@ Last change
 </ul></li>
 <li>Presentation introducing <code>Deucalion</code>, a national FCCN HPC infrastructure, access schemes, support and Graphical interfaces <code>CETA</code> does not provide.</li>
 </ol>
+</section>
+<section id="tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial">Tutorial</h2>
+<p>Before the hands-on, you can check out the introductory presentation to <a href="https://github.com/Py-ualg/biohap/blob/main/assets/2601_hpc/hpc_intro.pdf">HPC in general</a> and specific to <a href="https://github.com/Py-ualg/biohap/blob/main/assets/2601_hpc/national_HPC_infrastructure.pdf">Deucalion</a>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" aria-current="page">Setup</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Downloads</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">File management</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">SLURM</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">BLAST</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">Parallel BLAST</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false">Nextflow</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false">Conda</a></li></ul>
 <div class="tab-content">
@@ -363,9 +368,15 @@ Last change
 <p>Open a command line or power shell and execute. To generate the key, execute</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">"yourname@ceta"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Two files will be created in your <code>/home/.ssh/</code> directory (on Windows in <code>users/&lt;name&gt;/.ssh</code>). The file named <code>&lt;key&gt;.pub</code> is the public key and is copied to the server to identify you. The file named <code>&lt;key&gt;</code> (without an extension) is your private key; it must be kept secret and never shared with anyone.</p>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Files necessary to complete this tutorial can be found and downloaded from the biohap <a href="https://github.com/Py-ualg/biohap/tree/main/assets/2601_hpc">GitHub</a>.</p>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Once you have your account confirmed, you will be able to login using</p>
@@ -427,6 +438,9 @@ Examples
 <p>To copy text in editing mode (<code>shift I</code>), select text and right-click to paste at the position of the cursor</p>
 <p>To save and exit: <code>ESC</code> to enter command mode <code>:wq</code> (write and quit)</p>
 <p>To exit without saving: <code>ESC</code> and <code>:q!</code></p>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </section>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
@@ -534,6 +548,9 @@ Nodes memmory
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="ex">ll</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </div>
 <div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
 <p>Rule of thumbs are:</p>
@@ -563,6 +580,9 @@ Nodes memmory
 <li><p>Change the job name, log and error files names to appropriatelly describe your job!!! Do squeue, if the node is busy avoid using it, or remove the <code>#SBATCH --nodelist=ceta1</code>. In normal bash, <code>#</code> is a comment symbol, in a batch script to uncomment the <code>#BATCH</code>, use <code>##</code> instead.</p></li>
 </ol>
 <p>The blast job should take less than 1min to finish</p>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </section>
 </div>
 <div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
@@ -710,6 +730,9 @@ Nodes memmory
 <li>SLURM enforces CPU limits</li>
 <li>scalable to thousands of inputs.</li>
 </ul>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </div>
 <div id="tabset-2-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-7-tab">
 <div class="quarto-figure quarto-figure-center">
@@ -850,6 +873,9 @@ Quiz
 <span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> <span class="st">"</span><span class="va">$SAMPLE_SHEET</span><span class="st">"</span> <span class="dt">\</span></span>
 <span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">--run_kraken2</span> <span class="dt">\</span></span>
 <span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">--run_krona</span> <span class="dt">\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="btn btn-primary next-tab">
+Next Step →
+</button>
 </section>
 </div>
 <div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
@@ -898,6 +924,47 @@ Quiz
 </div>
 </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll('.next-tab');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      // 1. Identify the tabset and navigation links
+      const tabPane = this.closest('.tab-pane');
+      const tabContent = tabPane.parentElement;
+      const tabsetContainer = tabContent.parentElement;
+      const activeLink = tabContent.previousElementSibling.querySelector('.nav-link.active');
+      const nextTabLink = activeLink.parentElement.nextElementSibling?.querySelector('.nav-link');
+
+      if (nextTabLink) {
+        // ACTION: Switch to the next tab
+        nextTabLink.click();
+
+        // ACTION: Scroll back to the top of the tabset
+        // We add a small offset (e.g., 20px) so it's not jammed against the top
+        const offset = 20; 
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = tabsetContainer.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth' // Use 'auto' for instant jump
+        });
+
+      } else {
+        // ACTION: If no more tabs, go to next section
+        const nextSection = tabsetContainer.nextElementSibling;
+        if (nextSection) {
+          nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+});
+</script>
 
 
 </section>

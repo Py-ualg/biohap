@@ -7,4 +7,4 @@ We aim to equip researchers with essential data analysis skills for bioinformati
 To visit the source files for the workshops and the webpage, visit our [Github](https://github.com/Py-ualg/biohap).
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
-![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=Py-ualg.biohap)
+![](https://visitor-badge.laobi.icu/badge?page_id=Py-ualg.biohap)
